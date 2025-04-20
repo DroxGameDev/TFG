@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Animations : MonoBehaviour
+public class PlayerAnimations : MonoBehaviour
 {
     
     public string[] AnimationNames;

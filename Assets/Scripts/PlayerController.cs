@@ -5,18 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rb;
     private PlayerInput playerControls;
+    private PlayerMovement playerMovement;
+    private PlayerAnimations playerAnimations;
 
-    void Sart()
+    void Start()
     {
-         playerControls = new PlayerInput();
-         rb = GetComponent<Rigidbody2D>();
+        playerControls = new PlayerInput();
+        playerMovement = GetComponent<PlayerMovement>();    
+        playerAnimations = GetComponent<PlayerAnimations>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.ReadValue<Vector2>().x);
+        playerMovement.moveInputUpdate(context.ReadValue<Vector2>());
     }
 
     public void OnJump(InputAction.CallbackContext context){
