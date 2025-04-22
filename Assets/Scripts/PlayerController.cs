@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        playerControls = new PlayerInput();
+        playerControls = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();    
         playerAnimations = GetComponent<PlayerAnimations>();
     }
@@ -24,12 +24,12 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context){
         if (context.performed)
         {
-            Debug.Log("Jump performed");
+           playerMovement.jumpInputUpdate(true);
         }
 
         if (context.canceled /*&& rb.velocity.y > 0f*/)
         {
-            Debug.Log("Jump canceled");
+           playerMovement.jumpInputUpdate(false);
         }
     }
 }
