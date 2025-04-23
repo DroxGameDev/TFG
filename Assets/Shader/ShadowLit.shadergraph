@@ -500,10 +500,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -75.0,
-            "y": 49.0,
+            "x": -133.99996948242188,
+            "y": 42.0000114440918,
             "width": 128.99998474121095,
-            "height": 34.0
+            "height": 34.000003814697269
         }
     },
     "m_Slots": [
@@ -583,12 +583,12 @@
     "m_Guid": {
         "m_GuidSerialized": "61f72863-1096-4ef9-a36e-8d1eac399b2d"
     },
-    "m_Name": "Normal",
+    "m_Name": "NormalMap",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Normal",
-    "m_DefaultReferenceName": "_Normal",
+    "m_RefNameGeneratedByDisplayName": "NormalMap",
+    "m_DefaultReferenceName": "_NormalMap",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
@@ -852,10 +852,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 86.99996185302735,
-            "y": 517.9999389648438,
+            "x": 87.0,
+            "y": 496.0000305175781,
             "width": 208.00003051757813,
-            "height": 435.0
+            "height": 435.0000305175781
         }
     },
     "m_Slots": [
@@ -1266,10 +1266,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -111.99999237060547,
-            "y": 560.9999389648438,
-            "width": 120.99996185302735,
-            "height": 34.0
+            "x": -119.00001525878906,
+            "y": 496.0000305175781,
+            "width": 144.00001525878907,
+            "height": 33.999969482421878
         }
     },
     "m_Slots": [
@@ -1295,7 +1295,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "b9b68ba7f1ce4a918af9081425c3acd9",
     "m_Id": 0,
-    "m_DisplayName": "Normal",
+    "m_DisplayName": "NormalMap",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

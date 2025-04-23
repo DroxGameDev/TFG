@@ -470,7 +470,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -629067253, guid: 8a4445758e05dcf43b5c8a464f691a2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -507,12 +507,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead96c221d89fb64288c2b68df66f3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationNames:
+  animationName:
   - Idle
   - Run
-  NormalMaps:
-  - {fileID: 2800000, guid: c4b523a9eec694e409b574cfc10ef288, type: 3}
-  - {fileID: 2800000, guid: 2968d7f5d369b104986048c7a0b19c4f, type: 3}
+  normalMaps:
+  - {fileID: 2800000, guid: d344584641798a448922b7b3d6999438, type: 3}
+  - {fileID: 2800000, guid: 8a0e27569772c1945923b6d44c70ec45, type: 3}
 --- !u!50 &573194968
 Rigidbody2D:
   serializedVersion: 4
