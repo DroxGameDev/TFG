@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool moveInput = false;
-
     void Start()
     {
         playerControls = GetComponent<PlayerInput>();
@@ -39,6 +39,14 @@ public class PlayerController : MonoBehaviour
         {
            playerMovement.jumpInputUpdate(false);
         }
+    }
+
+    public void SteelPush(InputAction.CallbackContext context){
+        if (context.performed)
+           playerMovement.SteelInputupdate(true);
+
+        if (context.canceled)
+           playerMovement.SteelInputupdate(false);
     }
 
     void Update()
@@ -74,5 +82,10 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
+    }
+
+    void FixedUpdate()
+    {
+        playerMovement.GravityController( playerAnimations._falling, playerAnimations._jumping);
     }
 }

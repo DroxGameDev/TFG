@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
 {
 
     private Animator _anim;
+    private Rigidbody2D _rb;
     [Range (0f, 5)] public int animationDebugIndex = 5;
     public string[] animationName;
 
@@ -28,6 +29,7 @@ public class PlayerAnimations : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -51,14 +53,13 @@ public class PlayerAnimations : MonoBehaviour
         if(Time.time < _lockedTill) return _currentState;
 
         if (_jumping) return jump;
-        if (_falling) return fall;
         if (_grounded){
             if(_running) return run;
 
             else return idle;
         }
 
-        return idle;
+        return _rb.velocity.y > 0 ? jump : fall;
 
         int lockState(int s, float t){
             _lockedTill = Time.time+t;

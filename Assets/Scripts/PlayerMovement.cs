@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)] 
     [Range (0f, 5f)] public  float gravityScale = 1f;
     [Range (0f, 5f)] public  float fallGravityMultiplier = 2f;
+    
+    [Range (0f, 5f)] public float jumpHangTheshold = 0.5f;
+    [Range (0f, 5f)] public float jumpHangMultiplier = 0.5f;
+
 
     [Space(10)]
 
@@ -44,6 +48,15 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
 
     public LayerMask groundLayer;
+
+    [Header("Steel and Iron")]
+    //Steel = push
+    //Iron = Iron
+    [SerializeField] private LayerMask metalEnviorimentLayer;
+    private bool SteelInput;
+
+    [Space(10)] 
+
 
     private float lastGrounded;
     void Start()
@@ -69,6 +82,15 @@ public class PlayerMovement : MonoBehaviour
            coyoteTimeCounter = 0f;
         }
 
+    }
+
+    public void SteelInputupdate(bool context)
+    {
+        SteelInput = context;
+
+        if (context){
+            Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer);
+        }
     }
     #endregion
 
@@ -103,7 +125,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
     }
+
 
     void FixedUpdate()
     {
@@ -133,21 +157,29 @@ public class PlayerMovement : MonoBehaviour
 
         #endregion
 
-        #region Jump Gravity
-        if (rb.velocity.y < 0f)
+    }
+
+    public void GravityController(bool isFalling, bool isJumping){
+        if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < jumpHangTheshold){
+            setGravityScale(gravityScale*jumpHangMultiplier);
+        }  
+        else if (rb.velocity.y < 0f)
         {
-            rb.gravityScale = gravityScale* fallGravityMultiplier;
+            setGravityScale(gravityScale* fallGravityMultiplier);
         }
         else{
-            rb.gravityScale = gravityScale;
+            setGravityScale(gravityScale);
         }
-        #endregion
+    }
 
+    private void setGravityScale(float newGravity){
+        rb.gravityScale = newGravity;
     }
 
     public bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        return (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) || 
+                Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer));
     }
 
     private void Flip()
