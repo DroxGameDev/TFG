@@ -112,8 +112,6 @@ public class PlayerMovement : MonoBehaviour
             }    
             nearMetalLines.Clear();
         }
-
-         Debug.Log(context);
     }
     #endregion
 
@@ -151,17 +149,25 @@ public class PlayerMovement : MonoBehaviour
         //actualizar lineas
         if(nearMetalLines.Count > 0){
             for(int i = 0; i < nearMetalLines.Count; i++){
-
-                nearMetalLines[i].lineRenderer.SetPosition(0, transform.position);
-                nearMetalLines[i].lineRenderer.SetPosition(1, nearMetals[i].transform.position);
+                LineObject actualLine = nearMetalLines[i];
+                
+                actualLine.lineRenderer.SetPosition(0, transform.position);
+                actualLine.lineRenderer.SetPosition(1, nearMetals[i].transform.position);
 
                 Vector2 MetalClosestPoint = nearMetals[i].GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
+                float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-                if(Vector2.Distance(transform.position, MetalClosestPoint) <= (metalCheckMinRadius)){
-                    ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 1);
+                if(lineDistance <= metalCheckMinRadius){
+                    if (actualLine.iValue != 1){
+                        actualLine.iValue = 1f;
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
+                    }  
                 }
                 else{
-                     ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 0.5f);     
+                    if (actualLine.iValue == 1 || actualLine.iValue == 0){
+                        actualLine.iValue = Mathf.InverseLerp(metalCheckRadius,metalCheckMinRadius, lineDistance);
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);     
+                    }        
                 }
                 
             }
@@ -235,10 +241,7 @@ public class PlayerMovement : MonoBehaviour
         material.SetFloat("_Alpha", alpha);
     }
 
-    private void getInterpolationValue(){
-
-    }
-     private void OnDrawGizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,metalCheckRadius);
