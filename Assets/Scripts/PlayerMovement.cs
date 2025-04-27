@@ -53,7 +53,12 @@ public class PlayerMovement : MonoBehaviour
     //Steel = push
     //Iron = Iron
     [SerializeField] private LayerMask metalEnviorimentLayer;
+    [SerializeField, Range (0f, 10f)] private float metalCheckRadius;
     private bool SteelInput;
+    private Collider2D[] nearMetals;
+    private List<GameObject> nearMetalLines;
+
+    public GameObject linePrefab;
 
     [Space(10)] 
 
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        nearMetalLines = new List<GameObject>();
     }
 
     #region Input
@@ -86,10 +92,20 @@ public class PlayerMovement : MonoBehaviour
 
     public void SteelInputupdate(bool context)
     {
-        SteelInput = context;
-
         if (context){
-            Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer);
+            nearMetals = Physics2D.OverlapCircleAll(transform.position, metalCheckRadius, metalEnviorimentLayer);
+
+            for (int i = 0; i < nearMetals.Length; i++){
+                GameObject newLinePrefab = Instantiate(linePrefab);
+                nearMetalLines.Add(newLinePrefab);
+            }    
+        }
+
+        if (!context){
+            for (int i = 0; i < nearMetalLines.Count; i++){
+                Destroy(nearMetalLines[i]);
+            }    
+            nearMetalLines.Clear();
         }
     }
     #endregion
@@ -124,6 +140,15 @@ public class PlayerMovement : MonoBehaviour
         else if (isFacingRight && moveInput < 0f)
         {
             Flip();
+        }
+
+        //actualizar lineas
+        if(nearMetalLines.Count > 0){
+            for(int i = 0; i < nearMetalLines.Count; i++){
+
+                nearMetalLines[i].GetComponent<LineRenderer>().SetPosition(0, transform.position);
+                nearMetalLines[i].GetComponent<LineRenderer>().SetPosition(1, nearMetals[i].transform.position);
+            }
         }
 
     }
