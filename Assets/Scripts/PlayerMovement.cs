@@ -53,10 +53,11 @@ public class PlayerMovement : MonoBehaviour
     //Steel = push
     //Iron = Iron
     [SerializeField] private LayerMask metalEnviorimentLayer;
-    [SerializeField, Range (0f, 10f)] private float metalCheckRadius;
+    [Range (0f, 10f)] public float metalCheckRadius;
+    [Range (0f, 5f)] public float metalCheckMinRadius;
     private bool SteelInput;
     private Collider2D[] nearMetals;
-    private List<GameObject> nearMetalLines;
+    private List<LineObject> nearMetalLines;
 
     public GameObject linePrefab;
 
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        nearMetalLines = new List<GameObject>();
+        nearMetalLines = new List<LineObject>();
     }
 
     #region Input
@@ -78,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void jumpInputUpdate(bool context)
     {
+       
+
         if (context){
             jumpBufferCounter = jumpBufferTime;
         }
@@ -87,33 +90,36 @@ public class PlayerMovement : MonoBehaviour
            rb.AddForce(Vector2.down * rb.velocity.y*(1-jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
         }
-
+        
     }
 
     public void SteelInputupdate(bool context)
     {
-        if (context){
+        if (context && nearMetalLines.Count == 0){
             nearMetals = Physics2D.OverlapCircleAll(transform.position, metalCheckRadius, metalEnviorimentLayer);
 
             for (int i = 0; i < nearMetals.Length; i++){
+
                 GameObject newLinePrefab = Instantiate(linePrefab);
-                nearMetalLines.Add(newLinePrefab);
+                LineObject newLineObject = new LineObject(newLinePrefab);
+                nearMetalLines.Add(newLineObject);
             }    
         }
 
-        if (!context){
+        if (!context && nearMetalLines.Count > 0){
             for (int i = 0; i < nearMetalLines.Count; i++){
-                Destroy(nearMetalLines[i]);
+                Destroy(nearMetalLines[i].Line);
             }    
             nearMetalLines.Clear();
         }
+
+         Debug.Log(context);
     }
     #endregion
 
     void Update()
     {
         
-         //Raycasts para la correcci�n de esquinas
         
         if (IsGrounded())
         {
@@ -146,13 +152,22 @@ public class PlayerMovement : MonoBehaviour
         if(nearMetalLines.Count > 0){
             for(int i = 0; i < nearMetalLines.Count; i++){
 
-                nearMetalLines[i].GetComponent<LineRenderer>().SetPosition(0, transform.position);
-                nearMetalLines[i].GetComponent<LineRenderer>().SetPosition(1, nearMetals[i].transform.position);
+                nearMetalLines[i].lineRenderer.SetPosition(0, transform.position);
+                nearMetalLines[i].lineRenderer.SetPosition(1, nearMetals[i].transform.position);
+
+                Vector2 MetalClosestPoint = nearMetals[i].GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
+
+                if(Vector2.Distance(transform.position, MetalClosestPoint) <= (metalCheckMinRadius)){
+                    ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 1);
+                }
+                else{
+                     ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 0.5f);     
+                }
+                
             }
         }
 
     }
-
 
     void FixedUpdate()
     {
@@ -203,8 +218,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return (Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) || 
-                Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer));
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
+                Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer);
     }
 
     private void Flip()
@@ -215,4 +230,18 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
 
+    private void ChangeMaterialAlpha(Material material, float alpha)
+    {
+        material.SetFloat("_Alpha", alpha);
+    }
+
+    private void getInterpolationValue(){
+
+    }
+     private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position,metalCheckRadius);
+    }
+    
 }
