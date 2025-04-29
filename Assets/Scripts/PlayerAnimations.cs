@@ -10,7 +10,8 @@ public class PlayerAnimations : MonoBehaviour
 
     private Animator _anim;
     private Rigidbody2D _rb;
-    [Range (0f, 5)] public int animationDebugIndex = 5;
+    private PlayerData _playerData;
+    [Range (0f, 6)] public int animationDebugIndex = 5;
     public string[] animationName;
 
     private static readonly int idle = Animator.StringToHash("Idle");
@@ -19,10 +20,6 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int fall = Animator.StringToHash("Fall");
 
     [Header("States")]
-    public bool _grounded = true;
-    public bool _running = false;
-    public bool _jumping = false;
-    public bool _falling = false;
     private float _lockedTill;
     private int _currentState = 0;
 
@@ -30,6 +27,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
+        _playerData = GetComponent<PlayerData>();
     }
 
     void Update()
@@ -52,9 +50,9 @@ public class PlayerAnimations : MonoBehaviour
     private int GetState(){
         if(Time.time < _lockedTill) return _currentState;
 
-        if (_jumping) return jump;
-        if (_grounded){
-            if(_running) return run;
+        if (_playerData.jumping) return jump;
+        if (_playerData.grounded){
+            if(_playerData.running) return run;
 
             else return idle;
         }

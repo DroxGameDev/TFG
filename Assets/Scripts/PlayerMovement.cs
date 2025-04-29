@@ -8,58 +8,27 @@ public class PlayerMovement : MonoBehaviour
 {
     
     private Rigidbody2D rb;
+    private PlayerData playerData;
     
 
     [Header("Movement")]
-    [Range (0f, 20f)] public  float moveSpeed = 5f;
-    [Range (0f, 30f)] public  float acceleration = 5f;
-    [Range (0f, 30f)] public  float decceleration = 24f;
-    [Range (0f, 1.5f)] public  float velPower = 0.9f;
-
-    [Space(10)] 
-    [Range (0f, 0.5f)] public  float frictionAmount = 0.2f;
-
     private float moveInput;
     private bool isFacingRight = true;
 
     [Header("Jumping")]
-    [Range (0f, 20f)] public  float jumpForce = 15f;
-    [Range (0f, 1f)] public  float jumpCutMultiplier = 0.5f;
-    [Space(10)] 
-    [Range (0f, 1f)] public  float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
-    [Range (0f, 1f)] public  float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
-    [Space(10)] 
-    [Range (0f, 5f)] public  float gravityScale = 1f;
-    [Range (0f, 5f)] public  float fallGravityMultiplier = 2f;
-    
-    [Range (0f, 5f)] public float jumpHangTheshold = 0.5f;
-    [Range (0f, 5f)] public float jumpHangMultiplier = 0.5f;
-
-
     [Space(10)]
 
-    [Header("Check")]
-    public Transform groundCheck;
-    [Range (0f, 0.5f)] public  float groundCheckRadius = 0.1f;
-    
-    [Space(10)]
-
-    public LayerMask groundLayer;
-
-    [Header("Steel and Iron")]
+    [Header("Steel")]
     //Steel = push
-    //Iron = Iron
-    [SerializeField] private LayerMask metalEnviorimentLayer;
-    [Range (0f, 10f)] public float metalCheckRadius;
-    [Range (0f, 5f)] public float metalCheckMinRadius;
-    private bool SteelInput;
+
+    //private bool SteelInput;
     private Collider2D[] nearMetals;
     private List<LineObject> nearMetalLines;
 
-    public GameObject linePrefab;
+    private float selectedMetalAngle = -1;
 
     [Space(10)] 
 
@@ -68,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerData = GetComponent<PlayerData>();
         nearMetalLines = new List<LineObject>();
     }
 
@@ -79,15 +49,13 @@ public class PlayerMovement : MonoBehaviour
 
     public void jumpInputUpdate(bool context)
     {
-       
-
         if (context){
-            jumpBufferCounter = jumpBufferTime;
+            jumpBufferCounter = playerData.jumpBufferTime;
         }
 
         if (!context && rb.velocity.y > 0f)
         {
-           rb.AddForce(Vector2.down * rb.velocity.y*(1-jumpCutMultiplier), ForceMode2D.Impulse);
+           rb.AddForce(Vector2.down * rb.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
         }
         
@@ -96,45 +64,79 @@ public class PlayerMovement : MonoBehaviour
     public void SteelInputupdate(bool context)
     {
         if (context && nearMetalLines.Count == 0){
-            nearMetals = Physics2D.OverlapCircleAll(transform.position, metalCheckRadius, metalEnviorimentLayer);
+            nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalEnvironmentLayer);
 
             for (int i = 0; i < nearMetals.Length; i++){
 
-                GameObject newLinePrefab = Instantiate(linePrefab);
-                LineObject newLineObject = new LineObject(newLinePrefab);
+                GameObject newLinePrefab = Instantiate(playerData.linePrefab);
+                LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
                 nearMetalLines.Add(newLineObject);
             }    
         }
 
         if (!context && nearMetalLines.Count > 0){
             for (int i = 0; i < nearMetalLines.Count; i++){
-                Destroy(nearMetalLines[i].Line);
+                Destroy(nearMetalLines[i].line);
             }    
             nearMetalLines.Clear();
         }
     }
+
+    public void GetSelectMetalAngle(Vector2 context){
+        if (context.x == 0 && context.y == 0){
+            selectedMetalAngle = 360f;
+        }
+        else{
+            selectedMetalAngle = Mathf.Round(Vector2.SignedAngle(Vector2.right, context)*100f)*0.01f;         
+        }
+
+    }
+
     #endregion
 
     void Update()
     {
         
-        
         if (IsGrounded())
         {
-            coyoteTimeCounter = coyoteTime;
+            playerData.grounded = true;
+            coyoteTimeCounter = playerData.coyoteTime;
         }
         else
         {
+            playerData.grounded = false;
             coyoteTimeCounter -= Time.deltaTime;
         }
         jumpBufferCounter -= Time.deltaTime;
 
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * playerData.jumpForce, ForceMode2D.Impulse);
             
             jumpBufferCounter = 0f;
         }
+
+        #region Animation States
+        if(Mathf.Abs(moveInput) > 0f && Mathf.Abs(rb.velocity.x) > 0){
+            playerData.running = true;
+        }
+        else{
+            playerData.running = false;
+        }
+
+        if (Mathf.Abs(rb.velocity.y) == 0f)
+        {
+            playerData.falling = false;
+            playerData.jumping = false;
+        }
+        else if (rb.velocity.y > 0f){
+            playerData.jumping = true;
+        }
+        else{
+            playerData.jumping = false;
+            playerData.falling = true;
+        }
+        #endregion
 
         //comprobar si hay que girar el sprite
         if (!isFacingRight && moveInput > 0f)
@@ -152,12 +154,12 @@ public class PlayerMovement : MonoBehaviour
                 LineObject actualLine = nearMetalLines[i];
                 
                 actualLine.lineRenderer.SetPosition(0, transform.position);
-                actualLine.lineRenderer.SetPosition(1, nearMetals[i].transform.position);
+                actualLine.lineRenderer.SetPosition(1, nearMetalLines[i].metal.transform.position);
 
-                Vector2 MetalClosestPoint = nearMetals[i].GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
+                Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
                 float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-                if(lineDistance <= metalCheckMinRadius){
+                if(Vector2.Distance(transform.position, MetalClosestPoint) <= playerData.metalCheckMinRadius){
                     if (actualLine.iValue != 1){
                         actualLine.iValue = 1f;
                         ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
@@ -165,27 +167,47 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else{
                     if (actualLine.iValue == 1 || actualLine.iValue == 0){
-                        actualLine.iValue = Mathf.InverseLerp(metalCheckRadius,metalCheckMinRadius, lineDistance);
-                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);     
+                        actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
+
+                        if (actualLine.iValue > 0.5f){
+                            actualLine. iValue = 0.5f;
+                        }
+                        else if (actualLine.iValue >= 0.01){
+                            actualLine.iValue = 0.1f;
+                        }
+
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);   
+                          
                     }        
                 }
+
+                actualLine.angle = Mathf.Round(Vector2.SignedAngle(Vector2.right,nearMetalLines[i].metal.transform.position-transform.position)* 100f) * 0.01f;
+                //Debug.Log(actualLine.angle);
+            }
+            nearMetalLines.Sort((left, right) => left.angle.CompareTo(right.angle));
+
+            /*
+            int nearestMetal = -1;
+            float nearestDistance = 180;
+            for (int i = 0; i <= nearMetalLines.Count; i++){
                 
             }
+            */
         }
-
+        
     }
 
     void FixedUpdate()
     {
         #region Run
         //Calculate the direction we want to move in and our desired velocity
-        float targetSpeed = moveInput * moveSpeed;
+        float targetSpeed = moveInput * playerData.moveSpeed;
         //calculate the difference between our current speed and the target speed
         float speedDif = targetSpeed - rb.velocity.x;
         //change the speed based on the acceleration or decceleration rate
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
         //applies acceleration to speed difference, tje raises to a set power so accelerration increases with higher speeds.
-        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
 
         rb.AddForce(movement * Vector2.right);
         #endregion
@@ -194,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Mathf.Abs(moveInput) <0.01f)
         {
-            float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(frictionAmount));
+            float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(playerData.frictionAmount));
 
             amount *= Mathf.Sign(rb.velocity.x);
 
@@ -203,18 +225,20 @@ public class PlayerMovement : MonoBehaviour
 
         #endregion
 
+        GravityController(playerData.falling, playerData.jumping);
+
     }
 
     public void GravityController(bool isFalling, bool isJumping){
-        if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < jumpHangTheshold){
-            setGravityScale(gravityScale*jumpHangMultiplier);
+        if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
+            setGravityScale(playerData.gravityScale*playerData.jumpHangMultiplier);
         }  
         else if (rb.velocity.y < 0f)
         {
-            setGravityScale(gravityScale* fallGravityMultiplier);
+            setGravityScale(playerData.gravityScale* playerData.fallGravityMultiplier);
         }
         else{
-            setGravityScale(gravityScale);
+            setGravityScale(playerData.gravityScale);
         }
     }
 
@@ -224,8 +248,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) ||
-                Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, metalEnviorimentLayer);
+        return Physics2D.OverlapCircle(playerData.groundCheck.position, playerData.groundCheckRadius, playerData.groundLayer) ||
+                Physics2D.OverlapCircle(playerData.groundCheck.position, playerData.groundCheckRadius, playerData.metalEnvironmentLayer);
     }
 
     private void Flip()
@@ -240,11 +264,11 @@ public class PlayerMovement : MonoBehaviour
     {
         material.SetFloat("_Alpha", alpha);
     }
-
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position,metalCheckRadius);
     }
-    
+    */
 }

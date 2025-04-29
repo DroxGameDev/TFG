@@ -6,18 +6,21 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private PlayerData playerData;
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
     private PlayerAnimations playerAnimations;
     
     private Rigidbody2D rb;
 
-    private bool moveInput = false;
+    private Vector2 i;
     void Start()
     {
+        playerData = GetComponent<PlayerData>();
         playerControls = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();    
         playerAnimations = GetComponent<PlayerAnimations>();
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -25,8 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         playerMovement.moveInputUpdate(context.ReadValue<Vector2>());
 
-        if(Mathf.Abs(context.ReadValue<Vector2>().x) > 0)   moveInput = true;        
-        else  moveInput = false;
     }
 
     public void OnJump(InputAction.CallbackContext context){
@@ -49,43 +50,17 @@ public class PlayerController : MonoBehaviour
            playerMovement.SteelInputupdate(false);
     }
 
-    void Update()
-    {
-        #region Animation States
-        if (playerMovement.IsGrounded())
-        {
-            playerAnimations._grounded = true;
-        }
-        else
-        {
-            playerAnimations._grounded = false;
-        }
-       
-        if(moveInput && Mathf.Abs(rb.velocity.x) > 0){
-            playerAnimations._running = true;
-        }
-        else{
-            playerAnimations._running = false;
-        }
-
-        if (Mathf.Abs(rb.velocity.y) == 0f)
-        {
-            playerAnimations._falling = false;
-            playerAnimations._jumping = false;
-        }
-        else if (rb.velocity.y > 0f){
-            playerAnimations._jumping = true;
-        }
-        else{
-            playerAnimations._jumping = false;
-            playerAnimations._falling = true;
-        }
-        #endregion
-
+    public void SelectMetal(InputAction.CallbackContext context){
+        playerMovement.GetSelectMetalAngle(context.ReadValue<Vector2>());
+        i = context.ReadValue<Vector2>();
     }
 
-    void FixedUpdate()
+    
+    private void OnDrawGizmos()
     {
-        playerMovement.GravityController( playerAnimations._falling, playerAnimations._jumping);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position,transform.position + new Vector3(i.x, i.y, 0));
     }
+    
+    
 }

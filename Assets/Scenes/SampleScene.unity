@@ -656,6 +656,7 @@ GameObject:
   - component: {fileID: 573194969}
   - component: {fileID: 573194968}
   - component: {fileID: 573194970}
+  - component: {fileID: 573194973}
   - component: {fileID: 573194971}
   - component: {fileID: 573194972}
   - component: {fileID: 573194967}
@@ -748,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 573194963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.136, y: -0.991, z: 0}
+  m_LocalPosition: {x: 0.13, y: -1.148, z: 0}
   m_LocalScale: {x: 1.3731792, y: 1.3317777, z: 0.3136473}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -773,10 +774,6 @@ MonoBehaviour:
   - Run
   - Jump
   - Fall
-  _grounded: 1
-  _running: 0
-  _jumping: 0
-  _falling: 0
 --- !u!50 &573194968
 Rigidbody2D:
   serializedVersion: 4
@@ -889,6 +886,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1f63bd19-a2ac-4e67-a62e-968a470cc5a3
     m_ActionName: Player Movement/SteelPush[/XInputControllerWindows/rightTrigger,/Mouse/press]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 573194971}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: SelectMetal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3c8dc0d5-7e48-4c72-b6f3-ca545c35001e
+    m_ActionName: Player Movement/Steel_SelectMetal
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player Movement
@@ -963,6 +976,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc40192732116349969990674ee3142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &573194973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573194963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2ba8ec6b9b0884c9e5b6388809d375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   moveSpeed: 9
   acceleration: 9
   decceleration: 9
@@ -970,7 +995,7 @@ MonoBehaviour:
   frictionAmount: 0.2
   jumpForce: 12
   jumpCutMultiplier: 0.1
-  coyoteTime: 0.15
+  coyoteTime: 0.1
   jumpBufferTime: 0.1
   gravityScale: 1
   fallGravityMultiplier: 1.9
@@ -981,12 +1006,16 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  metalEnviorimentLayer:
+  metalEnvironmentLayer:
     serializedVersion: 2
     m_Bits: 128
   metalCheckRadius: 6
   metalCheckMinRadius: 2
   linePrefab: {fileID: 1433559702223373683, guid: 18fb3c54414f5b94585f908b83e51bab, type: 3}
+  grounded: 1
+  running: 0
+  jumping: 0
+  falling: 0
 --- !u!1 &674155920
 GameObject:
   m_ObjectHideFlags: 0

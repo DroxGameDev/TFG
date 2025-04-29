@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
-
-struct LineObject
+public class LineObject
 {
-   public GameObject Line;
+   public GameObject line;
    public LineRenderer lineRenderer ;
-   public float iValue;
+   public Collider2D metal;
+   public float iValue {get; set;}
+   public float angle {get; set;}
 
-   public LineObject (GameObject line)
+   public LineObject (GameObject Line, Collider2D Metal)
    {
-      Line = line;
+      line = Line;
+      metal = Metal;
       lineRenderer = Line.GetComponent<LineRenderer>();
       iValue = 0f;
+      angle = 0f;
    }
-   
+
+
 }
