@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
 
     public void SteelPush(InputAction.CallbackContext context){
         if (context.performed)
-           playerMovement.SteelInputupdate(true);
+           StartCoroutine(playerMovement.SteelInputupdate(true));
 
         if (context.canceled)
-           playerMovement.SteelInputupdate(false);
+           StartCoroutine(playerMovement.SteelInputupdate(false));
     }
 
     public void SelectMetal(InputAction.CallbackContext context){

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -28,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 selecteMetalThreshold;
     private LineObject selectedMetal = null;
 
+    private float steelPushCounter;
+
     [Space(10)] 
 
 
@@ -45,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     public void moveInputUpdate(Vector2 context)
     {
         moveInput = context.x;
+
     }
 
     public void jumpInputUpdate(bool context)
@@ -61,10 +65,11 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void SteelInputupdate(bool context)
+    public IEnumerator SteelInputupdate(bool context)
     {
         if (context && nearMetalLines.Count == 0){
-            playerData.burningSteel = true;
+
+            playerData.timeStoped = true;
 
             Collider2D[] nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalEnvironmentLayer);
 
@@ -74,16 +79,69 @@ public class PlayerMovement : MonoBehaviour
                 LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
                 nearMetalLines.Add(newLineObject);
             }    
+
+            #region metal lines positioning
+            for(int i = 0; i < nearMetalLines.Count; i++){
+                LineObject actualLine = nearMetalLines[i];
+                
+                actualLine.lineRenderer.SetPosition(0, transform.position);
+                actualLine.lineRenderer.SetPosition(1, actualLine.metal.transform.position);
+
+                Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
+                float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
+
+                if(lineDistance <= playerData.metalCheckMinRadius){
+                    if (actualLine.iValue != 1){
+                        actualLine.iValue = 1f;
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
+                    }  
+                }
+                else{
+                        actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
+
+                        if (actualLine.iValue > 0.5f){
+                            actualLine. iValue = 0.5f;
+                        }
+                        else if (actualLine.iValue >= 0.01){
+                            actualLine.iValue = 0.1f;
+                        }
+
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
+                }
+
+                actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
+            }
+            #endregion
+
         }
 
+        Time.timeScale = 0;
+
+        while(context)
+            yield return null;
+
+        playerData.timeStoped = false;
+        
         if (!context && nearMetalLines.Count > 0){
-            playerData.burningSteel = false;
+
+            steelPushCounter = playerData.steelPushTime;
+            playerData.burningSteel = true;
+
+            if(selectedMetal != null){
+
+                Vector2 directionVector = selectedMetal.metal.transform.position-transform.position;
+                directionVector.Normalize();
+                rb.velocity = Vector3.zero;
+                rb.AddForce(directionVector * playerData.steelPushPower * selectedMetal.iValue * -1, ForceMode2D.Impulse);
+            }
+
             selectedMetal = null;
             for (int i = 0; i < nearMetalLines.Count; i++){
                 Destroy(nearMetalLines[i].line);
             }    
             nearMetalLines.Clear();
         }
+        Time.timeScale = 1;
     }
 
     public void GetSelectMetalAngle(Vector2 context)
@@ -115,6 +173,14 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter = 0f;
         }
 
+        if(steelPushCounter>0){
+            steelPushCounter -= Time.deltaTime;
+        }
+        else{
+            playerData.burningSteel = false;
+            steelPushCounter = 0f;
+        }
+
         #region Animation States
         if(Mathf.Abs(moveInput) > 0f && Mathf.Abs(rb.velocity.x) > 0){
             playerData.running = true;
@@ -138,48 +204,17 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         //comprobar si hay que girar el sprite
-        if (!isFacingRight && moveInput > 0f)
+        if (!isFacingRight && moveInput > 0f && !playerData.burningSteel)
         {
             Flip();
         }
-        else if (isFacingRight && moveInput < 0f)
+        else if (isFacingRight && moveInput < 0f && !playerData.burningSteel)
         {
             Flip();
         }
 
         //actualizar lineas
         if(nearMetalLines.Count > 0){
-            for(int i = 0; i < nearMetalLines.Count; i++){
-                LineObject actualLine = nearMetalLines[i];
-                
-                actualLine.lineRenderer.SetPosition(0, transform.position);
-                actualLine.lineRenderer.SetPosition(1, actualLine.metal.transform.position);
-
-                Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
-                float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
-
-                if(lineDistance <= playerData.metalCheckMinRadius){
-                    if (actualLine.iValue != 1){
-                        actualLine.iValue = 1f;
-                        ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
-                    }  
-                }
-                else{
-                        actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
-
-                        if (actualLine.iValue > 0.5f){
-                            actualLine. iValue = 0.5f;
-                        }
-                        else if (actualLine.iValue >= 0.01){
-                            actualLine.iValue = 0.1f;
-                        }
-
-                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
-                }
-
-                actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
-            }
-
             
             float selectedMetalAngle = 360f;
 
@@ -191,6 +226,8 @@ public class PlayerMovement : MonoBehaviour
                     selectedMetal = nearMetalLines[i];
                     selectedMetalAngle = posibleAngle;
                 }
+
+                nearMetalLines[i].lineRenderer.material.SetFloat("_GlowAmount", 0);
             }
 
             selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
@@ -201,18 +238,20 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        #region Run
-        //Calculate the direction we want to move in and our desired velocity
-        float targetSpeed = moveInput * playerData.moveSpeed;
-        //calculate the difference between our current speed and the target speed
-        float speedDif = targetSpeed - rb.velocity.x;
-        //change the speed based on the acceleration or decceleration rate
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
-        //applies acceleration to speed difference, tje raises to a set power so accelerration increases with higher speeds.
-        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
+        if (!playerData.burningSteel){
+            #region Run
+            //Calculate the direction we want to move in and our desired velocity
+            float targetSpeed = moveInput * playerData.moveSpeed;
+            //calculate the difference between our current speed and the target speed
+            float speedDif = targetSpeed - rb.velocity.x;
+            //change the speed based on the acceleration or decceleration rate
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
+            //applies acceleration to speed difference, tje raises to a set power so accelerration increases with higher speeds.
+            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
 
-        rb.AddForce(movement * Vector2.right);
-        #endregion
+            rb.AddForce(movement * Vector2.right);
+            #endregion
+        }
 
         #region Friction
 
@@ -256,21 +295,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
-        Vector2 localScale = transform.localScale;
-        localScale.x *= -1f;
-        transform.localScale = localScale;
+        if (!playerData.timeStoped){
+            isFacingRight = !isFacingRight;
+            Vector2 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 
     private void ChangeMaterialAlpha(Material material, float alpha)
     {
         material.SetFloat("_Alpha", alpha);
     }
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,metalCheckRadius);
-    }
-    */
 }
