@@ -9,7 +9,6 @@ public class LineObject
    public LineRenderer lineRenderer ;
    public Collider2D metal;
    public float iValue {get; set;}
-   public float angle {get; set;}
 
    public LineObject (GameObject Line, Collider2D Metal)
    {
@@ -17,7 +16,6 @@ public class LineObject
       metal = Metal;
       lineRenderer = Line.GetComponent<LineRenderer>();
       iValue = 0f;
-      angle = 0f;
    }
 
 

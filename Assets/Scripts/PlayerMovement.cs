@@ -23,12 +23,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Steel")]
     //Steel = push
-
-    //private bool SteelInput;
-    private Collider2D[] nearMetals;
     private List<LineObject> nearMetalLines;
-
-    private float selectedMetalAngle = -1;
+    private Vector2 selectMetalVector;
+    private Vector2 selecteMetalThreshold;
+    private LineObject selectedMetal = null;
 
     [Space(10)] 
 
@@ -39,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerData = GetComponent<PlayerData>();
         nearMetalLines = new List<LineObject>();
+
+        //selecteMetalThreshold = new Vector2(0.1f,0.1f);
     }
 
     #region Input
@@ -64,7 +64,9 @@ public class PlayerMovement : MonoBehaviour
     public void SteelInputupdate(bool context)
     {
         if (context && nearMetalLines.Count == 0){
-            nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalEnvironmentLayer);
+            playerData.burningSteel = true;
+
+            Collider2D[] nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalEnvironmentLayer);
 
             for (int i = 0; i < nearMetals.Length; i++){
 
@@ -75,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (!context && nearMetalLines.Count > 0){
+            playerData.burningSteel = false;
+            selectedMetal = null;
             for (int i = 0; i < nearMetalLines.Count; i++){
                 Destroy(nearMetalLines[i].line);
             }    
@@ -82,14 +86,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void GetSelectMetalAngle(Vector2 context){
-        if (context.x == 0 && context.y == 0){
-            selectedMetalAngle = 360f;
-        }
-        else{
-            selectedMetalAngle = Mathf.Round(Vector2.SignedAngle(Vector2.right, context)*100f)*0.01f;         
-        }
-
+    public void GetSelectMetalAngle(Vector2 context)
+    {
+        selectMetalVector = context;
     }
 
     #endregion
@@ -154,19 +153,18 @@ public class PlayerMovement : MonoBehaviour
                 LineObject actualLine = nearMetalLines[i];
                 
                 actualLine.lineRenderer.SetPosition(0, transform.position);
-                actualLine.lineRenderer.SetPosition(1, nearMetalLines[i].metal.transform.position);
+                actualLine.lineRenderer.SetPosition(1, actualLine.metal.transform.position);
 
                 Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
                 float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-                if(Vector2.Distance(transform.position, MetalClosestPoint) <= playerData.metalCheckMinRadius){
+                if(lineDistance <= playerData.metalCheckMinRadius){
                     if (actualLine.iValue != 1){
                         actualLine.iValue = 1f;
                         ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
                     }  
                 }
                 else{
-                    if (actualLine.iValue == 1 || actualLine.iValue == 0){
                         actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
 
                         if (actualLine.iValue > 0.5f){
@@ -176,23 +174,27 @@ public class PlayerMovement : MonoBehaviour
                             actualLine.iValue = 0.1f;
                         }
 
-                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);   
-                          
-                    }        
+                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
                 }
 
-                actualLine.angle = Mathf.Round(Vector2.SignedAngle(Vector2.right,nearMetalLines[i].metal.transform.position-transform.position)* 100f) * 0.01f;
-                //Debug.Log(actualLine.angle);
+                actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
             }
-            nearMetalLines.Sort((left, right) => left.angle.CompareTo(right.angle));
 
-            /*
-            int nearestMetal = -1;
-            float nearestDistance = 180;
-            for (int i = 0; i <= nearMetalLines.Count; i++){
-                
+            
+            float selectedMetalAngle = 360f;
+
+            for(int i = 0; i< nearMetalLines.Count; i++){
+                Vector2 actualMetalVector = nearMetalLines[i].metal.transform.position-transform.position;
+                float posibleAngle = Vector2.Angle(selectMetalVector, actualMetalVector);
+
+                if (posibleAngle < selectedMetalAngle){
+                    selectedMetal = nearMetalLines[i];
+                    selectedMetalAngle = posibleAngle;
+                }
             }
-            */
+
+            selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
+            
         }
         
     }

@@ -49,5 +49,6 @@ public class PlayerData : MonoBehaviour
     public bool running = false;
     public bool jumping = false;
     public bool falling = false;
+    public bool burningSteel = false;
 
 }
