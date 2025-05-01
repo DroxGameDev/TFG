@@ -42,7 +42,7 @@ public class PlayerData : MonoBehaviour
     public LayerMask metalEnvironmentLayer;
     [Range (0f, 10f)] public float metalCheckRadius;
     [Range (0f, 5f)] public float metalCheckMinRadius;
-     public GameObject linePrefab;
+    public GameObject linePrefab;
     [Range(0f, 30f)] public float steelPushPower;
     [Range(0f, 5f)] public float steelPushTime;
 
@@ -52,6 +52,6 @@ public class PlayerData : MonoBehaviour
     public bool jumping = false;
     public bool falling = false;
     public bool timeStoped = false;
-    public bool burningSteel = false;
+    public bool movingWithPowers = false;
 
 }

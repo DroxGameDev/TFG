@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
     private PlayerAnimations playerAnimations;
+    private SteelPower steelPower;
     
     private Rigidbody2D rb;
 
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         playerControls = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();    
         playerAnimations = GetComponent<PlayerAnimations>();
+        steelPower = GetComponent<SteelPower>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -44,23 +46,25 @@ public class PlayerController : MonoBehaviour
 
     public void SteelPush(InputAction.CallbackContext context){
         if (context.performed)
-           StartCoroutine(playerMovement.SteelInputupdate(true));
+           StartCoroutine(steelPower.SteelInputupdate(true));
 
         if (context.canceled)
-           StartCoroutine(playerMovement.SteelInputupdate(false));
+           StartCoroutine(steelPower.SteelInputupdate(false));
     }
 
     public void SelectMetal(InputAction.CallbackContext context){
-        playerMovement.GetSelectMetalAngle(context.ReadValue<Vector2>());
+        steelPower.GetSelectMetalAngle(context.ReadValue<Vector2>());
         i = context.ReadValue<Vector2>();
     }
 
-    
-    private void OnDrawGizmos()
+    /*
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position,transform.position + new Vector3(i.x, i.y, 0));
+        Gizmos.DrawWireSphere(transform.position,playerData.metalCheckRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position,playerData.metalCheckMinRadius);
+
     }
-    
-    
+    */
 }

@@ -52,7 +52,7 @@ public class PlayerAnimations : MonoBehaviour
 
         if (_playerData.jumping) return jump;
         if (_playerData.grounded){
-            if(_playerData.running) return run;
+            if(_playerData.running && Mathf.Abs(_rb.velocity.x) > 0) return run;
 
             else return idle;
         }
