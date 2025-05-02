@@ -12,6 +12,7 @@ public class SteelPower : MonoBehaviour
     private Vector2 selectMetalVector;
     private LineObject selectedMetal = null;
     private float steelPushCounter;
+    private float selectMetalCounter;
 
     void Start()
     {
@@ -34,22 +35,24 @@ public class SteelPower : MonoBehaviour
                 nearMetalLines.Add(newLineObject);
             }    
 
-            
 
+            if (nearMetalLines.Count > 0){
+                playerData.timeStoped = true;
+                selectMetalCounter = playerData.selectMetalTime;
+                Time.timeScale = 0.1f;
+            }
         }
 
-        if (nearMetalLines.Count > 0){
-            playerData.timeStoped = true;
-
-            Time.timeScale = 0f;
-
-            while(context)
+        while(selectMetalCounter > 0f && context){
+            /*
+            if(selectMetalCounter <= playerData.selectMetalTime/2)
+                Time.timeScale = 0f;
+            */
             yield return null;
-
-            playerData.timeStoped = false;
         }
         
-        if (!context && nearMetalLines.Count > 0){
+        if ((!context||selectMetalCounter <= 0) && nearMetalLines.Count > 0){
+            playerData.timeStoped = false;
 
             steelPushCounter = playerData.steelPushTime;
             playerData.movingWithPowers = true;
@@ -66,9 +69,10 @@ public class SteelPower : MonoBehaviour
             for (int i = 0; i < nearMetalLines.Count; i++){
                 Destroy(nearMetalLines[i].line);
             }    
+
             nearMetalLines.Clear();
+            Time.timeScale = 1;
         }
-        Time.timeScale = 1;
     }
 
     public void GetSelectMetalAngle(Vector2 context)
@@ -86,11 +90,17 @@ public class SteelPower : MonoBehaviour
             steelPushCounter = 0f;
         }
 
+        if(selectMetalCounter > 0f){
+            selectMetalCounter -= Time.unscaledDeltaTime;
+        }
+        if (!playerData.timeStoped){
+            selectMetalCounter = 0;
+        }
         //actualizar lineas
         if(nearMetalLines.Count > 0){
 
 
-            #region metal lines positioning
+            #region metal lines position
             for(int i = 0; i < nearMetalLines.Count; i++){
                 LineObject actualLine = nearMetalLines[i];
                 
@@ -100,6 +110,11 @@ public class SteelPower : MonoBehaviour
                 Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
                 float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
+                //actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
+                actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius, 0, lineDistance);
+                ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);    
+
+                /*
                 if(lineDistance <= playerData.metalCheckMinRadius){
                     if (actualLine.iValue != 1){
                         actualLine.iValue = 1f;
@@ -110,7 +125,7 @@ public class SteelPower : MonoBehaviour
                         actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
 
                         if (actualLine.iValue > 0.5f){
-                            actualLine. iValue = 0.6f;
+                            actualLine.iValue = 0.6f;
                         }
                         else if (actualLine.iValue >= 0.01){
                             actualLine.iValue = 0.25f;
@@ -118,7 +133,7 @@ public class SteelPower : MonoBehaviour
 
                         ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
                 }
-
+                */
                 actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
             }
             #endregion

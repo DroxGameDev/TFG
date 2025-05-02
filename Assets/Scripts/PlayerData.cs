@@ -46,6 +46,8 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 30f)] public float steelPushPower;
     [Range(0f, 5f)] public float steelPushTime;
 
+    [Range(0f,5f)] public float selectMetalTime;
+
     [Header("States")]
     public bool grounded = true;
     public bool running = false;
