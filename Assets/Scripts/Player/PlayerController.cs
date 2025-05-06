@@ -6,15 +6,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCamera;
     private PlayerData playerData;
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
     private PlayerAnimations playerAnimations;
     private SteelPower steelPower;
-    
+    private IronPower ironPower;
     private Rigidbody2D rb;
 
-    private Vector2 i;
     void Start()
     {
         playerData = GetComponent<PlayerData>();
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();    
         playerAnimations = GetComponent<PlayerAnimations>();
         steelPower = GetComponent<SteelPower>();
+        ironPower = GetComponent<IronPower>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -52,19 +53,24 @@ public class PlayerController : MonoBehaviour
            StartCoroutine(steelPower.SteelInputupdate(false));
     }
 
+    public void IronPull(InputAction.CallbackContext context){
+        if (context.performed)
+           StartCoroutine(ironPower.IronInputupdate(true));
+
+        if (context.canceled)
+           StartCoroutine(ironPower.IronInputupdate(false));
+    }
+
     public void SelectMetal(InputAction.CallbackContext context){
-        steelPower.GetSelectMetalAngle(context.ReadValue<Vector2>());
-        i = context.ReadValue<Vector2>();
-    }
+        if(playerControls.currentControlScheme == "GamePad"){
+            ironPower.GetSelectMetalAngle(context.ReadValue<Vector2>());
+            return;
+        }
 
-    /*  
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,playerData.metalCheckRadius);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position,playerData.metalCheckMinRadius);
+        Vector2 playerinScreen = mainCamera.WorldToScreenPoint(transform.position);
+        Vector2 direction = (context.ReadValue<Vector2>() - playerinScreen).normalized;
 
+        steelPower.GetSelectMetalAngle(direction);
+        
     }
-    */
 }

@@ -20,8 +20,10 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
 
-
-
+    [Header("Debug")]
+    public bool active;
+    private Vector3 groundPosition;
+    private float groundRadius;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter = playerData.jumpBufferTime;
         }
 
-        if (!context && rb.velocity.y > 0f && !playerData.movingWithPowers)
+        if (!context && rb.velocity.y > 0f)
         {
            rb.AddForce(Vector2.down * rb.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
@@ -84,14 +86,14 @@ public class PlayerMovement : MonoBehaviour
         else{
             playerData.running = false;
         }
-
-        if (Mathf.Abs(rb.velocity.y) == 0f)
+        if (Mathf.Abs(rb.velocity.y) == 0f || playerData.grounded)
         {
             playerData.falling = false;
             playerData.jumping = false;
         }
         else if (rb.velocity.y > 0f){
             playerData.jumping = true;
+            playerData.falling = false;
         }
         else{
             playerData.jumping = false;
@@ -108,6 +110,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+        #region debug
+        groundPosition = playerData.groundCheck.position;
+        groundRadius = playerData.groundCheckRadius;
+        #endregion
         
     }
 
@@ -177,5 +184,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        if(active){
+            if (active){
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(groundPosition,groundRadius);
+            }
+        }
+    }
+
+
 }

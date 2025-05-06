@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,21 +33,29 @@ public class PlayerData : MonoBehaviour
     [Header("Check")]
     public Transform groundCheck;
     [Range (0f, 0.5f)] public  float groundCheckRadius;
-    
-    [Space(10)]
 
+    [Space(10)]
     public LayerMask groundLayer;
 
-    [Header("Steel")]
+    [Header("Metal Lines")]
     //Steel = push
-    public LayerMask metalEnvironmentLayer;
+    public LayerMask metalLayers;
     [Range (0f, 10f)] public float metalCheckRadius;
     [Range (0f, 5f)] public float metalCheckMinRadius;
     public GameObject linePrefab;
-    [Range(0f, 30f)] public float steelPushPower;
+    [Range(0f,5f)] public float selectMetalTime;
+    
+    [Space(10)] 
+
+    [Header("Steel")]
+    [Range(0f, 40f)] public float steelPushPower;
     [Range(0f, 5f)] public float steelPushTime;
 
-    [Range(0f,5f)] public float selectMetalTime;
+    [Space(10)] 
+
+    [Header("Iron")]
+    [Range(0f, 40f)] public float ironPullPower;
+    [Range(0f, 5f)] public float ironPullTime;
 
     [Header("States")]
     public bool grounded = true;

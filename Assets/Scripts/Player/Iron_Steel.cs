@@ -2,76 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SteelPower : MonoBehaviour
+public class Iron_Steel : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private PlayerData playerData;
+    [HideInInspector] public static Rigidbody2D rb;
+    [HideInInspector] public static PlayerData playerData;
 
-    [Header("Steel")]
-    private List<LineObject> nearMetalLines;
-    private Vector2 selectMetalVector;
-    private LineObject selectedMetal = null;
-    private float steelPushCounter;
-    private float selectMetalCounter;
+    [HideInInspector] public static List<LineObject> nearMetalLines;
+    [HideInInspector] public static Vector2 selectMetalVector;
+    [HideInInspector] public static LineObject selectedMetal = null;
+    [HideInInspector] public static float selectMetalCounter;
+    [HideInInspector] public static float movingWithPowerCounter;
+
+    [Header("Debug")]
+    [SerializeField] public static bool active = false;
+    private float radius1;
+    private float radius2;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerData = GetComponent<PlayerData>();
         nearMetalLines = new List<LineObject>();
-
     }
 
-    public IEnumerator SteelInputupdate(bool context)
-    {
-        if (context && nearMetalLines.Count == 0){
+    public void GetNearbyMetals(){
+        Collider2D[] nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalLayers);
 
-            Collider2D[] nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalEnvironmentLayer);
+        for (int i = 0; i < nearMetals.Length; i++){
 
-            for (int i = 0; i < nearMetals.Length; i++){
-
-                GameObject newLinePrefab = Instantiate(playerData.linePrefab);
-                LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
-                nearMetalLines.Add(newLineObject);
-            }    
+            GameObject newLinePrefab = Instantiate(playerData.linePrefab);
+            LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
+            nearMetalLines.Add(newLineObject);
+        }    
 
 
-            if (nearMetalLines.Count > 0){
-                playerData.timeStoped = true;
-                selectMetalCounter = playerData.selectMetalTime;
-                Time.timeScale = 0.1f;
-            }
-        }
-
-        while(selectMetalCounter > 0f && context){
-            /*
-            if(selectMetalCounter <= playerData.selectMetalTime/2)
-                Time.timeScale = 0f;
-            */
-            yield return null;
-        }
-        
-        if ((!context||selectMetalCounter <= 0) && nearMetalLines.Count > 0){
-            playerData.timeStoped = false;
-
-            steelPushCounter = playerData.steelPushTime;
-            playerData.movingWithPowers = true;
-
-            if(selectedMetal != null){
-
-                Vector2 directionVector = selectedMetal.metal.transform.position-transform.position;
-                directionVector.Normalize();
-                rb.velocity = Vector3.zero;
-                rb.AddForce(directionVector * playerData.steelPushPower * selectedMetal.iValue * -1, ForceMode2D.Impulse);
-            }
-
-            selectedMetal = null;
-            for (int i = 0; i < nearMetalLines.Count; i++){
-                Destroy(nearMetalLines[i].line);
-            }    
-
-            nearMetalLines.Clear();
-            Time.timeScale = 1;
+        if (nearMetalLines.Count > 0){
+            playerData.timeStoped = true;
+            selectMetalCounter = playerData.selectMetalTime;
+            Time.timeScale = 0.1f;
         }
     }
 
@@ -80,17 +48,9 @@ public class SteelPower : MonoBehaviour
         selectMetalVector = context;
     }
 
-    void Update()
+    public void onUpdate()
     {
-        if(steelPushCounter>0){
-            steelPushCounter -= Time.deltaTime;
-        }
-        else if (steelPushCounter <= 0 && playerData.running){
-            playerData.movingWithPowers = false;
-            steelPushCounter = 0f;
-        }
-
-        if(selectMetalCounter > 0f){
+        if(selectMetalCounter > 0.01f){
             selectMetalCounter -= Time.unscaledDeltaTime;
         }
         if (!playerData.timeStoped){
@@ -110,11 +70,6 @@ public class SteelPower : MonoBehaviour
                 Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
                 float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-                //actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
-                actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius, 0, lineDistance);
-                ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);    
-
-                /*
                 if(lineDistance <= playerData.metalCheckMinRadius){
                     if (actualLine.iValue != 1){
                         actualLine.iValue = 1f;
@@ -133,7 +88,7 @@ public class SteelPower : MonoBehaviour
 
                         ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
                 }
-                */
+                
                 actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
             }
             #endregion
@@ -164,9 +119,13 @@ public class SteelPower : MonoBehaviour
 
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
-        
-    }
 
+        #region debug
+        radius1 = playerData.metalCheckRadius;
+        radius2 = playerData.metalCheckMinRadius;
+        #endregion
+
+    }
     public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(playerData.groundCheck.position, playerData.groundCheckRadius, playerData.groundLayer);
@@ -176,14 +135,33 @@ public class SteelPower : MonoBehaviour
     {
         material.SetFloat("_Alpha", alpha);
     }
-    /*
+
+    IEnumerator FakeAddForceMotion(Vector2 forceAmount, Rigidbody2D rb)
+    {
+        float i = 1f;
+        
+        while (i > 0f)
+        {
+            rb.velocity = new Vector2(forceAmount.x * i * -1, -playerData.gravityScale); // !! For X axis positive force
+
+            if(i > 0){
+                i -= Time.deltaTime;
+            }
+            
+            yield return new WaitForFixedUpdate();      
+        }
+
+        rb.velocity = Vector2.zero;
+    }
+
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position,playerData.metalCheckRadius);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position,playerData.metalCheckMinRadius);
-
+        if (active){
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,radius1);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position,radius2);
+        }
+        
     }
-    */
 }
