@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public Camera mainCamera;
     private PlayerData playerData;
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
@@ -63,14 +62,14 @@ public class PlayerController : MonoBehaviour
 
     public void SelectMetal(InputAction.CallbackContext context){
         if(playerControls.currentControlScheme == "GamePad"){
-            ironPower.GetSelectMetalAngle(context.ReadValue<Vector2>());
+            Iron_Steel.GetSelectMetalAngle(context.ReadValue<Vector2>());
             return;
         }
 
-        Vector2 playerinScreen = mainCamera.WorldToScreenPoint(transform.position);
+        Vector2 playerinScreen = playerData.mainCamera.WorldToScreenPoint(transform.position);
         Vector2 direction = (context.ReadValue<Vector2>() - playerinScreen).normalized;
 
-        steelPower.GetSelectMetalAngle(direction);
+        Iron_Steel.GetSelectMetalAngle(direction);
         
     }
 }

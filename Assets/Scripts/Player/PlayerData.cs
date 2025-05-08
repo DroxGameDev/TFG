@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    
+    public Camera mainCamera;
+    [Space(10)] 
+
     [Header("Movement")]
     [Range (0f, 20f)] public  float moveSpeed;
     [Range (0f, 30f)] public  float acceleration;
@@ -24,6 +28,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     [Range (0f, 5f)] public  float gravityScale;
     [Range (0f, 5f)] public  float fallGravityMultiplier;
+    public bool cancelGravity = false;
     
     [Range (0f, 5f)] public float jumpHangTheshold;
     [Range (0f, 5f)] public float jumpHangMultiplier;
@@ -55,7 +60,9 @@ public class PlayerData : MonoBehaviour
 
     [Header("Iron")]
     [Range(0f, 40f)] public float ironPullPower;
+    [Range(0,40f)] public float ironPullPowerMult;
     [Range(0f, 5f)] public float ironPullTime;
+
 
     [Header("States")]
     public bool grounded = true;

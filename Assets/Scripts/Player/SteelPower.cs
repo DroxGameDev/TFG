@@ -4,59 +4,62 @@ using UnityEngine;
 
 public class SteelPower : Iron_Steel
 {
-
+    private bool usingSteel = false;
     public IEnumerator SteelInputupdate(bool context)
     {
-        if (context && nearMetalLines.Count == 0){
+        if(!playerData.movingWithPowers){
+            if (context && nearMetalLines.Count == 0){
 
-            GetNearbyMetals();
-        }
+                GetNearbyMetals();
+            }
 
-        while(selectMetalCounter > 0.01f && context){
-            /*
-            if(selectMetalCounter <= playerData.selectMetalTime/2)
-                Time.timeScale = 0f;
-            */
+            else if ((!context||selectMetalCounter <= 0.01) && nearMetalLines.Count > 0){
+
+                playerData.timeStoped = false;
+
+                movingWithPowerCounter = playerData.steelPushTime;
+                playerData.movingWithPowers = true;
+                usingSteel = true;
+
+                if(selectedMetal != null){
+                    
+                    Vector2 directorVector = selectedMetal.metal.transform.position-transform.position;
+                    directorVector.Normalize();
+                    rb.velocity = Vector3.zero;
+                    Vector2 forceToApply = directorVector * playerData.steelPushPower * selectedMetal.iValue * -1;
+
+                    StartCoroutine(pushObject(rb,selectedMetal.metal.attachedRigidbody, forceToApply));
+
+                }
+
+                selectedMetal = null;
+
+                for (int i = 0; i < nearMetalLines.Count; i++){
+                    Destroy(nearMetalLines[i].line);
+                }    
+
+                nearMetalLines.Clear();
+                Time.timeScale = 1f;
+            }
+
             yield return null;
         }
         
-        if ((!context||selectMetalCounter <= 0.01) && nearMetalLines.Count > 0){
-            playerData.timeStoped = false;
-
-            movingWithPowerCounter = playerData.steelPushTime;
-            playerData.movingWithPowers = true;
-
-            if(selectedMetal != null){
-                
-                Vector2 directorVector = selectedMetal.metal.transform.position-transform.position;
-                directorVector.Normalize();
-                rb.velocity = Vector3.zero;
-                Vector2 forceToApply = directorVector * playerData.steelPushPower * selectedMetal.iValue * -1;
-
-                StartCoroutine(pushObject(rb,selectedMetal.metal.attachedRigidbody, forceToApply));
-
-            }
-
-            selectedMetal = null;
-
-            for (int i = 0; i < nearMetalLines.Count; i++){
-                Destroy(nearMetalLines[i].line);
-            }    
-
-            nearMetalLines.Clear();
-            Time.timeScale = 1;
-        }
     }
 
     void Update()
     {
-        if(movingWithPowerCounter > 0.01f){
+        
+        if(movingWithPowerCounter > 0.01f && usingSteel){
             movingWithPowerCounter -= Time.deltaTime;
         }
-        else if (playerData.movingWithPowers && movingWithPowerCounter <= 0.01f && playerData.running){
+
+        if (playerData.movingWithPowers && movingWithPowerCounter <= 0.01f){
             playerData.movingWithPowers = false;
+            usingSteel = false;
             movingWithPowerCounter = 0f;
         }
+        
 
         onUpdate();
     }

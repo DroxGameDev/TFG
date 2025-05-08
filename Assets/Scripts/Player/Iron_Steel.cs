@@ -14,7 +14,7 @@ public class Iron_Steel : MonoBehaviour
     [HideInInspector] public static float movingWithPowerCounter;
 
     [Header("Debug")]
-    [SerializeField] public static bool active = false;
+    [SerializeField] public bool active = false;
     private float radius1;
     private float radius2;
 
@@ -43,7 +43,8 @@ public class Iron_Steel : MonoBehaviour
         }
     }
 
-    public void GetSelectMetalAngle(Vector2 context)
+
+    public static void GetSelectMetalAngle(Vector2 context)
     {
         selectMetalVector = context;
     }

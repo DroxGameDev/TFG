@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class IronPower : Iron_Steel
 {
-
+    private bool usingIron = false;
+    private bool movingTowards = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -16,56 +19,89 @@ public class IronPower : Iron_Steel
 
     public IEnumerator IronInputupdate(bool context)
     {
-        if (context && nearMetalLines.Count == 0){
+        if(!playerData.movingWithPowers){
+            if (context && nearMetalLines.Count == 0){
 
-            GetNearbyMetals();
-        }
+                GetNearbyMetals();
+            }
 
-        while(selectMetalCounter > 0.01f && context){
+            else if ((!context||selectMetalCounter <= 0.01) && nearMetalLines.Count > 0){
 
-            yield return null;
-        }
-        
-        if ((!context||selectMetalCounter <= 0.01) && nearMetalLines.Count > 0){
-            playerData.timeStoped = false;
+                playerData.timeStoped = false;
 
-            movingWithPowerCounter = playerData.ironPullTime;
-            playerData.movingWithPowers = true;
-
-            if(selectedMetal != null){
+                movingWithPowerCounter = playerData.ironPullTime;
+                playerData.movingWithPowers = true;
+                usingIron = true;
                 
+                Time.timeScale = 1f;
+
+        
                 Vector2 directorVector = selectedMetal.metal.transform.position-transform.position;
                 directorVector.Normalize();
+
                 rb.velocity = Vector3.zero;
-                Vector2 forceToApply = directorVector * playerData.ironPullPower * selectedMetal.iValue;
+
+                Vector2 forceToApply = directorVector * playerData.ironPullPower;
+
+                yield return StartCoroutine(moveTowardsMetal(forceToApply));
 
                 StartCoroutine(pullObject(rb,selectedMetal.metal.attachedRigidbody, forceToApply));
 
+
+                selectedMetal = null;
+
+                for (int i = 0; i < nearMetalLines.Count; i++){
+                    Destroy(nearMetalLines[i].line);
+                }    
+
+                nearMetalLines.Clear();
             }
 
-            selectedMetal = null;
+            yield return null;
 
-            for (int i = 0; i < nearMetalLines.Count; i++){
-                Destroy(nearMetalLines[i].line);
-            }    
-
-            nearMetalLines.Clear();
-            Time.timeScale = 1;
         }
     }
 
-    
-
     void Update()
     {
-        if(movingWithPowerCounter>0.01f){
+        if(movingWithPowerCounter>0.01f && usingIron && !movingTowards){
             movingWithPowerCounter -= Time.deltaTime;
         }
-        else if (playerData.movingWithPowers && movingWithPowerCounter <= 0.01f && playerData.running){
+
+        if (playerData.movingWithPowers && movingWithPowerCounter <= 0.01f){
             playerData.movingWithPowers = false;
+            usingIron = false;
             movingWithPowerCounter = 0f;
         }
         onUpdate();
+    }
+
+    public IEnumerator moveTowardsMetal(Vector2 force){
+        
+        movingTowards = true;
+        playerData.cancelGravity = true;
+    
+        while (movingTowards && playerData.movingWithPowers) {
+            float speedDifX = force.x - rb.velocity.x;
+            float speedDifY = force.y - rb.velocity.y;
+
+            float movementX = Math.Abs(speedDifX) * playerData.ironPullPowerMult * Mathf.Sign(speedDifX);
+            float movementY = Math.Abs(speedDifY) * playerData.ironPullPowerMult * Mathf.Sign(speedDifY);
+            
+            rb.AddForce(new Vector2(movementX, movementY));
+
+            yield return new WaitForFixedUpdate();
+
+            Collider2D check = Physics2D.OverlapCircle(transform.position, 0.5f, playerData.metalLayers);
+
+            if (check != null && 
+                check.attachedRigidbody.gameObject == selectedMetal.metal.attachedRigidbody.gameObject){
+                movingTowards = false;
+            }
+        }    
+
+        playerData.cancelGravity = false;
+        rb.velocity = Vector2.zero;
     }
 
     private IEnumerator pullObject(Rigidbody2D origin, Rigidbody2D target, Vector2 forceAmount){
@@ -84,6 +120,15 @@ public class IronPower : Iron_Steel
             }
         }
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (active){
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position,0.5f);
+        }
+        
     }
     
 }

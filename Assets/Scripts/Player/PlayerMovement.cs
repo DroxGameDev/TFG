@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
            rb.AddForce(Vector2.down * rb.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
+           playerData.movingWithPowers = false;
         }
         
     }
@@ -128,13 +129,13 @@ public class PlayerMovement : MonoBehaviour
             float speedDif = targetSpeed - rb.velocity.x;
             //change the speed based on the acceleration or decceleration rate
             float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
-            //applies acceleration to speed difference, tje raises to a set power so accelerration increases with higher speeds.
+            //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
+            //finally multiplies by a sign to reapply direction
             float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
 
             rb.AddForce(movement * Vector2.right);
             #endregion
         }
-
         #region Friction
 
         if(Mathf.Abs(moveInput) <0.01f)
@@ -153,15 +154,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void GravityController(bool isFalling, bool isJumping){
-        if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
-            setGravityScale(playerData.gravityScale*playerData.jumpHangMultiplier);
-        }  
-        else if (rb.velocity.y < 0f)
-        {
-            setGravityScale(playerData.gravityScale* playerData.fallGravityMultiplier);
-        }
-        else{
-            setGravityScale(playerData.gravityScale);
+        if(!playerData.cancelGravity){
+            if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
+                setGravityScale(playerData.gravityScale*playerData.jumpHangMultiplier);
+            }  
+            else if (rb.velocity.y < 0f)
+            {
+                setGravityScale(playerData.gravityScale* playerData.fallGravityMultiplier);
+            }
+            else{
+                setGravityScale(playerData.gravityScale);
+            }
         }
     }
 
@@ -187,10 +190,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         if(active){
-            if (active){
+            
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(groundPosition,groundRadius);
-            }
+            //Gizmos.DrawWireSphere(groundPosition,groundRadius);
+            
+            Vector2 positon = new Vector2(transform.position.x, transform.position.y);
+            Vector2 direction = rb.velocity+positon;
+            Gizmos.DrawLine(transform.position, direction);
+            
+
         }
     }
 
