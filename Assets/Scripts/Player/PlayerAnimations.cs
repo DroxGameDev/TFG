@@ -11,7 +11,7 @@ public class PlayerAnimations : MonoBehaviour
     private Animator _anim;
     private Rigidbody2D _rb;
     private PlayerData _playerData;
-    [Range (0f, 6)] public int animationDebugIndex = 5;
+    [Range (0f, 15)] public int animationDebugIndex = 5;
     public string[] animationName;
 
     private static readonly int idle = Animator.StringToHash("Idle");

@@ -2,10 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum GravityMode{
+    Up,
+    Down,
+    Left,
+    Right,
+    Cancel
+}
 public class PlayerData : MonoBehaviour
 {
-    
     public Camera mainCamera;
     [Space(10)] 
 
@@ -29,6 +34,7 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 5f)] public  float gravityScale;
     [Range (0f, 5f)] public  float fallGravityMultiplier;
     public bool cancelGravity = false;
+    public GravityMode gravityMode = GravityMode.Down;
     
     [Range (0f, 5f)] public float jumpHangTheshold;
     [Range (0f, 5f)] public float jumpHangMultiplier;
@@ -38,9 +44,10 @@ public class PlayerData : MonoBehaviour
     [Header("Check")]
     public Transform groundCheck;
     [Range (0f, 0.5f)] public  float groundCheckRadius;
-
-    [Space(10)]
     public LayerMask groundLayer;
+    [Space(10)]
+    public Collider2D forceCollider;
+    public LayerMask obstacleLayer;
 
     [Header("Metal Lines")]
     //Steel = push
@@ -53,14 +60,16 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
 
     [Header("Steel")]
+    public bool burningSteel;
     [Range(0f, 40f)] public float steelPushPower;
     [Range(0f, 5f)] public float steelPushTime;
 
     [Space(10)] 
 
     [Header("Iron")]
+    public bool burningIron;
     [Range(0f, 40f)] public float ironPullPower;
-    [Range(0,40f)] public float ironPullPowerMult;
+    [Range(0,2f)] public float ironPullPowerMult;
     [Range(0f, 5f)] public float ironPullTime;
 
 
@@ -69,6 +78,8 @@ public class PlayerData : MonoBehaviour
     public bool running = false;
     public bool jumping = false;
     public bool falling = false;
+
+    [Space(10)] 
     public bool timeStoped = false;
     public bool movingWithPowers = false;
 

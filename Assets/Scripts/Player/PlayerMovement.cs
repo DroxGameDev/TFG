@@ -3,13 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
-
 public class PlayerMovement : MonoBehaviour
 {
     
     private Rigidbody2D rb;
     private PlayerData playerData;
+    private ConstantForce2D force2D;
     
 
     [Header("Movement")]
@@ -29,7 +28,10 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerData = GetComponent<PlayerData>();
+        force2D = GetComponent<ConstantForce2D>();
 
+        rb.gravityScale = 0f;
+        force2D.force = new Vector2 (Physics2D.gravity.x, Physics2D.gravity.y);
         //selecteMetalThreshold = new Vector2(0.1f,0.1f);
     }
 
@@ -47,14 +49,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (!context && rb.velocity.y > 0f)
         {
+            //CancelPowerMovement();
            rb.AddForce(Vector2.down * rb.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
-           playerData.movingWithPowers = false;
         }
         
     }
-
-    
 
     #endregion
 
@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         if (!playerData.movingWithPowers){
             #region Run
             //Calculate the direction we want to move in and our desired velocity
@@ -132,8 +133,17 @@ public class PlayerMovement : MonoBehaviour
             //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
             //finally multiplies by a sign to reapply direction
             float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
-
-            rb.AddForce(movement * Vector2.right);
+            
+            if(playerData.gravityMode == GravityMode.Down || playerData.gravityMode == GravityMode.Up){
+                rb.AddForce(movement * Vector2.right);
+            }
+            else if (playerData.gravityMode == GravityMode.Left){
+                rb.AddForce(movement * Vector2.down);
+            }
+            else if (playerData.gravityMode == GravityMode.Right){
+                rb.AddForce(movement * Vector2.up);
+            }
+                
             #endregion
         }
         #region Friction
@@ -149,27 +159,38 @@ public class PlayerMovement : MonoBehaviour
 
         #endregion
 
-        GravityController(playerData.falling, playerData.jumping);
+        GravityController();
 
     }
-
-    public void GravityController(bool isFalling, bool isJumping){
-        if(!playerData.cancelGravity){
-            if ((isJumping || isFalling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
-                setGravityScale(playerData.gravityScale*playerData.jumpHangMultiplier);
+    public void GravityController(){
+        if(playerData.gravityMode == GravityMode.Cancel){
+            setGravity(1, 0f);
+        }
+        else if (playerData.gravityMode == GravityMode.Left){
+            setGravity(0f, 1f);
+        }
+        else if (playerData.gravityMode == GravityMode.Right){
+            setGravity(0f, -1f);
+        }
+        else if (playerData.gravityMode == GravityMode.Up){
+            setGravity(-1f, 0f);
+        }
+        else if (playerData.gravityMode == GravityMode.Down){
+            if ((playerData.jumping || playerData.falling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
+                setGravity(1f, playerData.jumpHangMultiplier);
             }  
             else if (rb.velocity.y < 0f)
             {
-                setGravityScale(playerData.gravityScale* playerData.fallGravityMultiplier);
+                setGravity(1f, playerData.fallGravityMultiplier);
             }
             else{
-                setGravityScale(playerData.gravityScale);
+                setGravity(0f,1f);
             }
         }
     }
 
-    private void setGravityScale(float newGravity){
-        rb.gravityScale = newGravity;
+    private void setGravity(float newGracityScaleX, float newGracityScaleY){
+        force2D.force = new Vector2 (Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
     }
 
     public bool IsGrounded()
@@ -197,7 +218,6 @@ public class PlayerMovement : MonoBehaviour
             Vector2 positon = new Vector2(transform.position.x, transform.position.y);
             Vector2 direction = rb.velocity+positon;
             Gizmos.DrawLine(transform.position, direction);
-            
 
         }
     }

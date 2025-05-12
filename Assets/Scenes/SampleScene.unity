@@ -378,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 104.6, y: 0.4, z: -10}
+  m_LocalPosition: {x: 17.713, y: 60.199, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -527,7 +527,7 @@ Transform:
   m_GameObject: {fileID: 1257371536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 104.6, y: 0.4, z: -10}
+  m_LocalPosition: {x: 17.713, y: 60.199, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -630,49 +630,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1412781887171875200, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: active
-      value: 0
+    - target: {fileID: 3154533928514378828, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.0055429786
       objectReference: {fileID: 0}
-    - target: {fileID: 3398945005849156701, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: active
-      value: 1
+    - target: {fileID: 3154533928514378828, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154533928514378828, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
-    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironPullTime
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: steelPushTime
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironPullAwayPower
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironPullPowerMult
-      value: 6.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironPullTowardsPower
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 5340816306200333860, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.6
+      value: 17.713
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 60.199
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -706,13 +690,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7380251150284015181, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: active
-      value: 0
+    - target: {fileID: 6226762119540886882, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: animationName.Array.size
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 7380251150284015181, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 6226762119540886882, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: animationName.Array.data[4]
+      value: Crouch_Idle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226762119540886882, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: animationName.Array.data[5]
+      value: Crouch_Walk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
