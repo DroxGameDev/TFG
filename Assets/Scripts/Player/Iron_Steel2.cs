@@ -6,6 +6,7 @@ public enum PowerState
     inactive,
     select,
     force,
+    wallWalking,
     impulse
 }
 
@@ -56,7 +57,7 @@ public class Iron_Steel2 : MonoBehaviour
         Vector2 MetalClosestPoint = lineObject.metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
         float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-        Vector2 directorVector = MetalClosestPoint - new Vector2 (transform.position.x, transform.position.y);
+        Vector2 directorVector = MetalClosestPoint + (lineObject.metal.GetComponent<BoxCollider2D>().offset * -1) - new Vector2 (transform.position.x, transform.position.y);
         directorVector.Normalize();
 
         RaycastHit2D raycast =  Physics2D.Raycast(transform.position, directorVector, lineDistance,playerData.obstacleLayer);
@@ -74,7 +75,6 @@ public class Iron_Steel2 : MonoBehaviour
 
     public void OnUpdate()
     {
-
         selectMetalCounter -= Time.unscaledDeltaTime;
 
         if(playerData.timeStoped){
@@ -84,7 +84,7 @@ public class Iron_Steel2 : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        if(state == PowerState.select || state == PowerState.force){
+        if(state == PowerState.select || state == PowerState.force || state == PowerState.wallWalking){
             //actualizar lineas
             #region metal lines position
             for(int i = 0; i < nearMetalLines.Count; i++){
@@ -94,10 +94,16 @@ public class Iron_Steel2 : MonoBehaviour
 
                 actualLine.lineRenderer.SetPosition(0, transform.position);
 
-                if(actualLine.metal.tag == "Floor"){
+                if (actualLine.metal.tag == "Floor")
+                {
                     actualLine.lineRenderer.SetPosition(1, MetalClosestPoint);
                 }
-                else{
+                else if (actualLine.metal.tag == "Walkable_Area")
+                {
+                    actualLine.lineRenderer.SetPosition(1, MetalClosestPoint + (actualLine.metal.GetComponent<BoxCollider2D>().offset * -1));
+                }
+                else
+                {
                     actualLine.lineRenderer.SetPosition(1, actualLine.metal.transform.position);
                 }
 
@@ -155,7 +161,13 @@ public class Iron_Steel2 : MonoBehaviour
                 }
             }
 
-            if (state == PowerState.force){
+            if (state == PowerState.force || state == PowerState.wallWalking){
+                for(int i = 0; i< nearMetalLines.Count; i++){
+                    if(nearMetalLines[i] != selectedMetal){
+                        ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 0f);
+                    }
+                }
+
                 selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
             }
         }

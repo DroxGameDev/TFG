@@ -8,6 +8,7 @@ TagManager:
   - Heavy_Metal
   - Projectile
   - Environment_metal
+  - Walkable_Area
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Metal_Heavy
   - Metal_Light
   - CheckForce
-  - 
+  - WalkableArea
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: metals
+    uniqueID: 3481971939
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

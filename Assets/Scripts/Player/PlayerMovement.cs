@@ -45,14 +45,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context){
             jumpBufferCounter = playerData.jumpBufferTime;
+            
         }
 
-        if (!context && rb.velocity.y > 0f)
+        if (!context && playerData.velocity.y > 0f)
         {
             //CancelPowerMovement();
-           rb.AddForce(Vector2.down * rb.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
+           rb.AddForce(Vector2.down * playerData.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
         }
+        
+        if (playerData.gravityMode != GravityMode.Down){
+            rb.velocity = Vector2.zero;
+            playerData.ChangeGravityMode(GravityMode.Down);
+        }
+        
         
     }
 
@@ -61,6 +68,20 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
+        if (playerData.gravityMode == GravityMode.Up){
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (playerData.gravityMode == GravityMode.Left){
+            transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (playerData.gravityMode == GravityMode.Right){
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else{
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        
+
         if (IsGrounded())
         {
             playerData.grounded = true;
@@ -87,12 +108,12 @@ public class PlayerMovement : MonoBehaviour
         else{
             playerData.running = false;
         }
-        if (Mathf.Abs(rb.velocity.y) == 0f || playerData.grounded)
+        if (Mathf.Abs(playerData.velocity.y) == 0f || playerData.grounded)
         {
             playerData.falling = false;
             playerData.jumping = false;
         }
-        else if (rb.velocity.y > 0f){
+        else if (playerData.velocity.y > 0f){
             playerData.jumping = true;
             playerData.falling = false;
         }
@@ -103,11 +124,11 @@ public class PlayerMovement : MonoBehaviour
         #endregion
 
         //comprobar si hay que girar el sprite
-        if (!isFacingRight && moveInput > 0f)
+        if ((playerData.gravityMode != GravityMode.Up && !isFacingRight && moveInput > 0f) || (playerData.gravityMode == GravityMode.Up && isFacingRight && moveInput> 0f))
         {
             Flip();
         }
-        else if (isFacingRight && moveInput < 0f)
+        else if ((playerData.gravityMode != GravityMode.Up && isFacingRight && moveInput < 0f) || (playerData.gravityMode == GravityMode.Up && !isFacingRight && moveInput < 0f))
         {
             Flip();
         }
@@ -125,24 +146,24 @@ public class PlayerMovement : MonoBehaviour
         if (!playerData.movingWithPowers){
             #region Run
             //Calculate the direction we want to move in and our desired velocity
-            float targetSpeed = moveInput * playerData.moveSpeed;
+            float targetSpeed;
+            if (playerData.wallWalking)
+            {
+                targetSpeed = moveInput * playerData.moveSpeed * playerData.crocuhModifier;
+            }
+            else
+            {
+                targetSpeed = moveInput * playerData.moveSpeed;
+            }
             //calculate the difference between our current speed and the target speed
-            float speedDif = targetSpeed - rb.velocity.x;
+            float speedDif = targetSpeed - playerData.velocity.x;
             //change the speed based on the acceleration or decceleration rate
             float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
             //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
             //finally multiplies by a sign to reapply direction
             float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
             
-            if(playerData.gravityMode == GravityMode.Down || playerData.gravityMode == GravityMode.Up){
-                rb.AddForce(movement * Vector2.right);
-            }
-            else if (playerData.gravityMode == GravityMode.Left){
-                rb.AddForce(movement * Vector2.down);
-            }
-            else if (playerData.gravityMode == GravityMode.Right){
-                rb.AddForce(movement * Vector2.up);
-            }
+            rb.AddForce(movement * RunDirectionByGravity(playerData.gravityMode));
                 
             #endregion
         }
@@ -150,48 +171,66 @@ public class PlayerMovement : MonoBehaviour
 
         if(Mathf.Abs(moveInput) <0.01f)
         {
-            float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(playerData.frictionAmount));
+            float amount = Mathf.Min(Mathf.Abs(playerData.velocity.x), Mathf.Abs(playerData.frictionAmount));
 
-            amount *= Mathf.Sign(rb.velocity.x);
+            amount *= Mathf.Sign(playerData.velocity.x);
 
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
 
         #endregion
 
-        GravityController();
+        FallGravityController();
+        assignVelocity();
 
     }
-    public void GravityController(){
-        if(playerData.gravityMode == GravityMode.Cancel){
-            setGravity(1, 0f);
+    private void assignVelocity(){
+        if (playerData.gravityMode == GravityMode.Up){
+            playerData.velocity.x = rb.velocity.x;
+            playerData.velocity.y = rb.velocity.y *-1f;
         }
         else if (playerData.gravityMode == GravityMode.Left){
-            setGravity(0f, 1f);
+            playerData.velocity.x = rb.velocity.y *-1f;
+            playerData.velocity.y = rb.velocity.x *-1f;
         }
         else if (playerData.gravityMode == GravityMode.Right){
-            setGravity(0f, -1f);
+            playerData.velocity.x = rb.velocity.y;
+            playerData.velocity.y = rb.velocity.x;
         }
-        else if (playerData.gravityMode == GravityMode.Up){
-            setGravity(-1f, 0f);
+        else{
+            playerData.velocity.x = rb.velocity.x;
+            playerData.velocity.y = rb.velocity.y;
         }
-        else if (playerData.gravityMode == GravityMode.Down){
-            if ((playerData.jumping || playerData.falling) && Mathf.Abs(rb.velocity.y) < playerData.jumpHangTheshold){
-                setGravity(1f, playerData.jumpHangMultiplier);
+    }
+
+    private Vector2 RunDirectionByGravity(GravityMode gravity){
+        if(gravity == GravityMode.Down || gravity == GravityMode.Up){
+            return Vector2.right;
+        }
+        else if (gravity == GravityMode.Left){
+             return Vector2.down;
+        }
+        else if (gravity == GravityMode.Right){
+             return Vector2.up;
+        }
+        return Vector2.zero;
+    }
+
+    private void FallGravityController(){
+        if (playerData.gravityMode == GravityMode.Down){
+            if ((playerData.jumping || playerData.falling) && Mathf.Abs(playerData.velocity.y) < playerData.jumpHangTheshold){
+                playerData.setGravity(0f, playerData.jumpHangMultiplier);
             }  
-            else if (rb.velocity.y < 0f)
+            else if (playerData.velocity.y < 0f)
             {
-                setGravity(1f, playerData.fallGravityMultiplier);
+                playerData.setGravity(0f, playerData.fallGravityMultiplier);
             }
             else{
-                setGravity(0f,1f);
+                playerData.setGravity(0f,1f);
             }
         }
     }
 
-    private void setGravity(float newGracityScaleX, float newGracityScaleY){
-        force2D.force = new Vector2 (Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
-    }
 
     public bool IsGrounded()
     {
@@ -213,11 +252,12 @@ public class PlayerMovement : MonoBehaviour
         if(active){
             
             Gizmos.color = Color.blue;
-            //Gizmos.DrawWireSphere(groundPosition,groundRadius);
-            
+            Gizmos.DrawWireSphere(groundPosition,groundRadius);
+            /*
             Vector2 positon = new Vector2(transform.position.x, transform.position.y);
             Vector2 direction = rb.velocity+positon;
             Gizmos.DrawLine(transform.position, direction);
+            */
 
         }
     }

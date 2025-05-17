@@ -6,18 +6,48 @@ public class Metal_Heavy_Object : MonoBehaviour
 {
 
     Rigidbody2D rb;
+    ConstantForce2D constantForce;
+    bool moving = false;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        constantForce = GetComponent<ConstantForce2D>();
+        constantForce.force = new Vector2 (0f, Physics2D.gravity.y);
     }
 
+    public IEnumerator Impulse(Vector2 force)
+    {
+        moving = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.AddForce(force, ForceMode2D.Impulse);
+
+        yield return new WaitForFixedUpdate();
+        
+        while (rb.velocity.magnitude > 0f)
+        {
+            yield return new WaitForFixedUpdate();  
+        }
+        
+        Stop();
+    }
+
+    public void ForceMove()
+    {
+        moving = true;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+    }
+
+    public void Stop()
+    {
+        moving = false;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+    }
 
     void FixedUpdate()
     {
-        if(rb.velocity == Vector2.zero && rb.constraints != RigidbodyConstraints2D.FreezePositionX){
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        }
+        //if (moving && rb.velocity == Vector2.zero) Stop();
     }
 
 }

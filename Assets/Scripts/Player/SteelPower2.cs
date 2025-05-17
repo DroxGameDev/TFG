@@ -106,7 +106,7 @@ public class SteelPower2 : Iron_Steel2
     private IEnumerator pushObject(Rigidbody2D origin, Rigidbody2D target){
         Vector2 forceAmount;
 
-        if(target.tag == "Floor"){
+        if(target.tag == "Floor" || target.tag == "Walkable_Area"){
             Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(origin.gameObject.transform.position);
             forceAmount = getImpulse(MetalClosestPoint);
             origin.AddForce(forceAmount, ForceMode2D.Impulse);
@@ -122,12 +122,9 @@ public class SteelPower2 : Iron_Steel2
                 yield return new WaitForFixedUpdate();
 
                 if(origin.velocity.x == 0f){
-                        target.constraints = RigidbodyConstraints2D.FreezeRotation;
-                        target.AddForce(forceAmount * -1, ForceMode2D.Impulse);
+                    StartCoroutine(target.GetComponent<Metal_Heavy_Object>().Impulse(forceAmount * -1));
                 }
             }
         }
-        
-
     }
 }

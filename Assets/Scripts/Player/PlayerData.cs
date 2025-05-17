@@ -14,28 +14,33 @@ public class PlayerData : MonoBehaviour
     public Camera mainCamera;
     [Space(10)] 
 
+
     [Header("Movement")]
     [Range (0f, 20f)] public  float moveSpeed;
     [Range (0f, 30f)] public  float acceleration;
     [Range (0f, 30f)] public  float decceleration;
     [Range (0f, 1.5f)] public  float velPower;
 
+    [Space(10)]
+    [Range(0f, 1f)] public float crocuhModifier;
+
     [Space(10)] 
-    [Range (0f, 0.5f)] public  float frictionAmount;
+    [Range(0f, 0.5f)] public  float frictionAmount;
+    public Vector2 velocity = new Vector2(0f,0f);
 
     [Header("Jumping")]
-    [Range (0f, 20f)] public  float jumpForce;
+    [Range(0f, 20f)] public float jumpForce;
     [Range (0f, 1f)] public  float jumpCutMultiplier;
     [Space(10)] 
     [Range (0f, 1f)] public  float coyoteTime;
     [Range (0f, 1f)] public  float jumpBufferTime;
 
     [Space(10)] 
+    [Header("Gravity")]
     [Range (0f, 5f)] public  float gravityScale;
     [Range (0f, 5f)] public  float fallGravityMultiplier;
     public bool cancelGravity = false;
     public GravityMode gravityMode = GravityMode.Down;
-    
     [Range (0f, 5f)] public float jumpHangTheshold;
     [Range (0f, 5f)] public float jumpHangMultiplier;
 
@@ -71,16 +76,52 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 40f)] public float ironPullPower;
     [Range(0,2f)] public float ironPullPowerMult;
     [Range(0f, 5f)] public float ironPullTime;
-
+    public LayerMask walkableAreaLayer;
 
     [Header("States")]
     public bool grounded = true;
     public bool running = false;
     public bool jumping = false;
     public bool falling = false;
+    public bool wallWalking = false;
 
     [Space(10)] 
     public bool timeStoped = false;
     public bool movingWithPowers = false;
 
+    public void ChangeGravityMode(GravityMode mode){
+        if(mode == GravityMode.Cancel){
+            gravityMode = GravityMode.Cancel;
+            //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            setGravity(0, 0f);
+        }
+        else if (mode == GravityMode.Left){
+            gravityMode = GravityMode.Left;
+            wallWalking = true;
+            //transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            setGravity(1f, 0f);
+        }
+        else if (mode == GravityMode.Right){
+            gravityMode = GravityMode.Right;
+            wallWalking = true;
+            //transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+            setGravity(-1f, 0f);
+        }
+        else if (mode == GravityMode.Up){
+            gravityMode = GravityMode.Up;
+            wallWalking = true;
+            //transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+            setGravity(0f, -1f);
+        }
+        else{
+            gravityMode = GravityMode.Down;
+            wallWalking = false;
+            setGravity(0f, 1f);
+            //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+    }
+    public void setGravity(float newGracityScaleX, float newGracityScaleY){
+        ConstantForce2D forceMode = GetComponent<ConstantForce2D>();
+        forceMode.force = new Vector2 (Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
+    }
 }
