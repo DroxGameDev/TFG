@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 8148859980924598914}
   - component: {fileID: 3154533928514378828}
   - component: {fileID: 9067812512592139159}
+  - component: {fileID: 6268322036153525418}
   - component: {fileID: 4922590346783359988}
   - component: {fileID: 8079713126698003507}
   - component: {fileID: 1412781887171875200}
@@ -146,7 +147,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.6, y: -1.4, z: 0}
-  m_LocalScale: {x: 1.7171606, y: 1.665388, z: 0.39221594}
+  m_LocalScale: {x: 2.1344306, y: 2.0700774, z: 0.48752442}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1727065216350327476}
@@ -407,7 +408,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000024035573, y: -0.028535366}
+  m_Offset: {x: 0.000024035573, y: 0.0055429786}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -431,6 +432,19 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &6268322036153525418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046ffffa87c08544daa0422a6c9e97f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coins: 0
 --- !u!114 &4922590346783359988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,14 +462,17 @@ MonoBehaviour:
   acceleration: 9
   decceleration: 9
   velPower: 1.2
+  crocuhModifier: 0.5
   frictionAmount: 0.2
+  velocity: {x: 0, y: 0}
   jumpForce: 12
   jumpCutMultiplier: 0.1
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   gravityScale: 1
   fallGravityMultiplier: 1
-  cancelGravity: 0
+  cancelGravity: 1
+  gravityMode: 1
   jumpHangTheshold: 0.5
   jumpHangMultiplier: 0.5
   groundCheck: {fileID: 1727065216350327476}
@@ -466,10 +483,10 @@ MonoBehaviour:
   forceCollider: {fileID: 5451602365807383678}
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1344
   metalLayers:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 12032
   metalCheckRadius: 6.5
   metalCheckMinRadius: 3
   linePrefab: {fileID: 1433559702223373683, guid: 18fb3c54414f5b94585f908b83e51bab, type: 3}
@@ -481,10 +498,14 @@ MonoBehaviour:
   ironPullPower: 25
   ironPullPowerMult: 0.85
   ironPullTime: 0.4
+  walkableAreaLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   grounded: 0
   running: 0
   jumping: 0
   falling: 0
+  wallWalking: 0
   timeStoped: 0
   movingWithPowers: 0
 --- !u!114 &8079713126698003507
@@ -511,6 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc40192732116349969990674ee3142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   active: 0
 --- !u!114 &6226762119540886882
 MonoBehaviour:
@@ -524,12 +546,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead96c221d89fb64288c2b68df66f3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDebugIndex: 5
+  animationDebugIndex: 15
   animationName:
   - Idle
   - Run
   - Jump
   - Fall
+  - Crouch_Idle
+  - Crouch_Walk
 --- !u!114 &1930177262403986838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 0
+  active: 0
 --- !u!114 &1732598546970459279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,3 +581,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 0
+  walkableArea: {fileID: 0}

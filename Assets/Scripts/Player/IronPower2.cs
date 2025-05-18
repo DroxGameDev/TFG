@@ -30,7 +30,6 @@ public class IronPower2 : Iron_Steel2
     void Update()
     {   
         OnUpdate();
-        
         if (input && state == PowerState.inactive){
 
             ChangeState(PowerState.select);
@@ -137,25 +136,31 @@ public class IronPower2 : Iron_Steel2
             directorVectorImpulse.Normalize();
         }
 
-        StartCoroutine(moveTowards(collider, selectedMetal.metal));
+        if (selectedMetal.metal.tag == "Coin")
+        {
+            StartCoroutine(moveTowardsPlayer(selectedMetal.metal, collider));
+        }
+        else
+        {
+            StartCoroutine(moveTowards(collider, selectedMetal.metal));
+        }
     }
 
     private IEnumerator moveTowardsPlayer(Collider2D metal, Collider2D player)
     {
         Vector2 forcePlayerPosition = player.transform.position;
         bool metalObstacleReached = false;
-        var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
-        if (heavyMetal != null)
+        if (metal.gameObject.tag == "Heavy_Metal")
         {
+            var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
             heavyMetal.ForceMove();
         }
-
+        
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
         {
             Vector2 currentPosition = metal.transform.position;
             Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
-
-            float step = playerData.ironPullPower * playerData.ironPullPowerMult/metal.attachedRigidbody.mass * Time.fixedDeltaTime;
+            float step = playerData.ironPullPower * playerData.ironPullPowerMult / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
@@ -163,6 +168,7 @@ public class IronPower2 : Iron_Steel2
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = metal.attachedRigidbody.Cast(direction, filter, hits, step);
+
             if (hitCount > 0)
             {
                 // Si hay colisión, mueve solo hasta el punto de colisión
@@ -182,11 +188,19 @@ public class IronPower2 : Iron_Steel2
 
             yield return new WaitForFixedUpdate();
         }
-        
-        if (heavyMetal != null)
+
+        if (metal.gameObject.tag == "Heavy_Metal")
         {
+            var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
             heavyMetal.Stop();
         }
+        /*
+        else if (metal.gameObject.tag == "Coin" && ObjectiveReached(metal))
+        {
+            var coin = metal.GetComponent<coin>();
+            coin.DestroyItem();
+        }
+        */
     }
     private IEnumerator moveTowards(Collider2D origin, Collider2D target)
     {

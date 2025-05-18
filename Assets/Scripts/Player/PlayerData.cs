@@ -12,8 +12,7 @@ public enum GravityMode{
 public class PlayerData : MonoBehaviour
 {
     public Camera mainCamera;
-    [Space(10)] 
-
+    [Space(10)]
 
     [Header("Movement")]
     [Range (0f, 20f)] public  float moveSpeed;

@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : AffectedByGravity
 {
-    
-    private Rigidbody2D rb;
     private PlayerData playerData;
     private ConstantForce2D force2D;
     
@@ -26,12 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        OnStart();
         playerData = GetComponent<PlayerData>();
-        force2D = GetComponent<ConstantForce2D>();
-
-        rb.gravityScale = 0f;
-        force2D.force = new Vector2 (Physics2D.gravity.x, Physics2D.gravity.y);
         //selecteMetalThreshold = new Vector2(0.1f,0.1f);
     }
 

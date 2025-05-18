@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Metal_Heavy_Object : MonoBehaviour
+public class Metal_Heavy_Object : AffectedByGravity
 {
-
-    Rigidbody2D rb;
-    ConstantForce2D constantForce;
     bool moving = false;
-
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
-        constantForce = GetComponent<ConstantForce2D>();
-        constantForce.force = new Vector2 (0f, Physics2D.gravity.y);
+        OnStart();
     }
 
     public IEnumerator Impulse(Vector2 force)
@@ -24,12 +17,12 @@ public class Metal_Heavy_Object : MonoBehaviour
         rb.AddForce(force, ForceMode2D.Impulse);
 
         yield return new WaitForFixedUpdate();
-        
+
         while (rb.velocity.magnitude > 0f)
         {
-            yield return new WaitForFixedUpdate();  
+            yield return new WaitForFixedUpdate();
         }
-        
+
         Stop();
     }
 
