@@ -103,7 +103,6 @@ public class IronPower2 : Iron_Steel2
     }
     public override void OnInactive(){
         playerData.burningIron = false;
-        playerData.movingWithPowers = false;
         playerData.timeStoped = false;
         obstacleReached = false;
         //playerData.cancelGravity = false;
@@ -155,11 +154,13 @@ public class IronPower2 : Iron_Steel2
             var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
             heavyMetal.ForceMove();
         }
+        Vector2 currentPosition = metal.transform.position;
+        Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
         
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
         {
-            Vector2 currentPosition = metal.transform.position;
-            Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
+            currentPosition = metal.transform.position;
+
             float step = playerData.ironPullPower * playerData.ironPullPowerMult / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
@@ -171,12 +172,31 @@ public class IronPower2 : Iron_Steel2
 
             if (hitCount > 0)
             {
+                Debug.Log(hitCount);
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)
                 {
                     obstacleReached = true;
                     metalObstacleReached = true;
+
+                    if (direction.y >= 0f || direction.y < -0.4f)
+                    {
+                        obstacleReached = true;
+                        metalObstacleReached = true;
+                    }
+                    else
+                    {
+                        if (metal.transform.position.x < player.transform.position.x)
+                        {
+                            direction = Vector2.right;
+                        }
+                        else
+                        {
+                            direction = Vector2.left;
+                        }
+                        
+                    }
                 }
             }
             else
@@ -214,12 +234,14 @@ public class IronPower2 : Iron_Steel2
             forceTargetPosition = target.transform.position;
         }
 
+        Vector2 currentPosition = origin.transform.position;
+        Vector2 direction = (forceTargetPosition - currentPosition).normalized;
+
         while (state == PowerState.force && !ObjectiveReached(target) && !obstacleReached)
         {
 
-            Vector2 currentPosition = origin.transform.position;
-            Vector2 direction = (forceTargetPosition - currentPosition).normalized;
-
+            currentPosition = origin.transform.position;
+    
             float step = playerData.ironPullPower * playerData.ironPullPowerMult * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
@@ -235,13 +257,28 @@ public class IronPower2 : Iron_Steel2
                 origin.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)
                 {
-                    if (target.tag == "Heavy_Metal")
+                    if (direction.y >= 0f || direction.y < -0.4f)
                     {
-                        yield return StartCoroutine(moveTowardsPlayer(target, origin));
+                        if (target.tag == "Heavy_Metal")
+                        {
+                            yield return StartCoroutine(moveTowardsPlayer(target, origin));
+                        }
+                        else
+                        {
+                            obstacleReached = true;
+                        }
                     }
                     else
                     {
-                        obstacleReached = true; 
+                        if (origin.transform.position.x < target.transform.position.x)
+                        {
+                            direction = Vector2.right;
+                        }
+                        else
+                        {
+                            direction = Vector2.left;
+                        }
+                        
                     }
                 }
             }

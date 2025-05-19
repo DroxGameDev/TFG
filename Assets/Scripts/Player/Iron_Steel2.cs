@@ -35,59 +35,70 @@ public class Iron_Steel2 : MonoBehaviour
     {
         selectMetalVector = context;
     }
-    
-    public bool GetNearbyMetals(){
+
+    public bool GetNearbyMetals()
+    {
         Collider2D[] nearMetals = Physics2D.OverlapCircleAll(transform.position, playerData.metalCheckRadius, playerData.metalLayers);
 
         int linesBehindWalls = 0;
 
-        for (int i = 0; i < nearMetals.Length; i++){
+        for (int i = 0; i < nearMetals.Length; i++)
+        {
 
             GameObject newLinePrefab = Instantiate(playerData.linePrefab);
             LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
             nearMetalLines.Add(newLineObject);
 
-            if(IsWallBetween(newLineObject)) linesBehindWalls++;
-        }    
-        
+            if (IsWallBetween(newLineObject)) linesBehindWalls++;
+        }
+
         return nearMetalLines.Count > 0 && linesBehindWalls < nearMetalLines.Count;
     }
 
-    private bool IsWallBetween(LineObject lineObject){
+    private bool IsWallBetween(LineObject lineObject)
+    {
         Vector2 MetalClosestPoint = lineObject.metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
         float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-        Vector2 directorVector = MetalClosestPoint + (lineObject.metal.GetComponent<BoxCollider2D>().offset * -1) - new Vector2 (transform.position.x, transform.position.y);
+        Vector2 directorVector = MetalClosestPoint + (lineObject.metal.GetComponent<BoxCollider2D>().offset * -1) - new Vector2(transform.position.x, transform.position.y);
         directorVector.Normalize();
 
-        RaycastHit2D raycast =  Physics2D.Raycast(transform.position, directorVector, lineDistance,playerData.obstacleLayer);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, directorVector, lineDistance, playerData.obstacleLayer);
         return raycast;
     }
 
-    public virtual void OnInactive(){
+    public virtual void OnInactive()
+    {
     }
-    public virtual void OnSelect(){
+    public virtual void OnSelect()
+    {
     }
-    public virtual void OnForce(){
+    public virtual void OnForce()
+    {
     }
-    public virtual void OnImpulse(){
+    public virtual void OnImpulse()
+    {
     }
 
     public void OnUpdate()
     {
         selectMetalCounter -= Time.unscaledDeltaTime;
 
-        if(playerData.timeStoped){
+        if (playerData.timeStoped)
+        {
             Time.timeScale = 0.1f;
         }
-        else{
+        else
+        {
             Time.timeScale = 1f;
         }
 
-        if(state == PowerState.select || state == PowerState.force || state == PowerState.wallWalking){
+        if (state == PowerState.select || state == PowerState.force || state == PowerState.wallWalking)
+        {
             //actualizar lineas
             #region metal lines position
-            for(int i = 0; i < nearMetalLines.Count; i++){
+            for (int i = 0; i < nearMetalLines.Count; i++)
+            {
                 LineObject actualLine = nearMetalLines[i];
 
                 Vector2 MetalClosestPoint = nearMetalLines[i].metal.GetComponent<BoxCollider2D>().ClosestPoint(transform.position);
@@ -109,46 +120,55 @@ public class Iron_Steel2 : MonoBehaviour
 
                 float lineDistance = Vector2.Distance(transform.position, MetalClosestPoint);
 
-                Vector2 directorVector = MetalClosestPoint - new Vector2 (transform.position.x, transform.position.y);
+                Vector2 directorVector = MetalClosestPoint - new Vector2(transform.position.x, transform.position.y);
                 directorVector.Normalize();
 
-                if (IsWallBetween(nearMetalLines[i])){
+                if (IsWallBetween(nearMetalLines[i]))
+                {
                     actualLine.iValue = 0f;
                     ChangeMaterialAlpha(actualLine.lineRenderer.material, 0f);
-                    
+
                 }
-                else if(lineDistance <= playerData.metalCheckMinRadius){
-                    if (actualLine.iValue != 1f){
+                else if (lineDistance <= playerData.metalCheckMinRadius)
+                {
+                    if (actualLine.iValue != 1f)
+                    {
                         actualLine.iValue = 1f;
                         ChangeMaterialAlpha(actualLine.lineRenderer.material, 1f);
-                    }  
+                    }
                 }
-                else{
-                        actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius,playerData.metalCheckMinRadius, lineDistance);
+                else
+                {
+                    actualLine.iValue = Mathf.InverseLerp(playerData.metalCheckRadius, playerData.metalCheckMinRadius, lineDistance);
 
-                        if (actualLine.iValue > 0.5f){
-                            actualLine.iValue = 0.6f;
-                        }
-                        else if (actualLine.iValue >= 0.01){
-                            actualLine.iValue = 0.25f;
-                        }
+                    if (actualLine.iValue > 0.5f)
+                    {
+                        actualLine.iValue = 0.6f;
+                    }
+                    else if (actualLine.iValue >= 0.01)
+                    {
+                        actualLine.iValue = 0.25f;
+                    }
 
-                        ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);        
+                    ChangeMaterialAlpha(actualLine.lineRenderer.material, actualLine.iValue);
                 }
-                
+
                 actualLine.lineRenderer.material.SetFloat("_GlowAmount", 0);
             }
             #endregion
-            
-            if(state == PowerState.select){
+
+            if (state == PowerState.select)
+            {
                 selectedMetal = null;
                 float selectedMetalAngle = 360f;
 
-                for(int i = 0; i< nearMetalLines.Count; i++){
-                    Vector2 currentMetalVector = nearMetalLines[i].metal.transform.position-transform.position;
+                for (int i = 0; i < nearMetalLines.Count; i++)
+                {
+                    Vector2 currentMetalVector = nearMetalLines[i].metal.transform.position - transform.position;
                     float posibleAngle = Vector2.Angle(selectMetalVector, currentMetalVector);
 
-                    if (posibleAngle < selectedMetalAngle && nearMetalLines[i].iValue != 0){
+                    if (posibleAngle < selectedMetalAngle && nearMetalLines[i].iValue != 0)
+                    {
                         selectedMetal = nearMetalLines[i];
                         selectedMetalAngle = posibleAngle;
                     }
@@ -156,23 +176,30 @@ public class Iron_Steel2 : MonoBehaviour
                     nearMetalLines[i].lineRenderer.material.SetFloat("_GlowAmount", 0);
                 }
 
-                if(selectedMetal != null){
+                if (selectedMetal != null)
+                {
                     selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
                 }
             }
 
-            if (state == PowerState.force || state == PowerState.wallWalking){
-                for(int i = 0; i< nearMetalLines.Count; i++){
-                    if(nearMetalLines[i] != selectedMetal){
+            if (state == PowerState.force || state == PowerState.wallWalking)
+            {
+                for (int i = 0; i < nearMetalLines.Count; i++)
+                {
+                    if (nearMetalLines[i] != selectedMetal)
+                    {
                         ChangeMaterialAlpha(nearMetalLines[i].lineRenderer.material, 0f);
                     }
                 }
 
-                selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
+                if (selectedMetal != null)
+                {
+                    selectedMetal.lineRenderer.material.SetFloat("_GlowAmount", 1);
+                }
             }
         }
 
-        if(playerData.movingWithPowers && playerData.grounded)
+        if (playerData.movingWithPowers && playerData.grounded)
         {
             float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(playerData.frictionAmount));
 
@@ -180,27 +207,35 @@ public class Iron_Steel2 : MonoBehaviour
 
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
         }
-        
+
+        if (state == PowerState.inactive && playerData.movingWithPowers && playerData.running)
+        {
+            playerData.movingWithPowers = false;
+        }
+
     }
     private void ChangeMaterialAlpha(Material material, float alpha)
     {
         material.SetFloat("_Alpha", alpha);
     }
 
-    public void ChangeState(PowerState newState){
+    public void ChangeState(PowerState newState)
+    {
         state = newState;
     }
 
     public void ResetLines()
     {
-        if (selectedMetal != null){
-            selectedMetal = null;  
+        if (selectedMetal != null)
+        {
+            selectedMetal = null;
         }
 
-        for (int i = 0; i < nearMetalLines.Count; i++){
+        for (int i = 0; i < nearMetalLines.Count; i++)
+        {
             Destroy(nearMetalLines[i].line);
-        }  
+        }
         nearMetalLines.Clear();
-    } 
+    }
 
 }

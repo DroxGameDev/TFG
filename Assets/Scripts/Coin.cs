@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coin : AffectedByGravity
+public class Coin : AffectedByGravity
 {
     [HideInInspector] public Collider2D triggerCollider;
 

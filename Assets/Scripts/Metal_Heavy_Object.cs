@@ -29,7 +29,7 @@ public class Metal_Heavy_Object : AffectedByGravity
     public void ForceMove()
     {
         moving = true;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void Stop()
