@@ -59,6 +59,14 @@ public class IronPower2 : Iron_Steel2
                     ChangeState(PowerState.impulse);
                     OnImpulse();
                 }
+                else if (selectedMetal.metal.tag == "Coin")
+                {
+                    playerResources.coins++;
+                    Destroy(selectedMetal.metal.gameObject);
+
+                    ChangeState(PowerState.inactive);
+                    OnInactive();
+                }
                 else if (CheckIfWalkable())
                 {
                     ChangeState(PowerState.wallWalking);
@@ -165,14 +173,14 @@ public class IronPower2 : Iron_Steel2
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
-            filter.useLayerMask = true;
+
+            //filter.useLayerMask = true;
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = metal.attachedRigidbody.Cast(direction, filter, hits, step);
 
             if (hitCount > 0)
             {
-                Debug.Log(hitCount);
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)

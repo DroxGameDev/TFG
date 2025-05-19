@@ -18,6 +18,7 @@ public class Iron_Steel2 : MonoBehaviour
     [HideInInspector] public static Rigidbody2D rb;
     [HideInInspector] public static PlayerData playerData;
     [HideInInspector] public static Collider2D collider;
+    [HideInInspector] public static PlayerResources playerResources;
 
     [HideInInspector] public static List<LineObject> nearMetalLines;
     [HideInInspector] public static Vector2 selectMetalVector;
@@ -30,6 +31,7 @@ public class Iron_Steel2 : MonoBehaviour
         collider = GetComponent<Collider2D>();
         playerData = GetComponent<PlayerData>();
         nearMetalLines = new List<LineObject>();
+        playerResources = GetComponent<PlayerResources>();
     }
     public static void GetSelectMetalAngle(Vector2 context)
     {

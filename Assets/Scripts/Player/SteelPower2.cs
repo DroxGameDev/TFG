@@ -229,7 +229,7 @@ public class SteelPower2 : Iron_Steel2
         }
 
 
-        while (Vector2.Distance(currentPosition, objectivePosition) > 0.01f && !metalObstacleReached)
+        while (Vector2.Distance(currentPosition, objectivePosition) > 0.1f && !metalObstacleReached)
         {
             currentPosition = metal.transform.position;
 
@@ -237,12 +237,15 @@ public class SteelPower2 : Iron_Steel2
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
-            filter.useLayerMask = true;
+            
+            //filter.useLayerMask = true;
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = metal.attachedRigidbody.Cast(direction, filter, hits, step);
+            
             if (hitCount > 0)
             {
+                Debug.Log(hits[0].collider.gameObject.name);
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)

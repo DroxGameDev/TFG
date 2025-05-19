@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private PlayerData playerData;
+    private PlayerResources playerResources;
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
     private PlayerAnimations playerAnimations;
@@ -17,8 +18,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerData = GetComponent<PlayerData>();
+        playerResources = GetComponent<PlayerResources>();
         playerControls = GetComponent<PlayerInput>();
-        playerMovement = GetComponent<PlayerMovement>();    
+        playerMovement = GetComponent<PlayerMovement>();
         playerAnimations = GetComponent<PlayerAnimations>();
         steelPower = GetComponent<SteelPower2>();
         ironPower = GetComponent<IronPower2>();
@@ -32,36 +34,41 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void OnJump(InputAction.CallbackContext context){
+    public void OnJump(InputAction.CallbackContext context)
+    {
         if (context.performed)
         {
-           playerMovement.jumpInputUpdate(true);
+            playerMovement.jumpInputUpdate(true);
         }
 
         if (context.canceled)
         {
-           playerMovement.jumpInputUpdate(false);
+            playerMovement.jumpInputUpdate(false);
         }
     }
 
-    public void SteelPush(InputAction.CallbackContext context){
+    public void SteelPush(InputAction.CallbackContext context)
+    {
         if (context.performed)
-           StartCoroutine(steelPower.SteelInputupdate(true));
+            StartCoroutine(steelPower.SteelInputupdate(true));
 
         if (context.canceled)
-           StartCoroutine(steelPower.SteelInputupdate(false));
+            StartCoroutine(steelPower.SteelInputupdate(false));
     }
 
-    public void IronPull(InputAction.CallbackContext context){
+    public void IronPull(InputAction.CallbackContext context)
+    {
         if (context.performed)
-           StartCoroutine(ironPower.IronInputupdate(true));
+            StartCoroutine(ironPower.IronInputupdate(true));
 
         if (context.canceled)
-           StartCoroutine(ironPower.IronInputupdate(false));
+            StartCoroutine(ironPower.IronInputupdate(false));
     }
 
-    public void SelectMetal(InputAction.CallbackContext context){
-        if(playerControls.currentControlScheme == "GamePad"){
+    public void SelectMetal(InputAction.CallbackContext context)
+    {
+        if (playerControls.currentControlScheme == "GamePad")
+        {
             Iron_Steel2.GetSelectMetalAngle(context.ReadValue<Vector2>());
             return;
         }
@@ -70,6 +77,11 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = (context.ReadValue<Vector2>() - playerinScreen).normalized;
 
         Iron_Steel2.GetSelectMetalAngle(direction);
-        
+
+    }
+
+    public void PickDropCoin(InputAction.CallbackContext context)
+    {
+        if (context.performed) playerResources.PickDropCoin();
     }
 }

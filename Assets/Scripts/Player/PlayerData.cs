@@ -52,6 +52,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     public Collider2D forceCollider;
     public LayerMask obstacleLayer;
+    public LayerMask coinObstaclesLayer;
 
     [Header("Metal Lines")]
     //Steel = push

@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Pick/Drop Coin",
+                    "type": "Button",
+                    "id": "e88fd4cf-1880-48d7-9a35-5817853e9d0c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -203,6 +212,28 @@
                     "processors": "",
                     "groups": ";PC",
                     "action": "IronPull",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c42e3a4-9945-4463-a8a2-b84938c61153",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";GamePad",
+                    "action": "Pick/Drop Coin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cf2c452-03bc-4b1b-acde-07cd97636aa3",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "Pick/Drop Coin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

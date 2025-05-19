@@ -12,18 +12,10 @@ public class Coin : AffectedByGravity
         OnStart();
         triggerCollider = GetComponent<Collider2D>();
         velocity = rb.velocity;
-        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
-        {
-            var player = collision.gameObject.GetComponent<PlayerResources>();
-            if (player != null)
-            {
-                player.coins += 1;
-            }
-        }
+        
     }
 
     public void DestroyItem()
