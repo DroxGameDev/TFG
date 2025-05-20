@@ -13,14 +13,18 @@ public class IronPower2 : Iron_Steel2
     private Vector2 forceTargetPosition;
     public WalkableArea walkableArea;
     private bool obstacleReached = false;
+
+    [SerializeField] private Collider2D mainCollider;
     
     public IEnumerator IronInputupdate(bool context)
     {
-        if(context){
+        if (context)
+        {
             input = true;
         }
 
-        else if(!context){
+        else if (!context)
+        {
             input = false;
         }
 
@@ -81,7 +85,6 @@ public class IronPower2 : Iron_Steel2
 
             else if (obstacleReached)
             {
-                //Debug.Log("Obstacle reached");
                 ChangeState(PowerState.inactive);
                 OnInactive();
             }
@@ -164,9 +167,9 @@ public class IronPower2 : Iron_Steel2
         }
         Vector2 currentPosition = metal.transform.position;
         Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
-        
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
-        {
+        {   
+
             currentPosition = metal.transform.position;
 
             float step = playerData.ironPullPower * playerData.ironPullPowerMult / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
@@ -243,13 +246,12 @@ public class IronPower2 : Iron_Steel2
         }
 
         Vector2 currentPosition = origin.transform.position;
-        Vector2 direction = (forceTargetPosition - currentPosition).normalized;
-
+        Vector2 direction = (forceTargetPosition - currentPosition).normalized; 
+        
         while (state == PowerState.force && !ObjectiveReached(target) && !obstacleReached)
         {
-
             currentPosition = origin.transform.position;
-    
+
             float step = playerData.ironPullPower * playerData.ironPullPowerMult * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
@@ -257,7 +259,7 @@ public class IronPower2 : Iron_Steel2
             filter.useLayerMask = true;
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
-            int hitCount = origin.attachedRigidbody.Cast(direction, filter, hits, step);
+            int hitCount = mainCollider.Cast(direction, filter, hits, step);
 
             if (hitCount > 0)
             {
@@ -286,7 +288,7 @@ public class IronPower2 : Iron_Steel2
                         {
                             direction = Vector2.left;
                         }
-                        
+
                     }
                 }
             }

@@ -245,7 +245,6 @@ public class SteelPower2 : Iron_Steel2
             
             if (hitCount > 0)
             {
-                Debug.Log(hits[0].collider.gameObject.name);
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)
