@@ -84,4 +84,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed) playerResources.PickDropCoin();
     }
+
+    public void ShowCoin(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            playerResources.ShowCoin();
+        }
+    }
 }

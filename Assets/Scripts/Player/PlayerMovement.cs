@@ -32,7 +32,7 @@ public class PlayerMovement : AffectedByGravity
     #region Input
     public void moveInputUpdate(Vector2 context)
     {
-        moveInput = context.x;
+       moveInput = context.x;
     }
 
     public void jumpInputUpdate(bool context)
@@ -118,11 +118,13 @@ public class PlayerMovement : AffectedByGravity
         #endregion
 
         //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !isFacingRight && moveInput > 0f) || (playerData.gravityMode == GravityMode.Up && isFacingRight && moveInput> 0f))
+        if ((playerData.gravityMode != GravityMode.Up && !isFacingRight && moveInput > 0f ) ||
+                (playerData.gravityMode == GravityMode.Up && isFacingRight && moveInput > 0f))
         {
             Flip();
         }
-        else if ((playerData.gravityMode != GravityMode.Up && isFacingRight && moveInput < 0f) || (playerData.gravityMode == GravityMode.Up && !isFacingRight && moveInput < 0f))
+        else if ((playerData.gravityMode != GravityMode.Up && isFacingRight && moveInput < 0f)
+                    || (playerData.gravityMode == GravityMode.Up && !isFacingRight && moveInput < 0f))
         {
             Flip();
         }
@@ -134,20 +136,19 @@ public class PlayerMovement : AffectedByGravity
         
     }
 
-    void FixedUpdate()
+    public void ChangeXMovement(float input)
     {
-        
-        if (!playerData.movingWithPowers){
+        if (!playerData.movingWithPowers /*&& !playerData.showingCoin*/){
             #region Run
             //Calculate the direction we want to move in and our desired velocity
             float targetSpeed;
             if (playerData.wallWalking)
             {
-                targetSpeed = moveInput * playerData.moveSpeed * playerData.crocuhModifier;
+                targetSpeed = input * playerData.moveSpeed * playerData.crocuhModifier;
             }
             else
             {
-                targetSpeed = moveInput * playerData.moveSpeed;
+                targetSpeed = input * playerData.moveSpeed;
             }
             //calculate the difference between our current speed and the target speed
             float speedDif = targetSpeed - playerData.velocity.x;
@@ -161,9 +162,15 @@ public class PlayerMovement : AffectedByGravity
                 
             #endregion
         }
+    }
+
+    void FixedUpdate()
+    {
+        ChangeXMovement(moveInput);
+        
         #region Friction
 
-        if(Mathf.Abs(moveInput) <0.01f)
+        if (Mathf.Abs(moveInput) < 0.01f)
         {
             float amount = Mathf.Min(Mathf.Abs(playerData.velocity.x), Mathf.Abs(playerData.frictionAmount));
 
@@ -233,11 +240,18 @@ public class PlayerMovement : AffectedByGravity
 
     private void Flip()
     {
-        if (!playerData.timeStoped){
+        if (!playerData.timeStoped)
+        {
             isFacingRight = !isFacingRight;
             Vector2 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+
+            /*
+            Vector3 currentShootPoint = playerData.shootPoint.localPosition;
+            currentShootPoint.x *= -1f;
+            playerData.shootPoint.localPosition = currentShootPoint;
+            */
         }
     }
 

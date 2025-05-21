@@ -50,12 +50,11 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 0.5f)] public  float groundCheckRadius;
     public LayerMask groundLayer;
     [Space(10)]
-    public Collider2D forceCollider;
     public LayerMask obstacleLayer;
-    public LayerMask coinObstaclesLayer;
 
     [Header("Metal Lines")]
     //Steel = push
+    public Transform linesOrigin;
     public LayerMask metalLayers;
     [Range (0f, 10f)] public float metalCheckRadius;
     [Range (0f, 5f)] public float metalCheckMinRadius;
@@ -78,6 +77,10 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 5f)] public float ironPullTime;
     public LayerMask walkableAreaLayer;
 
+    [Header("Shoot Coins")]
+    public Transform shootPoint;
+    [Range(0f, 5f)] public float showCoinTime;
+
     [Header("States")]
     public bool grounded = true;
     public bool running = false;
@@ -88,32 +91,39 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     public bool timeStoped = false;
     public bool movingWithPowers = false;
+    public bool showingCoin = false;
 
-    public void ChangeGravityMode(GravityMode mode){
-        if(mode == GravityMode.Cancel){
+    public void ChangeGravityMode(GravityMode mode)
+    {
+        if (mode == GravityMode.Cancel)
+        {
             gravityMode = GravityMode.Cancel;
             //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             setGravity(0, 0f);
         }
-        else if (mode == GravityMode.Left){
+        else if (mode == GravityMode.Left)
+        {
             gravityMode = GravityMode.Left;
             wallWalking = true;
             //transform.rotation = Quaternion.Euler(0f, 0f, 90f);
             setGravity(1f, 0f);
         }
-        else if (mode == GravityMode.Right){
+        else if (mode == GravityMode.Right)
+        {
             gravityMode = GravityMode.Right;
             wallWalking = true;
             //transform.rotation = Quaternion.Euler(0f, 0f, -90f);
             setGravity(-1f, 0f);
         }
-        else if (mode == GravityMode.Up){
+        else if (mode == GravityMode.Up)
+        {
             gravityMode = GravityMode.Up;
             wallWalking = true;
             //transform.rotation = Quaternion.Euler(0f, 0f, 180f);
             setGravity(0f, -1f);
         }
-        else{
+        else
+        {
             gravityMode = GravityMode.Down;
             wallWalking = false;
             setGravity(0f, 1f);

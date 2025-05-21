@@ -34,7 +34,7 @@ public class IronPower2 : Iron_Steel2
     void Update()
     {   
         OnUpdate();
-        if (input && state == PowerState.inactive){
+        if (input && state == PowerState.inactive && !playerData.showingCoin){
 
             ChangeState(PowerState.select);
             OnSelect();
@@ -328,8 +328,6 @@ public class IronPower2 : Iron_Steel2
             rb.velocity = Vector2.zero;
             rb.AddForce(forceToApply, ForceMode2D.Impulse);
         }
-        
-        ResetLines();
     }
 
     public void SetWalkableArea(WalkableArea area)

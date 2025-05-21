@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5021650168946435796}
   - component: {fileID: 6425242887534734007}
   - component: {fileID: 7280925702789784234}
+  - component: {fileID: 2449825934170849798}
   m_Layer: 10
   m_Name: HeavyMetalTest
   m_TagString: Heavy_Metal
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.94, y: -1.03, z: 0.2999744}
-  m_LocalScale: {x: 3.1871, y: 3.1871, z: 3.1871}
+  m_LocalScale: {x: 3.1871, y: 2.166346, z: 3.1871}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.9811321, g: 0.524852, b: 0, a: 1}
   m_FlipX: 0
@@ -144,7 +145,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -171,3 +172,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3286d7b2ae8858343b6cfde2dd38304a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+--- !u!247 &2449825934170849798
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6034171374488067285}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0

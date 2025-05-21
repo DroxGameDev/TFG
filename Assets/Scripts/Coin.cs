@@ -7,7 +7,7 @@ public class Coin : AffectedByGravity
     [HideInInspector] public Collider2D triggerCollider;
 
     public Vector2 velocity;
-    void Start()
+    void OnEnable()
     {
         OnStart();
         triggerCollider = GetComponent<Collider2D>();
@@ -15,11 +15,12 @@ public class Coin : AffectedByGravity
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
 
-    public void DestroyItem()
+    }
+    
+    public void setGravity(float newGracityScaleX, float newGracityScaleY)
     {
-        Destroy(gameObject);
+        ConstantForce2D forceMode = GetComponent<ConstantForce2D>();
+        forceMode.force = new Vector2(Physics2D.gravity.x * newGracityScaleX * rb.mass, Physics2D.gravity.y * newGracityScaleY * rb.mass);
     }
 }

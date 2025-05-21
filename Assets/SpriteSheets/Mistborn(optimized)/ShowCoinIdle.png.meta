@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a4445758e05dcf43b5c8a464f691a2d
+guid: c204b31d7aed50148a34b74f592b5506
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,589 +110,589 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle_0
+      name: ShowCoinIdle_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 532
-        width: 49
-        height: 133
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4e6a6d4f2814d9419b1d62681ced06f
-      internalID: -629067253
+      spriteID: ffabc29d8826cd2409eb9d4299ffae82
+      internalID: 1338278650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_1
+      name: ShowCoinIdle_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 532
-        width: 49
-        height: 133
+        x: 55
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c28222bfcb3e5bd4f9b86f5a0b3f5dc3
-      internalID: 1634441635
+      spriteID: edc6a960ca1443d45b2602c5679ef80b
+      internalID: 1266852509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_2
+      name: ShowCoinIdle_2
       rect:
         serializedVersion: 2
-        x: 98
-        y: 532
-        width: 49
-        height: 133
+        x: 110
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3caf91fd3446564e8111642b678b65d
-      internalID: 1279650550
+      spriteID: 0e82615857be6d14991ba8392a3176d7
+      internalID: -2004753718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_3
+      name: ShowCoinIdle_3
       rect:
         serializedVersion: 2
-        x: 147
-        y: 532
-        width: 49
-        height: 133
+        x: 165
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d471e1a8aeca8342a2ce8662ddbfaea
-      internalID: -1136458413
+      spriteID: 0d4ee746519db754e865532be24612b1
+      internalID: -530565075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_4
+      name: ShowCoinIdle_4
       rect:
         serializedVersion: 2
-        x: 196
-        y: 532
-        width: 49
-        height: 133
+        x: 220
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e67043d7b7acf3488d04111fff1ff85
-      internalID: 1794920827
+      spriteID: da14ee01526c8c444b768d69fec9dd23
+      internalID: 1136096199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_5
+      name: ShowCoinIdle_5
       rect:
         serializedVersion: 2
-        x: 245
-        y: 532
-        width: 49
-        height: 133
+        x: 275
+        y: 536
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7756eecf2ecded741b1aae13e2a09f90
-      internalID: 1225195322
+      spriteID: 37dd10779c614e74da92034502da5fc9
+      internalID: 172288271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3361c55bb442b8e4ea0627132f6d0f94
-      internalID: 202120424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_7
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 270c038c976c3714893719150f2b9fcd
-      internalID: -488176205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_8
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fea3ae7dbfc9d8945b731d1690df8430
-      internalID: -284420640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_9
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 366bd3fa7338e5d4d9bc35d586bbc4e2
-      internalID: 67536737
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_10
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 285b4b08000ab3142a4e0e976f2acd2a
-      internalID: 1190388550
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_11
-      rect:
-        serializedVersion: 2
-        x: 245
-        y: 399
-        width: 49
-        height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1dde0fac2fedce46a3c11321841aa6f
-      internalID: -1670871024
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle_12
+      name: ShowCoinIdle_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 266
-        width: 49
-        height: 133
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1da06ece8c4b934296366be7b8dc586
-      internalID: 891207551
+      spriteID: 7eca4db268859e2489364f85ec065298
+      internalID: -845607741
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_13
+      name: ShowCoinIdle_7
       rect:
         serializedVersion: 2
-        x: 49
-        y: 266
-        width: 49
-        height: 133
+        x: 55
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fed51efff12124041a860cf9fe67c2c9
-      internalID: -138587354
+      spriteID: d1b8c75a9eec00f4a8d89c7a224cef3b
+      internalID: 969505712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_14
+      name: ShowCoinIdle_8
       rect:
         serializedVersion: 2
-        x: 98
-        y: 266
-        width: 49
-        height: 133
+        x: 110
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cbff754cdddec547bfa8d900f45082c
-      internalID: 1209405123
+      spriteID: 340c7c7836597f2428512fc15dfd05a2
+      internalID: 385508715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_15
+      name: ShowCoinIdle_9
       rect:
         serializedVersion: 2
-        x: 147
-        y: 266
-        width: 49
-        height: 133
+        x: 165
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57fc8c75a7212f54a8e8de83b1be7256
-      internalID: 1053396058
+      spriteID: bc1dfe164edc77c45875243da451a25b
+      internalID: -1090372248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_16
+      name: ShowCoinIdle_10
       rect:
         serializedVersion: 2
-        x: 196
-        y: 266
-        width: 49
-        height: 133
+        x: 220
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c947be80c1643664ea9454e56c608832
-      internalID: 1973266880
+      spriteID: 204b83976463e584c80911bdc324af8a
+      internalID: -243879268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_17
+      name: ShowCoinIdle_11
       rect:
         serializedVersion: 2
-        x: 245
-        y: 266
-        width: 49
-        height: 133
+        x: 275
+        y: 402
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7785618a42c22834b825460d91f914bb
-      internalID: -1798020143
+      spriteID: 24c4e8e41796fcc4590e5b802d25dc59
+      internalID: 2125194272
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_18
+      name: ShowCoinIdle_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 133
-        width: 49
-        height: 133
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ced21aaccc5d5a3429d454b878c0d88a
-      internalID: -1106655491
+      spriteID: 182ab1bbd9adc3440a74a06f47207201
+      internalID: -2058893756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_19
+      name: ShowCoinIdle_13
       rect:
         serializedVersion: 2
-        x: 49
-        y: 133
-        width: 49
-        height: 133
+        x: 55
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d16a0fd60f46834e868e4c986bb8318
-      internalID: -1052315703
+      spriteID: a8ef6cb5ebae8c94e9284d0df55b14f0
+      internalID: -484477003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_20
+      name: ShowCoinIdle_14
       rect:
         serializedVersion: 2
-        x: 98
-        y: 133
-        width: 49
-        height: 133
+        x: 110
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e289534c60ca57c499af158131a1a1d1
-      internalID: -1291218074
+      spriteID: 5884cc6fe41702c47811ae65418e2feb
+      internalID: 1605361376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_21
+      name: ShowCoinIdle_15
       rect:
         serializedVersion: 2
-        x: 147
-        y: 133
-        width: 49
-        height: 133
+        x: 165
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 912a9eb044945e24aae43c7808dfb548
-      internalID: -1712094085
+      spriteID: d97a056ebb3da314dba901dd7077d366
+      internalID: -937785924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_22
+      name: ShowCoinIdle_16
       rect:
         serializedVersion: 2
-        x: 196
-        y: 133
-        width: 49
-        height: 133
+        x: 220
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec0c5e02e8cc95c4997e14eef5b6f9c9
-      internalID: 2113133266
+      spriteID: 0b2edcde45c07e94399624a0266e7b18
+      internalID: -628493319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_23
+      name: ShowCoinIdle_17
       rect:
         serializedVersion: 2
-        x: 245
-        y: 133
-        width: 49
-        height: 133
+        x: 275
+        y: 268
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d52876e11499b043a601960ce9ef824
-      internalID: 361462418
+      spriteID: 9761bbba8f2b3374b83e6a947bb2239d
+      internalID: 1921199037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_24
+      name: ShowCoinIdle_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629bf59014de138439e1a7a487fec895
+      internalID: 1549557832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_19
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f650d87eb68e39b4e97322780288e91f
+      internalID: -1511184738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_20
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfcde8851c7433a42add78cf57ae5f03
+      internalID: 594972929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_21
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe2c2099511917488bf2188e2ac799e
+      internalID: 614375622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_22
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98d576e313289e3429a02697dd089455
+      internalID: 2075972211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_23
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 134
+        width: 55
+        height: 134
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706bf053ee8bce94fb17914b592c712c
+      internalID: -1504284253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShowCoinIdle_24
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 49
-        height: 133
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08c4fd6c45c4c65428ded1e0789b4afa
-      internalID: -970409463
+      spriteID: d62878beda26d2e4ea0d15d2a5590d8c
+      internalID: -239118360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_25
+      name: ShowCoinIdle_25
       rect:
         serializedVersion: 2
-        x: 49
+        x: 55
         y: 0
-        width: 49
-        height: 133
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa9a4a7573c26d940adbb8c733e1cc89
-      internalID: -409802162
+      spriteID: cab0b5ad67d4d8b409eadf052ed19582
+      internalID: -120889016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_26
+      name: ShowCoinIdle_26
       rect:
         serializedVersion: 2
-        x: 98
+        x: 110
         y: 0
-        width: 49
-        height: 133
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4943d3c97f31ad4c86280fcc8c241d2
-      internalID: 2016594703
+      spriteID: 1e84695c94a7c7b44857404a37b83b52
+      internalID: -2120411933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Idle_27
+      name: ShowCoinIdle_27
       rect:
         serializedVersion: 2
-        x: 147
+        x: 165
         y: 0
-        width: 49
-        height: 133
+        width: 55
+        height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e38b448836a115e4cbf8659fd2009c40
-      internalID: -1778235596
+      spriteID: 454cd2009d342e449972597a1ab7eac3
+      internalID: 917469633
       vertices: []
       indices: 
       edges: []
@@ -700,44 +700,44 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0acd49be7d88feb4292df54997a096bc
+    spriteID: 0c1995f6620f2d446be8e27ee3a31cf6
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: d344584641798a448922b7b3d6999438, type: 3}
+    - texture: {fileID: 2800000, guid: 5f24c618f0c8a6e4290aa58c63ae1cdd, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      Idle_0: -629067253
-      Idle_1: 1634441635
-      Idle_10: 1190388550
-      Idle_11: -1670871024
-      Idle_12: 891207551
-      Idle_13: -138587354
-      Idle_14: 1209405123
-      Idle_15: 1053396058
-      Idle_16: 1973266880
-      Idle_17: -1798020143
-      Idle_18: -1106655491
-      Idle_19: -1052315703
-      Idle_2: 1279650550
-      Idle_20: -1291218074
-      Idle_21: -1712094085
-      Idle_22: 2113133266
-      Idle_23: 361462418
-      Idle_24: -970409463
-      Idle_25: -409802162
-      Idle_26: 2016594703
-      Idle_27: -1778235596
-      Idle_3: -1136458413
-      Idle_4: 1794920827
-      Idle_5: 1225195322
-      Idle_6: 202120424
-      Idle_7: -488176205
-      Idle_8: -284420640
-      Idle_9: 67536737
+      ShowCoinIdle_0: 1338278650
+      ShowCoinIdle_1: 1266852509
+      ShowCoinIdle_10: -243879268
+      ShowCoinIdle_11: 2125194272
+      ShowCoinIdle_12: -2058893756
+      ShowCoinIdle_13: -484477003
+      ShowCoinIdle_14: 1605361376
+      ShowCoinIdle_15: -937785924
+      ShowCoinIdle_16: -628493319
+      ShowCoinIdle_17: 1921199037
+      ShowCoinIdle_18: 1549557832
+      ShowCoinIdle_19: -1511184738
+      ShowCoinIdle_2: -2004753718
+      ShowCoinIdle_20: 594972929
+      ShowCoinIdle_21: 614375622
+      ShowCoinIdle_22: 2075972211
+      ShowCoinIdle_23: -1504284253
+      ShowCoinIdle_24: -239118360
+      ShowCoinIdle_25: -120889016
+      ShowCoinIdle_26: -2120411933
+      ShowCoinIdle_27: 917469633
+      ShowCoinIdle_3: -530565075
+      ShowCoinIdle_4: 1136096199
+      ShowCoinIdle_5: 172288271
+      ShowCoinIdle_6: -845607741
+      ShowCoinIdle_7: 969505712
+      ShowCoinIdle_8: 385508715
+      ShowCoinIdle_9: -1090372248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

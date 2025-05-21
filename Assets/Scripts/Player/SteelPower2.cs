@@ -89,7 +89,6 @@ public class SteelPower2 : Iron_Steel2
                 {
                     ChangeState(PowerState.impulse);
                     OnImpulse();
-                    ResetLines();
                 }
             }
         }
@@ -134,7 +133,7 @@ public class SteelPower2 : Iron_Steel2
 
     private Vector2 getImpulse(Vector2 metalPosition)
     {
-        Vector2 position = new Vector2(transform.position.x, transform.position.y);
+        Vector2 position = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
         Vector2 directorVector = metalPosition - position + (selectedMetal.metal.offset * -1);
         directorVector.Normalize();
         rb.velocity = Vector3.zero;
@@ -150,7 +149,7 @@ public class SteelPower2 : Iron_Steel2
 
         if (target.tag == "Floor" || target.tag == "Walkable_Area")
         {
-            Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(origin.gameObject.transform.position);
+            Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
             forceAmount = getImpulse(MetalClosestPoint);
             origin.AddForce(forceAmount, ForceMode2D.Impulse);
         }
@@ -178,11 +177,13 @@ public class SteelPower2 : Iron_Steel2
             else if (target.tag == "Coin")
             {
                 pushingObject = true;
+                playerResources.CoinGone(target.gameObject.GetComponent<Coin>());
 
                 yield return StartCoroutine(moveAwayFromPlayer(target.GetComponent<Collider2D>(), origin.GetComponent<Collider2D>()));
 
                 if (impulsePushedObject)
                 {
+                    playerData.movingWithPowers = false;
                     target.AddForce(forceAmount * -1, ForceMode2D.Impulse);
                 }
                 else
@@ -192,11 +193,10 @@ public class SteelPower2 : Iron_Steel2
             }
         }
         yield return new WaitForEndOfFrame();
-        ResetLines();
     }
     private Vector2 getPointToForce(Vector2 metalPosition)
     {
-        Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
+        Vector2 playerPosition = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
         Vector2 directorVector = metalPosition - playerPosition /*+ (selectedMetal.metal.offset * -1)*/;
         directorVector.Normalize();
         return  playerPosition + directorVector * playerData.metalCheckRadius;
@@ -224,7 +224,7 @@ public class SteelPower2 : Iron_Steel2
                 direction = Vector2.right;
             }
             //nueva posición
-            objectivePosition = currentPosition + direction * (playerData.metalCheckRadius - Vector2.Distance(currentPosition, player.transform.position));
+            objectivePosition = currentPosition + direction * (playerData.metalCheckRadius - Vector2.Distance(currentPosition, playerData.linesOrigin.position));
 
         }
 
@@ -258,7 +258,7 @@ public class SteelPower2 : Iron_Steel2
                     else
                     {
                         //nueva dirección
-                        if (player.transform.position.x > currentPosition.x)
+                        if (playerData.linesOrigin.position.x > currentPosition.x)
                         {
                             direction = Vector2.left;
                         }
@@ -267,7 +267,7 @@ public class SteelPower2 : Iron_Steel2
                             direction = Vector2.right;
                         }
                         //nueva posición
-                        objectivePosition = currentPosition + direction * (playerData.metalCheckRadius - Vector2.Distance(currentPosition, player.transform.position));
+                        objectivePosition = currentPosition + direction * (playerData.metalCheckRadius - Vector2.Distance(currentPosition, playerData.linesOrigin.position));
                     }
                 }
             }
@@ -315,7 +315,7 @@ public class SteelPower2 : Iron_Steel2
             Gizmos.color = Color.blue;
             //Gizmos.DrawWireSphere(groundPosition,groundRadius);
 
-            Vector2 positon = new Vector2(transform.position.x, transform.position.y);
+            Vector2 positon = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
             Vector2 direction = selectMetalVector + positon;
             Gizmos.DrawLine(positon, direction);
             
