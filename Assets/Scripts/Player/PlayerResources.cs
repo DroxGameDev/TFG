@@ -63,7 +63,7 @@ public class PlayerResources : MonoBehaviour
 
     public void ShowCoin()
     {
-        if (coins > 0 && !playerData.showingCoin)
+        if (coins > 0 && !playerData.showingCoin && !playerData.burningIron)
         {
             //rb.velocity = Vector2.zero;
             GameObject newCoin = Instantiate(CoinPrefab, playerData.shootPoint.position, Quaternion.identity);

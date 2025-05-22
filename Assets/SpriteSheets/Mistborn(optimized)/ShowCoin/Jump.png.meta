@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c204b31d7aed50148a34b74f592b5506
+guid: 14578b921ca05054a94f8baa24bc16fe
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -35,7 +35,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 1
+    aniso: 13
     mipBias: 0
     wrapU: 1
     wrapV: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ShowCoinIdle_0
+      name: Jump_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 536
-        width: 55
-        height: 134
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffabc29d8826cd2409eb9d4299ffae82
-      internalID: 1338278650
+      spriteID: 08bc77203755fb641852518de6832425
+      internalID: -1863563728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_1
+      name: Jump_1
       rect:
         serializedVersion: 2
-        x: 55
-        y: 536
-        width: 55
-        height: 134
+        x: 75
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc6a960ca1443d45b2602c5679ef80b
-      internalID: 1266852509
+      spriteID: de91cb87385362246b684736065b8da6
+      internalID: -1360848956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_2
+      name: Jump_2
       rect:
         serializedVersion: 2
-        x: 110
-        y: 536
-        width: 55
-        height: 134
+        x: 150
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e82615857be6d14991ba8392a3176d7
-      internalID: -2004753718
+      spriteID: eeed3beabef08fb469d073454b42108e
+      internalID: 1475145399
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_3
+      name: Jump_3
       rect:
         serializedVersion: 2
-        x: 165
-        y: 536
-        width: 55
-        height: 134
+        x: 225
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d4ee746519db754e865532be24612b1
-      internalID: -530565075
+      spriteID: 63816ceb30c32eb44958a5e6173ac04b
+      internalID: 1395779800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_4
+      name: Jump_4
       rect:
         serializedVersion: 2
-        x: 220
-        y: 536
-        width: 55
-        height: 134
+        x: 300
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da14ee01526c8c444b768d69fec9dd23
-      internalID: 1136096199
+      spriteID: 224eb82e7458dd84fa73403c4a7b814b
+      internalID: 1059929306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_5
+      name: Jump_5
       rect:
         serializedVersion: 2
-        x: 275
-        y: 536
-        width: 55
-        height: 134
+        x: 375
+        y: 695
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,146 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37dd10779c614e74da92034502da5fc9
-      internalID: 172288271
+      spriteID: 808df4c55927c714cb66b832221f2978
+      internalID: -1685114365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7eca4db268859e2489364f85ec065298
-      internalID: -845607741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_7
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1b8c75a9eec00f4a8d89c7a224cef3b
-      internalID: 969505712
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_8
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 340c7c7836597f2428512fc15dfd05a2
-      internalID: 385508715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_9
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc1dfe164edc77c45875243da451a25b
-      internalID: -1090372248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_10
-      rect:
-        serializedVersion: 2
-        x: 220
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 204b83976463e584c80911bdc324af8a
-      internalID: -243879268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_11
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 402
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24c4e8e41796fcc4590e5b802d25dc59
-      internalID: 2125194272
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_12
+      name: Jump_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 268
-        width: 55
-        height: 134
+        y: 556
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -376,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 182ab1bbd9adc3440a74a06f47207201
-      internalID: -2058893756
+      spriteID: 076c611d6e1ee8c45a9a9dce90d960fd
+      internalID: -34556362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_13
+      name: Jump_7
       rect:
         serializedVersion: 2
-        x: 55
-        y: 268
-        width: 55
-        height: 134
+        x: 75
+        y: 556
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8ef6cb5ebae8c94e9284d0df55b14f0
-      internalID: -484477003
+      spriteID: 79fc99c747d337f45af123da9c9fa920
+      internalID: -231313225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_14
+      name: Jump_8
       rect:
         serializedVersion: 2
-        x: 110
-        y: 268
-        width: 55
-        height: 134
+        x: 150
+        y: 557
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -418,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5884cc6fe41702c47811ae65418e2feb
-      internalID: 1605361376
+      spriteID: ace986150b8176f40b5b8bef52e2beec
+      internalID: -1228230505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_15
+      name: Jump_9
       rect:
         serializedVersion: 2
-        x: 165
-        y: 268
-        width: 55
-        height: 134
+        x: 225
+        y: 556
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -439,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d97a056ebb3da314dba901dd7077d366
-      internalID: -937785924
+      spriteID: 7d1024fba114f9f46ab142361ad6f09d
+      internalID: -1889342210
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_16
+      name: Jump_10
       rect:
         serializedVersion: 2
-        x: 220
-        y: 268
-        width: 55
-        height: 134
+        x: 300
+        y: 556
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -460,20 +334,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b2edcde45c07e94399624a0266e7b18
-      internalID: -628493319
+      spriteID: 30cb887443e6ddc4f9abd0037378841f
+      internalID: -2145681537
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_17
+      name: Jump_11
       rect:
         serializedVersion: 2
-        x: 275
-        y: 268
-        width: 55
-        height: 134
+        x: 375
+        y: 556
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -481,20 +355,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9761bbba8f2b3374b83e6a947bb2239d
-      internalID: 1921199037
+      spriteID: 69ef87aedaad6f443ae8be7ae875a791
+      internalID: -314210390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_18
+      name: Jump_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 134
-        width: 55
-        height: 134
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -502,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 629bf59014de138439e1a7a487fec895
-      internalID: 1549557832
+      spriteID: b5e05e10f44d52747b0a1a8a85f3de68
+      internalID: -1097735517
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_19
+      name: Jump_13
       rect:
         serializedVersion: 2
-        x: 55
-        y: 134
-        width: 55
-        height: 134
+        x: 75
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -523,20 +397,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f650d87eb68e39b4e97322780288e91f
-      internalID: -1511184738
+      spriteID: 8757c4677b1c4b24a8b64ea47870ca26
+      internalID: 1956986066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_20
+      name: Jump_14
       rect:
         serializedVersion: 2
-        x: 110
-        y: 134
-        width: 55
-        height: 134
+        x: 150
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -544,20 +418,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfcde8851c7433a42add78cf57ae5f03
-      internalID: 594972929
+      spriteID: c2e03eb665c412b45af8b810642c7148
+      internalID: 1167458269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_21
+      name: Jump_15
       rect:
         serializedVersion: 2
-        x: 165
-        y: 134
-        width: 55
-        height: 134
+        x: 225
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -565,20 +439,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe2c2099511917488bf2188e2ac799e
-      internalID: 614375622
+      spriteID: dec770f951fc05a48b489e6e0a9fcac0
+      internalID: -1324357916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_22
+      name: Jump_16
       rect:
         serializedVersion: 2
-        x: 220
-        y: 134
-        width: 55
-        height: 134
+        x: 300
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -586,20 +460,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d576e313289e3429a02697dd089455
-      internalID: 2075972211
+      spriteID: dc0fd6ba1bdf4574ea0a9680df1e344e
+      internalID: 104890915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_23
+      name: Jump_17
       rect:
         serializedVersion: 2
-        x: 275
-        y: 134
-        width: 55
-        height: 134
+        x: 375
+        y: 417
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -607,20 +481,272 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 706bf053ee8bce94fb17914b592c712c
-      internalID: -1504284253
+      spriteID: 37d82f9529b540d4eae75dd717b0bb24
+      internalID: -1996308334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_24
+      name: Jump_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5afd83f5556d46245a19a487d363aa93
+      internalID: -1113592784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_19
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 431d02aab5e5f6848a8fdf937ec3c412
+      internalID: -972367496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_20
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48686f50f9ecf354bbaaf20268eba163
+      internalID: 445572482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_21
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2e13dd0c06094499cccecc48602c80
+      internalID: 1878370527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_22
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf67271088214747b6a4a102ac3464e
+      internalID: -817400581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_23
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 278
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be5f93eaebabadd4ea1babbbe380293a
+      internalID: -2028764247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e9c233818ba02469f75f5b15c8a774
+      internalID: -1290686295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_25
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a12dce9571ea6844ab025b4665fa2ab1
+      internalID: -1532763223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_26
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b67d4731a9348f4ea65bd90dd53565d
+      internalID: 72284740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_27
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1c228683be07d4cbacc4c239be083f
+      internalID: 710789323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_28
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a97367e96fa79644a58198a683dcbce
+      internalID: 1922201841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_29
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 139
+        width: 75
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46be94cc63bca694d990b9dd1a068778
+      internalID: 1048790234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jump_30
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 55
-        height: 134
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -628,20 +754,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d62878beda26d2e4ea0d15d2a5590d8c
-      internalID: -239118360
+      spriteID: 3a0c288a8a718124bb6b087db98861f8
+      internalID: 1498184739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_25
+      name: Jump_31
       rect:
         serializedVersion: 2
-        x: 55
+        x: 76
         y: 0
-        width: 55
-        height: 134
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -649,20 +775,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cab0b5ad67d4d8b409eadf052ed19582
-      internalID: -120889016
+      spriteID: 6e35c76319395ba4cb8f05330872297d
+      internalID: -360795197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ShowCoinIdle_26
+      name: Jump_32
       rect:
         serializedVersion: 2
-        x: 110
+        x: 150
         y: 0
-        width: 55
-        height: 134
+        width: 75
+        height: 139
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -670,29 +796,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e84695c94a7c7b44857404a37b83b52
-      internalID: -2120411933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ShowCoinIdle_27
-      rect:
-        serializedVersion: 2
-        x: 165
-        y: 0
-        width: 55
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 454cd2009d342e449972597a1ab7eac3
-      internalID: 917469633
+      spriteID: 6703245e3fe5e9e429c93319d9e57201
+      internalID: -2135732382
       vertices: []
       indices: 
       edges: []
@@ -700,44 +805,49 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0c1995f6620f2d446be8e27ee3a31cf6
+    spriteID: 9a779d999e6062047a223879560963d2
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 5f24c618f0c8a6e4290aa58c63ae1cdd, type: 3}
+    - texture: {fileID: 2800000, guid: ef4f6a821222c4b4294372dc489d4a48, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      ShowCoinIdle_0: 1338278650
-      ShowCoinIdle_1: 1266852509
-      ShowCoinIdle_10: -243879268
-      ShowCoinIdle_11: 2125194272
-      ShowCoinIdle_12: -2058893756
-      ShowCoinIdle_13: -484477003
-      ShowCoinIdle_14: 1605361376
-      ShowCoinIdle_15: -937785924
-      ShowCoinIdle_16: -628493319
-      ShowCoinIdle_17: 1921199037
-      ShowCoinIdle_18: 1549557832
-      ShowCoinIdle_19: -1511184738
-      ShowCoinIdle_2: -2004753718
-      ShowCoinIdle_20: 594972929
-      ShowCoinIdle_21: 614375622
-      ShowCoinIdle_22: 2075972211
-      ShowCoinIdle_23: -1504284253
-      ShowCoinIdle_24: -239118360
-      ShowCoinIdle_25: -120889016
-      ShowCoinIdle_26: -2120411933
-      ShowCoinIdle_27: 917469633
-      ShowCoinIdle_3: -530565075
-      ShowCoinIdle_4: 1136096199
-      ShowCoinIdle_5: 172288271
-      ShowCoinIdle_6: -845607741
-      ShowCoinIdle_7: 969505712
-      ShowCoinIdle_8: 385508715
-      ShowCoinIdle_9: -1090372248
+      Jump_0: -1863563728
+      Jump_1: -1360848956
+      Jump_10: -2145681537
+      Jump_11: -314210390
+      Jump_12: -1097735517
+      Jump_13: 1956986066
+      Jump_14: 1167458269
+      Jump_15: -1324357916
+      Jump_16: 104890915
+      Jump_17: -1996308334
+      Jump_18: -1113592784
+      Jump_19: -972367496
+      Jump_2: 1475145399
+      Jump_20: 445572482
+      Jump_21: 1878370527
+      Jump_22: -817400581
+      Jump_23: -2028764247
+      Jump_24: -1290686295
+      Jump_25: -1532763223
+      Jump_26: 72284740
+      Jump_27: 710789323
+      Jump_28: 1922201841
+      Jump_29: 1048790234
+      Jump_3: 1395779800
+      Jump_30: 1498184739
+      Jump_31: -360795197
+      Jump_32: -2135732382
+      Jump_4: 1059929306
+      Jump_5: -1685114365
+      Jump_6: -34556362
+      Jump_7: -231313225
+      Jump_8: -1228230505
+      Jump_9: -1889342210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

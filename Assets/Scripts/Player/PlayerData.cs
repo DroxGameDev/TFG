@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 public enum GravityMode{
     Up,
     Down,
@@ -80,6 +81,10 @@ public class PlayerData : MonoBehaviour
     [Header("Shoot Coins")]
     public Transform shootPoint;
     [Range(0f, 5f)] public float showCoinTime;
+
+    [Header("Sprite Libraries")]
+    public SpriteLibraryAsset defaultSprites;
+    public SpriteLibraryAsset showCoinSprites;
 
     [Header("States")]
     public bool grounded = true;

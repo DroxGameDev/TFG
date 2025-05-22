@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class PlayerAnimations : MonoBehaviour
 {
 
-    private Animator _anim;
-    private Rigidbody2D _rb; 
-    private PlayerData _playerData;
+    private Animator anim;
+    private Rigidbody2D rb; 
+    private PlayerData playerData;
     [Range (0f, 15)] public int animationDebugIndex = 15;
     public string[] animationName;
 
@@ -21,59 +22,75 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int crouchIdle = Animator.StringToHash("Crouch_Idle");
     private static readonly int crouchRun = Animator.StringToHash("Crouch_Walk");
 
+    private SpriteLibrary playerSpriteLibrary;
+    private SpriteLibraryAsset currentSpriteLibrary;
+
     [Header("States")]
     private float _lockedTill;
-    private int _currentState = 0;
+    private int currentState = 0;
 
     void Start()
     {
-        _anim = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
-        _playerData = GetComponent<PlayerData>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        playerData = GetComponent<PlayerData>();
+        playerSpriteLibrary = GetComponent<SpriteLibrary>();
+        currentSpriteLibrary = playerData.defaultSprites;
     }
 
     void Update()
     {
 
         if (animationDebugIndex < animationName.Length)
-            _anim.CrossFade(animationName[animationDebugIndex], 0, 0);
+            anim.CrossFade(animationName[animationDebugIndex], 0, 0);
         else{
 
             var state = GetState();
 
-            if(state == _currentState) return;
-            _anim.CrossFade(state, 0, 0);
-            _currentState = state;
+            if (playerData.showingCoin && currentSpriteLibrary != playerData.showCoinSprites)
+            {
+                playerSpriteLibrary.spriteLibraryAsset = playerData.showCoinSprites;
+                currentSpriteLibrary = playerData.showCoinSprites;
+            }
+            else if (!playerData.showingCoin && currentSpriteLibrary != playerData.defaultSprites)
+            {
+                playerSpriteLibrary.spriteLibraryAsset = playerData.defaultSprites;
+                currentSpriteLibrary = playerData.defaultSprites;
+            }
+
+            if (state == currentState) return;
+            anim.CrossFade(state, 0, 0);
+            currentState = state;
 
         }
         
     }
 
     private int GetState(){
-        if(Time.time < _lockedTill) return _currentState;
+        if(Time.time < _lockedTill) return currentState;
 
-        if (_playerData.jumping) return jump;
+        if (playerData.jumping) return jump;
         
-        if (_playerData.grounded)
+        if (playerData.grounded)
         {
-            if (_playerData.running && Mathf.Abs(_playerData.velocity.x) > 0.01f)
+            if (playerData.running && Mathf.Abs(playerData.velocity.x) > 0.01f)
             {
 
-                if (!_playerData.wallWalking)
-                    return run;
-                else
+                if (playerData.wallWalking)
                     return crouchRun;
+                else
+                    return run;
             }
             else
             {
-                if (!_playerData.wallWalking)
-                    return idle;
-                else
+                if (playerData.wallWalking)
                     return crouchIdle;
+                else
+                    return idle;
             }
         }
 
-        return _playerData.velocity.y > 0 ? jump : fall;
+        return playerData.velocity.y > 0 ? jump : fall;
 
         int lockState(int s, float t){
             _lockedTill = Time.time+t;

@@ -93,6 +93,7 @@ public class IronPower2 : Iron_Steel2
         
         else if (state == PowerState.wallWalking && playerData.burningIron && (!CheckIfWalkable() || playerData.gravityMode == GravityMode.Down))
         {
+            Debug.Log(!CheckIfWalkable() + " " + (playerData.gravityMode == GravityMode.Down));
             ChangeState(PowerState.inactive);
             OnInactive();
         }
@@ -148,17 +149,17 @@ public class IronPower2 : Iron_Steel2
 
         if (selectedMetal.metal.tag == "Coin")
         {
-            StartCoroutine(moveTowardsPlayer(selectedMetal.metal, collider));
+            StartCoroutine(moveTowardsPlayer(selectedMetal.metal, col));
         }
         else
         {
-            StartCoroutine(moveTowards(collider, selectedMetal.metal));
+            StartCoroutine(moveTowards(col, selectedMetal.metal));
         }
     }
 
     private IEnumerator moveTowardsPlayer(Collider2D metal, Collider2D player)
     {
-        Vector2 forcePlayerPosition = player.transform.position;
+        Vector2 forcePlayerPosition = playerData.linesOrigin.position;
         bool metalObstacleReached = false;
         if (metal.gameObject.tag == "Heavy_Metal")
         {
@@ -169,7 +170,7 @@ public class IronPower2 : Iron_Steel2
         Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
         {   
-
+            forcePlayerPosition = playerData.linesOrigin.position;
             currentPosition = metal.transform.position;
 
             float step = playerData.ironPullPower * playerData.ironPullPowerMult / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
@@ -198,7 +199,7 @@ public class IronPower2 : Iron_Steel2
                     }
                     else
                     {
-                        if (metal.transform.position.x < player.transform.position.x)
+                        if (metal.transform.position.x < playerData.linesOrigin.position.x)
                         {
                             direction = Vector2.right;
                         }
@@ -304,14 +305,15 @@ public class IronPower2 : Iron_Steel2
     }
 
     private bool ObjectiveReached(Collider2D target){
-        return collider.IsTouching(target);
+        return col.IsTouching(target);
     }
     private bool CheckIfWalkable(){
-        return GetComponent<Collider2D>().IsTouchingLayers(playerData.walkableAreaLayer);
+        return col.IsTouchingLayers(playerData.walkableAreaLayer);
     }
 
     private void OnWallWalk(){
         playerData.movingWithPowers = false;
+        rb.velocity = Vector2.zero;
         playerData.ChangeGravityMode(walkableArea.gravity);
     }
 

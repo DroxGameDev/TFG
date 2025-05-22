@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1229469251280639912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5778420774221006770}
+  m_Layer: 7
+  m_Name: ShootCoins
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5778420774221006770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229469251280639912}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5880231342102319593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3704870335367811757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4266030509415295309}
+  m_Layer: 7
+  m_Name: LinesOrigin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4266030509415295309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704870335367811757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5880231342102319593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4328281921437008708
 GameObject:
   m_ObjectHideFlags: 0
@@ -25,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 4328281921437008708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.6605, z: 0}
+  m_LocalPosition: {x: 0, y: -0.669, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,6 +103,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5880231342102319593}
   - component: {fileID: 1055773449306734021}
+  - component: {fileID: 7053223794920169239}
+  - component: {fileID: 193057846912644451}
   - component: {fileID: 5048537812774452374}
   - component: {fileID: 5580015432373610310}
   - component: {fileID: 8148859980924598914}
@@ -73,8 +137,10 @@ Transform:
   m_LocalScale: {x: 2.1344306, y: 2.0700774, z: 0.48752442}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4266030509415295309}
   - {fileID: 1727065216350327476}
   - {fileID: 9160720159086251675}
+  - {fileID: 5778420774221006770}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1055773449306734021
@@ -118,17 +184,47 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -629067253, guid: 8a4445758e05dcf43b5c8a464f691a2d, type: 3}
+  m_Sprite: {fileID: -1989589723, guid: 986eafa394e9ddf4aae04acf92fd89a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.74, y: 1.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7053223794920169239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 1ca1ff77575b4af41a4fdd18414bf0cd, type: 3}
+--- !u!114 &193057846912644451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 7.079449e-27
+  m_labelHash: 0.102689974
+  m_SpriteKey: 0
+  m_SpriteHash: 649236294
 --- !u!95 &5048537812774452374
 Animator:
   serializedVersion: 5
@@ -268,9 +364,37 @@ MonoBehaviour:
     m_ActionId: bf55cea8-019b-4bea-ae8e-d3468490d025
     m_ActionName: Player Movement/IronPull[/XInputControllerWindows/leftTrigger,/Mouse/rightButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8079713126698003507}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PickDropCoin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e88fd4cf-1880-48d7-9a35-5817853e9d0c
     m_ActionName: Player Movement/Pick/Drop Coin[/XInputControllerWindows/buttonEast,/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8079713126698003507}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: ShowCoin
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8364fa02-a06f-44f5-93ff-cf93fefa7041
+    m_ActionName: Player Movement/ShowCoin[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Player Movement
@@ -299,7 +423,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -335,18 +459,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000024035573, y: 0.0055429786}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.49, y: 1.33}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.74, y: 1.39}
+    newSize: {x: 0.74, y: 1.34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35087684, y: 1.2634952}
+  m_Size: {x: 0.35087684, y: 1.33}
   m_EdgeRadius: 0
 --- !u!247 &9067812512592139159
 ConstantForce2D:
@@ -394,10 +518,10 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1344
-  forceCollider: {fileID: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 1344
+  linesOrigin: {fileID: 4266030509415295309}
   metalLayers:
     serializedVersion: 2
     m_Bits: 12032
@@ -415,6 +539,10 @@ MonoBehaviour:
   walkableAreaLayer:
     serializedVersion: 2
     m_Bits: 8192
+  shootPoint: {fileID: 5778420774221006770}
+  showCoinTime: 1
+  defaultSprites: {fileID: 7108339969198208228, guid: 1ca1ff77575b4af41a4fdd18414bf0cd, type: 3}
+  showCoinSprites: {fileID: 7108339969198208228, guid: 1c6d0f6bc0d8c7c439af6ea8f6c49107, type: 3}
   grounded: 0
   running: 0
   jumping: 0
@@ -422,6 +550,7 @@ MonoBehaviour:
   wallWalking: 0
   timeStoped: 0
   movingWithPowers: 0
+  showingCoin: 0
 --- !u!114 &6268322036153525418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,9 +563,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046ffffa87c08544daa0422a6c9e97f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   coins: 0
-  coinInArea: {fileID: 0}
-  pickCollider: {fileID: 8032666877457531615}
+  CoinPrefab: {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  nearbyCoins: []
 --- !u!114 &8079713126698003507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: 0
   walkableArea: {fileID: 0}
+  mainCollider: {fileID: 3154533928514378828}
 --- !u!1 &5861705301234880687
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9160720159086251675}
   - component: {fileID: 8032666877457531615}
+  - component: {fileID: 4294569546418348955}
   m_Layer: 15
   m_Name: PickCoins
   m_TagString: Untagged
@@ -572,7 +704,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -588,3 +720,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.71276474, y: 1.371922}
   m_EdgeRadius: 0
+--- !u!114 &4294569546418348955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861705301234880687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a199bc128337e459cfc1377d8060d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerResources: {fileID: 6268322036153525418}
