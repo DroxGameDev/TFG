@@ -57,6 +57,16 @@ public class Iron_Steel2 : MonoBehaviour
         return nearMetalLines.Count > 0 && linesBehindWalls < nearMetalLines.Count;
     }
 
+    public void setLinesDirection()
+    {
+        int value = playerData.burningIron ? 1 : 0;
+
+        for (int i = 0; i < nearMetalLines.Count; i++)
+        {
+            nearMetalLines[i].lineRenderer.material.SetInt("_In", value);
+        }
+    }
+
     private bool IsWallBetween(LineObject lineObject)
     {
         Vector2 MetalClosestPoint = lineObject.metal.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
@@ -117,7 +127,8 @@ public class Iron_Steel2 : MonoBehaviour
                     }
                     else if (actualLine.metal.tag == "Walkable_Area")
                     {
-                        actualLine.lineRenderer.SetPosition(1, MetalClosestPoint + (actualLine.metal.GetComponent<BoxCollider2D>().offset * -1));
+                        Vector2 worldOffset = actualLine.metal.transform.TransformVector(actualLine.metal.GetComponent<BoxCollider2D>().offset * -1);
+                        actualLine.lineRenderer.SetPosition(1, MetalClosestPoint + worldOffset);
                     }
                     else
                     {

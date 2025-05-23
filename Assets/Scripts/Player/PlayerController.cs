@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private PlayerAnimations playerAnimations;
     private SteelPower2 steelPower;
     private IronPower2 ironPower;
+    private TinPower tinPower;
     private Rigidbody2D rb;
 
     void Start()
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimations>();
         steelPower = GetComponent<SteelPower2>();
         ironPower = GetComponent<IronPower2>();
+        tinPower = GetComponent<TinPower>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -91,5 +93,9 @@ public class PlayerController : MonoBehaviour
         {
             playerResources.ShowCoin();
         }
+    }
+
+    public void TinSenses(InputAction.CallbackContext context){
+        if (context.performed) tinPower.TinInput();
     }
 }

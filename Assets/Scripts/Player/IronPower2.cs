@@ -93,7 +93,6 @@ public class IronPower2 : Iron_Steel2
         
         else if (state == PowerState.wallWalking && playerData.burningIron && (!CheckIfWalkable() || playerData.gravityMode == GravityMode.Down))
         {
-            Debug.Log(!CheckIfWalkable() + " " + (playerData.gravityMode == GravityMode.Down));
             ChangeState(PowerState.inactive);
             OnInactive();
         }
@@ -124,12 +123,15 @@ public class IronPower2 : Iron_Steel2
 
     public override void OnSelect()
     {
-        if (GetNearbyMetals()){
+        if (GetNearbyMetals())
+        {
             playerData.burningIron = true;
             playerData.timeStoped = true;
             selectMetalCounter = playerData.selectMetalTime;
+            setLinesDirection();
         }
-        else{
+        else
+        {
             ChangeState(PowerState.inactive);
             OnInactive();
         }

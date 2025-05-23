@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 public enum GravityMode{
@@ -81,6 +82,15 @@ public class PlayerData : MonoBehaviour
     [Header("Shoot Coins")]
     public Transform shootPoint;
     [Range(0f, 5f)] public float showCoinTime;
+
+    [Header("Tin")]
+    public bool burningTin;
+    [Range(0f, 5f)] public float seeThroughMistSize;
+    public SpriteRenderer mist;
+    [Space(10)]
+    [Range(0f, 100f)] public float cameraSize;
+    [Range(0f, 100f)] public float tinCameraSize;
+    public CinemachineVirtualCamera virtualCamera;
 
     [Header("Sprite Libraries")]
     public SpriteLibraryAsset defaultSprites;

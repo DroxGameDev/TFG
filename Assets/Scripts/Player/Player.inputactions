@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BurnTin",
+                    "type": "Button",
+                    "id": "7886d985-b9d1-4620-95f1-8c806e9583ab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -265,6 +274,28 @@
                     "processors": "",
                     "groups": ";PC",
                     "action": "ShowCoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "85dad8a6-ae4e-4efa-9a66-8bec7bb62055",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BurnTin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0517fb65-5489-446f-b23f-0abbdf02b294",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "BurnTin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

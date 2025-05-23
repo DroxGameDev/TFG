@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3723241090220241873
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Line_Material
-  m_Shader: {fileID: -6465566751694194690, guid: 52250c07bed13134e8f6656549b67510, type: 3}
+  m_Name: Mist
+  m_Shader: {fileID: -6465566751694194690, guid: fc9e11881041d3b4192664bd33851277, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -36,7 +23,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainText:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -54,14 +41,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
-    - _GlowAmount: 1
-    - _In: 0
-    - _LineSpeed: 0.6
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    - _Boolean: 0
+    - _FogSize: 2.07
+    - _FogStrengh: 1.94
+    - _WorlSpace: 1
     m_Colors:
-    - _BlendColor: {r: 0, g: 0.94070315, b: 1, a: 1}
-    - _Color: {r: 0, g: 0.3655231, b: 1, a: 1}
-    - _DirectionColor: {r: 0, g: 0, b: 0, a: 0.6313726}
+    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FogSpeed: {r: 2, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+--- !u!114 &2873508686844153457
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

@@ -108,6 +108,7 @@ public class SteelPower2 : Iron_Steel2
             playerData.burningSteel = true;
             playerData.timeStoped = true;
             selectMetalCounter = playerData.selectMetalTime;
+            setLinesDirection();
         }
         else
         {
