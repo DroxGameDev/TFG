@@ -14,7 +14,6 @@ public class PlayerResources : MonoBehaviour
     public GameObject CoinPrefab;
     public List<GameObject> nearbyCoins;
     private float showCoinCounter;
-    private GameObject showedCoin;
 
     void Start()
     {
@@ -67,7 +66,7 @@ public class PlayerResources : MonoBehaviour
         {
             //rb.velocity = Vector2.zero;
             GameObject newCoin = Instantiate(CoinPrefab, playerData.shootPoint.position, Quaternion.identity);
-            showedCoin = newCoin;
+            playerData.showedCoin = newCoin;
             Coin coinScript = newCoin.GetComponent<Coin>();
             CoinInHand(coinScript);
 
@@ -85,7 +84,7 @@ public class PlayerResources : MonoBehaviour
     public void CoinGone(Coin coin)
     {
         coin.setGravity(0f, 1f);
-        showedCoin = null;
+        playerData.showedCoin = null;
         playerData.showingCoin = false;
     }
 
@@ -93,14 +92,14 @@ public class PlayerResources : MonoBehaviour
     {
         if (playerData.showingCoin)
         {
-            showedCoin.transform.position = playerData.shootPoint.position;
+            playerData.showedCoin.transform.position = playerData.shootPoint.position;
             showCoinCounter -= Time.deltaTime;
 
             if (showCoinCounter < 0.01f)
             {
                 coins++;
-                GameObject coinToRemove = showedCoin;
-                showedCoin = null;
+                GameObject coinToRemove =  playerData.showedCoin;
+                playerData.showedCoin = null;
                 Destroy(coinToRemove);
                 playerData.showingCoin = false;
             }

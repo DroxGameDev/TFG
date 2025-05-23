@@ -178,7 +178,9 @@ public class SteelPower2 : Iron_Steel2
             else if (target.tag == "Coin")
             {
                 pushingObject = true;
-                playerResources.CoinGone(target.gameObject.GetComponent<Coin>());
+                
+                if (target.gameObject == playerData.showedCoin)
+                    playerResources.CoinGone(target.gameObject.GetComponent<Coin>());
 
                 yield return StartCoroutine(moveAwayFromPlayer(target.GetComponent<Collider2D>(), origin.GetComponent<Collider2D>()));
 

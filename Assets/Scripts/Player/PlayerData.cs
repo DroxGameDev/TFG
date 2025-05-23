@@ -80,11 +80,14 @@ public class PlayerData : MonoBehaviour
     public LayerMask walkableAreaLayer;
 
     [Header("Shoot Coins")]
+    public GameObject showedCoin;
     public Transform shootPoint;
     [Range(0f, 5f)] public float showCoinTime;
 
     [Header("Tin")]
     public bool burningTin;
+    [Range(0f, 0.1f)] public float tinTransitionStep;
+    [Space(10)]
     [Range(0f, 5f)] public float seeThroughMistSize;
     public SpriteRenderer mist;
     [Space(10)]
