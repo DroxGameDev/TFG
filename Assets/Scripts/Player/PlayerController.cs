@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed) Debug.Log("Attack");
+    }
+
     public void SteelPush(InputAction.CallbackContext context)
     {
         if (context.performed)
