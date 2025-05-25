@@ -13,7 +13,7 @@ public class TinPower : MonoBehaviour
     {
         playerData = GetComponent<PlayerData>();
         playerData.virtualCamera.m_Lens.FieldOfView = playerData.defaultCameraSize;
-        playerData.mist.material.SetFloat("_FogStrengh", 0f);
+        playerData.mist.SetFloat("_FogStrengh", 0f);
     }
 
     public void TinInput()
@@ -45,7 +45,7 @@ public class TinPower : MonoBehaviour
             float currentFogStrengh = Mathf.Lerp(0f, playerData.seeThroughMistSize, currentStep);
             float currenCameraSize = Mathf.Lerp(playerData.defaultCameraSize, playerData.tinCameraSize, currentStep);
 
-            playerData.mist.material.SetFloat("_FogStrengh", currentFogStrengh);
+            playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
             playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
 
             currentStep += playerData.tinTransitionStep;
@@ -65,7 +65,7 @@ public class TinPower : MonoBehaviour
             float currentFogStrengh = Mathf.Lerp(0f, playerData.seeThroughMistSize, currentStep); 
             float currenCameraSize = Mathf.Lerp(playerData.defaultCameraSize, playerData.tinCameraSize, currentStep); 
 
-            playerData.mist.material.SetFloat("_FogStrengh", currentFogStrengh);
+            playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
             playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
 
             currentStep -= playerData.tinTransitionStep;

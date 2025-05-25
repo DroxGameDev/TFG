@@ -57,7 +57,8 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     [Range(0, 10f)] public float attackImpulse;
     [Range(0, 1f)] public float waitForAttackImpulse;
-    [Space(10)] 
+    [Space(10)]
+    public Collider2D attackCollider;
 
     [Header("Check")]
     public Transform groundCheck;
@@ -103,7 +104,7 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 0.1f)] public float tinTransitionStep;
     [Space(10)]
     [Range(0f, 5f)] public float seeThroughMistSize;
-    public SpriteRenderer mist;
+    public Material mist;
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;
     public CinemachineVirtualCamera virtualCamera;

@@ -20,15 +20,18 @@ public class PlayerAttack : MonoBehaviour
     {
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
+        playerData.attackCollider.enabled = false;
     }
     public void OnAttack()
     {
         attackBufferCounter = playerData.attackBufferTime;
     }
 
-    private IEnumerator AttackImpulse()
+    private IEnumerator Attack()
     {
         yield return new WaitForSeconds(playerData.waitForAttackImpulse);
+
+        playerData.attackCollider.enabled = true;
 
         if (playerData.isFacingRight)
         {
@@ -52,6 +55,8 @@ public class PlayerAttack : MonoBehaviour
                 rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
             }
         }
+        yield return new WaitForSeconds(playerData.attackCooldownTime - playerData.waitForAttackImpulse);
+        playerData.attackCollider.enabled = false;
     }
 
     void Update()
@@ -72,22 +77,22 @@ public class PlayerAttack : MonoBehaviour
                 {
                     case AttackCombo.Attack1:
                         playerData.attackComboStep = AttackCombo.Attack2;
-                        StartCoroutine(AttackImpulse());
+                        StartCoroutine(Attack());
                         break;
                     case AttackCombo.Attack2:
                         playerData.attackComboStep = AttackCombo.Attack3;
-                        StartCoroutine(AttackImpulse());
+                        StartCoroutine(Attack());
                         break;
                     default:
                         playerData.attackComboStep = AttackCombo.Attack1;
-                        StartCoroutine(AttackImpulse());
+                        StartCoroutine(Attack());
                         break;
                 }
             }
             else
             {
                 playerData.attackComboStep = AttackCombo.Attack1;
-                StartCoroutine(AttackImpulse());
+                StartCoroutine(Attack());
             }
 
             attackComboCounter = playerData.attackComboTime;
