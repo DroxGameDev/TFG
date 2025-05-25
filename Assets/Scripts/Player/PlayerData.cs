@@ -14,6 +14,7 @@ public enum GravityMode{
 public class PlayerData : MonoBehaviour
 {
     public Camera mainCamera;
+    [Range(0f, 100f)] public float defaultCameraSize;
     [Space(10)]
 
     [Header("Movement")]
@@ -28,6 +29,8 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     [Range(0f, 0.5f)] public  float frictionAmount;
     public Vector2 velocity = new Vector2(0f,0f);
+    [Space(10)]
+    public bool isFacingRight = true;
 
     [Header("Jumping")]
     [Range(0f, 20f)] public float jumpForce;
@@ -46,6 +49,15 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 5f)] public float jumpHangMultiplier;
 
     [Space(10)]
+    [Header("Attacking")]
+    [Range (0f, 1f)] public  float attackBufferTime;
+    [Range(0f, 2f)] public float attackCooldownTime;
+    [Range(0f, 5f)] public float attackComboTime;
+    public AttackCombo attackComboStep = AttackCombo.Attack1;
+    [Space(10)] 
+    [Range(0, 10f)] public float attackImpulse;
+    [Range(0, 1f)] public float waitForAttackImpulse;
+    [Space(10)] 
 
     [Header("Check")]
     public Transform groundCheck;
@@ -62,8 +74,10 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 5f)] public float metalCheckMinRadius;
     public GameObject linePrefab;
     [Range(0f,5f)] public float selectMetalTime;
-    
-    [Space(10)] 
+
+    [Space(10)]
+    public Material selectMetalMaterial;
+    [Range(0f, 0.1f)] public float selectMetalTransitionStep;
 
     [Header("Steel")]
     public bool burningSteel;
@@ -91,7 +105,6 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 5f)] public float seeThroughMistSize;
     public SpriteRenderer mist;
     [Space(10)]
-    [Range(0f, 100f)] public float cameraSize;
     [Range(0f, 100f)] public float tinCameraSize;
     public CinemachineVirtualCamera virtualCamera;
 
@@ -104,6 +117,7 @@ public class PlayerData : MonoBehaviour
     public bool running = false;
     public bool jumping = false;
     public bool falling = false;
+    public bool attacking = false;
     public bool wallWalking = false;
 
     [Space(10)] 

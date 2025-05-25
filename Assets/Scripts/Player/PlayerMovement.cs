@@ -11,7 +11,6 @@ public class PlayerMovement : AffectedByGravity
 
     [Header("Movement")]
     private float moveInput;
-    private bool isFacingRight = true;
 
     [Header("Jumping")]
     private float coyoteTimeCounter;
@@ -118,13 +117,13 @@ public class PlayerMovement : AffectedByGravity
         #endregion
 
         //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !isFacingRight && moveInput > 0f ) ||
-                (playerData.gravityMode == GravityMode.Up && isFacingRight && moveInput > 0f))
+        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f ) ||
+                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f))
         {
             Flip();
         }
-        else if ((playerData.gravityMode != GravityMode.Up && isFacingRight && moveInput < 0f)
-                    || (playerData.gravityMode == GravityMode.Up && !isFacingRight && moveInput < 0f))
+        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f)
+                    || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f))
         {
             Flip();
         }
@@ -138,7 +137,7 @@ public class PlayerMovement : AffectedByGravity
 
     public void ChangeXMovement(float input)
     {
-        if (!playerData.movingWithPowers /*&& !playerData.showingCoin*/){
+        if (!playerData.movingWithPowers && !playerData.attacking){
             #region Run
             //Calculate the direction we want to move in and our desired velocity
             float targetSpeed;
@@ -242,7 +241,7 @@ public class PlayerMovement : AffectedByGravity
     {
         if (!playerData.timeStoped)
         {
-            isFacingRight = !isFacingRight;
+            playerData.isFacingRight = !playerData.isFacingRight;
             Vector2 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;

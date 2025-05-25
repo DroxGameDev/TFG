@@ -168,8 +168,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1176738096, guid: 9b44b4893c66a6d44931405e334b6db7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 1555399845, guid: 9b44b4893c66a6d44931405e334b6db7, type: 3}
+  m_Color: {r: 0.043137256, g: 0.04705883, b: 0.058823533, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 6268322036153525418}
   - component: {fileID: 8079713126698003507}
   - component: {fileID: 1412781887171875200}
+  - component: {fileID: 8323532562873423130}
   - component: {fileID: 6226762119540886882}
   - component: {fileID: 1930177262403986838}
   - component: {fileID: 1732598546970459279}
@@ -302,7 +303,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1403729970, guid: 2b56bda308efa4346aef95cfddcc7881, type: 3}
+  m_Sprite: {fileID: 923639464, guid: 2b56bda308efa4346aef95cfddcc7881, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -663,6 +664,9 @@ MonoBehaviour:
   gravityMode: 1
   jumpHangTheshold: 0.5
   jumpHangMultiplier: 0.5
+  attackCooldownTime: 0
+  attackComboTime: 2
+  attackComboStep: 0
   groundCheck: {fileID: 1727065216350327476}
   groundCheckRadius: 0.373
   groundLayer:
@@ -705,6 +709,7 @@ MonoBehaviour:
   running: 0
   jumping: 0
   falling: 0
+  attacking: 0
   wallWalking: 0
   timeStoped: 0
   movingWithPowers: 0
@@ -751,6 +756,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   active: 0
+--- !u!114 &8323532562873423130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d367a67dcf639a488e0c3306d6dd5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6226762119540886882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -771,6 +788,9 @@ MonoBehaviour:
   - Fall
   - Crouch_Idle
   - Crouch_Walk
+  - Attack1
+  - Attack2
+  - Attack3
 --- !u!114 &1930177262403986838
 MonoBehaviour:
   m_ObjectHideFlags: 0

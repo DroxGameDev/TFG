@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Metal_Heavy_Object : AffectedByGravity
 {
-    bool moving = false;
     void Start()
     {
         OnStart();
@@ -12,7 +11,6 @@ public class Metal_Heavy_Object : AffectedByGravity
 
     public IEnumerator Impulse(Vector2 force)
     {
-        moving = true;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.AddForce(force, ForceMode2D.Impulse);
 
@@ -28,13 +26,11 @@ public class Metal_Heavy_Object : AffectedByGravity
 
     public void ForceMove()
     {
-        moving = true;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void Stop()
     {
-        moving = false;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 

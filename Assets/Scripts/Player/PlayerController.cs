@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private PlayerResources playerResources;
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
+    private PlayerAttack playerAttack;
     private PlayerAnimations playerAnimations;
     private SteelPower2 steelPower;
     private IronPower2 ironPower;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         playerResources = GetComponent<PlayerResources>();
         playerControls = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
+        playerAttack = GetComponent<PlayerAttack>();
         playerAnimations = GetComponent<PlayerAnimations>();
         steelPower = GetComponent<SteelPower2>();
         ironPower = GetComponent<IronPower2>();
@@ -38,38 +40,48 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!playerData.attacking)
         {
-            playerMovement.jumpInputUpdate(true);
-        }
+            if (context.performed)
+            {
+                playerMovement.jumpInputUpdate(true);
+            }
 
-        if (context.canceled)
-        {
-            playerMovement.jumpInputUpdate(false);
+            if (context.canceled)
+            {
+                playerMovement.jumpInputUpdate(false);
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.performed) Debug.Log("Attack");
+        if(!playerData.wallWalking && !playerData.timeStoped && !playerData.movingWithPowers && !playerData.showingCoin)
+            if (context.performed) playerAttack.OnAttack();
     }
 
     public void SteelPush(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            StartCoroutine(steelPower.SteelInputupdate(true));
+        if (!playerData.attacking)
+        {
+            if (context.performed)
+                StartCoroutine(steelPower.SteelInputupdate(true));
 
-        if (context.canceled)
-            StartCoroutine(steelPower.SteelInputupdate(false));
+            if (context.canceled)
+                StartCoroutine(steelPower.SteelInputupdate(false));
+        }
     }
 
     public void IronPull(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            StartCoroutine(ironPower.IronInputupdate(true));
+        if (!playerData.attacking)
+        {
+            if (context.performed)
+                StartCoroutine(ironPower.IronInputupdate(true));
 
-        if (context.canceled)
-            StartCoroutine(ironPower.IronInputupdate(false));
+            if (context.canceled)
+                StartCoroutine(ironPower.IronInputupdate(false));
+        }
     }
 
     public void SelectMetal(InputAction.CallbackContext context)
@@ -89,15 +101,21 @@ public class PlayerController : MonoBehaviour
 
     public void PickDropCoin(InputAction.CallbackContext context)
     {
-        if (context.performed) playerResources.PickDropCoin();
+        if (!playerData.attacking)
+        {
+            if (context.performed) playerResources.PickDropCoin();
+        }
     }
 
     public void ShowCoin(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (!playerData.attacking)
         {
-            playerResources.ShowCoin();
-        }
+            if (context.performed)
+            {
+                playerResources.ShowCoin();
+            }
+        } 
     }
 
     public void TinSenses(InputAction.CallbackContext context){

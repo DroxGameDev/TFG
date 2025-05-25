@@ -24,6 +24,7 @@ public class Iron_Steel2 : MonoBehaviour
     [HideInInspector] public static Vector2 selectMetalVector;
     [HideInInspector] public static LineObject selectedMetal = null;
     [HideInInspector] public static float selectMetalCounter;
+    public static bool transitioning = false;
 
     void Start()
     {
@@ -83,15 +84,51 @@ public class Iron_Steel2 : MonoBehaviour
 
     public virtual void OnInactive()
     {
+        StartCoroutine(EndTransition());
     }
     public virtual void OnSelect()
     {
+        StartCoroutine(StartTransition());
     }
     public virtual void OnForce()
     {
+        StartCoroutine(EndTransition());
     }
     public virtual void OnImpulse()
     {
+        StartCoroutine(EndTransition());
+    }
+    
+    private IEnumerator StartTransition()
+    {
+        float currentStep = 0;
+        transitioning = true;
+
+        while (currentStep < 1f)
+        {
+            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", currentStep);
+
+            currentStep += playerData.selectMetalTransitionStep;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        transitioning = false;
+    }
+    
+    private IEnumerator EndTransition()
+    {
+        float currentStep = 1;
+        transitioning = true;
+
+        while (currentStep > 0f)
+        {
+            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", currentStep);
+
+            currentStep -= playerData.selectMetalTransitionStep;
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+
+        transitioning = false;
     }
 
     public void OnUpdate()
@@ -179,7 +216,7 @@ public class Iron_Steel2 : MonoBehaviour
             {
                 selectedMetal = null;
                 float selectedMetalAngle = 360f;
-                
+
                 for (int i = 0; i < nearMetalLines.Count; i++)
                 {
                     if (nearMetalLines[i].metal != null)
@@ -194,7 +231,7 @@ public class Iron_Steel2 : MonoBehaviour
                         }
 
                         nearMetalLines[i].lineRenderer.material.SetFloat("_GlowAmount", 0);
-                    }  
+                    }
                 }
 
                 if (selectedMetal != null)

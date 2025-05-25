@@ -21,6 +21,10 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int fall = Animator.StringToHash("Fall");
     private static readonly int crouchIdle = Animator.StringToHash("Crouch_Idle");
     private static readonly int crouchRun = Animator.StringToHash("Crouch_Walk");
+    private static readonly int attack1 = Animator.StringToHash("Attack1");
+    private static readonly int attack2 = Animator.StringToHash("Attack2");
+    private static readonly int attack3 = Animator.StringToHash("Attack3");
+
 
     private SpriteLibrary playerSpriteLibrary;
     private SpriteLibraryAsset currentSpriteLibrary;
@@ -69,6 +73,19 @@ public class PlayerAnimations : MonoBehaviour
     private int GetState(){
         if(Time.time < _lockedTill) return currentState;
 
+        if (playerData.attacking)
+        {
+            switch (playerData.attackComboStep)
+            {
+                case AttackCombo.Attack2:
+                    return LockState(attack2, playerData.attackCooldownTime);
+                case AttackCombo.Attack3:
+                    return LockState(attack3, playerData.attackCooldownTime);
+                default:
+                    return LockState(attack1, playerData.attackCooldownTime);
+            }
+        }
+
         if (playerData.jumping) return jump;
         
         if (playerData.grounded)
@@ -92,7 +109,7 @@ public class PlayerAnimations : MonoBehaviour
 
         return playerData.velocity.y > 0 ? jump : fall;
 
-        int lockState(int s, float t){
+        int LockState(int s, float t){
             _lockedTill = Time.time+t;
             return s;
         }

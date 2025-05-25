@@ -40,6 +40,7 @@ public class SteelPower2 : Iron_Steel2
 
             if (selectedMetal != null)
             {
+                base.OnImpulse();
                 ChangeState(PowerState.impulse);
                 OnImpulse();
 
@@ -105,6 +106,7 @@ public class SteelPower2 : Iron_Steel2
     {
         if (GetNearbyMetals())
         {
+            base.OnSelect();
             playerData.burningSteel = true;
             playerData.timeStoped = true;
             selectMetalCounter = playerData.selectMetalTime;
