@@ -6,7 +6,7 @@ using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
 
-public class IronPower2 : Iron_Steel2
+public class IronPower : Iron_Steel
 {
     private float burningIronCounter;
     private Vector2 directorVectorImpulse;
@@ -115,7 +115,7 @@ public class IronPower2 : Iron_Steel2
     }
     public override void OnInactive(){
         playerData.burningIron = false;
-        playerData.timeStoped = false;
+        Time.timeScale = 1f;
         obstacleReached = false;
         //playerData.cancelGravity = false;
         playerData.ChangeGravityMode(GravityMode.Down);
@@ -128,7 +128,7 @@ public class IronPower2 : Iron_Steel2
         {
             base.OnSelect();
             playerData.burningIron = true;
-            playerData.timeStoped = true;
+            Time.timeScale = 0.1f;
             selectMetalCounter = playerData.selectMetalTime;
             setLinesDirection();
         }
@@ -141,7 +141,7 @@ public class IronPower2 : Iron_Steel2
 
     public override void OnForce(){
         playerData.movingWithPowers = true;
-        playerData.timeStoped = false;
+        Time.timeScale = 1f;
         //playerData.cancelGravity = true;
 
         rb.velocity = Vector3.zero;

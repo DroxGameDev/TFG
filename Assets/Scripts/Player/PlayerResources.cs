@@ -58,6 +58,12 @@ public class PlayerResources : MonoBehaviour
             Instantiate(newCoin);
         }
 
+        else if (playerData.showingCoin && nearbyCoins.Count == 0)
+        {
+            nearbyCoins.Add(playerData.showedCoin);
+            CoinGone(playerData.showedCoin.GetComponent<Coin>());
+        }
+
     }
 
     public void ShowCoin()

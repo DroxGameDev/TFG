@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerAttack playerAttack;
     private PlayerAnimations playerAnimations;
-    private SteelPower2 steelPower;
-    private IronPower2 ironPower;
+    private SteelPower steelPower;
+    private IronPower ironPower;
     private TinPower tinPower;
     private Rigidbody2D rb;
 
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
         playerAnimations = GetComponent<PlayerAnimations>();
-        steelPower = GetComponent<SteelPower2>();
-        ironPower = GetComponent<IronPower2>();
+        steelPower = GetComponent<SteelPower>();
+        ironPower = GetComponent<IronPower>();
         tinPower = GetComponent<TinPower>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(!playerData.wallWalking && !playerData.timeStoped && !playerData.movingWithPowers && !playerData.showingCoin)
+        if(!playerData.wallWalking && !playerData.burningIron && !playerData.burningSteel && !playerData.showingCoin)
             if (context.performed) playerAttack.OnAttack();
     }
 
@@ -88,14 +88,14 @@ public class PlayerController : MonoBehaviour
     {
         if (playerControls.currentControlScheme == "GamePad")
         {
-            Iron_Steel2.GetSelectMetalAngle(context.ReadValue<Vector2>());
+            Iron_Steel.GetSelectMetalAngle(context.ReadValue<Vector2>());
             return;
         }
 
         Vector2 playerinScreen = playerData.mainCamera.WorldToScreenPoint(transform.position);
         Vector2 direction = (context.ReadValue<Vector2>() - playerinScreen).normalized;
 
-        Iron_Steel2.GetSelectMetalAngle(direction);
+        Iron_Steel.GetSelectMetalAngle(direction);
 
     }
 

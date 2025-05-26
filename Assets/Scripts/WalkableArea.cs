@@ -30,7 +30,7 @@ public class WalkableArea : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        var player = collision.gameObject.GetComponent<IronPower2>();
+        var player = collision.gameObject.GetComponent<IronPower>();
         
         if (player != null)
             player.SetWalkableArea(this);
@@ -38,7 +38,7 @@ public class WalkableArea : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        var player = collision.gameObject.GetComponent<IronPower2>();
+        var player = collision.gameObject.GetComponent<IronPower>();
 
         if (player != null)
             player.ResetWalkableArea(this);

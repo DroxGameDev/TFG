@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SteelPower2 : Iron_Steel2
+public class SteelPower : Iron_Steel
 {
     private float burningSteelCounter;
     private bool impulsePushedObject = false;
@@ -98,7 +98,7 @@ public class SteelPower2 : Iron_Steel2
     public override void OnInactive()
     {
         playerData.burningSteel = false;
-        playerData.timeStoped = false;
+        Time.timeScale = 1f;
         ResetLines();
     }
 
@@ -108,7 +108,7 @@ public class SteelPower2 : Iron_Steel2
         {
             base.OnSelect();
             playerData.burningSteel = true;
-            playerData.timeStoped = true;
+            Time.timeScale = 0.1f;
             selectMetalCounter = playerData.selectMetalTime;
             setLinesDirection();
         }
@@ -123,14 +123,14 @@ public class SteelPower2 : Iron_Steel2
     {
         playerData.burningSteel = true;
         playerData.movingWithPowers = true;
-        playerData.timeStoped = false;
+        Time.timeScale = 1f;
         
     }
 
     public override void OnImpulse()
     {
         playerData.movingWithPowers = true;
-        playerData.timeStoped = false;
+        Time.timeScale = 1f;
         burningSteelCounter = playerData.steelPushTime;
     }
 

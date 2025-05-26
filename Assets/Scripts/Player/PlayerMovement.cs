@@ -117,13 +117,13 @@ public class PlayerMovement : AffectedByGravity
         #endregion
 
         //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f ) ||
-                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f))
+        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking) ||
+                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking))
         {
             Flip();
         }
-        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f)
-                    || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f))
+        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking)
+                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking))
         {
             Flip();
         }
@@ -239,7 +239,7 @@ public class PlayerMovement : AffectedByGravity
 
     private void Flip()
     {
-        if (!playerData.timeStoped)
+        if (Time.timeScale == 1f)
         {
             playerData.isFacingRight = !playerData.isFacingRight;
             Vector2 localScale = transform.localScale;

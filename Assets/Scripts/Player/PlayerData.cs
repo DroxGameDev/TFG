@@ -56,13 +56,13 @@ public class PlayerData : MonoBehaviour
     public AttackCombo attackComboStep = AttackCombo.Attack1;
     [Space(10)] 
     [Range(0, 10f)] public float attackImpulse;
-    [Range(0, 1f)] public float waitForAttackImpulse;
+    [Range(0, 1f)] public float waitForAttack;
     [Space(10)]
     public Collider2D attackCollider;
 
     [Header("Check")]
     public Transform groundCheck;
-    [Range (0f, 0.5f)] public  float groundCheckRadius;
+    [Range (0f, 1f)] public  float groundCheckRadius;
     public LayerMask groundLayer;
     [Space(10)]
     public LayerMask obstacleLayer;
@@ -119,10 +119,10 @@ public class PlayerData : MonoBehaviour
     public bool jumping = false;
     public bool falling = false;
     public bool attacking = false;
+    public bool midAttacking = false;
     public bool wallWalking = false;
 
     [Space(10)] 
-    public bool timeStoped = false;
     public bool movingWithPowers = false;
     public bool showingCoin = false;
 

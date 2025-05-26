@@ -10,7 +10,7 @@ public enum PowerState
     impulse
 }
 
-public class Iron_Steel2 : MonoBehaviour
+public class Iron_Steel : MonoBehaviour
 {
     public static PowerState state;
     [HideInInspector] public bool input;
@@ -134,15 +134,6 @@ public class Iron_Steel2 : MonoBehaviour
     public void OnUpdate()
     {
         selectMetalCounter -= Time.unscaledDeltaTime;
-
-        if (playerData.timeStoped)
-        {
-            Time.timeScale = 0.1f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
 
         if (state == PowerState.select || state == PowerState.force || state == PowerState.wallWalking || state == PowerState.impulse)
         {

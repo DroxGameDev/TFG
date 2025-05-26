@@ -110,7 +110,7 @@ public class PlayerAnimations : MonoBehaviour
         return playerData.velocity.y > 0 ? jump : fall;
 
         int LockState(int s, float t){
-            _lockedTill = Time.time+t;
+            _lockedTill = Time.deltaTime+t;
             return s;
         }
     }
