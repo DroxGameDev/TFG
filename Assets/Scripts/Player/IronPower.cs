@@ -10,6 +10,7 @@ public class IronPower : Iron_Steel
 {
     private float burningIronCounter;
     private Vector2 directorVectorImpulse;
+    
     private Vector2 forceTargetPosition;
     public WalkableArea walkableArea;
     private bool obstacleReached = false;

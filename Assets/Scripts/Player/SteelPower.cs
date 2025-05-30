@@ -6,6 +6,7 @@ using UnityEngine;
 public class SteelPower : Iron_Steel
 {
     private float burningSteelCounter;
+    
     private bool impulsePushedObject = false;
     public bool active = false;
     private bool pushingObject = false;

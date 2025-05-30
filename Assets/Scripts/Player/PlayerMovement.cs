@@ -89,7 +89,7 @@ public class PlayerMovement : AffectedByGravity
 
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
-            rb.AddForce(Vector2.up * playerData.jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * playerData.jumpForce * playerData.jumpMod, ForceMode2D.Impulse);
             
             jumpBufferCounter = 0f;
         }
@@ -143,11 +143,11 @@ public class PlayerMovement : AffectedByGravity
             float targetSpeed;
             if (playerData.wallWalking)
             {
-                targetSpeed = input * playerData.moveSpeed * playerData.crocuhModifier;
+                targetSpeed = input * playerData.moveSpeed * playerData.crocuhModifier * playerData.moveMod;
             }
             else
             {
-                targetSpeed = input * playerData.moveSpeed;
+                targetSpeed = input * playerData.moveSpeed * playerData.moveMod;
             }
             //calculate the difference between our current speed and the target speed
             float speedDif = targetSpeed - playerData.velocity.x;

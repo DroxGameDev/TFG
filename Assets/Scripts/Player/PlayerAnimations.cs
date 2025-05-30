@@ -24,6 +24,12 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int attack1 = Animator.StringToHash("Attack1");
     private static readonly int attack2 = Animator.StringToHash("Attack2");
     private static readonly int attack3 = Animator.StringToHash("Attack3");
+    private static readonly int punch1 = Animator.StringToHash("Punch1");
+    private static readonly int punch2 = Animator.StringToHash("Punch2");
+    private static readonly int punch3 = Animator.StringToHash("Punch3");
+
+
+
 
 
     private SpriteLibrary playerSpriteLibrary;
@@ -78,11 +84,11 @@ public class PlayerAnimations : MonoBehaviour
             switch (playerData.attackComboStep)
             {
                 case AttackCombo.Attack2:
-                    return LockState(attack2, playerData.attackCooldownTime);
+                    return LockState(playerData.burningPewter ? punch2: attack2, playerData.attackCooldownTime);
                 case AttackCombo.Attack3:
-                    return LockState(attack3, playerData.attackCooldownTime);
+                    return LockState(playerData.burningPewter ? punch3: attack3, playerData.attackCooldownTime);
                 default:
-                    return LockState(attack1, playerData.attackCooldownTime);
+                    return LockState(playerData.burningPewter ? punch1: attack1, playerData.attackCooldownTime);
             }
         }
 

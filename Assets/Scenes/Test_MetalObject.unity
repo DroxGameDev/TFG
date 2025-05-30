@@ -2850,6 +2850,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6053430310593115196, guid: 6069d87a7f6fefe478cc0d46293801c4, type: 3}
+      propertyPath: health
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6053430310593115196, guid: 6069d87a7f6fefe478cc0d46293801c4, type: 3}
       propertyPath: hitTime
       value: 0.206
       objectReference: {fileID: 0}

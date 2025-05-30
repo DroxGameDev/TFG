@@ -22,6 +22,7 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 30f)] public  float acceleration;
     [Range (0f, 30f)] public  float decceleration;
     [Range (0f, 1.5f)] public  float velPower;
+    [HideInInspector] public float moveMod = 1;
 
     [Space(10)]
     [Range(0f, 1f)] public float crocuhModifier;
@@ -38,6 +39,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     [Range (0f, 1f)] public  float coyoteTime;
     [Range (0f, 1f)] public  float jumpBufferTime;
+    [HideInInspector] public float jumpMod = 1;
 
     [Space(10)] 
     [Header("Gravity")]
@@ -108,6 +110,14 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;
     public CinemachineVirtualCamera virtualCamera;
+
+    [Header("Pewter")]
+    public bool burningPewter;
+    [Range(1f, 3f)] public float pewterMovementModifier;
+    [Range(1f, 3f)] public float pewterJumpModifier;
+    [Space(10)]
+    public Material smearFramesMaterial;
+
 
     [Header("Sprite Libraries")]
     public SpriteLibraryAsset defaultSprites;

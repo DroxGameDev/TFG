@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5a3b9f438b56f144daa319c19cab2a4c
+guid: 27290fe4adc4e9245a122438de03c410
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,1345 +110,1345 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack Smear Frames_0
+      name: Punch Smear Frames_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9501a6da01da4b245ab8364cf9ca4bb8
-      internalID: 1095883835
+      spriteID: 8e55b5ed780f2f3409a7aea38ea33a51
+      internalID: -719966305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_1
+      name: Punch Smear Frames_1
       rect:
         serializedVersion: 2
-        x: 127
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 119
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5798eff57d8208c4fa50bf088e95c9ff
-      internalID: -304355163
+      spriteID: ea8b11cadadadb249aed74a7d628921b
+      internalID: 114587763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_2
+      name: Punch Smear Frames_2
       rect:
         serializedVersion: 2
-        x: 254
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 238
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 868e596a42f24f043bfb108282a3b957
-      internalID: 874084651
+      spriteID: ce96a92b8a05fd54d87232ed6593298a
+      internalID: 1355661283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_3
+      name: Punch Smear Frames_3
       rect:
         serializedVersion: 2
-        x: 381
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 357
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d5bd381db31fc4469e5860fd50b926d
-      internalID: -1005034994
+      spriteID: 00ba537b5011b6e4d8b6f9ee6ec9175b
+      internalID: -1441358022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_4
+      name: Punch Smear Frames_4
       rect:
         serializedVersion: 2
-        x: 508
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 476
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef91431afd5531a4b801e1d9ad28e3c0
-      internalID: 1232760524
+      spriteID: dab56a6371df0914b8360249cb3d8eec
+      internalID: 1999880405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_5
+      name: Punch Smear Frames_5
       rect:
         serializedVersion: 2
-        x: 635
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 595
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70cbd27a4b28e334bad899f2223dd1e9
-      internalID: -1301104438
+      spriteID: dcc3b79a4a6018845b40161f5835704b
+      internalID: 1533110441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_6
+      name: Punch Smear Frames_6
       rect:
         serializedVersion: 2
-        x: 762
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 714
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2432ddf47198284785ab4ea14385a43
-      internalID: 2129079879
+      spriteID: b1c3186fc2e084c4aafca04802d55208
+      internalID: -1025063687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_7
+      name: Punch Smear Frames_7
       rect:
         serializedVersion: 2
-        x: 889
-        y: 1015
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 833
+        y: 966
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 724dd6f5624ffcd41925bf64fe856bbd
-      internalID: -1663292825
+      spriteID: 33dac5066d259dd468192526c871e3ca
+      internalID: 944181571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc0356a16992f0e40972cd822f004233
-      internalID: -1422426536
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_9
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac750547a1cd78746a88a2d0642d8464
-      internalID: -1830604288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_10
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15303004a071ae04794d26abc02a995f
-      internalID: -2091985280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_11
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d87c3a5b94086854094fa0533d3dc744
-      internalID: 2088968163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_12
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1d5110732a4e424d9a16e7a8626d345
-      internalID: -1671754168
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_13
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5cea77e5bbc906428bc2ce7d3b2c569
-      internalID: -697659391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_14
-      rect:
-        serializedVersion: 2
-        x: 762
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4131dac6a0537d44c82b89ffe808c33f
-      internalID: 1588293500
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_15
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 870
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c19e8c4a2fcbe564db4dca1b1374ec3d
-      internalID: 1308243406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_16
+      name: Punch Smear Frames_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1593686d418ac8943bfeba357153d47a
-      internalID: 1345318169
+      spriteID: 1ab363725e256d241a6274096dcd8e41
+      internalID: -792394717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_17
+      name: Punch Smear Frames_9
       rect:
         serializedVersion: 2
-        x: 127
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 119
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a1d8fccf11e1c04b8e44c2d0124d669
-      internalID: 1315251993
+      spriteID: c606769dedcd5a741b0e2df2a98b8ae6
+      internalID: 2087006485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_18
+      name: Punch Smear Frames_10
       rect:
         serializedVersion: 2
-        x: 254
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 238
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7ecfd7bd88b95944a1f09e443a87ca5
-      internalID: 424670548
+      spriteID: 8174e2861aad68f4dafde37b20a2ef47
+      internalID: 2111794634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_19
+      name: Punch Smear Frames_11
       rect:
         serializedVersion: 2
-        x: 381
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 357
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9626b7faa0f8a55439739732cb00bea3
-      internalID: 1734844156
+      spriteID: 91b200a8a512dbe4295129c7ca013f62
+      internalID: -499805151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_20
+      name: Punch Smear Frames_12
       rect:
         serializedVersion: 2
-        x: 508
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 476
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd9ed29b29f430b43a42b4f3ada63138
-      internalID: -549460965
+      spriteID: 54091d76350db1d42acfcff12663c168
+      internalID: -692057462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_21
+      name: Punch Smear Frames_13
       rect:
         serializedVersion: 2
-        x: 635
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 595
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d64ae15aab181fa4db73b330b6d6a030
-      internalID: 1584460361
+      spriteID: e2bbe2e9ae7286649b432377901e8ac8
+      internalID: -1905834184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_22
+      name: Punch Smear Frames_14
       rect:
         serializedVersion: 2
-        x: 762
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 714
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cf422d86871eef428cf4dac9a56f907
-      internalID: 1947311800
+      spriteID: 7410b144b8bd40e45b3d50530b87c3ef
+      internalID: -2041616495
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_23
+      name: Punch Smear Frames_15
       rect:
         serializedVersion: 2
-        x: 889
-        y: 725
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 833
+        y: 828
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 817cb87c000ebf645ab12b5f953506a8
-      internalID: 1980701056
+      spriteID: 66c5d69305868b949b424f55e75460fe
+      internalID: 398334893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 32975fe2fee1da545868c1243c398172
-      internalID: 953362666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_25
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74be386c172462942ba3a2fa70ab3f1b
-      internalID: 1297928599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_26
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf03dc961593ded4392c843e0873194e
-      internalID: -1541850782
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_27
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 983fafea2dee55f4e8dfd0c8a6a29286
-      internalID: -1032539877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_28
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0268865122051b946a23850ab93c8ad0
-      internalID: -1296818025
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_29
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b7be608fef67f04bb4ce86aa39ec609
-      internalID: -1035701676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_30
-      rect:
-        serializedVersion: 2
-        x: 762
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8e7a66edb1c3a946b50183c3d3e44dc
-      internalID: -1687522122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_31
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 580
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e6e99610cc2700459942bd34d189179
-      internalID: -1649983112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_32
+      name: Punch Smear Frames_16
       rect:
         serializedVersion: 2
         x: 0
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b09ecf18952eec44ae5ed94835f972b
-      internalID: 1643695300
+      spriteID: d09699ccc79a32e40bf905eb0b134a98
+      internalID: 902722525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_33
+      name: Punch Smear Frames_17
       rect:
         serializedVersion: 2
-        x: 127
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 119
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f49771e4a59739c489d8e331c39dac1f
-      internalID: 1406720709
+      spriteID: 4923732b63459914a9891f9386be78cb
+      internalID: -2082667208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_34
+      name: Punch Smear Frames_18
       rect:
         serializedVersion: 2
-        x: 254
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 238
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7491f3e02c432d840a418d1015046c81
-      internalID: -908350416
+      spriteID: bc45fe72d6088fc4b8c0cf70678cc637
+      internalID: -1161800949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_35
+      name: Punch Smear Frames_19
       rect:
         serializedVersion: 2
-        x: 381
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 357
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3779c33e8e3ad944a8a93e9ce40b61e7
-      internalID: 1093046955
+      spriteID: dd9d1e2cd6d729a49acc5996cbf3b403
+      internalID: -14162763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_36
+      name: Punch Smear Frames_20
       rect:
         serializedVersion: 2
-        x: 508
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 476
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 828188e28e2d62c448f43ba21a395fe0
-      internalID: -1432333771
+      spriteID: 490434a338a4bfb49ac585d5b7eb27dd
+      internalID: -1697557583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_37
+      name: Punch Smear Frames_21
       rect:
         serializedVersion: 2
-        x: 635
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 595
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03f8b73f977317f4b975b531d359deae
-      internalID: -1672042581
+      spriteID: 567609a0d1be1f240bf385b0a459e1a8
+      internalID: 1311389766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_38
+      name: Punch Smear Frames_22
       rect:
         serializedVersion: 2
-        x: 762
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 714
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2d87a173340a24cba2cebda2448e40
-      internalID: 1760295838
+      spriteID: 123dc8051e3e5f04bab55323b76d2d4d
+      internalID: -2044151952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_39
+      name: Punch Smear Frames_23
       rect:
         serializedVersion: 2
-        x: 889
-        y: 435
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 833
+        y: 690
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01ca5d949fc903348a660f37a4d3d5a4
-      internalID: 1052989139
+      spriteID: 807c4869a8a46d945aea93508d6bb06b
+      internalID: 601765899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_40
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c52dde00ea5ec9d48a7a6c50b75d690e
-      internalID: 544155249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_41
-      rect:
-        serializedVersion: 2
-        x: 127
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ea081cd18491fa4e878d66fb03a2ba2
-      internalID: -1026585738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_42
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9df1580e141d32449b15983b6edaf04
-      internalID: -477882153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_43
-      rect:
-        serializedVersion: 2
-        x: 381
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 73fefd621302d6142851f41b517c569b
-      internalID: -44763163
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_44
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6584fb6ec1dd79e489d35bca422e1390
-      internalID: 1919072766
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_45
-      rect:
-        serializedVersion: 2
-        x: 635
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f666317c2e547742840123b70ce60dc
-      internalID: -1069150088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_46
-      rect:
-        serializedVersion: 2
-        x: 762
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aaba9da526a7b1746b82de3a770b020b
-      internalID: 1145360265
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_47
-      rect:
-        serializedVersion: 2
-        x: 889
-        y: 290
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59ebee966e68482499518dc5f579e1aa
-      internalID: -624241099
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack Smear Frames_48
+      name: Punch Smear Frames_24
       rect:
         serializedVersion: 2
         x: 0
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dcbddc197bd88640a3ce66cf9b404d5
-      internalID: -1322973574
+      spriteID: 89df91f741fa0c649934fd9886d311e3
+      internalID: 1840715273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_49
+      name: Punch Smear Frames_25
       rect:
         serializedVersion: 2
-        x: 127
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 119
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02139373be28daa408c20220fea8d21d
-      internalID: 2134517740
+      spriteID: 492c336a8df39c44eb3bc2a8a9e42812
+      internalID: 1263762032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_50
+      name: Punch Smear Frames_26
       rect:
         serializedVersion: 2
-        x: 254
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 238
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f30ee6915161b33498e3c74b237a52f1
-      internalID: -1873201399
+      spriteID: befea0112718cb449b886048945d64b7
+      internalID: 1919258633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_51
+      name: Punch Smear Frames_27
       rect:
         serializedVersion: 2
-        x: 381
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 357
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f226f80b24c40484d9dde272896f82a8
-      internalID: 1853416168
+      spriteID: 267d7ed0264d81243882ed246139726c
+      internalID: 810539881
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_52
+      name: Punch Smear Frames_28
       rect:
         serializedVersion: 2
-        x: 508
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 476
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7847292e434afe84493306e29747357c
-      internalID: -488605262
+      spriteID: fb28da975a1c0b647b4f8968ec77b8ee
+      internalID: -544634533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_53
+      name: Punch Smear Frames_29
       rect:
         serializedVersion: 2
-        x: 635
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 595
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e41a55734a87d1e44bf6a94ce24e9990
-      internalID: -47479768
+      spriteID: 33da76deb03b7de41b695f8ce266d4b5
+      internalID: -1979755369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_54
+      name: Punch Smear Frames_30
       rect:
         serializedVersion: 2
-        x: 762
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 714
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d1c29df6feb18c47aab29747981299a
-      internalID: -471765643
+      spriteID: f9075feb79b9edb44be87a9a21ebc230
+      internalID: -753164910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_55
+      name: Punch Smear Frames_31
       rect:
         serializedVersion: 2
-        x: 889
-        y: 145
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        x: 833
+        y: 552
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b577841c7edf0c4fb605b1488d233e3
-      internalID: 1454591401
+      spriteID: d7905a16a836be64e9c492eb033d9e09
+      internalID: 574057381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_56
+      name: Punch Smear Frames_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f8a0dd50469794e8b53056c06e3b66
+      internalID: 187679024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_33
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8991ca27dbaf243bbefc8dc959bc6f
+      internalID: -2068451338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_34
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1364b6e585ce50f4ea232110a51bed40
+      internalID: 231482841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_35
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff2b23ccdae6282489fb69b27480671a
+      internalID: -2082314239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_36
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43bf8d4affef6c54e9586ba6e2aa61a6
+      internalID: -1398415069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_37
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86116b89bb8cd304181bd6eada1b2d4e
+      internalID: -1646112269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_38
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37faa3365046920489512913eeff45a2
+      internalID: 859297508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_39
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 414
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2713c99dcd6ce81439a80e3ef8beef08
+      internalID: 115069478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbeb078207e51884abd8a0c141e966df
+      internalID: -520585039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_41
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2a83caf22c3a94391bfec856cca83e
+      internalID: -1905942912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_42
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffcecb8873f08e44b8ee48ec9a7e79e8
+      internalID: 638081498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_43
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70945d9004c041e42af63d7b2b64355a
+      internalID: 195598059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_44
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5813ca544cbdc5446b870c87abccd253
+      internalID: 737337777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_45
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c82bbe09681c98244b60f0486db7ee79
+      internalID: -74969096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_46
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178989adc11b93f4e8806cf5d7b52015
+      internalID: 197958330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_47
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 276
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b4af26d243ed8419d8823af80142b6
+      internalID: -1434281585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0459218baee5713439110fe4646e0fe7
+      internalID: 377996731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_49
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356ef0a433d44b1419c3246a644316c2
+      internalID: 524380199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_50
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2282feed25b9b8743a2e531832fd57ab
+      internalID: 2081159884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_51
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f927a696002fb9c42aedd27f79abd050
+      internalID: 1576575046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_52
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abac2594d6d5b14db6329b91e550c3d
+      internalID: 1721208034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_53
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657ded1bc6e67e64080beb00031abc78
+      internalID: 1389410226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_54
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e72f496b4117ef4f9a6964b0d6a5af0
+      internalID: -1500531808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_55
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 138
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf89730f7137b9c408948070370d0d1a
+      internalID: -1894256288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Punch Smear Frames_56
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31a82d206ab56a84894d255c43301e40
-      internalID: -624211595
+      spriteID: a55162d050655c44191bc3ee18acfcc2
+      internalID: 862770163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_57
+      name: Punch Smear Frames_57
       rect:
         serializedVersion: 2
-        x: 127
+        x: 119
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f9b36c1b00d14142a8cddde8486f418
-      internalID: -1397627860
+      spriteID: 4c25a9dc95a9e3244bf84cb1e87de176
+      internalID: 2109047767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_58
+      name: Punch Smear Frames_58
       rect:
         serializedVersion: 2
-        x: 254
+        x: 238
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f630ab24d2f421a4796c100d5a4af958
-      internalID: -272045432
+      spriteID: 806af984c8c42ad4584fc826786c7616
+      internalID: -2103947302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_59
+      name: Punch Smear Frames_59
       rect:
         serializedVersion: 2
-        x: 381
+        x: 357
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32344cae9f5fa5148bbd90bb120c4e5f
-      internalID: -1352556633
+      spriteID: d46f3535647e5614cb16c02fb2dabec7
+      internalID: -1462114440
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_60
+      name: Punch Smear Frames_60
       rect:
         serializedVersion: 2
-        x: 508
+        x: 476
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 213fb1c899eb3484d95b4a85e09646fb
-      internalID: -171519668
+      spriteID: 372ec0546bac15f40a43d269d7398084
+      internalID: -1748431340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_61
+      name: Punch Smear Frames_61
       rect:
         serializedVersion: 2
-        x: 635
+        x: 595
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dd10030a0a889f43b6a5d5988e5225b
-      internalID: -1152719095
+      spriteID: 1a91e655922ac3d4586cf43fde80f2f7
+      internalID: 1453799696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_62
+      name: Punch Smear Frames_62
       rect:
         serializedVersion: 2
-        x: 762
+        x: 714
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 081243164ce1d7948b64193d523cecb1
-      internalID: 1985389433
+      spriteID: 84318a90e5d68d6499c563d940886b73
+      internalID: 579337791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack Smear Frames_63
+      name: Punch Smear Frames_63
       rect:
         serializedVersion: 2
-        x: 889
+        x: 833
         y: 0
-        width: 127
-        height: 145
-      alignment: 9
-      pivot: {x: 0.5, y: 0.47}
+        width: 119
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ada0dfbc3f9f6f741806f4614202fa0c
-      internalID: -1210873768
+      spriteID: 74a85ca3b5d05cf45a293e1349740fdb
+      internalID: -186483019
       vertices: []
       indices: 
       edges: []
@@ -1456,7 +1456,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4be7de10777ff364b9db4a030c2ec260
+    spriteID: 570f3b73850cf8e48b0f796c59fcf584
     internalID: 0
     vertices: []
     indices: 
@@ -1464,70 +1464,70 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack Smear Frames_0: 1095883835
-      Attack Smear Frames_1: -304355163
-      Attack Smear Frames_10: -2091985280
-      Attack Smear Frames_11: 2088968163
-      Attack Smear Frames_12: -1671754168
-      Attack Smear Frames_13: -697659391
-      Attack Smear Frames_14: 1588293500
-      Attack Smear Frames_15: 1308243406
-      Attack Smear Frames_16: 1345318169
-      Attack Smear Frames_17: 1315251993
-      Attack Smear Frames_18: 424670548
-      Attack Smear Frames_19: 1734844156
-      Attack Smear Frames_2: 874084651
-      Attack Smear Frames_20: -549460965
-      Attack Smear Frames_21: 1584460361
-      Attack Smear Frames_22: 1947311800
-      Attack Smear Frames_23: 1980701056
-      Attack Smear Frames_24: 953362666
-      Attack Smear Frames_25: 1297928599
-      Attack Smear Frames_26: -1541850782
-      Attack Smear Frames_27: -1032539877
-      Attack Smear Frames_28: -1296818025
-      Attack Smear Frames_29: -1035701676
-      Attack Smear Frames_3: -1005034994
-      Attack Smear Frames_30: -1687522122
-      Attack Smear Frames_31: -1649983112
-      Attack Smear Frames_32: 1643695300
-      Attack Smear Frames_33: 1406720709
-      Attack Smear Frames_34: -908350416
-      Attack Smear Frames_35: 1093046955
-      Attack Smear Frames_36: -1432333771
-      Attack Smear Frames_37: -1672042581
-      Attack Smear Frames_38: 1760295838
-      Attack Smear Frames_39: 1052989139
-      Attack Smear Frames_4: 1232760524
-      Attack Smear Frames_40: 544155249
-      Attack Smear Frames_41: -1026585738
-      Attack Smear Frames_42: -477882153
-      Attack Smear Frames_43: -44763163
-      Attack Smear Frames_44: 1919072766
-      Attack Smear Frames_45: -1069150088
-      Attack Smear Frames_46: 1145360265
-      Attack Smear Frames_47: -624241099
-      Attack Smear Frames_48: -1322973574
-      Attack Smear Frames_49: 2134517740
-      Attack Smear Frames_5: -1301104438
-      Attack Smear Frames_50: -1873201399
-      Attack Smear Frames_51: 1853416168
-      Attack Smear Frames_52: -488605262
-      Attack Smear Frames_53: -47479768
-      Attack Smear Frames_54: -471765643
-      Attack Smear Frames_55: 1454591401
-      Attack Smear Frames_56: -624211595
-      Attack Smear Frames_57: -1397627860
-      Attack Smear Frames_58: -272045432
-      Attack Smear Frames_59: -1352556633
-      Attack Smear Frames_6: 2129079879
-      Attack Smear Frames_60: -171519668
-      Attack Smear Frames_61: -1152719095
-      Attack Smear Frames_62: 1985389433
-      Attack Smear Frames_63: -1210873768
-      Attack Smear Frames_7: -1663292825
-      Attack Smear Frames_8: -1422426536
-      Attack Smear Frames_9: -1830604288
+      Punch Smear Frames_0: -719966305
+      Punch Smear Frames_1: 114587763
+      Punch Smear Frames_10: 2111794634
+      Punch Smear Frames_11: -499805151
+      Punch Smear Frames_12: -692057462
+      Punch Smear Frames_13: -1905834184
+      Punch Smear Frames_14: -2041616495
+      Punch Smear Frames_15: 398334893
+      Punch Smear Frames_16: 902722525
+      Punch Smear Frames_17: -2082667208
+      Punch Smear Frames_18: -1161800949
+      Punch Smear Frames_19: -14162763
+      Punch Smear Frames_2: 1355661283
+      Punch Smear Frames_20: -1697557583
+      Punch Smear Frames_21: 1311389766
+      Punch Smear Frames_22: -2044151952
+      Punch Smear Frames_23: 601765899
+      Punch Smear Frames_24: 1840715273
+      Punch Smear Frames_25: 1263762032
+      Punch Smear Frames_26: 1919258633
+      Punch Smear Frames_27: 810539881
+      Punch Smear Frames_28: -544634533
+      Punch Smear Frames_29: -1979755369
+      Punch Smear Frames_3: -1441358022
+      Punch Smear Frames_30: -753164910
+      Punch Smear Frames_31: 574057381
+      Punch Smear Frames_32: 187679024
+      Punch Smear Frames_33: -2068451338
+      Punch Smear Frames_34: 231482841
+      Punch Smear Frames_35: -2082314239
+      Punch Smear Frames_36: -1398415069
+      Punch Smear Frames_37: -1646112269
+      Punch Smear Frames_38: 859297508
+      Punch Smear Frames_39: 115069478
+      Punch Smear Frames_4: 1999880405
+      Punch Smear Frames_40: -520585039
+      Punch Smear Frames_41: -1905942912
+      Punch Smear Frames_42: 638081498
+      Punch Smear Frames_43: 195598059
+      Punch Smear Frames_44: 737337777
+      Punch Smear Frames_45: -74969096
+      Punch Smear Frames_46: 197958330
+      Punch Smear Frames_47: -1434281585
+      Punch Smear Frames_48: 377996731
+      Punch Smear Frames_49: 524380199
+      Punch Smear Frames_5: 1533110441
+      Punch Smear Frames_50: 2081159884
+      Punch Smear Frames_51: 1576575046
+      Punch Smear Frames_52: 1721208034
+      Punch Smear Frames_53: 1389410226
+      Punch Smear Frames_54: -1500531808
+      Punch Smear Frames_55: -1894256288
+      Punch Smear Frames_56: 862770163
+      Punch Smear Frames_57: 2109047767
+      Punch Smear Frames_58: -2103947302
+      Punch Smear Frames_59: -1462114440
+      Punch Smear Frames_6: -1025063687
+      Punch Smear Frames_60: -1748431340
+      Punch Smear Frames_61: 1453799696
+      Punch Smear Frames_62: 579337791
+      Punch Smear Frames_63: -186483019
+      Punch Smear Frames_7: 944181571
+      Punch Smear Frames_8: -792394717
+      Punch Smear Frames_9: 2087006485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

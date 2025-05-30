@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     private SteelPower steelPower;
     private IronPower ironPower;
     private TinPower tinPower;
-    private Rigidbody2D rb;
+    private PewterPower pewterPower;
+    //private Rigidbody2D rb;
 
     void Start()
     {
@@ -28,8 +29,9 @@ public class PlayerController : MonoBehaviour
         steelPower = GetComponent<SteelPower>();
         ironPower = GetComponent<IronPower>();
         tinPower = GetComponent<TinPower>();
+        pewterPower = GetComponent<PewterPower>();
 
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -120,5 +122,10 @@ public class PlayerController : MonoBehaviour
 
     public void TinSenses(InputAction.CallbackContext context){
         if (context.performed) tinPower.TinInput();
+    }
+
+    public void PewterEnhance(InputAction.CallbackContext context)
+    {
+        if (context.performed) pewterPower.PewterInput();
     }
 }
