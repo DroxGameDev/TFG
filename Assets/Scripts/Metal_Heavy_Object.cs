@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Metal_Heavy_Object : AffectedByGravity
 {
-    void Start()
-    {
-        OnStart();
-    }
 
     public IEnumerator Impulse(Vector2 force)
     {

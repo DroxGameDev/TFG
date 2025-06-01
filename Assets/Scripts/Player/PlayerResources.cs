@@ -9,6 +9,10 @@ public class PlayerResources : MonoBehaviour
 
     [Header("Resources")]
     public int coins;
+    public int ironVials;
+    public int steelVials;
+    public int tinVials;
+    public int pewterVials;
 
     [Header("Coin")]
     public GameObject CoinPrefab;
@@ -22,7 +26,7 @@ public class PlayerResources : MonoBehaviour
         nearbyCoins = new List<GameObject>();
     }
 
-    public void GetCoin(Collider2D collision)
+    public void GetObject(Collider2D collision)
     {
         if (collision.tag == "Coin" && !playerData.showingCoin)
         {
@@ -30,7 +34,7 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
-    public void RemoveCoin(Collider2D collision)
+    public void RemoveObject(Collider2D collision)
     {
         if (collision.tag == "Coin" && !playerData.showingCoin)
         {
@@ -39,12 +43,12 @@ public class PlayerResources : MonoBehaviour
     }
 
 
-    public void PickDropCoin()
+    public void PickDropCoinInput()
     {
         //pick coin
         if (nearbyCoins.Count > 0 && !playerData.movingWithPowers && !playerData.showingCoin)
         {
-            coins++;
+            UpdateCoins(1);
             GameObject coinToRemove = nearbyCoins[0];
             nearbyCoins.Remove(coinToRemove);
             Destroy(coinToRemove);
@@ -52,7 +56,7 @@ public class PlayerResources : MonoBehaviour
         //drop coin
         else if (nearbyCoins.Count == 0 && coins > 0 && !playerData.showingCoin)
         {
-            coins--;
+            UpdateCoins(-1);
             GameObject newCoin = CoinPrefab;
             newCoin.transform.position = transform.position;
             Instantiate(newCoin);
@@ -66,7 +70,7 @@ public class PlayerResources : MonoBehaviour
 
     }
 
-    public void ShowCoin()
+    public void ShowCoinInput()
     {
         if (coins > 0 && !playerData.showingCoin && !playerData.burningIron)
         {
@@ -76,18 +80,18 @@ public class PlayerResources : MonoBehaviour
             Coin coinScript = newCoin.GetComponent<Coin>();
             CoinInHand(coinScript);
 
-            coins--;
+            UpdateCoins(-1);
             showCoinCounter = playerData.showCoinTime;
             playerData.showingCoin = true;
         }
     }
 
-    public void CoinInHand(Coin coin)
+    void CoinInHand(Coin coin)
     {
         coin.setGravity(0f, 0f);
     }
 
-    public void CoinGone(Coin coin)
+    void CoinGone(Coin coin)
     {
         coin.setGravity(0f, 1f);
         playerData.showedCoin = null;
@@ -103,12 +107,29 @@ public class PlayerResources : MonoBehaviour
 
             if (showCoinCounter < 0.01f)
             {
-                coins++;
-                GameObject coinToRemove =  playerData.showedCoin;
+                UpdateCoins(1);
+                GameObject coinToRemove = playerData.showedCoin;
                 playerData.showedCoin = null;
                 Destroy(coinToRemove);
                 playerData.showingCoin = false;
             }
         }
+    }
+
+    public void IronCoin(GameObject coin)
+    {
+        UpdateCoins(1);
+        Destroy(coin);
+    }
+
+    public void SteelCoin(Coin coin)
+    {
+        CoinGone(coin);
+    }
+
+    void UpdateCoins(int amount)
+    {
+        coins += amount;
+        CoinCounter.instance.UpdateCoins(coins);
     }
 }

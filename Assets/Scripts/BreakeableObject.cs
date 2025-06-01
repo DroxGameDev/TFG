@@ -21,12 +21,12 @@ public class BreakeableObject : MonoBehaviour, IDamageable
         originalPosition = sprite.transform.localPosition;
     }
 
-    public void OnDamage()
+    public void OnDamage(int damage)
     {
-        health--;
+        health -= damage;
         StartCoroutine(Shake());
 
-        if (health == 0) OnDie();
+        if (health <= 0) OnDie();
     }
     public void OnDie()
     {

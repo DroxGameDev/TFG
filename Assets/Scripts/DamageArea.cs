@@ -10,7 +10,15 @@ public class DamageArea : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            origin.OnDamage();
+            AttackInfo attackInfo = collision.gameObject.GetComponent<AttackInfo>();
+            if (tag == "BreakableObject")
+            {
+                if (attackInfo.burningPewter)
+                    origin.OnDamage(attackInfo.damage);
+                else
+                    origin.OnDamage(0);
+            }
+            
         }
     }
 }

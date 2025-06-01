@@ -5,6 +5,6 @@ using UnityEngine;
 public interface IDamageable
 {
     public int Health { get; set; }
-    public void OnDamage();
+    public void OnDamage(int amount);
     public void OnDie();
 }

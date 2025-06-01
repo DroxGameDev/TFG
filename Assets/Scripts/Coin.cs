@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class Coin : AffectedByGravity
 {
-    [HideInInspector] public Collider2D triggerCollider;
-
-    public Vector2 velocity;
-    void OnEnable()
-    {
-        OnStart();
-        triggerCollider = GetComponent<Collider2D>();
-        velocity = rb.velocity;
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
-    
     public void setGravity(float newGracityScaleX, float newGracityScaleY)
     {
         ConstantForce2D forceMode = GetComponent<ConstantForce2D>();

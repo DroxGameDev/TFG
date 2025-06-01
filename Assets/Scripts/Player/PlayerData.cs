@@ -52,7 +52,8 @@ public class PlayerData : MonoBehaviour
 
     [Space(10)]
     [Header("Attacking")]
-    [Range (0f, 1f)] public  float attackBufferTime;
+    [Range(0, 3)] public int damage;
+    [Range(0f, 1f)] public  float attackBufferTime;
     [Range(0f, 2f)] public float attackCooldownTime;
     [Range(0f, 5f)] public float attackComboTime;
     public AttackCombo attackComboStep = AttackCombo.Attack1;
@@ -60,7 +61,7 @@ public class PlayerData : MonoBehaviour
     [Range(0, 10f)] public float attackImpulse;
     [Range(0, 1f)] public float waitForAttack;
     [Space(10)]
-    public Collider2D attackCollider;
+    public GameObject attackOrigin;
 
     [Header("Check")]
     public Transform groundCheck;
@@ -113,6 +114,7 @@ public class PlayerData : MonoBehaviour
 
     [Header("Pewter")]
     public bool burningPewter;
+    [Range(0, 5)] public int pewterDamage;
     [Range(1f, 3f)] public float pewterMovementModifier;
     [Range(1f, 3f)] public float pewterJumpModifier;
     [Space(10)]
@@ -120,8 +122,12 @@ public class PlayerData : MonoBehaviour
 
 
     [Header("Sprite Libraries")]
+    public SpriteLibrary playerSpriteLibrary;
     public SpriteLibraryAsset defaultSprites;
     public SpriteLibraryAsset showCoinSprites;
+    [Space(10)]
+
+    public Animator anim;
 
     [Header("States")]
     public bool grounded = true;

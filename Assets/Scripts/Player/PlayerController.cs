@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!playerData.attacking)
         {
-            if (context.performed) playerResources.PickDropCoin();
+            if (context.performed) playerResources.PickDropCoinInput();
         }
     }
 
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             if (context.performed)
             {
-                playerResources.ShowCoin();
+                playerResources.ShowCoinInput();
             }
         } 
     }

@@ -6,7 +6,6 @@ using UnityEngine;
 public class SteelPower : Iron_Steel
 {
     private float burningSteelCounter;
-    
     private bool impulsePushedObject = false;
     public bool active = false;
     private bool pushingObject = false;
@@ -183,7 +182,7 @@ public class SteelPower : Iron_Steel
                 pushingObject = true;
                 
                 if (target.gameObject == playerData.showedCoin)
-                    playerResources.CoinGone(target.gameObject.GetComponent<Coin>());
+                    playerResources.SteelCoin(target.gameObject.GetComponent<Coin>());
 
                 yield return StartCoroutine(moveAwayFromPlayer(target.GetComponent<Collider2D>(), origin.GetComponent<Collider2D>()));
 

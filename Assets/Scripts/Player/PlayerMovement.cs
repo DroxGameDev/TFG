@@ -23,7 +23,7 @@ public class PlayerMovement : AffectedByGravity
 
     void Start()
     {
-        OnStart();
+        //OnStart();
         playerData = GetComponent<PlayerData>();
         //selecteMetalThreshold = new Vector2(0.1f,0.1f);
     }
@@ -36,9 +36,14 @@ public class PlayerMovement : AffectedByGravity
 
     public void jumpInputUpdate(bool context)
     {
-        if (context){
+        if (context)
+        {
             jumpBufferCounter = playerData.jumpBufferTime;
             
+            if (playerData.gravityMode != GravityMode.Down){
+                rb.velocity = Vector2.zero;
+                playerData.ChangeGravityMode(GravityMode.Down);
+            }
         }
 
         if (!context && playerData.velocity.y > 0f)
@@ -47,13 +52,6 @@ public class PlayerMovement : AffectedByGravity
            rb.AddForce(Vector2.down * playerData.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
            coyoteTimeCounter = 0f;
         }
-        
-        if (playerData.gravityMode != GravityMode.Down){
-            rb.velocity = Vector2.zero;
-            playerData.ChangeGravityMode(GravityMode.Down);
-        }
-        
-        
     }
 
     #endregion

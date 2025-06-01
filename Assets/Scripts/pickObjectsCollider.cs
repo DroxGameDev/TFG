@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pickCoinsCollider : MonoBehaviour
+public class pickObjectsCollider : MonoBehaviour
 {
     public PlayerResources playerResources;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        playerResources.GetCoin(collision);
+        playerResources.GetObject(collision);
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        playerResources.RemoveCoin(collision);
+        playerResources.RemoveObject(collision);
     }
     
 }

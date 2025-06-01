@@ -12,10 +12,12 @@ public class IronPower : Iron_Steel
     private Vector2 directorVectorImpulse;
     
     private Vector2 forceTargetPosition;
-    public WalkableArea walkableArea;
-    private bool obstacleReached = false;
+     public WalkableArea walkableArea;
 
-    [SerializeField] private Collider2D mainCollider;
+    public List<WalkableArea> nearWalkableAreas;
+    
+
+    private bool obstacleReached = false;
     
     public IEnumerator IronInputupdate(bool context)
     {
@@ -33,22 +35,27 @@ public class IronPower : Iron_Steel
     }
 
     void Update()
-    {   
+    {
         OnUpdate();
-        if (input && state == PowerState.inactive && !playerData.showingCoin){
+ 
+        if (input && state == PowerState.inactive && !playerData.showingCoin)
+        {
 
             ChangeState(PowerState.select);
             OnSelect();
         }
-        
-        else if((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron){
 
-            if(selectedMetal != null){
+        else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
+        {
+
+            if (selectedMetal != null)
+            {
                 base.OnForce();
                 ChangeState(PowerState.force);
                 OnForce();
             }
-            else{
+            else
+            {
                 ChangeState(PowerState.inactive);
                 OnInactive();
             }
@@ -56,7 +63,8 @@ public class IronPower : Iron_Steel
         }
         //Debug.Log ("3:" + state);
 
-        else if(state == PowerState.force && playerData.burningIron){
+        else if (state == PowerState.force && playerData.burningIron)
+        {
 
             if (ObjectiveReached(selectedMetal.metal))
             {
@@ -67,8 +75,7 @@ public class IronPower : Iron_Steel
                 }
                 else if (selectedMetal.metal.tag == "Coin")
                 {
-                    playerResources.coins++;
-                    Destroy(selectedMetal.metal.gameObject);
+                    playerResources.IronCoin(selectedMetal.metal.gameObject);
 
                     ChangeState(PowerState.inactive);
                     OnInactive();
@@ -90,9 +97,9 @@ public class IronPower : Iron_Steel
                 ChangeState(PowerState.inactive);
                 OnInactive();
             }
-            
+
         }
-        
+
         else if (state == PowerState.wallWalking && playerData.burningIron && (!CheckIfWalkable() || playerData.gravityMode == GravityMode.Down))
         {
             ChangeState(PowerState.inactive);
@@ -265,7 +272,7 @@ public class IronPower : Iron_Steel
             filter.useLayerMask = true;
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
-            int hitCount = mainCollider.Cast(direction, filter, hits, step);
+            int hitCount = col.Cast(direction, filter, hits, step);
 
             if (hitCount > 0)
             {
