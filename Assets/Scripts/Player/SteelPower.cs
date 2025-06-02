@@ -177,7 +177,7 @@ public class SteelPower : Iron_Steel
 
                 }
             }
-            else if (target.tag == "Coin")
+            else if (target.tag == "Coin" || target.tag == "Vial")
             {
                 pushingObject = true;
                 
@@ -292,11 +292,11 @@ public class SteelPower : Iron_Steel
             heavyMetal.Stop();
         }
 
-        if (metal.gameObject.tag == "Coin" && !metalObstacleReached)
+        if ((metal.gameObject.tag == "Coin"  || metal.gameObject.tag == "Vial") && !metalObstacleReached)
         {
             impulsePushedObject = true;
         }
-        else if (metal.gameObject.tag == "Coin" && metalObstacleReached)
+        else if ((metal.gameObject.tag == "Coin" || metal.gameObject.tag == "Vial") && metalObstacleReached)
         {
             impulsePushedObject = false;
         }

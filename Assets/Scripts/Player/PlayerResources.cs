@@ -14,47 +14,71 @@ public class PlayerResources : MonoBehaviour
     public int tinVials;
     public int pewterVials;
 
+    [Header("Metal Reserves")]
+    [Range(0f, 60f)] public float ironReserve;
+    [Range(0f, 60f)] public float steelReserve;
+    [Range(0f, 60f)] public float tinReserve;
+    [Range(0f, 60f)] public float pewterReserve;
+    [Header("Empty Reserves Checkers")]
+    public bool ironEmpty;
+    public bool steelEmpty;
+    public bool tinEmpty;
+    public bool pewterEmpty;
+
+
     [Header("Coin")]
     public GameObject CoinPrefab;
-    public List<GameObject> nearbyCoins;
     private float showCoinCounter;
+
+    [Space(10)]
+    public List<GameObject> nearbyItems;
 
     void Start()
     {
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
-        nearbyCoins = new List<GameObject>();
+        nearbyItems = new List<GameObject>();
+        checkIfEmpty();
     }
 
     public void GetObject(Collider2D collision)
     {
-        if (collision.tag == "Coin" && !playerData.showingCoin)
+        if ((collision.tag == "Coin" || collision.tag == "Vial") && !playerData.showingCoin)
         {
-            nearbyCoins.Add(collision.gameObject);
+            nearbyItems.Add(collision.gameObject);
         }
     }
 
     public void RemoveObject(Collider2D collision)
     {
-        if (collision.tag == "Coin" && !playerData.showingCoin)
+        if ((collision.tag == "Coin" || collision.tag == "Vial") && !playerData.showingCoin)
         {
-            nearbyCoins.Remove(collision.gameObject);
+            nearbyItems.Remove(collision.gameObject);
         }
     }
 
 
     public void PickDropCoinInput()
     {
-        //pick coin
-        if (nearbyCoins.Count > 0 && !playerData.movingWithPowers && !playerData.showingCoin)
+        //pick object
+        if (nearbyItems.Count > 0 && !playerData.movingWithPowers && !playerData.showingCoin)
         {
-            UpdateCoins(1);
-            GameObject coinToRemove = nearbyCoins[0];
-            nearbyCoins.Remove(coinToRemove);
-            Destroy(coinToRemove);
+            if (nearbyItems[0].tag == "Coin")
+            {
+                UpdateCoins(1);
+            }
+            else if (nearbyItems[0].tag == "Vial")
+            {
+                Vial vial = nearbyItems[0].GetComponent<Vial>();
+
+                PickVialUpdateMetalReserves(vial);
+            }
+            GameObject objectToRemove = nearbyItems[0];
+            nearbyItems.Remove(objectToRemove);
+            Destroy(objectToRemove);
         }
         //drop coin
-        else if (nearbyCoins.Count == 0 && coins > 0 && !playerData.showingCoin)
+        else if (nearbyItems.Count == 0 && coins > 0 && !playerData.showingCoin)
         {
             UpdateCoins(-1);
             GameObject newCoin = CoinPrefab;
@@ -62,9 +86,9 @@ public class PlayerResources : MonoBehaviour
             Instantiate(newCoin);
         }
 
-        else if (playerData.showingCoin && nearbyCoins.Count == 0)
+        else if (playerData.showingCoin && nearbyItems.Count == 0)
         {
-            nearbyCoins.Add(playerData.showedCoin);
+            nearbyItems.Add(playerData.showedCoin);
             CoinGone(playerData.showedCoin.GetComponent<Coin>());
         }
 
@@ -114,12 +138,132 @@ public class PlayerResources : MonoBehaviour
                 playerData.showingCoin = false;
             }
         }
+        
+        checkIfEmpty();
+        BurningUpdateMetalReserves();
+    }
+    #region reserves update
+    void checkIfEmpty()
+    {
+        if (ironReserve <= 0.01f && !ironEmpty)
+        {
+            ironEmpty = true;
+        }
+
+        if (steelReserve <= 0.01f && !steelEmpty)
+        {
+            steelEmpty = true;
+        }
+
+        if (tinReserve <= 0.01f && !tinEmpty)
+        {
+            tinEmpty = true;
+        }   
+        
+        if (pewterReserve <= 0.01f && !pewterEmpty)
+        {
+            pewterEmpty = true;
+        }
     }
 
-    public void IronCoin(GameObject coin)
+    void BurningUpdateMetalReserves()
     {
-        UpdateCoins(1);
-        Destroy(coin);
+        if (!ironEmpty && playerData.burningIron)
+        {
+            ironReserve -= Time.deltaTime;
+
+            if (ironReserve <= 0.01 && ironVials > 0)
+            {
+                ironReserve += 60f;
+                ironVials--;
+            }
+        }
+
+        if (!steelEmpty && playerData.burningSteel)
+        {
+            steelReserve -= Time.deltaTime;
+
+            if (steelReserve <= 0.01 && steelVials > 0)
+            {
+                steelReserve += 60f;
+                steelVials--;
+            }
+        }
+
+        if (!tinEmpty && playerData.burningTin)
+        {
+            tinReserve -= Time.deltaTime;
+
+            if (tinReserve <= 0.01 && tinVials > 0)
+            {
+                tinReserve += 60f;
+                tinVials--;
+            }
+        }
+        
+        if (!pewterEmpty && playerData.burningPewter)
+        {
+            pewterReserve -= Time.deltaTime;
+
+            if (pewterReserve <= 0.01 && pewterVials > 0)
+            {
+                pewterReserve += 60f;
+                pewterVials--;
+            }
+        }
+    }
+    void PickVialUpdateMetalReserves(Vial vial)
+    {
+        switch (vial.type)
+        {
+            case VialType.iron:
+                if (ironEmpty)
+                {
+                    ironReserve += 60f;
+                    ironEmpty = false;
+                }
+                else ironVials++;
+                break;
+            case VialType.steel:
+                if (steelEmpty)
+                {
+                    steelReserve += 60f;
+                    steelEmpty = false;
+                }
+                else steelVials++;
+                break;
+            case VialType.tin:
+                if (tinEmpty)
+                {
+                    tinReserve += 60f;
+                    tinEmpty = false;
+                }
+                else tinVials++;
+                break;
+            case VialType.pewter:
+                if (pewterEmpty)
+                {
+                    pewterReserve += 60f;
+                    pewterEmpty = false;
+                }
+                else pewterVials++;
+                break;
+        }
+    }
+    #endregion
+
+    public void IronItem(GameObject item)
+    {
+        if (item.tag == "Coin")
+        {
+            UpdateCoins(1);
+        }
+        else if (item.tag == "Vial")
+        {
+            Vial vial = item.GetComponent<Vial>();
+            PickVialUpdateMetalReserves(vial);
+        }
+        Destroy(item);
     }
 
     public void SteelCoin(Coin coin)

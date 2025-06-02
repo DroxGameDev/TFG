@@ -73,9 +73,9 @@ public class IronPower : Iron_Steel
                     ChangeState(PowerState.impulse);
                     OnImpulse();
                 }
-                else if (selectedMetal.metal.tag == "Coin")
+                else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
                 {
-                    playerResources.IronCoin(selectedMetal.metal.gameObject);
+                    playerResources.IronItem(selectedMetal.metal.gameObject);
 
                     ChangeState(PowerState.inactive);
                     OnInactive();
@@ -159,7 +159,7 @@ public class IronPower : Iron_Steel
             directorVectorImpulse.Normalize();
         }
 
-        if (selectedMetal.metal.tag == "Coin")
+        if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
         {
             StartCoroutine(moveTowardsPlayer(selectedMetal.metal, col));
         }
@@ -238,13 +238,6 @@ public class IronPower : Iron_Steel
             var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
             heavyMetal.Stop();
         }
-        /*
-        else if (metal.gameObject.tag == "Coin" && ObjectiveReached(metal))
-        {
-            var coin = metal.GetComponent<coin>();
-            coin.DestroyItem();
-        }
-        */
     }
     private IEnumerator moveTowards(Collider2D origin, Collider2D target)
     {
