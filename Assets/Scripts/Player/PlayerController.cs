@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     public void SteelPush(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
+        if (!playerData.attacking && !playerResources.steelEmpty)
         {
             if (context.performed)
                 StartCoroutine(steelPower.SteelInputupdate(true));
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public void IronPull(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
+        if (!playerData.attacking && !playerResources.ironEmpty)
         {
             if (context.performed)
                 StartCoroutine(ironPower.IronInputupdate(true));
@@ -121,11 +121,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TinSenses(InputAction.CallbackContext context){
-        if (context.performed) tinPower.TinInput();
+        if (context.performed && !playerResources.tinEmpty) tinPower.TinInput();
     }
 
     public void PewterEnhance(InputAction.CallbackContext context)
     {
-        if (context.performed) pewterPower.PewterInput();
+        if (context.performed && !playerResources.pewterEmpty) pewterPower.PewterInput();
     }
 }

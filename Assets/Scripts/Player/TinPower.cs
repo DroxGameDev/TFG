@@ -7,11 +7,13 @@ public class TinPower : MonoBehaviour
 {
     private bool input = false;
     private PlayerData playerData;
+    private PlayerResources playerResources;
     private bool transitioning;
 
     void Start()
     {
         playerData = GetComponent<PlayerData>();
+        playerResources = GetComponent<PlayerResources>();
         playerData.virtualCamera.m_Lens.FieldOfView = playerData.defaultCameraSize;
         playerData.mist.SetFloat("_FogStrengh", 0f);
     }
@@ -32,6 +34,15 @@ public class TinPower : MonoBehaviour
                 playerData.burningTin = true;
                 StartCoroutine(StartTransition());
             }
+        }
+    }
+
+    void Update()
+    {
+        if (playerData.burningTin && playerResources.tinEmpty){
+            input = false;
+            playerData.burningTin = false;
+            StartCoroutine(EndTransition());
         }
     }
 

@@ -35,6 +35,13 @@ public class SteelPower : Iron_Steel
 
         //Debug.Log ("2:" + state);
 
+        else if (playerData.burningSteel && playerResources.steelEmpty)
+        {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+            input = false;
+        }
+
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningSteel)
         {
 
@@ -78,7 +85,7 @@ public class SteelPower : Iron_Steel
 
         else if (state == PowerState.force && playerData.burningSteel)
         {
-            
+
             if (!pushingObject)
             {
                 if (selectedMetal.metal.tag == "Heavy_Metal")

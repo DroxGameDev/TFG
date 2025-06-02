@@ -602,7 +602,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 89.99999
+  field of view: 70
   orthographic: 0
   orthographic size: 8
   m_Depth: -1
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 573194966}
   m_Follow: {fileID: 573194966}
   m_Lens:
-    FieldOfView: 89.99999
+    FieldOfView: 70
     OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -1184,6 +1184,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: tinVials
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: ironVials
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: steelVials
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: tinReserve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: ironReserve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: pewterVials
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: steelReserve
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: pewterReserve
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

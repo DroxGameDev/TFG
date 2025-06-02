@@ -5,6 +5,7 @@ using UnityEngine;
 public class PewterPower : MonoBehaviour
 {
     private PlayerData playerData;
+    private PlayerResources playerResources;
     private AttackInfo attackInfo;
     private bool input = false;
 
@@ -13,8 +14,9 @@ public class PewterPower : MonoBehaviour
     void Start()
     {
         playerData = GetComponent<PlayerData>();
+        playerResources = GetComponent<PlayerResources>();
         attackInfo = playerData.attackOrigin.GetComponent<AttackInfo>();
-        
+
         noPewterDamage = playerData.damage;
         attackInfo.burningPewter = false;
         playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
@@ -43,5 +45,19 @@ public class PewterPower : MonoBehaviour
 
         }
     }
-    
+
+    void Update()
+    {
+        if (playerData.burningPewter && playerResources.pewterEmpty)
+        {
+            input = false;
+            playerData.burningPewter = false;
+            attackInfo.burningPewter = false;
+            playerData.moveMod = 1;
+            playerData.jumpMod = 1;
+            playerData.damage = noPewterDamage;
+            playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
+        }
+    }
+
 }

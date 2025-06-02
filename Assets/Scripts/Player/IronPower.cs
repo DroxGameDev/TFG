@@ -44,6 +44,12 @@ public class IronPower : Iron_Steel
             ChangeState(PowerState.select);
             OnSelect();
         }
+        else if (playerData.burningIron && playerResources.ironEmpty)
+        {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+            input = false;
+        }
 
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
         {

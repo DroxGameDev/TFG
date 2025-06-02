@@ -38,6 +38,7 @@ public class PlayerResources : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
         nearbyItems = new List<GameObject>();
+        StartMetalReserves();
         checkIfEmpty();
     }
 
@@ -143,6 +144,32 @@ public class PlayerResources : MonoBehaviour
         BurningUpdateMetalReserves();
     }
     #region reserves update
+    void StartMetalReserves()
+    {
+        if (ironReserve < 0.01f && ironVials > 0)
+        {
+            ironReserve += 60f;
+            ironVials--;
+        }
+
+        if (steelReserve < 0.01f && steelVials > 0)
+        {
+            steelReserve += 60f;
+            steelVials--;
+        }
+
+        if (tinReserve < 0.01f && tinVials > 0)
+        {
+            tinReserve += 60f;
+            tinVials--;
+        }
+
+        if (pewterReserve < 0.01f && pewterVials > 0)
+        {
+            pewterReserve += 60f;
+            pewterVials--;
+        }
+    }
     void checkIfEmpty()
     {
         if (ironReserve <= 0.01f && !ironEmpty)
