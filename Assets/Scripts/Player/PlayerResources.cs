@@ -38,6 +38,7 @@ public class PlayerResources : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
         nearbyItems = new List<GameObject>();
+        StartCanvas();
         StartMetalReserves();
         checkIfEmpty();
     }
@@ -139,7 +140,7 @@ public class PlayerResources : MonoBehaviour
                 playerData.showingCoin = false;
             }
         }
-        
+
         checkIfEmpty();
         BurningUpdateMetalReserves();
     }
@@ -148,26 +149,26 @@ public class PlayerResources : MonoBehaviour
     {
         if (ironReserve < 0.01f && ironVials > 0)
         {
-            ironReserve += 60f;
-            ironVials--;
+            UpdateIronReserves(60f);
+            UpdateItonVials(-1);
         }
 
         if (steelReserve < 0.01f && steelVials > 0)
         {
-            steelReserve += 60f;
-            steelVials--;
+            UpdateSteelReserves(60f);
+            UpdateSteelVials(-1);
         }
 
         if (tinReserve < 0.01f && tinVials > 0)
         {
-            tinReserve += 60f;
-            tinVials--;
+            UpdateTinReserves(60f);
+            UpdateTinVials(-1);
         }
 
         if (pewterReserve < 0.01f && pewterVials > 0)
         {
-            pewterReserve += 60f;
-            pewterVials--;
+            UpdatePewterReserves(60f);
+            UpdatePewterVials(-1);
         }
     }
     void checkIfEmpty()
@@ -185,8 +186,8 @@ public class PlayerResources : MonoBehaviour
         if (tinReserve <= 0.01f && !tinEmpty)
         {
             tinEmpty = true;
-        }   
-        
+        }
+
         if (pewterReserve <= 0.01f && !pewterEmpty)
         {
             pewterEmpty = true;
@@ -197,45 +198,45 @@ public class PlayerResources : MonoBehaviour
     {
         if (!ironEmpty && playerData.burningIron)
         {
-            ironReserve -= Time.deltaTime;
+            UpdateIronReserves(-Time.deltaTime);
 
             if (ironReserve <= 0.01 && ironVials > 0)
             {
-                ironReserve += 60f;
-                ironVials--;
+                UpdateIronReserves(60f);
+                UpdateItonVials(-1);
             }
         }
 
         if (!steelEmpty && playerData.burningSteel)
         {
-            steelReserve -= Time.deltaTime;
+            UpdateSteelReserves(-Time.deltaTime);
 
             if (steelReserve <= 0.01 && steelVials > 0)
             {
-                steelReserve += 60f;
-                steelVials--;
+                UpdateSteelReserves(60f);
+                UpdateSteelVials(-1);
             }
         }
 
         if (!tinEmpty && playerData.burningTin)
         {
-            tinReserve -= Time.deltaTime;
+            UpdateTinReserves(-Time.deltaTime);
 
             if (tinReserve <= 0.01 && tinVials > 0)
             {
-                tinReserve += 60f;
-                tinVials--;
+                UpdateTinReserves(60f);
+                UpdateTinVials(-1);
             }
         }
-        
+
         if (!pewterEmpty && playerData.burningPewter)
         {
-            pewterReserve -= Time.deltaTime;
+            UpdatePewterReserves(-Time.deltaTime);
 
             if (pewterReserve <= 0.01 && pewterVials > 0)
             {
-                pewterReserve += 60f;
-                pewterVials--;
+                UpdatePewterReserves(60f);
+                UpdatePewterVials(-1);
             }
         }
     }
@@ -246,38 +247,40 @@ public class PlayerResources : MonoBehaviour
             case VialType.iron:
                 if (ironEmpty)
                 {
-                    ironReserve += 60f;
+                    UpdateIronReserves(60f);
                     ironEmpty = false;
                 }
-                else ironVials++;
+                else UpdateItonVials(1);
                 break;
             case VialType.steel:
                 if (steelEmpty)
                 {
-                    steelReserve += 60f;
+                    UpdateSteelReserves(60f);
                     steelEmpty = false;
                 }
-                else steelVials++;
+                else UpdateSteelVials(1);
                 break;
             case VialType.tin:
                 if (tinEmpty)
                 {
-                    tinReserve += 60f;
+                    UpdateTinReserves(60f);
                     tinEmpty = false;
                 }
-                else tinVials++;
+                else UpdateTinVials(1);
                 break;
             case VialType.pewter:
                 if (pewterEmpty)
                 {
-                    pewterReserve += 60f;
+                    UpdatePewterReserves(60f);
                     pewterEmpty = false;
                 }
-                else pewterVials++;
+                else UpdatePewterVials(1);
                 break;
         }
     }
     #endregion
+
+    #region Item Metal Interaction
 
     public void IronItem(GameObject item)
     {
@@ -297,10 +300,87 @@ public class PlayerResources : MonoBehaviour
     {
         CoinGone(coin);
     }
+    #endregion
+
+    #region Canvas Updates
+
+    void StartCanvas()
+    {
+        UIResources.instance.UpdateCoins(coins);
+        UIResources.instance.UpdateVials(VialType.iron, ironVials);
+        UIResources.instance.UpdateVials(VialType.steel, steelVials);
+        UIResources.instance.UpdateVials(VialType.tin, tinVials);
+        UIResources.instance.UpdateVials(VialType.pewter, pewterVials);
+
+        UIResources.instance.UpdateSlider(VialType.iron, ironReserve);
+        UIResources.instance.UpdateSlider(VialType.steel, steelReserve);
+        UIResources.instance.UpdateSlider(VialType.tin, tinReserve);
+        UIResources.instance.UpdateSlider(VialType.pewter, pewterReserve);
+    }
 
     void UpdateCoins(int amount)
     {
         coins += amount;
-        CoinCounter.instance.UpdateCoins(coins);
+        UIResources.instance.UpdateCoins(coins);
     }
+
+    void UpdateIronReserves(float amount)
+    {
+        ironReserve += amount;
+        if (ironReserve < 0.01f)
+        {
+            ironReserve = 0f;
+        }
+        UIResources.instance.UpdateSlider(VialType.iron, ironReserve);
+    }
+
+    void UpdateSteelReserves(float amount)
+    {
+        steelReserve += amount;
+        if (steelReserve < 0.01f)
+        {
+            steelReserve = 0f;
+        }
+        UIResources.instance.UpdateSlider(VialType.steel, steelReserve);
+    }
+    void UpdateTinReserves(float amount)
+    {
+        tinReserve += amount;
+        if (tinReserve < 0.01f)
+        {
+            tinReserve = 0f;
+        }
+        UIResources.instance.UpdateSlider(VialType.tin, tinReserve);
+    }
+    void UpdatePewterReserves(float amount)
+    {
+        pewterReserve += amount;
+        if (pewterReserve < 0.01f)
+        {
+            pewterReserve = 0f;
+        }
+        UIResources.instance.UpdateSlider(VialType.pewter, pewterReserve);
+    }
+
+    void UpdateItonVials(int amount)
+    {
+        ironVials += amount;
+        UIResources.instance.UpdateVials(VialType.iron, ironVials);
+    }
+    void UpdateSteelVials(int amount)
+    {
+        steelVials += amount;
+        UIResources.instance.UpdateVials(VialType.steel, steelVials);
+    }
+    void UpdateTinVials(int amount)
+    {
+        tinVials += amount;
+        UIResources.instance.UpdateVials(VialType.tin, tinVials);
+    }
+    void UpdatePewterVials(int amount)
+    {
+        pewterVials += amount;
+        UIResources.instance.UpdateVials(VialType.pewter, pewterVials);
+    }
+    #endregion
 }

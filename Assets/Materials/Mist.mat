@@ -44,7 +44,7 @@ Material:
     - _Boolean: 0
     - _Exterior: 1
     - _FogSize: 1.17
-    - _FogStrengh: 0
+    - _FogStrengh: 10
     - _WorlSpace: 1
     m_Colors:
     - _FogColor: {r: 1, g: 1, b: 1, a: 1}
