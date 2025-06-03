@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PushObject",
+                    "type": "Button",
+                    "id": "b4ab0585-7244-464a-81ca-34227b69d676",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -279,7 +288,7 @@
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";GamePad",
                     "action": "ShowCoin",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -301,7 +310,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";GamePad",
                     "action": "BurnTin",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -345,7 +354,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";GamePad",
                     "action": "BurnPewter",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -358,6 +367,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "BurnPewter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a85d1b52-0fc4-4c53-81b8-74dccfd5bec6",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";GamePad",
+                    "action": "PushObject",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2538048-fde7-4216-b47f-05f64dc8d552",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "PushObject",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

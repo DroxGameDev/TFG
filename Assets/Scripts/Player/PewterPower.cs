@@ -6,15 +6,18 @@ public class PewterPower : MonoBehaviour
 {
     private PlayerData playerData;
     private PlayerResources playerResources;
+    private Rigidbody2D playerRB;
     private AttackInfo attackInfo;
     private bool input = false;
-
     private int noPewterDamage;
+
+    private GameObject objectPushing;
 
     void Start()
     {
         playerData = GetComponent<PlayerData>();
         playerResources = GetComponent<PlayerResources>();
+        playerRB = GetComponent<Rigidbody2D>();
         attackInfo = playerData.attackOrigin.GetComponent<AttackInfo>();
 
         noPewterDamage = playerData.damage;
@@ -25,13 +28,7 @@ public class PewterPower : MonoBehaviour
     {
         if (input) //stop burning
         {
-            input = false;
-            playerData.burningPewter = false;
-            attackInfo.burningPewter = false;
-            playerData.moveMod = 1;
-            playerData.jumpMod = 1;
-            playerData.damage = noPewterDamage;
-            playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
+            StopPewter();
         }
         else //start burning
         {
@@ -42,7 +39,50 @@ public class PewterPower : MonoBehaviour
             playerData.jumpMod = playerData.pewterJumpModifier;
             playerData.damage = playerData.pewterDamage;
             playerData.smearFramesMaterial.SetInt("_burningPewter", 1);
+            StartCoroutine(Healing());
+        }
+    }
 
+
+    public void PushImputUpdate()
+    {
+        if (playerData.pushing) //stop pushing
+        {
+            playerData.pushing = false;
+            playerData.moveMod = playerData.pewterMovementModifier;
+            objectPushing.transform.SetParent(null);
+            objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
+            objectPushing = null;
+        }
+        else //start pushing
+        {
+            playerData.pushing = true;
+            playerData.moveMod = playerData.pewterPushMovementModifier;
+            objectPushing = playerData.objectToPush;
+            objectPushing.transform.SetParent(transform, true);
+            objectPushing.GetComponent<Metal_Heavy_Object>().ForceMove();
+            StartCoroutine(Pushing());
+        }
+    }
+    IEnumerator Pushing()
+    {
+        Rigidbody2D rb = objectPushing.GetComponent<Rigidbody2D>();
+        while (playerData.pushing && objectPushing != null)
+        {
+            rb.velocity = new Vector2(playerData.velocity.x, rb.velocity.y);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+
+    IEnumerator Healing()
+    {
+        while (playerData.burningPewter)
+        {
+            if (playerData.health < playerData.maxHealth)
+            {
+                playerData.health++;
+            }
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -50,13 +90,36 @@ public class PewterPower : MonoBehaviour
     {
         if (playerData.burningPewter && playerResources.pewterEmpty)
         {
-            input = false;
-            playerData.burningPewter = false;
-            attackInfo.burningPewter = false;
-            playerData.moveMod = 1;
-            playerData.jumpMod = 1;
-            playerData.damage = noPewterDamage;
-            playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
+            StopPewter();
+        }
+
+        if (playerData.pushing && Mathf.Abs(objectPushing.GetComponent<Rigidbody2D>().velocity.y) > 0.001f)
+        {
+            playerData.pushing = false;
+            playerData.moveMod = playerData.pewterMovementModifier;
+            objectPushing.transform.SetParent(null);
+            objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
+            objectPushing = null;
+        }
+        
+    }
+
+    void StopPewter()
+    {
+        input = false;
+        playerData.burningPewter = false;
+        attackInfo.burningPewter = false;
+        playerData.moveMod = 1;
+        playerData.jumpMod = 1;
+        playerData.damage = noPewterDamage;
+        playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
+
+        if (playerData.pushing) //stop pushing
+        {
+            playerData.pushing = false;
+            objectPushing.transform.SetParent(null);
+            objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
+            objectPushing = null;
         }
     }
 

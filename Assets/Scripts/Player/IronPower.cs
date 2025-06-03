@@ -131,7 +131,6 @@ public class IronPower : Iron_Steel
         playerData.burningIron = false;
         Time.timeScale = 1f;
         obstacleReached = false;
-        //playerData.cancelGravity = false;
         playerData.ChangeGravityMode(GravityMode.Down);
         ResetLines();
     }

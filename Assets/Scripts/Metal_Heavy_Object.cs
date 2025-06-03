@@ -25,6 +25,17 @@ public class Metal_Heavy_Object : AffectedByGravity
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    public void StartPush()
+    {
+       //rb.bodyType = RigidbodyType2D.Kinematic;
+    }
+
+    public void EndPush()
+    {
+        //rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+    }
+
     public void Stop()
     {
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;

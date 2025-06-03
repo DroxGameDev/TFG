@@ -23,7 +23,13 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int punch1 = Animator.StringToHash("Punch1");
     private static readonly int punch2 = Animator.StringToHash("Punch2");
     private static readonly int punch3 = Animator.StringToHash("Punch3");
-    
+
+    private static readonly int pushIdle = Animator.StringToHash("PushIdle");
+    private static readonly int push = Animator.StringToHash("Push");
+    private static readonly int pull = Animator.StringToHash("Pull");
+
+
+
     private SpriteLibraryAsset currentSpriteLibrary;
 
     [Header("States")]
@@ -96,6 +102,19 @@ public class PlayerAnimations : MonoBehaviour
         
         if (playerData.grounded)
         {
+            if (playerData.running && playerData.pushing)
+            {
+                if ((playerData.isFacingRight && playerData.velocity.x > 0.01f) || (!playerData.isFacingRight && playerData.velocity.x < 0.01f))
+                {
+                    return push;
+                }
+                else if ((playerData.isFacingRight && playerData.velocity.x < 0.01f) || (!playerData.isFacingRight && playerData.velocity.x > 0.01f))
+                {
+                    return pull;
+                }
+            }
+            else if (playerData.pushing) return pushIdle;
+
             if (playerData.running && Mathf.Abs(playerData.velocity.x) > 0.01f)
             {
                 return run;

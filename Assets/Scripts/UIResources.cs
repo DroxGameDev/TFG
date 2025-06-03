@@ -9,7 +9,6 @@ public class UIResources : MonoBehaviour
     public static UIResources instance { get; set; }
     [Header("Coins")]
     public TMP_Text coinText;
-    public int coins = 0;
 
     [Header("Vials")]
     public TMP_Text ironText;
@@ -26,11 +25,6 @@ public class UIResources : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
-        coinText.text = coins.ToString();
     }
 
     public void UpdateCoins(int coinsAmount)

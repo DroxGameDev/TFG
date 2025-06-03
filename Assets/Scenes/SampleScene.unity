@@ -513,7 +513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 98, y: -40}
+  m_AnchoredPosition: {x: 74, y: -114}
   m_SizeDelta: {x: 289.79224, y: 80.81067}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &259610727
@@ -1757,7 +1757,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 259610727}
-  coins: 0
   ironText: {fileID: 938143738}
   steelText: {fileID: 130093903}
   tinText: {fileID: 205619524}
@@ -1961,7 +1960,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70.00001
+  field of view: 70
   orthographic: 0
   orthographic size: 8
   m_Depth: -1
@@ -2338,7 +2337,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 573194966}
   m_Follow: {fileID: 573194966}
   m_Lens:
-    FieldOfView: 70.00001
+    FieldOfView: 70
     OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -3320,42 +3319,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: coins
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: tinVials
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironVials
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: steelVials
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: tinReserve
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: ironReserve
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: pewterVials
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: steelReserve
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
-      propertyPath: pewterReserve
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

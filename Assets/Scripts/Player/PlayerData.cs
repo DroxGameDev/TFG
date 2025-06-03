@@ -16,6 +16,9 @@ public class PlayerData : MonoBehaviour
     public Camera mainCamera;
     [Range(0f, 100f)] public float defaultCameraSize;
     [Space(10)]
+    [Header("Health")]
+    [Range(0, 10)] public int health;
+    [Range(0, 50)] public int maxHealth;
 
     [Header("Movement")]
     [Range (0f, 20f)] public  float moveSpeed;
@@ -119,6 +122,11 @@ public class PlayerData : MonoBehaviour
     [Range(1f, 3f)] public float pewterJumpModifier;
     [Space(10)]
     public Material smearFramesMaterial;
+     [Space(10)]
+    public bool objectNearby;
+    public GameObject objectToPush;
+    public Collider2D pushCollider;
+    [Range(0f, 1f)] public float pewterPushMovementModifier;
 
 
     [Header("Sprite Libraries")]
@@ -137,6 +145,7 @@ public class PlayerData : MonoBehaviour
     public bool attacking = false;
     public bool midAttacking = false;
     public bool wallWalking = false;
+    public bool pushing = false;
 
     [Space(10)] 
     public bool movingWithPowers = false;

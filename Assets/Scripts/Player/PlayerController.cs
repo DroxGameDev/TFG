@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerControls;
     private PlayerMovement playerMovement;
     private PlayerAttack playerAttack;
-    private PlayerAnimations playerAnimations;
     private SteelPower steelPower;
     private IronPower ironPower;
     private TinPower tinPower;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
         playerControls = GetComponent<PlayerInput>();
         playerMovement = GetComponent<PlayerMovement>();
         playerAttack = GetComponent<PlayerAttack>();
-        playerAnimations = GetComponent<PlayerAnimations>();
         steelPower = GetComponent<SteelPower>();
         ironPower = GetComponent<IronPower>();
         tinPower = GetComponent<TinPower>();
@@ -36,22 +34,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        playerMovement.moveInputUpdate(context.ReadValue<Vector2>());
+        playerMovement.MoveInputUpdate(context.ReadValue<Vector2>());
 
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
+        if (!playerData.attacking && !playerData.pushing)
         {
             if (context.performed)
             {
-                playerMovement.jumpInputUpdate(true);
+                playerMovement.JumpInputUpdate(true);
             }
 
             if (context.canceled)
             {
-                playerMovement.jumpInputUpdate(false);
+                playerMovement.JumpInputUpdate(false);
             }
         }
     }
@@ -60,6 +58,11 @@ public class PlayerController : MonoBehaviour
     {
         if(!playerData.wallWalking && !playerData.burningIron && !playerData.burningSteel && !playerData.showingCoin)
             if (context.performed) playerAttack.OnAttack();
+    }
+
+    public void OnPush(InputAction.CallbackContext context)
+    {
+        if (context.performed && playerData.objectNearby && playerData.burningPewter) pewterPower.PushImputUpdate();
     }
 
     public void SteelPush(InputAction.CallbackContext context)

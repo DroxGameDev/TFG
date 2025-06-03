@@ -29,12 +29,12 @@ public class PlayerMovement : AffectedByGravity
     }
 
     #region Input
-    public void moveInputUpdate(Vector2 context)
+    public void MoveInputUpdate(Vector2 context)
     {
        moveInput = context.x;
     }
 
-    public void jumpInputUpdate(bool context)
+    public void JumpInputUpdate(bool context)
     {
         if (context)
         {
@@ -115,16 +115,17 @@ public class PlayerMovement : AffectedByGravity
         #endregion
 
         //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking) ||
-                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking))
+        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing) ||
+                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing))
         {
             Flip();
         }
-        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking)
-                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking))
+        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing)
+                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing))
         {
             Flip();
         }
+
 
         #region debug
         groundPosition = playerData.groundCheck.position;
