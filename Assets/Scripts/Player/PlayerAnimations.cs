@@ -102,25 +102,26 @@ public class PlayerAnimations : MonoBehaviour
         
         if (playerData.grounded)
         {
-            if (playerData.running && playerData.pushing)
-            {
-                if ((playerData.isFacingRight && playerData.velocity.x > 0.01f) || (!playerData.isFacingRight && playerData.velocity.x < 0.01f))
-                {
-                    return push;
-                }
-                else if ((playerData.isFacingRight && playerData.velocity.x < 0.01f) || (!playerData.isFacingRight && playerData.velocity.x > 0.01f))
-                {
-                    return pull;
-                }
-            }
-            else if (playerData.pushing) return pushIdle;
-
             if (playerData.running && Mathf.Abs(playerData.velocity.x) > 0.01f)
             {
+                if (playerData.pushing)
+                {
+                    if ((playerData.isFacingRight && playerData.velocity.x > 0.01f) || (!playerData.isFacingRight && playerData.velocity.x < 0.01f))
+                    {
+                        return push;
+                    }
+                    else if ((playerData.isFacingRight && playerData.velocity.x < 0.01f) || (!playerData.isFacingRight && playerData.velocity.x > 0.01f))
+                    {
+                        return pull;
+                    }
+                }
+
                 return run;
             }
             else
             {
+                if (playerData.pushing) return pushIdle;
+                
                 return idle;
             }
         }

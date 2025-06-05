@@ -68,7 +68,13 @@ public class PlayerData : MonoBehaviour
 
     [Header("Check")]
     public Transform groundCheck;
-    [Range (0f, 1f)] public  float groundCheckRadius;
+    [Range (-1f, 1f)] public  float groundCheckVertexA_x;
+    [Range (-1f, 1f)] public  float groundCheckVertexA_y;
+    [Range (-1f, 1f)] public  float groundCheckVertexB_x;
+    [Range (-1f, 1f)] public  float groundCheckVertexB_y;
+
+
+
     public LayerMask groundLayer;
     [Space(10)]
     public LayerMask obstacleLayer;

@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _burningPewter: 0
+    - _burningPewter: 1
     m_Colors:
     - _Knife: {r: 0.02352941, g: 0.02745098, b: 0.03529412, a: 1}
     - _Punch: {r: 0.654902, g: 0.41960788, b: 0.38039213, a: 1}

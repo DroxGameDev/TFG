@@ -40,10 +40,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking && !playerData.pushing)
+        if (!playerData.attacking)
         {
             if (context.performed)
             {
+                if (playerData.pushing) pewterPower.StopPushing();
+
                 playerMovement.JumpInputUpdate(true);
             }
 
@@ -56,13 +58,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(!playerData.wallWalking && !playerData.burningIron && !playerData.burningSteel && !playerData.showingCoin)
-            if (context.performed) playerAttack.OnAttack();
+        if (!playerData.wallWalking && !playerData.burningIron && !playerData.burningSteel && !playerData.showingCoin)
+        {
+            if (context.performed)
+            {
+                if (playerData.pushing) pewterPower.StopPushing();
+
+                playerAttack.OnAttack();
+            } 
+        }
     }
 
     public void OnPush(InputAction.CallbackContext context)
     {
-        if (context.performed && playerData.objectNearby && playerData.burningPewter) pewterPower.PushImputUpdate();
+        if (context.performed && playerData.objectNearby && playerData.burningPewter && !playerData.movingWithPowers)
+            pewterPower.PushImputUpdate();
     }
 
     public void SteelPush(InputAction.CallbackContext context)
@@ -70,7 +80,12 @@ public class PlayerController : MonoBehaviour
         if (!playerData.attacking && !playerResources.steelEmpty)
         {
             if (context.performed)
+            {
+                if (playerData.pushing) pewterPower.StopPushing();
+
                 StartCoroutine(steelPower.SteelInputupdate(true));
+            }
+                
 
             if (context.canceled)
                 StartCoroutine(steelPower.SteelInputupdate(false));
@@ -82,8 +97,12 @@ public class PlayerController : MonoBehaviour
         if (!playerData.attacking && !playerResources.ironEmpty)
         {
             if (context.performed)
-                StartCoroutine(ironPower.IronInputupdate(true));
+            {
+                if (playerData.pushing) pewterPower.StopPushing();
 
+                StartCoroutine(ironPower.IronInputupdate(true));
+            }
+                
             if (context.canceled)
                 StartCoroutine(ironPower.IronInputupdate(false));
         }
@@ -114,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
     public void ShowCoin(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
+        if (!playerData.attacking && !playerData.pushing)
         {
             if (context.performed)
             {

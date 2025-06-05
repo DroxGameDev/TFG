@@ -48,11 +48,7 @@ public class PewterPower : MonoBehaviour
     {
         if (playerData.pushing) //stop pushing
         {
-            playerData.pushing = false;
-            playerData.moveMod = playerData.pewterMovementModifier;
-            objectPushing.transform.SetParent(null);
-            objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
-            objectPushing = null;
+            StopPushing();
         }
         else //start pushing
         {
@@ -101,11 +97,16 @@ public class PewterPower : MonoBehaviour
             objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
             objectPushing = null;
         }
-        
+
     }
 
     void StopPewter()
     {
+        if (playerData.pushing) //stop pushing
+        {
+            StopPushing();
+        }
+
         input = false;
         playerData.burningPewter = false;
         attackInfo.burningPewter = false;
@@ -113,14 +114,15 @@ public class PewterPower : MonoBehaviour
         playerData.jumpMod = 1;
         playerData.damage = noPewterDamage;
         playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
+    }
 
-        if (playerData.pushing) //stop pushing
-        {
-            playerData.pushing = false;
-            objectPushing.transform.SetParent(null);
-            objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
-            objectPushing = null;
-        }
+    public void StopPushing()
+    {
+        playerData.pushing = false;
+        playerData.moveMod = playerData.pewterMovementModifier;
+        objectPushing.transform.SetParent(null);
+        objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
+        objectPushing = null;
     }
 
 }

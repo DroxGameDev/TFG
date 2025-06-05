@@ -1960,7 +1960,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 70
+  field of view: 89.99999
   orthographic: 0
   orthographic size: 8
   m_Depth: -1
@@ -2337,7 +2337,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 573194966}
   m_Follow: {fileID: 573194966}
   m_Lens:
-    FieldOfView: 70
+    FieldOfView: 89.99999
     OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -3269,6 +3269,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 267999686774470613, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_Size.x
+      value: 0.213243
+      objectReference: {fileID: 0}
+    - target: {fileID: 267999686774470613, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.16890067
+      objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: mainCamera
       value: 
@@ -3277,6 +3285,10 @@ PrefabInstance:
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1257371537}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: pewterPushMovementModifier
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5340816306200333860, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_Name
       value: Player

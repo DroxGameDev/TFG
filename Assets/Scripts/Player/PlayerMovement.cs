@@ -125,12 +125,6 @@ public class PlayerMovement : AffectedByGravity
         {
             Flip();
         }
-
-
-        #region debug
-        groundPosition = playerData.groundCheck.position;
-        groundRadius = playerData.groundCheckRadius;
-        #endregion
         
     }
 
@@ -233,7 +227,10 @@ public class PlayerMovement : AffectedByGravity
 
     public bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(playerData.groundCheck.position, playerData.groundCheckRadius, playerData.groundLayer);
+        Vector2 a = new Vector2(playerData.groundCheck.position.x + playerData.groundCheckVertexA_x, playerData.groundCheck.position.y + playerData.groundCheckVertexA_y);
+        Vector2 b = new Vector2(playerData.groundCheck.position.x + playerData.groundCheckVertexB_x, playerData.groundCheck.position.y + playerData.groundCheckVertexB_y);
+
+        return Physics2D.OverlapArea(a, b, playerData.groundLayer);
     }
 
     private void Flip()
@@ -258,7 +255,11 @@ public class PlayerMovement : AffectedByGravity
         if(active){
             
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(groundPosition,groundRadius);
+
+            Vector3 a = new Vector3(playerData.groundCheckVertexA_x, playerData.groundCheckVertexA_y, 0f);
+            Vector3 b= new Vector3(playerData.groundCheckVertexB_x, playerData.groundCheckVertexB_y, 0f);
+
+            Gizmos.DrawLine(playerData.groundCheck.position + a,playerData.groundCheck.position + b);
             /*
             Vector2 positon = new Vector2(transform.position.x, transform.position.y);
             Vector2 direction = rb.velocity+positon;
