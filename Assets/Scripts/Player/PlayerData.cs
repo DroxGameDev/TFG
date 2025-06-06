@@ -174,6 +174,7 @@ public class PlayerData : MonoBehaviour
         burningPewter = false;
 
         showedCoin = null;
+        shootPoint.position = new Vector3(shootPoint.position.x, linesOrigin.position.y, 0);
 
         objectNearby = false;
         objectToPush = null;
