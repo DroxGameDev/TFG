@@ -130,7 +130,11 @@ public class PlayerMovement : AffectedByGravity
 
     public void ChangeXMovement(float input)
     {
-        if (!playerData.movingWithPowers && !playerData.attacking){
+        
+        if (!playerData.movingWithPowers && !playerData.attacking)
+        {
+            if (!playerData.burningPewter && playerData.pushing) return;
+
             #region Run
             //Calculate the direction we want to move in and our desired velocity
             float targetSpeed;
@@ -149,9 +153,9 @@ public class PlayerMovement : AffectedByGravity
             //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
             //finally multiplies by a sign to reapply direction
             float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
-            
+
             rb.AddForce(movement * RunDirectionByGravity(playerData.gravityMode));
-                
+
             #endregion
         }
     }

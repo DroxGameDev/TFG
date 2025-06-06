@@ -25,7 +25,7 @@ public class PlayerData : MonoBehaviour
     [Range (0f, 30f)] public  float acceleration;
     [Range (0f, 30f)] public  float decceleration;
     [Range (0f, 1.5f)] public  float velPower;
-    [HideInInspector] public float moveMod = 1;
+    public float moveMod = 1;
 
     [Space(10)]
     [Range(0f, 1f)] public float crocuhModifier;
@@ -48,7 +48,6 @@ public class PlayerData : MonoBehaviour
     [Header("Gravity")]
     [Range (0f, 5f)] public  float gravityScale;
     [Range (0f, 5f)] public  float fallGravityMultiplier;
-    public bool cancelGravity = false;
     public GravityMode gravityMode = GravityMode.Down;
     [Range (0f, 5f)] public float jumpHangTheshold;
     [Range (0f, 5f)] public float jumpHangMultiplier;
@@ -156,6 +155,40 @@ public class PlayerData : MonoBehaviour
     [Space(10)] 
     public bool movingWithPowers = false;
     public bool showingCoin = false;
+
+    void Start()
+    {
+        //initial values
+        moveMod = 1;
+
+        isFacingRight = true;
+
+        gravityScale = 1f;
+        gravityMode = GravityMode.Down;
+
+        attackComboStep = AttackCombo.Attack1;
+
+        burningIron = false;
+        burningSteel = false;
+        burningTin = false;
+        burningPewter = false;
+
+        showedCoin = null;
+
+        objectNearby = false;
+        objectToPush = null;
+
+        grounded = false;
+        running = false;
+        jumping = false;
+        falling = false;
+        attacking = false;
+        midAttacking = false;
+        wallWalking = false;
+        pushing = false;
+        movingWithPowers = false;
+        showingCoin = false;
+    }
 
     public void ChangeGravityMode(GravityMode mode)
     {

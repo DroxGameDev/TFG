@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPush(InputAction.CallbackContext context)
     {
-        if (context.performed && playerData.objectNearby && playerData.burningPewter && !playerData.movingWithPowers)
+        if (context.performed && playerData.objectNearby/* && playerData.burningPewter */&& !playerData.movingWithPowers)
             pewterPower.PushImputUpdate();
     }
 

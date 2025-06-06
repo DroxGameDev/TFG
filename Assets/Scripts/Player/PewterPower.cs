@@ -36,6 +36,7 @@ public class PewterPower : MonoBehaviour
             playerData.burningPewter = true;
             attackInfo.burningPewter = true;
             playerData.moveMod = playerData.pewterMovementModifier;
+            if (playerData.pushing) playerData.moveMod = playerData.pewterPushMovementModifier;
             playerData.jumpMod = playerData.pewterJumpModifier;
             playerData.damage = playerData.pewterDamage;
             playerData.smearFramesMaterial.SetInt("_burningPewter", 1);

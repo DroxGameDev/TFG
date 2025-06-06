@@ -198,7 +198,7 @@ public class PlayerResources : MonoBehaviour
     {
         if (!ironEmpty && playerData.burningIron)
         {
-            UpdateIronReserves(-Time.deltaTime);
+            UpdateIronReserves(-Time.unscaledDeltaTime);
 
             if (ironReserve <= 0.01 && ironVials > 0)
             {
@@ -209,7 +209,7 @@ public class PlayerResources : MonoBehaviour
 
         if (!steelEmpty && playerData.burningSteel)
         {
-            UpdateSteelReserves(-Time.deltaTime);
+            UpdateSteelReserves(-Time.unscaledDeltaTime);
 
             if (steelReserve <= 0.01 && steelVials > 0)
             {
@@ -220,7 +220,7 @@ public class PlayerResources : MonoBehaviour
 
         if (!tinEmpty && playerData.burningTin)
         {
-            UpdateTinReserves(-Time.deltaTime);
+            UpdateTinReserves(-Time.unscaledDeltaTime);
 
             if (tinReserve <= 0.01 && tinVials > 0)
             {
@@ -231,7 +231,7 @@ public class PlayerResources : MonoBehaviour
 
         if (!pewterEmpty && playerData.burningPewter)
         {
-            UpdatePewterReserves(-Time.deltaTime);
+            UpdatePewterReserves(-Time.unscaledDeltaTime);
 
             if (pewterReserve <= 0.01 && pewterVials > 0)
             {
