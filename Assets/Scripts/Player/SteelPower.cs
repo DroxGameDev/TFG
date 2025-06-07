@@ -118,6 +118,7 @@ public class SteelPower : Iron_Steel
             Time.timeScale = 0.1f;
             selectMetalCounter = playerData.selectMetalTime;
             setLinesDirection();
+            DetectPushing();
         }
         else
         {

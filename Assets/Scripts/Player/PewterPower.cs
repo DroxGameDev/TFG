@@ -6,7 +6,6 @@ public class PewterPower : MonoBehaviour
 {
     private PlayerData playerData;
     private PlayerResources playerResources;
-    private Rigidbody2D playerRB;
     private AttackInfo attackInfo;
     private bool input = false;
     private int noPewterDamage;
@@ -17,7 +16,6 @@ public class PewterPower : MonoBehaviour
     {
         playerData = GetComponent<PlayerData>();
         playerResources = GetComponent<PlayerResources>();
-        playerRB = GetComponent<Rigidbody2D>();
         attackInfo = playerData.attackOrigin.GetComponent<AttackInfo>();
 
         noPewterDamage = playerData.damage;

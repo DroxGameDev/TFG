@@ -21,45 +21,45 @@ public class PlayerData : MonoBehaviour
     [Range(0, 50)] public int maxHealth;
 
     [Header("Movement")]
-    [Range (0f, 20f)] public  float moveSpeed;
-    [Range (0f, 30f)] public  float acceleration;
-    [Range (0f, 30f)] public  float decceleration;
-    [Range (0f, 1.5f)] public  float velPower;
+    [Range(0f, 20f)] public float moveSpeed;
+    [Range(0f, 30f)] public float acceleration;
+    [Range(0f, 30f)] public float decceleration;
+    [Range(0f, 1.5f)] public float velPower;
     public float moveMod = 1;
 
     [Space(10)]
     [Range(0f, 1f)] public float crocuhModifier;
 
-    [Space(10)] 
-    [Range(0f, 0.5f)] public  float frictionAmount;
-    public Vector2 velocity = new Vector2(0f,0f);
+    [Space(10)]
+    [Range(0f, 0.5f)] public float frictionAmount;
+    public Vector2 velocity = new Vector2(0f, 0f);
     [Space(10)]
     public bool isFacingRight = true;
 
     [Header("Jumping")]
     [Range(0f, 20f)] public float jumpForce;
-    [Range (0f, 1f)] public  float jumpCutMultiplier;
-    [Space(10)] 
-    [Range (0f, 1f)] public  float coyoteTime;
-    [Range (0f, 1f)] public  float jumpBufferTime;
+    [Range(0f, 1f)] public float jumpCutMultiplier;
+    [Space(10)]
+    [Range(0f, 1f)] public float coyoteTime;
+    [Range(0f, 1f)] public float jumpBufferTime;
     [HideInInspector] public float jumpMod = 1;
 
-    [Space(10)] 
+    [Space(10)]
     [Header("Gravity")]
-    [Range (0f, 5f)] public  float gravityScale;
-    [Range (0f, 5f)] public  float fallGravityMultiplier;
+    [Range(0f, 5f)] public float gravityScale;
+    [Range(0f, 5f)] public float fallGravityMultiplier;
     public GravityMode gravityMode = GravityMode.Down;
-    [Range (0f, 5f)] public float jumpHangTheshold;
-    [Range (0f, 5f)] public float jumpHangMultiplier;
+    [Range(0f, 5f)] public float jumpHangTheshold;
+    [Range(0f, 5f)] public float jumpHangMultiplier;
 
     [Space(10)]
     [Header("Attacking")]
     [Range(0, 3)] public int damage;
-    [Range(0f, 1f)] public  float attackBufferTime;
+    [Range(0f, 1f)] public float attackBufferTime;
     [Range(0f, 2f)] public float attackCooldownTime;
     [Range(0f, 5f)] public float attackComboTime;
     public AttackCombo attackComboStep = AttackCombo.Attack1;
-    [Space(10)] 
+    [Space(10)]
     [Range(0, 10f)] public float attackImpulse;
     [Range(0, 1f)] public float waitForAttack;
     [Space(10)]
@@ -67,10 +67,10 @@ public class PlayerData : MonoBehaviour
 
     [Header("Check")]
     public Transform groundCheck;
-    [Range (-1f, 1f)] public  float groundCheckVertexA_x;
-    [Range (-1f, 1f)] public  float groundCheckVertexA_y;
-    [Range (-1f, 1f)] public  float groundCheckVertexB_x;
-    [Range (-1f, 1f)] public  float groundCheckVertexB_y;
+    [Range(-1f, 1f)] public float groundCheckVertexA_x;
+    [Range(-1f, 1f)] public float groundCheckVertexA_y;
+    [Range(-1f, 1f)] public float groundCheckVertexB_x;
+    [Range(-1f, 1f)] public float groundCheckVertexB_y;
 
 
 
@@ -82,10 +82,10 @@ public class PlayerData : MonoBehaviour
     //Steel = push
     public Transform linesOrigin;
     public LayerMask metalLayers;
-    [Range (0f, 10f)] public float metalCheckRadius;
-    [Range (0f, 5f)] public float metalCheckMinRadius;
+    [Range(0f, 10f)] public float metalCheckRadius;
+    [Range(0f, 5f)] public float metalCheckMinRadius;
     public GameObject linePrefab;
-    [Range(0f,5f)] public float selectMetalTime;
+    [Range(0f, 5f)] public float selectMetalTime;
 
     [Space(10)]
     public Material selectMetalMaterial;
@@ -96,12 +96,12 @@ public class PlayerData : MonoBehaviour
     [Range(0f, 40f)] public float steelPushPower;
     [Range(0f, 5f)] public float steelPushTime;
 
-    [Space(10)] 
+    [Space(10)]
 
     [Header("Iron")]
     public bool burningIron;
     [Range(0f, 40f)] public float ironPullPower;
-    [Range(0,2f)] public float ironPullPowerMult;
+    [Range(0, 2f)] public float ironPullPowerMult;
     [Range(0f, 5f)] public float ironPullTime;
     public LayerMask walkableAreaLayer;
 
@@ -127,7 +127,7 @@ public class PlayerData : MonoBehaviour
     [Range(1f, 3f)] public float pewterJumpModifier;
     [Space(10)]
     public Material smearFramesMaterial;
-     [Space(10)]
+    [Space(10)]
     public bool objectNearby;
     public GameObject objectToPush;
     public Collider2D pushCollider;
@@ -152,7 +152,7 @@ public class PlayerData : MonoBehaviour
     public bool wallWalking = false;
     public bool pushing = false;
 
-    [Space(10)] 
+    [Space(10)]
     public bool movingWithPowers = false;
     public bool showingCoin = false;
 
@@ -228,8 +228,9 @@ public class PlayerData : MonoBehaviour
             //transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }
-    public void setGravity(float newGracityScaleX, float newGracityScaleY){
+    public void setGravity(float newGracityScaleX, float newGracityScaleY)
+    {
         ConstantForce2D forceMode = GetComponent<ConstantForce2D>();
-        forceMode.force = new Vector2 (Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
+        forceMode.force = new Vector2(Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
     }
 }

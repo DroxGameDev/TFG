@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                 if (playerData.pushing) pewterPower.StopPushing();
 
                 playerAttack.OnAttack();
-            } 
+            }
         }
     }
 
@@ -81,11 +81,9 @@ public class PlayerController : MonoBehaviour
         {
             if (context.performed)
             {
-                if (playerData.pushing) pewterPower.StopPushing();
-
                 StartCoroutine(steelPower.SteelInputupdate(true));
             }
-                
+
 
             if (context.canceled)
                 StartCoroutine(steelPower.SteelInputupdate(false));
@@ -98,11 +96,9 @@ public class PlayerController : MonoBehaviour
         {
             if (context.performed)
             {
-                if (playerData.pushing) pewterPower.StopPushing();
-
                 StartCoroutine(ironPower.IronInputupdate(true));
             }
-                
+
             if (context.canceled)
                 StartCoroutine(ironPower.IronInputupdate(false));
         }
@@ -139,10 +135,11 @@ public class PlayerController : MonoBehaviour
             {
                 playerResources.ShowCoinInput();
             }
-        } 
+        }
     }
 
-    public void TinSenses(InputAction.CallbackContext context){
+    public void TinSenses(InputAction.CallbackContext context)
+    {
         if (context.performed && !playerResources.tinEmpty) tinPower.TinInput();
     }
 

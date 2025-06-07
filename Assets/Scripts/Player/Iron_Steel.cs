@@ -20,6 +20,7 @@ public class Iron_Steel : MonoBehaviour
     [HideInInspector] public static PlayerData playerData;
     [HideInInspector] public static Collider2D col;
     [HideInInspector] public static PlayerResources playerResources;
+    [HideInInspector] public static PewterPower pewterPower;
 
     [HideInInspector] public static List<LineObject> nearMetalLines;
     [HideInInspector] public static Vector2 selectMetalVector;
@@ -34,6 +35,7 @@ public class Iron_Steel : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         nearMetalLines = new List<LineObject>();
         playerResources = GetComponent<PlayerResources>();
+        pewterPower = GetComponent<PewterPower>();
     }
     public static void GetSelectMetalAngle(Vector2 context)
     {
@@ -99,7 +101,7 @@ public class Iron_Steel : MonoBehaviour
     {
         StartCoroutine(EndTransition());
     }
-    
+
     private IEnumerator StartTransition()
     {
         float currentStep = 0;
@@ -115,7 +117,7 @@ public class Iron_Steel : MonoBehaviour
 
         transitioning = false;
     }
-    
+
     private IEnumerator EndTransition()
     {
         float currentStep = 1;
@@ -286,6 +288,12 @@ public class Iron_Steel : MonoBehaviour
             Destroy(nearMetalLines[i].line);
         }
         nearMetalLines.Clear();
+    }
+
+    public void DetectPushing()
+    {
+        if (playerData.pushing && pewterPower != null)
+            pewterPower.StopPushing();
     }
 
 }
