@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -1424,13 +1424,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674155920}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46321014, y: -0.46354458, z: 0.1411673, w: 0.7420476}
-  m_LocalPosition: {x: 86.6, y: 13.8, z: 100.4}
+  m_LocalRotation: {x: -0.42502883, y: 0.30368245, z: -0.23203954, w: -0.82053953}
+  m_LocalPosition: {x: 11.84, y: 9.38, z: 147.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 54.917, y: -75.786, z: -22.498}
+  m_LocalEulerAnglesHint: {x: 56.976, y: -393.54, z: 13.005}
 --- !u!1 &762045548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,7 +1987,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3, y: 0.39000022, z: -10}
+  m_LocalPosition: {x: 12.6, y: -1.6399997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2364,7 +2364,7 @@ Transform:
   m_GameObject: {fileID: 1257371536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3, y: 0.39000022, z: -10}
+  m_LocalPosition: {x: 12.6, y: -1.6399997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3383,11 +3383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.3
+      value: 12.6
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.39
+      value: -1.64
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.z
