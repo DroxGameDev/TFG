@@ -13,6 +13,7 @@ TagManager:
   - BreakableObject
   - Enemy
   - Vial
+  - Box
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - Attack
   - Damage
   - Push
-  - 
+  - Box
   - 
   - 
   - 

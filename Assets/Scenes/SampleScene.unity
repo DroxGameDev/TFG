@@ -1987,7 +1987,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.75, y: -0.019999761, z: -10}
+  m_LocalPosition: {x: -6.3, y: 0.39000022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2364,7 +2364,7 @@ Transform:
   m_GameObject: {fileID: 1257371536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.75, y: -0.019999761, z: -10}
+  m_LocalPosition: {x: -6.3, y: 0.39000022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3346,6 +3346,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1257371537}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 525632
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: groundCheckVertexA_x
       value: -0.43
       objectReference: {fileID: 0}
@@ -3362,6 +3366,10 @@ PrefabInstance:
       value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: obstacleLayer.m_Bits
+      value: 525632
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: pewterPushMovementModifier
       value: 0.4
       objectReference: {fileID: 0}
@@ -3375,11 +3383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 97.75
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 5880231342102319593, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_LocalPosition.z
