@@ -114,7 +114,7 @@ public class PlayerData : MonoBehaviour
     public bool burningTin;
     [Range(0f, 0.1f)] public float tinTransitionStep;
     [Space(10)]
-    [Range(0f, 5f)] public float seeThroughMistSize;
+    [Range(0f, 10f)] public float seeThroughMistSize;
     public Material mist;
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;

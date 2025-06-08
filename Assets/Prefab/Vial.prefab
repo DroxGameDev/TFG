@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0ffc209a392725a4e8274793a5c876e0, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  type: 1
+  type: 0
   metalVialSpriteRenderer: {fileID: 3938289696937985795}
   metalVialSpriteIron: {fileID: 21300000, guid: fb74f124d96134746be08bfd68f2a972, type: 3}
   metalVialSpriteSteel: {fileID: 21300000, guid: 4e25597751892b74d83c12466614a893, type: 3}
