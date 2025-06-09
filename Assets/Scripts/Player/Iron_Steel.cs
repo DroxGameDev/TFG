@@ -76,8 +76,17 @@ public class Iron_Steel : MonoBehaviour
         Vector2 MetalClosestPoint = lineObject.metal.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
         float lineDistance = Vector2.Distance(playerData.linesOrigin.position, MetalClosestPoint);
 
-        Vector2 directorVector = MetalClosestPoint + (lineObject.metal.GetComponent<BoxCollider2D>().offset * -1)
+        Vector2 directorVector;
+
+        if (lineObject.metal.tag == "Walkable_Area")
+        {
+            directorVector = MetalClosestPoint + lineObject.metal.GetComponent<WalkableArea>().worldOffest*-1f
                                     - new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
+        }
+        else
+        {
+            directorVector = MetalClosestPoint - new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
+        }
 
         directorVector.Normalize();
 
@@ -158,7 +167,7 @@ public class Iron_Steel : MonoBehaviour
                     }
                     else if (actualLine.metal.tag == "Walkable_Area")
                     {
-                        Vector2 worldOffset = actualLine.metal.transform.TransformVector(actualLine.metal.GetComponent<BoxCollider2D>().offset * -1);
+                        Vector2 worldOffset = actualLine.metal.transform.TransformVector(actualLine.metal.GetComponent<Collider2D>().offset * -1f);
                         actualLine.lineRenderer.SetPosition(1, MetalClosestPoint + worldOffset);
                     }
                     else

@@ -145,7 +145,16 @@ public class SteelPower : Iron_Steel
     private Vector2 getImpulse(Vector2 metalPosition)
     {
         Vector2 position = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
-        Vector2 directorVector = metalPosition - position + (selectedMetal.metal.offset * -1);
+
+        Vector2 directorVector;
+        if (selectedMetal.metal.tag == "Walkable_Area")
+        {
+            directorVector = metalPosition - position + (selectedMetal.metal.GetComponent<WalkableArea>().worldOffest * -1);
+        }
+        else
+        {
+            directorVector = metalPosition - position;
+        }
         directorVector.Normalize();
         rb.velocity = Vector3.zero;
         Vector2 forceToApply = directorVector * playerData.steelPushPower * selectedMetal.iValue * -1;
@@ -160,7 +169,15 @@ public class SteelPower : Iron_Steel
 
         if (target.tag == "Floor" || target.tag == "Walkable_Area")
         {
-            Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
+            Vector2 MetalClosestPoint;
+            if (target.tag == "Walkable_Area")
+            {
+                MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
+            }
+            else
+            {
+                MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
+            }
             forceAmount = getImpulse(MetalClosestPoint);
             origin.AddForce(forceAmount, ForceMode2D.Impulse);
         }
@@ -210,7 +227,7 @@ public class SteelPower : Iron_Steel
     private Vector2 getPointToForce(Vector2 metalPosition)
     {
         Vector2 playerPosition = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
-        Vector2 directorVector = metalPosition - playerPosition /*+ (selectedMetal.metal.offset * -1)*/;
+        Vector2 directorVector = metalPosition - playerPosition;
         directorVector.Normalize();
         return  playerPosition + directorVector * playerData.metalCheckRadius;
     }

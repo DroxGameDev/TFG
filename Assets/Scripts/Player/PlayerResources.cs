@@ -59,7 +59,7 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
-
+     #region  input
     public void PickDropCoinInput()
     {
         //pick object
@@ -111,6 +111,7 @@ public class PlayerResources : MonoBehaviour
             playerData.showingCoin = true;
         }
     }
+    #endregion
 
     void CoinInHand(Coin coin)
     {

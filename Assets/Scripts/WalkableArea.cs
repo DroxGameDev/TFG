@@ -6,26 +6,31 @@ using UnityEngine;
 public class WalkableArea : MonoBehaviour
 {
     public GravityMode gravity;
-    private Collider2D col;
+    private  Collider2D col;
+
+    public Vector2 worldOffest;
 
     void Start()
     {
         col = GetComponent<Collider2D>();
+        col.offset = Vector2.up;
+
         if (gravity == GravityMode.Up)
         {
-            col.offset = Vector2.down;
+            worldOffest = Vector2.down;
+        }
+        else if (gravity == GravityMode.Down)
+        {
+            worldOffest = Vector2.up;
         }
         else if (gravity == GravityMode.Left)
         {
-            col.offset = Vector2.right;
+            worldOffest = Vector2.right;
         }
         else if (gravity == GravityMode.Right)
         {
-            col.offset = Vector2.left;
+            worldOffest = Vector2.left;
         }
-        else
-            col.offset = Vector2.up;
-
     }
 
     void OnTriggerEnter2D(Collider2D collision)
