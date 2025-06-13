@@ -142,6 +142,7 @@ public class SteelPower : Iron_Steel
         burningSteelCounter = playerData.steelPushTime;
     }
 
+
     private Vector2 getImpulse(Vector2 metalPosition)
     {
         Vector2 position = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);

@@ -272,6 +272,7 @@ public class IronPower : Iron_Steel
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = col.Cast(direction, filter, hits, step);
+    
 
             if (hitCount > 0)
             {
