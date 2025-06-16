@@ -23,7 +23,7 @@ TagManager:
   - UI
   - Floor
   - Player
-  - Metal_Environment_Platform
+  - 
   - Metal_Environment_Background
   - Metal_Heavy
   - Metal_Light
@@ -35,7 +35,7 @@ TagManager:
   - Damage
   - Push
   - Box
-  - 
+  - EnemyPhysics
   - 
   - 
   - 

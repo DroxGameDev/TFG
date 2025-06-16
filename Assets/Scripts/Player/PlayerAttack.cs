@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
 {
     private PlayerData playerData;
     private Rigidbody2D rb;
-    private AttackInfo attackInfo;
+    private PlayerAttackInfo attackInfo;
     private float attackBufferCounter;
     private float attackCooldownCounter;
     private float attackComboCounter;
@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
         attackCollider = playerData.attackOrigin.GetComponent<Collider2D>();
-        attackInfo =  playerData.attackOrigin.GetComponent<AttackInfo>();
+        attackInfo =  playerData.attackOrigin.GetComponent<PlayerAttackInfo>();
         attackCollider.enabled = false;
     }
     public void OnAttack()
@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         attackInfo.damage = playerData.damage;
+        attackInfo.damageKnockback = playerData.damageKnockback;
 
         yield return new WaitForSeconds(playerData.waitForAttack);
 

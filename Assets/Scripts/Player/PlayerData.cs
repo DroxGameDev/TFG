@@ -54,7 +54,8 @@ public class PlayerData : MonoBehaviour
 
     [Space(10)]
     [Header("Attacking")]
-    [Range(0, 3)] public int damage;
+    [Range(0, 5)] public int damage;
+    [Range(0, 10f)] public float damageKnockback;
     [Range(0f, 1f)] public float attackBufferTime;
     [Range(0f, 2f)] public float attackCooldownTime;
     [Range(0f, 5f)] public float attackComboTime;
@@ -71,8 +72,6 @@ public class PlayerData : MonoBehaviour
     [Range(-1f, 1f)] public float groundCheckVertexA_y;
     [Range(-1f, 1f)] public float groundCheckVertexB_x;
     [Range(-1f, 1f)] public float groundCheckVertexB_y;
-
-
 
     public LayerMask groundLayer;
     [Space(10)]
@@ -100,8 +99,7 @@ public class PlayerData : MonoBehaviour
 
     [Header("Iron")]
     public bool burningIron;
-    [Range(0f, 40f)] public float ironPullPower;
-    [Range(0, 2f)] public float ironPullPowerMult;
+    [Range(0f, 100f)] public float ironPullPower;
     [Range(0f, 5f)] public float ironPullTime;
     public LayerMask walkableAreaLayer;
 
@@ -123,6 +121,7 @@ public class PlayerData : MonoBehaviour
     [Header("Pewter")]
     public bool burningPewter;
     [Range(0, 5)] public int pewterDamage;
+    [Range(0, 10f)] public float pewterDamageKnokback;
     [Range(1f, 3f)] public float pewterMovementModifier;
     [Range(1f, 3f)] public float pewterJumpModifier;
     [Space(10)]
@@ -166,7 +165,9 @@ public class PlayerData : MonoBehaviour
         gravityScale = 1f;
         gravityMode = GravityMode.Down;
 
+        damage = 1;
         attackComboStep = AttackCombo.Attack1;
+        attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight = true;
 
         burningIron = false;
         burningSteel = false;
@@ -232,5 +233,25 @@ public class PlayerData : MonoBehaviour
     {
         ConstantForce2D forceMode = GetComponent<ConstantForce2D>();
         forceMode.force = new Vector2(Physics2D.gravity.x * newGracityScaleX, Physics2D.gravity.y * newGracityScaleY);
+    }
+
+    public void Flip()
+    {
+        if (Time.timeScale == 1f)
+        {
+            isFacingRight = !isFacingRight;
+            
+            attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight = !attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight;
+
+            Vector2 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+
+            /*
+            Vector3 currentShootPoint = playerData.shootPoint.localPosition;
+            currentShootPoint.x *= -1f;
+            playerData.shootPoint.localPosition = currentShootPoint;
+            */
+        }
     }
 }

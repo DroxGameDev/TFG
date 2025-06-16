@@ -118,12 +118,12 @@ public class PlayerMovement : AffectedByGravity
         if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing) ||
                 (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing))
         {
-            Flip();
+            playerData.Flip();
         }
         else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing)
                 || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing))
         {
-            Flip();
+            playerData.Flip();
         }
         
     }
@@ -235,23 +235,6 @@ public class PlayerMovement : AffectedByGravity
         Vector2 b = new Vector2(playerData.groundCheck.position.x + playerData.groundCheckVertexB_x, playerData.groundCheck.position.y + playerData.groundCheckVertexB_y);
 
         return Physics2D.OverlapArea(a, b, playerData.groundLayer);
-    }
-
-    private void Flip()
-    {
-        if (Time.timeScale == 1f)
-        {
-            playerData.isFacingRight = !playerData.isFacingRight;
-            Vector2 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-
-            /*
-            Vector3 currentShootPoint = playerData.shootPoint.localPosition;
-            currentShootPoint.x *= -1f;
-            playerData.shootPoint.localPosition = currentShootPoint;
-            */
-        }
     }
 
     private void OnDrawGizmos()

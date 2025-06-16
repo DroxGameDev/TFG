@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Damage
+    m_Hash: 375673178
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Damage_0
+      m_Hash: 102474000
+      m_Sprite: {fileID: 0}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -465466605, guid: f16d26f540aba5e4e951a51a1bcbe9cc, type: 3}
+    - m_Name: Damage_1
+      m_Hash: 823955846
+      m_Sprite: {fileID: 0}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -232519045, guid: f16d26f540aba5e4e951a51a1bcbe9cc, type: 3}
+    - m_Name: Damage_2
+      m_Hash: 672514108
+      m_Sprite: {fileID: 0}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: -1557570834, guid: f16d26f540aba5e4e951a51a1bcbe9cc, type: 3}
+    - m_Name: Damage_3
+      m_Hash: 521334954
+      m_Sprite: {fileID: 0}
+      m_FromMain: 1
+      m_SpriteOverride: {fileID: 642581906, guid: f16d26f540aba5e4e951a51a1bcbe9cc, type: 3}
+    m_FromMain: 1
+    m_EntryOverrideCount: 4
+  m_PrimaryLibraryGUID: f234b6c9b478137498c0e9e2667398e8
+  m_ModificationHash: 638856862382841183
+  m_Version: 1

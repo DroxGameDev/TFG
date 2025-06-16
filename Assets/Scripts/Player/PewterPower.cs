@@ -6,9 +6,10 @@ public class PewterPower : MonoBehaviour
 {
     private PlayerData playerData;
     private PlayerResources playerResources;
-    private AttackInfo attackInfo;
+    private PlayerAttackInfo attackInfo;
     private bool input = false;
     private int noPewterDamage;
+    private float noPewterKonckback;
 
     private GameObject objectPushing;
 
@@ -16,9 +17,11 @@ public class PewterPower : MonoBehaviour
     {
         playerData = GetComponent<PlayerData>();
         playerResources = GetComponent<PlayerResources>();
-        attackInfo = playerData.attackOrigin.GetComponent<AttackInfo>();
+        attackInfo = playerData.attackOrigin.GetComponent<PlayerAttackInfo>();
 
         noPewterDamage = playerData.damage;
+        noPewterKonckback = playerData.damageKnockback;
+
         attackInfo.burningPewter = false;
         playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
     }
@@ -33,10 +36,15 @@ public class PewterPower : MonoBehaviour
             input = true;
             playerData.burningPewter = true;
             attackInfo.burningPewter = true;
+
             playerData.moveMod = playerData.pewterMovementModifier;
+
             if (playerData.pushing) playerData.moveMod = playerData.pewterPushMovementModifier;
+
             playerData.jumpMod = playerData.pewterJumpModifier;
             playerData.damage = playerData.pewterDamage;
+            playerData.damageKnockback = playerData.pewterDamageKnokback;
+
             playerData.smearFramesMaterial.SetInt("_burningPewter", 1);
             StartCoroutine(Healing());
         }
@@ -112,6 +120,7 @@ public class PewterPower : MonoBehaviour
         playerData.moveMod = 1;
         playerData.jumpMod = 1;
         playerData.damage = noPewterDamage;
+        playerData.damageKnockback = noPewterKonckback;
         playerData.smearFramesMaterial.SetInt("_burningPewter", 0);
     }
 

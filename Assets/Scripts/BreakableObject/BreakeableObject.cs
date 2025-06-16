@@ -21,7 +21,7 @@ public class BreakeableObject : MonoBehaviour, IDamageable
         originalPosition = sprite.transform.localPosition;
     }
 
-    public void OnDamage(int damage)
+    public void OnDamage(int damage, float knockbackAmount ,bool originFacingRight)
     {
         health -= damage;
         StartCoroutine(Shake());

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageArea : MonoBehaviour
+public class ObjectDamageArea : MonoBehaviour
 {
     public BreakeableObject origin;
 
@@ -10,15 +10,14 @@ public class DamageArea : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            AttackInfo attackInfo = collision.gameObject.GetComponent<AttackInfo>();
+            PlayerAttackInfo attackInfo = collision.gameObject.GetComponent<PlayerAttackInfo>();
             if (tag == "BreakableObject")
             {
                 if (attackInfo.burningPewter)
-                    origin.OnDamage(attackInfo.damage);
+                    origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback,attackInfo.transform);
                 else
-                    origin.OnDamage(0);
+                    origin.OnDamage(0, attackInfo.damageKnockback,attackInfo.transform);
             }
-            
         }
     }
 }

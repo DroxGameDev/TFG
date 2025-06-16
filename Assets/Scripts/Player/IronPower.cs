@@ -76,8 +76,16 @@ public class IronPower : Iron_Steel
             {
                 if (selectedMetal.metal.tag == "Environment_metal")
                 {
-                    ChangeState(PowerState.impulse);
-                    OnImpulse();
+                     if (playerData.grounded)
+                    {
+                        ChangeState(PowerState.inactive);
+                        OnInactive();
+                    }
+                    else
+                    {
+                        ChangeState(PowerState.impulse);
+                        OnImpulse();
+                    }
                 }
                 else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
                 {
@@ -191,7 +199,7 @@ public class IronPower : Iron_Steel
             forcePlayerPosition = playerData.linesOrigin.position;
             currentPosition = metal.transform.position;
 
-            float step = playerData.ironPullPower * playerData.ironPullPowerMult / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
+            float step = playerData.ironPullPower / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
@@ -210,22 +218,15 @@ public class IronPower : Iron_Steel
                     obstacleReached = true;
                     metalObstacleReached = true;
 
-                    if (direction.y >= 0f || direction.y < -0.4f)
+                    if (direction.y < 0f && Mathf.Abs(direction.y) < 0.5f)
                     {
-                        obstacleReached = true;
-                        metalObstacleReached = true;
+                        direction = metal.transform.position.x < playerData.linesOrigin.position.x ?
+                            Vector2.right : Vector2.left;
                     }
                     else
                     {
-                        if (metal.transform.position.x < playerData.linesOrigin.position.x)
-                        {
-                            direction = Vector2.right;
-                        }
-                        else
-                        {
-                            direction = Vector2.left;
-                        }
-                        
+                        obstacleReached = true;
+                        metalObstacleReached = true;
                     }
                 }
             }
@@ -264,7 +265,7 @@ public class IronPower : Iron_Steel
         {
             currentPosition = origin.transform.position;
 
-            float step = playerData.ironPullPower * playerData.ironPullPowerMult * Time.fixedDeltaTime;
+            float step = playerData.ironPullPower * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
@@ -280,7 +281,12 @@ public class IronPower : Iron_Steel
                 origin.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
                 if (hits[0].distance < 0.1f)
                 {
-                    if (direction.y >= 0f || direction.y < -0.4f)
+                    if (direction.y < 0f && Mathf.Abs(direction.y) < 0.5f)
+                    {
+                        direction = origin.transform.position.x < target.transform.position.x ?
+                            Vector2.right : Vector2.left;
+                    }
+                    else
                     {
                         if (target.tag == "Heavy_Metal")
                         {
@@ -290,18 +296,6 @@ public class IronPower : Iron_Steel
                         {
                             obstacleReached = true;
                         }
-                    }
-                    else
-                    {
-                        if (origin.transform.position.x < target.transform.position.x)
-                        {
-                            direction = Vector2.right;
-                        }
-                        else
-                        {
-                            direction = Vector2.left;
-                        }
-
                     }
                 }
             }
