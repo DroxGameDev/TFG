@@ -57,6 +57,9 @@ public class EnemyAnimation : MonoBehaviour
             }
         }
 
+        if (enemyData.walking) return walk;
+        if (enemyData.running) return run;
+
         return idle;
 
         int LockState(int s, float t){

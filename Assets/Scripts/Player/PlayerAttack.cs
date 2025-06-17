@@ -17,14 +17,11 @@ public class PlayerAttack : MonoBehaviour
     private float attackBufferCounter;
     private float attackCooldownCounter;
     private float attackComboCounter;
-    private Collider2D attackCollider;
     void Start()
     {
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
-        attackCollider = playerData.attackOrigin.GetComponent<Collider2D>();
         attackInfo =  playerData.attackOrigin.GetComponent<PlayerAttackInfo>();
-        attackCollider.enabled = false;
     }
     public void OnAttack()
     {
@@ -37,20 +34,17 @@ public class PlayerAttack : MonoBehaviour
         attackInfo.damageKnockback = playerData.damageKnockback;
 
         yield return new WaitForSeconds(playerData.waitForAttack);
-
-        attackCollider.enabled = true;
         playerData.midAttacking = true;
 
         if (playerData.isFacingRight)
         {
-            rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.left * playerData.attackImpulse, ForceMode2D.Impulse);
         }
         else
         {
-            rb.AddForce(Vector2.left * playerData.attackImpulse, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
         }
         yield return new WaitForSeconds(playerData.attackCooldownTime - playerData.waitForAttack);
-        attackCollider.enabled = false;
         playerData.midAttacking = false;
 
     }
