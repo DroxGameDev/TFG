@@ -210,7 +210,18 @@ public class SteelPower : Iron_Steel
                 if (target.gameObject == playerData.showedCoin)
                     playerResources.SteelCoin(target.gameObject.GetComponent<Coin>());
 
+                if (target.tag == "Coin")
+                {
+                    if(!Physics2D.Raycast(target.gameObject.GetComponent<Coin>().checkGroundPosition.position,Vector2.down, 1f, playerData.groundLayer))
+                        target.gameObject.GetComponent<Coin>().attackCollider.enabled = true;
+                }
+
                 yield return StartCoroutine(moveAwayFromPlayer(target.GetComponent<Collider2D>(), origin.GetComponent<Collider2D>()));
+
+                if (target.tag == "Coin")
+                {
+                    target.gameObject.GetComponent<Coin>().attackCollider.enabled = false;
+                }
 
                 if (impulsePushedObject)
                 {
@@ -260,7 +271,7 @@ public class SteelPower : Iron_Steel
         }
 
 
-        while (Vector2.Distance(currentPosition, objectivePosition) > 0.1f && !metalObstacleReached)
+        while (Vector2.Dot(direction, objectivePosition - currentPosition) > 0.1f && !metalObstacleReached)
         {
             currentPosition = metal.transform.position;
 
@@ -273,13 +284,14 @@ public class SteelPower : Iron_Steel
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = metal.attachedRigidbody.Cast(direction, filter, hits, step);
-            
+
             if (hitCount > 0)
             {
+                float distanceToObstacle = hits[0].distance;
                 // Si hay colisión, mueve solo hasta el punto de colisión
-                metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
-                if (hits[0].distance < 0.1f)
+                if (distanceToObstacle < 0.1f)
                 {
+                    metal.attachedRigidbody.velocity = Vector2.zero;
 
                     if (Mathf.Abs(direction.y) > 0.7f || direction.y == 0f)
                     {
@@ -289,24 +301,20 @@ public class SteelPower : Iron_Steel
                     else
                     {
                         //nueva dirección
-                        if (playerData.linesOrigin.position.x > currentPosition.x)
-                        {
-                            direction = Vector2.left;
-                        }
-                        else
-                        {
-                            direction = Vector2.right;
-                        }
+                        direction = player.transform.position.x > currentPosition.x ? Vector2.left : Vector2.right;
                         //nueva posición
                         objectivePosition = currentPosition + direction * (playerData.metalCheckRadius - Vector2.Distance(currentPosition, playerData.linesOrigin.position));
                     }
                 }
+                else
+                {
+                    // Reduce velocidad para no atravesar el obstáculo
+                    metal.attachedRigidbody.velocity = direction * (distanceToObstacle / Time.fixedDeltaTime);
+                }
             }
             else
             {
-                // Si no hay colisión, mueve normalmente
-                Vector2 newPosition = Vector2.MoveTowards(currentPosition, objectivePosition, step);
-                metal.attachedRigidbody.MovePosition(newPosition);
+                metal.attachedRigidbody.velocity = direction * (step / Time.fixedDeltaTime);
             }
 
             yield return new WaitForFixedUpdate();
@@ -318,9 +326,10 @@ public class SteelPower : Iron_Steel
             heavyMetal.Stop();
         }
 
-        if ((metal.gameObject.tag == "Coin"  || metal.gameObject.tag == "Vial") && !metalObstacleReached)
+        if ((metal.gameObject.tag == "Coin" || metal.gameObject.tag == "Vial") && !metalObstacleReached)
         {
             impulsePushedObject = true;
+            metal.attachedRigidbody.velocity = Vector2.zero;
         }
         else if ((metal.gameObject.tag == "Coin" || metal.gameObject.tag == "Vial") && metalObstacleReached)
         {

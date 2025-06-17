@@ -7,7 +7,7 @@ public class AffectedByGravity : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     ConstantForce2D constForce;
     // Start is called before the first frame update
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;

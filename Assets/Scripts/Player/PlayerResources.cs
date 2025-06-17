@@ -63,7 +63,7 @@ public class PlayerResources : MonoBehaviour
     public void PickDropCoinInput()
     {
         //pick object
-        if (nearbyItems.Count > 0 && !playerData.movingWithPowers && !playerData.showingCoin)
+        if (nearbyItems.Count > 0 /* && !playerData.movingWithPowers */ && !playerData.showingCoin)
         {
             if (nearbyItems[0].tag == "Coin")
             {

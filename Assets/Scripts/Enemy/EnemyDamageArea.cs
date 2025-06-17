@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class EnemyDamageArea : MonoBehaviour
@@ -11,8 +12,18 @@ public class EnemyDamageArea : MonoBehaviour
         if (collision.tag == "Player")
         {
             PlayerAttackInfo attackInfo = collision.gameObject.GetComponent<PlayerAttackInfo>();
+            origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, attackInfo.isFacingRight);
+        }
 
-            origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback,attackInfo.isFacingRight);
+        else if (collision.tag == "Coin")
+        {
+            CoinAttackInfo coin = collision.gameObject.GetComponent<CoinAttackInfo>();
+            Debug.Log(coin.rb.velocity.x);
+            bool movingRight = coin.rb.velocity.x >= 0f;
+
+            Debug.Log(movingRight);
+
+            origin.OnDamage(coin.damage, coin.damageknockback, movingRight);
         }
     }
 }
