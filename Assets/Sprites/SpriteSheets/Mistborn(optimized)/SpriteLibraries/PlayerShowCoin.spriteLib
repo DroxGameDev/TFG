@@ -2078,6 +2078,27 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 647781685, guid: a0ff6033a4d9b034d8b2e1e6827c921f, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 48
+  - m_Name: Damage
+    m_Hash: 375673178
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Damage_0
+      m_Hash: 102474000
+      m_Sprite: {fileID: 1534014453, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1534014453, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+    - m_Name: Damage_1
+      m_Hash: 823955846
+      m_Sprite: {fileID: -1598993578, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1598993578, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+    - m_Name: Damage_2
+      m_Hash: 672514108
+      m_Sprite: {fileID: 1549600125, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1549600125, guid: f12c28042924f644da0022582c99dbfe, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638845714882979248
+  m_ModificationHash: 638858691023803301
   m_Version: 1

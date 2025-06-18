@@ -357,6 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7039241132769630117}
   - component: {fileID: 6573665156940892203}
+  - component: {fileID: 1067219600499091938}
   m_Layer: 16
   m_Name: AttacksOrigin
   m_TagString: Enemy
@@ -424,6 +425,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1067219600499091938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730666971019890482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2207461e7a8c03140956d3e1f82be95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  damageKnockback: 0
+  isFacingRight: 1
 --- !u!1 &4597002515624636025
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,9 +650,12 @@ MonoBehaviour:
   maxIdleTime: 5
   minPatrolTime: 0.5
   maxPatrolTime: 5
+  attackOrigin: {fileID: 3730666971019890482}
   prepareAttackTime: 0.5
   attackTime: 0.75
   attackCooldownTime: 1
+  attackDamage: 1
+  attackDamageKnockback: 0
   detectionRangeX: 5
   detectionRangeY: 1
   attackRangeX: 1.5

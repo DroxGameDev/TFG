@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackInfo : MonoBehaviour
+public class EnemyAttackInfo : MonoBehaviour
 {
     [HideInInspector] public int damage;
     [HideInInspector] public float damageKnockback;
-    [HideInInspector] public bool burningPewter = false;
-    [HideInInspector] public bool isFacingRight;
+    [HideInInspector] public bool isFacingRight = true;
 }

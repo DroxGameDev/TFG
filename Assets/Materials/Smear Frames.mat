@@ -39,8 +39,8 @@ Material:
     m_Floats:
     - _burningPewter: 0
     m_Colors:
-    - _Knife: {r: 0.02352941, g: 0.02745098, b: 0.03529412, a: 1}
-    - _Punch: {r: 0.654902, g: 0.41960788, b: 0.38039213, a: 1}
+    - _Knife: {r: 1, g: 1, b: 1, a: 1}
+    - _Punch: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3013560710649271388
 MonoBehaviour:

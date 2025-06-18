@@ -9,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     private State currentState = State.Idle;
     private Rigidbody2D rb;
     private EnemyData enemyData;
+    private EnemyAttackInfo attackInfo;
     private float idleTimer = 0f;
     private float patrolTimer = 0f;
     private float prepareAttackTimer = 0f;
@@ -25,6 +26,10 @@ public class EnemyBehaviour : MonoBehaviour
         enemyData = GetComponent<EnemyData>();
         rb = GetComponent<Rigidbody2D>();
         setTimer();
+        attackInfo = enemyData.attackOrigin.GetComponent<EnemyAttackInfo>();
+        attackInfo.damage = enemyData.attackDamage;
+        attackInfo.damageKnockback = enemyData.attackDamageKnockback;
+        attackInfo.isFacingRight = enemyData.isFacingRight;
     }
 
     void Update()

@@ -26,6 +26,7 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int pushIdle = Animator.StringToHash("PushIdle");
     private static readonly int push = Animator.StringToHash("Push");
     private static readonly int pull = Animator.StringToHash("Pull");
+    private static readonly int damage = Animator.StringToHash("Damage");
 
 
 
@@ -71,19 +72,22 @@ public class PlayerAnimations : MonoBehaviour
 
     private int GetState(){
         if(Time.time < _lockedTill) return currentState;
+        
+        if(playerData.damaged)
+            return LockState(damage, playerData.damageWait);
 
         if (playerData.attacking)
-        {
-            switch (playerData.attackComboStep)
             {
-                case AttackCombo.Attack2:
-                    return LockState(playerData.burningPewter ? punch2: attack2, playerData.attackCooldownTime);
-                case AttackCombo.Attack3:
-                    return LockState(playerData.burningPewter ? punch3: attack3, playerData.attackCooldownTime);
-                default:
-                    return LockState(playerData.burningPewter ? punch1: attack1, playerData.attackCooldownTime);
+                switch (playerData.attackComboStep)
+                {
+                    case AttackCombo.Attack2:
+                        return LockState(playerData.burningPewter ? punch2 : attack2, playerData.attackCooldownTime);
+                    case AttackCombo.Attack3:
+                        return LockState(playerData.burningPewter ? punch3 : attack3, playerData.attackCooldownTime);
+                    default:
+                        return LockState(playerData.burningPewter ? punch1 : attack1, playerData.attackCooldownTime);
+                }
             }
-        }
 
         if (playerData.wallWalking)
         {

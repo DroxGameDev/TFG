@@ -66,6 +66,13 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     public GameObject attackOrigin;
 
+    [Header("Damage")]
+    [Range(0f, 1f)]public float damageWait;
+    [Range(0, 1f)] public float hitTime;
+    [Range(0, 5f)] public float invicibilityTime;
+    public SpriteRenderer sprite;
+    [Range(0, 10f)] public float invicibilityEffectSpeed;
+
     [Header("Check")]
     public Transform groundCheck;
     [Range(-1f, 1f)] public float groundCheckVertexA_x;
@@ -150,6 +157,7 @@ public class PlayerData : MonoBehaviour
     public bool midAttacking = false;
     public bool wallWalking = false;
     public bool pushing = false;
+    public bool damaged = false;
 
     [Space(10)]
     public bool movingWithPowers = false;
@@ -190,6 +198,7 @@ public class PlayerData : MonoBehaviour
         pushing = false;
         movingWithPowers = false;
         showingCoin = false;
+        damaged = false;
     }
 
     public void ChangeGravityMode(GravityMode mode)
