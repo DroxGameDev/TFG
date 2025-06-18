@@ -39,6 +39,27 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 642581906, guid: f16d26f540aba5e4e951a51a1bcbe9cc, type: 3}
     m_FromMain: 1
     m_EntryOverrideCount: 4
+  - m_Name: Attack
+    m_Hash: 7088141
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: No_Smear
+      m_Hash: 589123680
+      m_Sprite: {fileID: 1970357829, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1970357829, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+    - m_Name: Smear_0
+      m_Hash: 637310338
+      m_Sprite: {fileID: 1979821756, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1979821756, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+    - m_Name: Smear_1
+      m_Hash: 318481684
+      m_Sprite: {fileID: 1634999564, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1634999564, guid: 2584023df1d9b154c93b1e37ed00d05e, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: f234b6c9b478137498c0e9e2667398e8
-  m_ModificationHash: 638856862382841183
+  m_ModificationHash: 638858478186288831
   m_Version: 1

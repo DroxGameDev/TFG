@@ -71,7 +71,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422101163615011935}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.08759731}
+  m_Offset: {x: -0.119244725, y: -0.030943334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55104434, y: 0.8248054}
+  m_Size: {x: 0.3125549, y: 0.619887}
   m_EdgeRadius: 0
 --- !u!114 &6802063974090124928
 MonoBehaviour:
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1727065216350327476}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Groundcheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,16 +765,16 @@ MonoBehaviour:
   acceleration: 9
   decceleration: 6
   velPower: 1.2
-  moveMod: 1.2
+  moveMod: 1
   crocuhModifier: 0.5
   frictionAmount: 0.2
-  velocity: {x: 0, y: -0.00000002980232}
+  velocity: {x: 0, y: -0.000000029802322}
   isFacingRight: 1
-  jumpForce: 12
+  jumpForce: 10.1
   jumpCutMultiplier: 0.1
   coyoteTime: 0.1
   jumpBufferTime: 0.1
-  jumpMod: 1.2
+  jumpMod: 1
   gravityScale: 1
   fallGravityMultiplier: 1
   gravityMode: 1
@@ -822,7 +822,7 @@ MonoBehaviour:
   showedCoin: {fileID: 0}
   shootPoint: {fileID: 5778420774221006770}
   showCoinTime: 1
-  burningTin: 0
+  burningTin: 1
   tinTransitionStep: 0.02
   seeThroughMistSize: 10
   mist: {fileID: 2100000, guid: 356a96565b82881469448b3f0a1e23e2, type: 2}
@@ -842,7 +842,7 @@ MonoBehaviour:
   defaultSprites: {fileID: 7108339969198208228, guid: 1ca1ff77575b4af41a4fdd18414bf0cd, type: 3}
   showCoinSprites: {fileID: 7108339969198208228, guid: 1c6d0f6bc0d8c7c439af6ea8f6c49107, type: 3}
   anim: {fileID: 324985196080885317}
-  grounded: 0
+  grounded: 1
   running: 0
   jumping: 0
   falling: 0
@@ -1164,7 +1164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -629067253, guid: 8a4445758e05dcf43b5c8a464f691a2d, type: 3}
+  m_Sprite: {fileID: -1945155711, guid: 2b56bda308efa4346aef95cfddcc7881, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1201,10 +1201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0.009161512
-  m_labelHash: 1.3971405e-28
+  m_CategoryHash: 9.932601e-39
+  m_labelHash: 1.8293377e-38
   m_SpriteKey: 0
-  m_SpriteHash: 163368403
+  m_SpriteHash: 46397669
 --- !u!95 &324985196080885317
 Animator:
   serializedVersion: 5

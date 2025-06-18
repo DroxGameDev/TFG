@@ -14,8 +14,8 @@ public class EnemyAnimation : MonoBehaviour
     private static readonly int damageLight = Animator.StringToHash("DamageLight");
     private static readonly int damageMedium = Animator.StringToHash("DamageMedium");
     private static readonly int damageHard = Animator.StringToHash("DamageHard");
-
-
+    private static readonly int prepareAttack = Animator.StringToHash("PrepareAttack");
+    private static readonly int attack = Animator.StringToHash("Attack");
 
     [Header("States")]
     private float _lockedTill;
@@ -56,6 +56,9 @@ public class EnemyAnimation : MonoBehaviour
                     return LockState(damageHard, enemyData.damageWait);
             }
         }
+
+        if (enemyData.prepareAttack) return prepareAttack;
+        if (enemyData.attacking) return attack;
 
         if (enemyData.walking) return walk;
         if (enemyData.running) return run;

@@ -31,9 +31,16 @@ public class EnemyData : AffectedByGravity
     [Range(0.5f, 10f)] public float maxIdleTime;
     [Range(0.0f, 9.5f)] public float minPatrolTime;
     [Range(0.5f, 10f)] public float maxPatrolTime;
+    [Space(10)]
 
+    [Header("Attack")]
+
+    [Range(0, 1f)] public float prepareAttackTime;
+    [Range(0, 1f)] public float attackTime;
+    [Range(0, 5f)] public float attackCooldownTime;
 
     [Space(10)]
+
     [Header("Check")]
     
     [Range(0f, 10f)] public float detectionRangeX;
@@ -59,6 +66,7 @@ public class EnemyData : AffectedByGravity
     public bool walking;
     public bool running;
     public bool damaged;
+    public bool prepareAttack;
     public bool attacking;
 
     public void Flip()
