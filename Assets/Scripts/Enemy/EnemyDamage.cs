@@ -30,7 +30,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
 
         if (originFacingRight)
         {
-            if (enemyData.isFacingRight)
+            if (enemyData.isFacingRight && !enemyData.prepareAttack && !enemyData.attacking)
             {
                 enemyData.Flip();
             }
@@ -38,7 +38,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
         }
         else
         {
-            if (!enemyData.isFacingRight)
+            if (!enemyData.isFacingRight && !enemyData.prepareAttack && !enemyData.attacking)
             {
                 enemyData.Flip();
             }

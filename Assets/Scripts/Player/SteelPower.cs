@@ -45,18 +45,24 @@ public class SteelPower : Iron_Steel
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningSteel)
         {
 
-            if (selectedMetal != null)
+            if (selectedMetal == null)
+            {
+                ChangeState(PowerState.inactive);
+                OnInactive();
+            }
+            else if (selectedMetal.metal.tag == "Arrow")
+            {
+                ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, 1);
+                ChangeState(PowerState.inactive);
+                OnInactive();
+            }
+            else
             {
                 base.OnImpulse();
                 ChangeState(PowerState.impulse);
                 OnImpulse();
 
                 StartCoroutine(pushObject(rb, selectedMetal.metal.attachedRigidbody));
-            }
-            else
-            {
-                ChangeState(PowerState.inactive);
-                OnInactive();
             }
             input = false;
         }

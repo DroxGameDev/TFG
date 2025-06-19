@@ -5,7 +5,7 @@ using UnityEngine;
 public class AffectedByGravity : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb;
-    ConstantForce2D constForce;
+    [HideInInspector]public ConstantForce2D constForce;
     // Start is called before the first frame update
     protected virtual void OnEnable()
     {

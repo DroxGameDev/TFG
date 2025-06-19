@@ -83,7 +83,7 @@ public class PlayerAnimations : MonoBehaviour
         if(Time.time < _lockedTill) return currentState;
         
         if(playerData.damaged)
-            return LockState(damage, playerData.damageWait);
+            return /* LockState(damage, playerData.damageWait)*/ damage;
 
         if (playerData.preparingAttack)
         {
@@ -153,9 +153,11 @@ public class PlayerAnimations : MonoBehaviour
 
         return playerData.velocity.y > 0 ? jump : fall;
 
+        /*
         int LockState(int s, float t){
             _lockedTill = Time.deltaTime+t;
             return s;
         }
+        */
     }
 }

@@ -99,6 +99,8 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     public Material selectMetalMaterial;
     [Range(0f, 0.1f)] public float selectMetalTransitionStep;
+    [Space(10)]
+    [Range(0f, 2f)] public float returnArrowSpeedMod;
 
     [Header("Steel")]
     public bool burningSteel;

@@ -10,6 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private EnemyData enemyData;
     private EnemyAttackInfo attackInfo;
+    private EnemyShoot enemyShoot;
     private float idleTimer = 0f;
     private float patrolTimer = 0f;
     private float prepareAttackTimer = 0f;
@@ -25,6 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         enemyData = GetComponent<EnemyData>();
         rb = GetComponent<Rigidbody2D>();
+        enemyShoot = GetComponent<EnemyShoot>();
         setTimer();
         attackInfo = enemyData.attackOrigin.GetComponent<EnemyAttackInfo>();
         attackInfo.damage = enemyData.attackDamage;
@@ -35,6 +37,8 @@ public class EnemyBehaviour : MonoBehaviour
     void Update()
     {
         UpdatePerception();
+        
+        attackCooldownTimer -= Time.deltaTime;
 
         switch (currentState)
         {
@@ -74,11 +78,22 @@ public class EnemyBehaviour : MonoBehaviour
                 Chase();
                 if (playerInAttackRange)
                 {
-                    currentState = State.PreparingAttack;
-                    setTimer();
-                    enemyData.running = false;
-                    enemyData.prepareAttack = true;
-                    if (!CheckOrientationToPlayer()) enemyData.Flip(); 
+                    if (attackCooldownTimer <= 0f)
+                    {
+                        currentState = State.PreparingAttack;
+                        setTimer();
+                        enemyData.running = false;
+                        enemyData.prepareAttack = true;
+                        if (!CheckOrientationToPlayer()) enemyData.Flip();
+                    }
+
+                    else
+                    {
+                        currentState = State.AttackCooldown;
+                        enemyData.running = false;
+                        if (!CheckOrientationToPlayer()) enemyData.Flip();
+                    }
+                    
                 }
                 if (!playerInSight)
                 {
@@ -98,6 +113,7 @@ public class EnemyBehaviour : MonoBehaviour
                     setTimer();
                     enemyData.prepareAttack = false;
                     enemyData.attacking = true;
+                    ShootArrow();
                 }
                 break;
 
@@ -118,7 +134,7 @@ public class EnemyBehaviour : MonoBehaviour
                     currentState = State.PreparingAttack;
                     setTimer();
                     enemyData.prepareAttack = true;
-                    if (!CheckOrientationToPlayer()) enemyData.Flip(); 
+                    if (!CheckOrientationToPlayer()) enemyData.Flip();
                 }
 
                 if (!playerInAttackRange)
@@ -191,9 +207,16 @@ public class EnemyBehaviour : MonoBehaviour
     }
     private void AttackCooldown()
     {
-        attackCooldownTimer -= Time.deltaTime;
+        //attackCooldownTimer -= Time.deltaTime;
         rb.velocity = new Vector2(0f, rb.velocity.y);
+    }
 
+    private void ShootArrow()
+    {
+        if (enemyShoot != null)
+        {
+            enemyShoot.Shoot();
+        }
     }
 
     private void setTimer()

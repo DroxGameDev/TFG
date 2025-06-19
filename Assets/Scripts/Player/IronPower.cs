@@ -53,17 +53,22 @@ public class IronPower : Iron_Steel
 
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
         {
-
-            if (selectedMetal != null)
+            if (selectedMetal == null)
+            {
+                ChangeState(PowerState.inactive);
+                OnInactive();
+            }
+            else if (selectedMetal.metal.tag == "Arrow")
+            {
+                ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, -1);
+                ChangeState(PowerState.inactive);
+                OnInactive();
+            }
+            else
             {
                 base.OnForce();
                 ChangeState(PowerState.force);
                 OnForce();
-            }
-            else
-            {
-                ChangeState(PowerState.inactive);
-                OnInactive();
             }
             input = false;
         }
@@ -168,12 +173,11 @@ public class IronPower : Iron_Steel
 
         rb.velocity = Vector3.zero;
 
-        if(selectedMetal.metal.tag == "Environment_metal"){
-            directorVectorImpulse = selectedMetal.metal.transform.position - transform.position;
-            directorVectorImpulse.Normalize();
+        if (selectedMetal.metal.tag == "Environment_metal")
+        {
+            directorVectorImpulse = (selectedMetal.metal.transform.position - transform.position).normalized;
         }
-
-        if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
+        else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
         {
             StartCoroutine(moveTowardsPlayer(selectedMetal.metal, col));
         }

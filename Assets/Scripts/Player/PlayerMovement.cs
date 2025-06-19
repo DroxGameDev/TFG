@@ -131,7 +131,7 @@ public class PlayerMovement : AffectedByGravity
     public void ChangeXMovement(float input)
     {
         
-        if (!playerData.movingWithPowers && !playerData.preparingAttack &&!playerData.attacking && !playerData.damaged)
+        if (!playerData.movingWithPowers && !playerData.preparingAttack &&!playerData.attacking)
         {
             if (!playerData.burningPewter && playerData.pushing) return;
 

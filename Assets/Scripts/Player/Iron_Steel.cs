@@ -80,7 +80,7 @@ public class Iron_Steel : MonoBehaviour
 
         if (lineObject.metal.tag == "Walkable_Area")
         {
-            directorVector = MetalClosestPoint + lineObject.metal.GetComponent<WalkableArea>().worldOffest*-1f
+            directorVector = MetalClosestPoint + lineObject.metal.GetComponent<WalkableArea>().worldOffest * -1f
                                     - new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
         }
         else
@@ -161,11 +161,7 @@ public class Iron_Steel : MonoBehaviour
 
                     actualLine.lineRenderer.SetPosition(0, playerData.linesOrigin.position);
 
-                    if (actualLine.metal.tag == "Floor")
-                    {
-                        actualLine.lineRenderer.SetPosition(1, MetalClosestPoint);
-                    }
-                    else if (actualLine.metal.tag == "Walkable_Area")
+                    if (actualLine.metal.tag == "Walkable_Area")
                     {
                         Vector2 worldOffset = actualLine.metal.transform.TransformVector(actualLine.metal.GetComponent<Collider2D>().offset * -1f);
                         actualLine.lineRenderer.SetPosition(1, MetalClosestPoint + worldOffset);
@@ -303,6 +299,15 @@ public class Iron_Steel : MonoBehaviour
     {
         if (playerData.pushing && pewterPower != null)
             pewterPower.StopPushing();
+    }
+
+    public void ChangeArrowDirection(Arrow arrow, float direction)
+    {
+        //1: out, -1: in
+
+        Vector2 newArrowDirection = ((Vector2)selectedMetal.metal.transform.position - (Vector2)playerData.linesOrigin.position).normalized * direction;
+
+        arrow.ReturnArrow(newArrowDirection,playerData.returnArrowSpeedMod);
     }
 
 }

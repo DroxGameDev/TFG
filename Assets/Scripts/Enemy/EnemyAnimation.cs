@@ -44,6 +44,9 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (Time.time < _lockedTill) return currentState;
 
+        if (enemyData.prepareAttack) return prepareAttack;
+        if (enemyData.attacking) return attack;
+
         if (enemyData.damaged)
         {
             switch (enemyData.damageType)
@@ -56,9 +59,6 @@ public class EnemyAnimation : MonoBehaviour
                     return LockState(damageHard, enemyData.damageWait);
             }
         }
-
-        if (enemyData.prepareAttack) return prepareAttack;
-        if (enemyData.attacking) return attack;
 
         if (enemyData.walking) return walk;
         if (enemyData.running) return run;

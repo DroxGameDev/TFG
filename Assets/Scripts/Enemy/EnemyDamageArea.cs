@@ -18,12 +18,18 @@ public class EnemyDamageArea : MonoBehaviour
         else if (collision.tag == "Coin")
         {
             CoinAttackInfo coin = collision.gameObject.GetComponent<CoinAttackInfo>();
-            Debug.Log(coin.rb.velocity.x);
             bool movingRight = coin.rb.velocity.x >= 0f;
-
-            Debug.Log(movingRight);
-
             origin.OnDamage(coin.damage, coin.damageknockback, movingRight);
+        }
+
+        else if (collision.tag == "Arrow")
+        {
+            ArrowAttackInfo arrow = collision.gameObject.GetComponent<ArrowAttackInfo>();
+
+            if (arrow.origin.returning)
+            {
+                origin.OnDamage(arrow.damage, arrow.damageKnockback, origin.GetComponent<EnemyData>().isFacingRight);
+            }
         }
     }
 }
