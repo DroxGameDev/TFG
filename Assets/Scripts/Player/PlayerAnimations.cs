@@ -17,12 +17,21 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int fall = Animator.StringToHash("Fall");
     private static readonly int crouchIdle = Animator.StringToHash("Crouch_Idle");
     private static readonly int crouchRun = Animator.StringToHash("Crouch_Walk");
+
+    private static readonly int attackPrepare1 = Animator.StringToHash("AttackPrepare1");
+    private static readonly int attackPrepare2 = Animator.StringToHash("AttackPrepare2");
+    private static readonly int attackPrepare3 = Animator.StringToHash("AttackPrepare3");
     private static readonly int attack1 = Animator.StringToHash("Attack1");
     private static readonly int attack2 = Animator.StringToHash("Attack2");
     private static readonly int attack3 = Animator.StringToHash("Attack3");
+
+    private static readonly int punchPrepare1 = Animator.StringToHash("PunchPrepare1");
+    private static readonly int punchPrepare2 = Animator.StringToHash("PunchPrepare2");
+    private static readonly int punchPrepare3 = Animator.StringToHash("PunchPrepare3");
     private static readonly int punch1 = Animator.StringToHash("Punch1");
     private static readonly int punch2 = Animator.StringToHash("Punch2");
     private static readonly int punch3 = Animator.StringToHash("Punch3");
+
     private static readonly int pushIdle = Animator.StringToHash("PushIdle");
     private static readonly int push = Animator.StringToHash("Push");
     private static readonly int pull = Animator.StringToHash("Pull");
@@ -76,18 +85,31 @@ public class PlayerAnimations : MonoBehaviour
         if(playerData.damaged)
             return LockState(damage, playerData.damageWait);
 
-        if (playerData.attacking)
+        if (playerData.preparingAttack)
+        {
+            switch (playerData.attackComboStep)
             {
-                switch (playerData.attackComboStep)
-                {
-                    case AttackCombo.Attack2:
-                        return LockState(playerData.burningPewter ? punch2 : attack2, playerData.attackCooldownTime);
-                    case AttackCombo.Attack3:
-                        return LockState(playerData.burningPewter ? punch3 : attack3, playerData.attackCooldownTime);
-                    default:
-                        return LockState(playerData.burningPewter ? punch1 : attack1, playerData.attackCooldownTime);
-                }
+                case AttackCombo.Attack1:
+                    return playerData.burningPewter ? punchPrepare1 : attackPrepare1;
+                case AttackCombo.Attack2:
+                    return playerData.burningPewter ? punchPrepare2 : attackPrepare2;
+                case AttackCombo.Attack3:
+                    return playerData.burningPewter ? punchPrepare3 : attackPrepare3;    
             }
+        }
+
+        if (playerData.attacking)
+        {
+            switch (playerData.attackComboStep)
+            {
+                case AttackCombo.Attack1:
+                    return playerData.burningPewter ? punch1 : attack1;
+                case AttackCombo.Attack2:
+                    return playerData.burningPewter ? punch2 : attack2;
+                case AttackCombo.Attack3:
+                    return playerData.burningPewter ? punch3 : attack3;
+            }
+        }
 
         if (playerData.wallWalking)
         {

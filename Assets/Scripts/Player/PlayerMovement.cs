@@ -115,13 +115,13 @@ public class PlayerMovement : AffectedByGravity
         #endregion
 
         //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing) ||
-                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.midAttacking && !playerData.pushing))
+        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.attacking && !playerData.pushing) ||
+                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.attacking && !playerData.pushing))
         {
             playerData.Flip();
         }
-        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing)
-                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.midAttacking && !playerData.pushing))
+        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.attacking && !playerData.pushing)
+                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.attacking && !playerData.pushing))
         {
             playerData.Flip();
         }
@@ -131,7 +131,7 @@ public class PlayerMovement : AffectedByGravity
     public void ChangeXMovement(float input)
     {
         
-        if (!playerData.movingWithPowers && !playerData.attacking && !playerData.damaged)
+        if (!playerData.movingWithPowers && !playerData.preparingAttack &&!playerData.attacking && !playerData.damaged)
         {
             if (!playerData.burningPewter && playerData.pushing) return;
 

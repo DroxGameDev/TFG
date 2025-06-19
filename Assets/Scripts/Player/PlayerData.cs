@@ -56,13 +56,16 @@ public class PlayerData : MonoBehaviour
     [Header("Attacking")]
     [Range(0, 5)] public int damage;
     [Range(0, 10f)] public float damageKnockback;
+    [Space(10)]
+    [Range(0, 1f)] public float prepareAttackTime;
+    [Range(0f, 1f)] public float attackTime;
+    [Range(0f, 1f)] public float attackCooldownOvertime;
     [Range(0f, 1f)] public float attackBufferTime;
-    [Range(0f, 2f)] public float attackCooldownTime;
     [Range(0f, 5f)] public float attackComboTime;
+    [Space(10)]
     public AttackCombo attackComboStep = AttackCombo.Attack1;
     [Space(10)]
     [Range(0, 10f)] public float attackImpulse;
-    [Range(0, 1f)] public float waitForAttack;
     [Space(10)]
     public GameObject attackOrigin;
 
@@ -153,8 +156,8 @@ public class PlayerData : MonoBehaviour
     public bool running = false;
     public bool jumping = false;
     public bool falling = false;
+    public bool preparingAttack = false;
     public bool attacking = false;
-    public bool midAttacking = false;
     public bool wallWalking = false;
     public bool pushing = false;
     public bool damaged = false;
@@ -192,8 +195,8 @@ public class PlayerData : MonoBehaviour
         running = false;
         jumping = false;
         falling = false;
+        preparingAttack = false;
         attacking = false;
-        midAttacking = false;
         wallWalking = false;
         pushing = false;
         movingWithPowers = false;

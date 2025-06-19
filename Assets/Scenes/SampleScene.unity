@@ -533,8 +533,8 @@ MonoBehaviour:
   - {x: 54.67991, y: -6.4432073, z: 0.00000011920929}
   - {x: 54.70028, y: -5.876482, z: 0.00000011920929}
   m_ShapePathHash: 522701703
-  m_Mesh: {fileID: 1724186075}
-  m_InstanceId: 30286
+  m_Mesh: {fileID: 1559878652}
+  m_InstanceId: 30290
   m_LocalBounds:
     m_Center: {x: 48.01342, y: -5.980027, z: 0}
     m_Extent: {x: 73.70305, y: 1.1408236, z: 0}
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!43 &1724186075
+--- !u!43 &1559878652
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1633,6 +1633,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 873315301125391312, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: m_labelHash
+      value: 4.273097e-21
+      objectReference: {fileID: 0}
+    - target: {fileID: 873315301125391312, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_SpriteHash
       value: 530949191
       objectReference: {fileID: 0}
@@ -1641,16 +1645,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 485636188}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: attackTime
+      value: 0.417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: attackImpulse
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1257371537}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: attackComboTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: invicibilityTime
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: prepareAttackTime
+      value: 0.333
       objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: invicibilityEffectSpeed

@@ -14,14 +14,18 @@ public class PlayerAttack : MonoBehaviour
     private PlayerData playerData;
     private Rigidbody2D rb;
     private PlayerAttackInfo attackInfo;
+    private float prepareAttackCounter;
+    private float attackCounter;
     private float attackBufferCounter;
+    private float attackCooldownTime;
     private float attackCooldownCounter;
     private float attackComboCounter;
     void Start()
     {
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
-        attackInfo =  playerData.attackOrigin.GetComponent<PlayerAttackInfo>();
+        attackInfo = playerData.attackOrigin.GetComponent<PlayerAttackInfo>();
+        attackCooldownTime = playerData.prepareAttackTime + playerData.attackTime + playerData.attackCooldownOvertime;
     }
     public void OnAttack()
     {
@@ -33,8 +37,19 @@ public class PlayerAttack : MonoBehaviour
         attackInfo.damage = playerData.damage;
         attackInfo.damageKnockback = playerData.damageKnockback;
 
-        yield return new WaitForSeconds(playerData.waitForAttack);
-        playerData.midAttacking = true;
+        prepareAttackCounter = playerData.prepareAttackTime;
+        playerData.preparingAttack = true;
+
+        while (prepareAttackCounter > 0f)
+        {
+            prepareAttackCounter -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        playerData.preparingAttack = false;
+        playerData.attacking = true;
+
+        attackCounter = playerData.attackTime;
 
         if (playerData.isFacingRight)
         {
@@ -44,27 +59,30 @@ public class PlayerAttack : MonoBehaviour
         {
             rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
         }
-        yield return new WaitForSeconds(playerData.attackCooldownTime - playerData.waitForAttack);
-        playerData.midAttacking = false;
+        while (attackCounter > 0f)
+        {
+            attackCounter -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
 
+        playerData.attacking = false;
+        attackComboCounter = playerData.attackComboTime;
     }
 
     void Update()
     {
-        attackComboCounter -= Time.deltaTime;
         attackCooldownCounter -= Time.deltaTime;
         attackBufferCounter -= Time.deltaTime;
 
         if (attackCooldownCounter < 0.01f && attackBufferCounter > 0.01f)
         {
-            if (rb.velocity.y > 0)
+            if (rb.velocity.y > 0) //force to the grown if the palyer is mid air
             {
                 rb.AddForce(Vector2.down * playerData.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
             }
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-            attackCooldownCounter = playerData.attackCooldownTime;
-            playerData.attacking = true;
 
+            rb.velocity = new Vector2(0f, rb.velocity.y); //cancel x velocity;
+            attackCooldownCounter = attackCooldownTime;
             if (attackComboCounter > 0.01f)
             {
                 switch (playerData.attackComboStep)
@@ -77,7 +95,7 @@ public class PlayerAttack : MonoBehaviour
                         playerData.attackComboStep = AttackCombo.Attack3;
                         StartCoroutine(Attack());
                         break;
-                    default:
+                    case AttackCombo.Attack3:
                         playerData.attackComboStep = AttackCombo.Attack1;
                         StartCoroutine(Attack());
                         break;
@@ -88,13 +106,6 @@ public class PlayerAttack : MonoBehaviour
                 playerData.attackComboStep = AttackCombo.Attack1;
                 StartCoroutine(Attack());
             }
-
-            attackComboCounter = playerData.attackComboTime;
-        }
-
-        if (attackCooldownCounter < 0.01f)
-        {
-            playerData.attacking = false;
         }
     }
 }
