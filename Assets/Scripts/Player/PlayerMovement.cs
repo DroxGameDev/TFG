@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerMovement : AffectedByGravity
 {
     private PlayerData playerData;
-    private ConstantForce2D force2D;
     
 
     [Header("Movement")]
@@ -18,8 +17,6 @@ public class PlayerMovement : AffectedByGravity
 
     [Header("Debug")]
     public bool active;
-    private Vector3 groundPosition;
-    private float groundRadius;
 
     void Start()
     {
@@ -41,7 +38,9 @@ public class PlayerMovement : AffectedByGravity
             jumpBufferCounter = playerData.jumpBufferTime;
             
             if (playerData.gravityMode != GravityMode.Down){
-                rb.velocity = Vector2.zero;
+
+                playerData.velocity = Vector2.zero;
+
                 playerData.ChangeGravityMode(GravityMode.Down);
             }
         }
@@ -130,34 +129,34 @@ public class PlayerMovement : AffectedByGravity
 
     public void ChangeXMovement(float input)
     {
+        if (playerData.preparingAttack || playerData.attacking)
+            input = 0f;
         
-        if (!playerData.movingWithPowers && !playerData.preparingAttack &&!playerData.attacking)
+        if (playerData.movingWithPowers || (!playerData.burningPewter && playerData.pushing)) return;
+
+        #region Run
+        //Calculate the direction we want to move in and our desired velocity
+        float targetSpeed;
+        if (playerData.wallWalking)
         {
-            if (!playerData.burningPewter && playerData.pushing) return;
-
-            #region Run
-            //Calculate the direction we want to move in and our desired velocity
-            float targetSpeed;
-            if (playerData.wallWalking)
-            {
-                targetSpeed = input * playerData.moveSpeed * playerData.crocuhModifier * playerData.moveMod;
-            }
-            else
-            {
-                targetSpeed = input * playerData.moveSpeed * playerData.moveMod;
-            }
-            //calculate the difference between our current speed and the target speed
-            float speedDif = targetSpeed - playerData.velocity.x;
-            //change the speed based on the acceleration or decceleration rate
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
-            //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
-            //finally multiplies by a sign to reapply direction
-            float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
-
-            rb.AddForce(movement * RunDirectionByGravity(playerData.gravityMode));
-
-            #endregion
+            targetSpeed = input * playerData.moveSpeed * playerData.crocuhModifier * playerData.moveMod;
         }
+        else
+        {
+            targetSpeed = input * playerData.moveSpeed * playerData.moveMod;
+        }
+        //calculate the difference between our current speed and the target speed
+        float speedDif = targetSpeed - playerData.velocity.x;
+        //change the speed based on the acceleration or decceleration rate
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? playerData.acceleration : playerData.decceleration;
+        //applies acceleration to speed difference, the raises to a set power so accelerration increases with higher speeds.
+        //finally multiplies by a sign to reapply direction
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, playerData.velPower) * Mathf.Sign(speedDif);
+
+        rb.AddForce(movement * RunDirectionByGravity(playerData.gravityMode));
+
+        #endregion
+            
     }
 
     void FixedUpdate()
@@ -200,15 +199,19 @@ public class PlayerMovement : AffectedByGravity
         }
     }
 
-    private Vector2 RunDirectionByGravity(GravityMode gravity){
-        if(gravity == GravityMode.Down || gravity == GravityMode.Up){
+    private Vector2 RunDirectionByGravity(GravityMode gravity)
+    {
+        if (gravity == GravityMode.Down || gravity == GravityMode.Up)
+        {
             return Vector2.right;
         }
-        else if (gravity == GravityMode.Left){
-             return Vector2.down;
+        else if (gravity == GravityMode.Left)
+        {
+            return Vector2.down;
         }
-        else if (gravity == GravityMode.Right){
-             return Vector2.up;
+        else if (gravity == GravityMode.Right)
+        {
+            return Vector2.up;
         }
         return Vector2.zero;
     }

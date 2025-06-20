@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _SelectMetalAreaStep: 0.95999986
+    - _SelectMetalAreaStep: 0.040000156
     - _SelectMetalIntensity: 1.4
     - _SelectMetalPower: 3
     m_Colors: []

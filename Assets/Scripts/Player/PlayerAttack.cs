@@ -81,7 +81,6 @@ public class PlayerAttack : MonoBehaviour
                 rb.AddForce(Vector2.down * playerData.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
             }
 
-            rb.velocity = new Vector2(0f, rb.velocity.y); //cancel x velocity;
             attackCooldownCounter = attackCooldownTime;
             if (attackComboCounter > 0.01f)
             {

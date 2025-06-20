@@ -483,9 +483,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CategoryHash: 9.932601e-39
-  m_labelHash: 1.4230977e-30
+  m_labelHash: 4.273097e-21
   m_SpriteKey: 0
-  m_SpriteHash: 706883639
+  m_SpriteHash: 530949191
 --- !u!1 &5340816306200333860
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,15 +875,19 @@ MonoBehaviour:
   jumpHangMultiplier: 0.5
   damage: 1
   damageKnockback: 3
+  prepareAttackTime: 0.3
+  attackTime: 0.2
+  attackCooldownOvertime: 0
   attackBufferTime: 0.1
-  attackCooldownTime: 0.583
-  attackComboTime: 1
+  attackComboTime: 0.2
   attackComboStep: 0
-  attackImpulse: 2.5
-  waitForAttack: 0.3
+  attackImpulse: 0
   attackOrigin: {fileID: 1422101163615011935}
-  damageWait: 0.4
+  damageWait: 0.01
   hitTime: 0.3
+  invicibilityTime: 2
+  sprite: {fileID: 7121688281546664136}
+  invicibilityEffectSpeed: 7
   groundCheck: {fileID: 1727065216350327476}
   groundCheckVertexA_x: -0.43
   groundCheckVertexA_y: 0.05
@@ -898,13 +902,14 @@ MonoBehaviour:
   linesOrigin: {fileID: 4266030509415295309}
   metalLayers:
     serializedVersion: 2
-    m_Bits: 11776
+    m_Bits: 2108928
   metalCheckRadius: 6.5
   metalCheckMinRadius: 3
   linePrefab: {fileID: 1433559702223373683, guid: 18fb3c54414f5b94585f908b83e51bab, type: 3}
   selectMetalTime: 2
   selectMetalMaterial: {fileID: 2100000, guid: 6d97799683c5fdc46b8bb74fba5139a3, type: 2}
   selectMetalTransitionStep: 0.08
+  returnArrowSpeedMod: 2
   burningSteel: 0
   steelPushPower: 25
   steelPushTime: 0.4
@@ -941,8 +946,8 @@ MonoBehaviour:
   running: 0
   jumping: 0
   falling: 0
+  preparingAttack: 0
   attacking: 0
-  midAttacking: 0
   wallWalking: 0
   pushing: 0
   damaged: 0
@@ -1001,6 +1006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  constForce: {fileID: 0}
   active: 0
 --- !u!114 &8323532562873423130
 MonoBehaviour:

@@ -254,7 +254,7 @@ public class PlayerData : MonoBehaviour
         if (Time.timeScale == 1f)
         {
             isFacingRight = !isFacingRight;
-            
+
             attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight = !attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight;
 
             Vector2 localScale = transform.localScale;

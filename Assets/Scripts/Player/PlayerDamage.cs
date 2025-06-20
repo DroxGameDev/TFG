@@ -24,7 +24,7 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         if (invincibilityTimer <= 0f)
         {
             Vector2 knockbackDirection;
-            rb.velocity = Vector2.zero;
+            playerData.velocity = Vector2.zero;
 
             if (originFacingRight)
             {

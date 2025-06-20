@@ -51,11 +51,11 @@ public class EnemyData : AffectedByGravity
 
     [Header("Check")]
     
-    [Range(0f, 10f)] public float detectionRangeX;
-    [Range(0f, 10f)] public float detectionRangeY;
+    [Range(0f, 50f)] public float detectionRangeX;
+    [Range(0f, 50f)] public float detectionRangeY;
     
-    [Range(0f, 2f)] public float attackRangeX;
-    [Range(0f, 2f)] public float attackRangeY;
+    [Range(0f, 25f)] public float attackRangeX;
+    [Range(0f, 25f)] public float attackRangeY;
 
     [Space(10)]
     public Transform groundCheck;
