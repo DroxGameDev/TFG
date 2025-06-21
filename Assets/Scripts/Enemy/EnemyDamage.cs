@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour, IDamageable
 {
     EnemyData enemyData;
+    EnemyShield enemyShield;
     Rigidbody2D rb;
 
     [HideInInspector]
@@ -19,10 +20,16 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     {
         enemyData = GetComponent<EnemyData>();
         rb = GetComponent<Rigidbody2D>();
+        enemyShield = GetComponent<EnemyShield>();
     }
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
     {
+        if (enemyShield != null && enemyShield.IsBlocking())
+        {
+            Debug.Log("blocked");
+            return;
+        }
         if (amount == 1) enemyData.damageType = DamageType.light;
         else enemyData.damageType = DamageType.hard;
 

@@ -279,12 +279,12 @@ public class IronPower : Iron_Steel
 
             if (hitCount > 0)
             {
+                Debug.Log(hits[0].distance);      
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 rb.velocity = Vector2.zero;
-
-                if (hits[0].distance < 0.1f)
+                if (hits[0].distance < 1f)
                 {
-                    if (direction.y < 0f && Mathf.Abs(direction.y) < 0.5f)
+                    if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                     {
                         direction = transform.position.x < target.transform.position.x ?
                             Vector2.right : Vector2.left;
@@ -305,13 +305,7 @@ public class IronPower : Iron_Steel
                 }
             }
             else
-            {
-                // Si no hay colisión, mueve normalmente
-                /*
-                Vector2 newPosition = Vector2.MoveTowards(currentPosition, forceTargetPosition, step);
-                rb.MovePosition(newPosition);
-                */
-                
+            { 
                 rb.velocity = direction * speed;
             }
 
