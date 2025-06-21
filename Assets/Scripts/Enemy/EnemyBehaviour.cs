@@ -169,7 +169,10 @@ public class EnemyBehaviour : MonoBehaviour
             Vector2 direction = (enemyData.player.transform.position - transform.position).normalized;
 
             if (Physics2D.Raycast(transform.position, direction, distanceToPlayer, enemyData.groundLayer))
+            {
                 playerInSight = false;
+                playerInAttackRange = false;
+            }
         }
     }
 

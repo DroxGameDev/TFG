@@ -81,7 +81,7 @@ public class IronPower : Iron_Steel
             {
                 if (selectedMetal.metal.tag == "Environment_metal")
                 {
-                     if (playerData.grounded)
+                    if (playerData.grounded)
                     {
                         ChangeState(PowerState.inactive);
                         OnInactive();
@@ -176,6 +176,7 @@ public class IronPower : Iron_Steel
         if (selectedMetal.metal.tag == "Environment_metal")
         {
             directorVectorImpulse = (selectedMetal.metal.transform.position - transform.position).normalized;
+            StartCoroutine(moveTowards(selectedMetal.metal));
         }
         else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
         {
@@ -183,62 +184,54 @@ public class IronPower : Iron_Steel
         }
         else
         {
-            StartCoroutine(moveTowards(col, selectedMetal.metal));
+            StartCoroutine(moveTowards(selectedMetal.metal));
         }
     }
 
     private IEnumerator moveTowardsPlayer(Collider2D metal, Collider2D player)
     {
-        Vector2 forcePlayerPosition = playerData.linesOrigin.position;
+        Vector2 forcePlayerPosition;
         bool metalObstacleReached = false;
+
         if (metal.gameObject.tag == "Heavy_Metal")
         {
             var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
             heavyMetal.ForceMove();
         }
-        Vector2 currentPosition = metal.transform.position;
-        Vector2 direction = (forcePlayerPosition - currentPosition).normalized;
+
+        Vector2 currentPosition;
+        Vector2 direction;
+
+        Rigidbody2D rbMetal = metal.attachedRigidbody;
+        
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
-        {   
+        {
             forcePlayerPosition = playerData.linesOrigin.position;
             currentPosition = metal.transform.position;
+            direction = (forcePlayerPosition - currentPosition).normalized;
 
-            float step = playerData.ironPullPower / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
+            float speed = playerData.ironPullPower / rbMetal.mass;
+            float step = speed * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
 
-            //filter.useLayerMask = true;
-
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
-            int hitCount = metal.attachedRigidbody.Cast(direction, filter, hits, step);
+            int hitCount = rbMetal.Cast(direction, filter, hits, step);
 
             if (hitCount > 0)
             {
-                // Si hay colisión, mueve solo hasta el punto de colisión
-                metal.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
+                rbMetal.velocity = Vector2.zero;
+
                 if (hits[0].distance < 0.1f)
                 {
                     obstacleReached = true;
                     metalObstacleReached = true;
-
-                    if (direction.y < 0f && Mathf.Abs(direction.y) < 0.5f)
-                    {
-                        direction = metal.transform.position.x < playerData.linesOrigin.position.x ?
-                            Vector2.right : Vector2.left;
-                    }
-                    else
-                    {
-                        obstacleReached = true;
-                        metalObstacleReached = true;
-                    }
                 }
             }
             else
             {
-                // Si no hay colisión, mueve normalmente
-                Vector2 newPosition = Vector2.MoveTowards(currentPosition, forcePlayerPosition, step);
-                metal.attachedRigidbody.MovePosition(newPosition);
+                rbMetal.velocity = direction * speed;
             }
 
             yield return new WaitForFixedUpdate();
@@ -250,26 +243,31 @@ public class IronPower : Iron_Steel
             heavyMetal.Stop();
         }
     }
-    private IEnumerator moveTowards(Collider2D origin, Collider2D target)
+    private IEnumerator moveTowards(Collider2D target)
     {
-
+        // Determinar punto objetivo inicial
         if (target.gameObject.tag == "Floor" || target.gameObject.tag == "Walkable_Area")
         {
-            forceTargetPosition = target.ClosestPoint(origin.gameObject.transform.position);
+            forceTargetPosition = target.ClosestPoint(transform.position);
         }
         else
         {
             forceTargetPosition = target.transform.position;
         }
 
-        Vector2 currentPosition = origin.transform.position;
-        Vector2 direction = (forceTargetPosition - currentPosition).normalized; 
+        Vector2 currentPosition;
+        Vector2 direction; 
         
         while (state == PowerState.force && !ObjectiveReached(target) && !obstacleReached)
         {
-            currentPosition = origin.transform.position;
+            forceTargetPosition = (target.gameObject.tag == "Floor" || target.gameObject.tag == "Walkable_Area") ?
+            target.ClosestPoint(transform.position) : target.transform.position;
 
-            float step = playerData.ironPullPower * Time.fixedDeltaTime;
+            currentPosition = transform.position;
+            direction = (forceTargetPosition - currentPosition).normalized;
+
+            float speed = playerData.ironPullPower / rb.mass;
+            float step = speed * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
             filter.SetLayerMask(playerData.obstacleLayer);
@@ -277,24 +275,27 @@ public class IronPower : Iron_Steel
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = col.Cast(direction, filter, hits, step);
-    
+
 
             if (hitCount > 0)
             {
                 // Si hay colisión, mueve solo hasta el punto de colisión
-                origin.attachedRigidbody.MovePosition(currentPosition + direction * hits[0].distance);
+                rb.velocity = Vector2.zero;
+
                 if (hits[0].distance < 0.1f)
                 {
                     if (direction.y < 0f && Mathf.Abs(direction.y) < 0.5f)
                     {
-                        direction = origin.transform.position.x < target.transform.position.x ?
+                        direction = transform.position.x < target.transform.position.x ?
                             Vector2.right : Vector2.left;
+
+                        rb.velocity = direction * speed;
                     }
                     else
                     {
                         if (target.tag == "Heavy_Metal")
                         {
-                            yield return StartCoroutine(moveTowardsPlayer(target, origin));
+                            yield return StartCoroutine(moveTowardsPlayer(target, col));
                         }
                         else
                         {
@@ -306,8 +307,12 @@ public class IronPower : Iron_Steel
             else
             {
                 // Si no hay colisión, mueve normalmente
+                /*
                 Vector2 newPosition = Vector2.MoveTowards(currentPosition, forceTargetPosition, step);
-                origin.attachedRigidbody.MovePosition(newPosition);
+                rb.MovePosition(newPosition);
+                */
+                
+                rb.velocity = direction * speed;
             }
 
             yield return new WaitForFixedUpdate();

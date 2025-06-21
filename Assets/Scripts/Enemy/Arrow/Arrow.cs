@@ -7,10 +7,11 @@ using UnityEngine;
 public class Arrow : AffectedByGravity
 {
     private SpriteRenderer sprite;
+    private Animator anim;
     public Collider2D attackCollider;
     public Collider2D obstaclesCollider;
     public ArrowAttackInfo attackInfo;
-
+    public GameObject speed;
     private float arrowSpeed;
     private float shootTimer;
     private float receivedShooTime;
@@ -20,6 +21,7 @@ public class Arrow : AffectedByGravity
         base.OnEnable();
         constForce.force = new Vector2(0f, 0f);
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     public void ShootArrow(Vector2 direction, float speed, float shootTime, int damage, float knockback)
@@ -37,15 +39,16 @@ public class Arrow : AffectedByGravity
     {
         shootTimer = receivedShooTime;
         returning = true;
-        SetArrow(direction, arrowSpeed*speedMult);
+        speed.transform.localScale = new Vector3(speed.transform.localScale.x * speedMult,speed.transform.localScale.y,speed.transform.localScale.z);
+        SetArrow(direction, arrowSpeed * speedMult);
     }
 
     private void SetArrow(Vector2 direction, float speed)
-    {   
+    {
         //velocity
         rb.velocity = new Vector2(speed * direction.x, speed * direction.y);
         //sprite direction
-         // Compute angle
+        // Compute angle
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Rotate arrow assuming sprite looks to the right; adjust offset if not
@@ -61,21 +64,26 @@ public class Arrow : AffectedByGravity
             yield return new WaitForEndOfFrame();
         }
 
-        ResetArrow();
+        anim.SetBool("Despawn", true);
     }
 
-    public void Collision (Collider2D collision)
+    public void Collision()
     {
-        EarlyDestroy();     
+        anim.SetBool("Despawn", true);
     }
 
     public void EarlyDestroy()
     {
-        shootTimer = 0f;
+        ResetArrow();
     }
 
     private void ResetArrow()
     {
         Destroy(this.gameObject);
+    }
+
+    void Update()
+    {
+
     }
 }

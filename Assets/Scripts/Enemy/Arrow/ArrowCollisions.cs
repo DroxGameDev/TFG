@@ -8,6 +8,6 @@ public class ArrowCollisions : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        origin.Collision(collision);
+        origin.Collision();
     }
 }
