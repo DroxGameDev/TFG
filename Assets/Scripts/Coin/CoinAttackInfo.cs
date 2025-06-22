@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinAttackInfo : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Coin origin;
     public int damage;
     [Range(0, 10f)] public float damageknockback;
 

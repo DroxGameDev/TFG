@@ -279,7 +279,6 @@ public class IronPower : Iron_Steel
 
             if (hitCount > 0)
             {
-                Debug.Log(hits[0].distance);      
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 rb.velocity = Vector2.zero;
                 if (hits[0].distance < 1f)

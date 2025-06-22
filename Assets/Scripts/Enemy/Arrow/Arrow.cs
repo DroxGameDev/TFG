@@ -79,11 +79,6 @@ public class Arrow : AffectedByGravity
 
     private void ResetArrow()
     {
-        Destroy(this.gameObject);
-    }
-
-    void Update()
-    {
-
+        Destroy(gameObject);
     }
 }

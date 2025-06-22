@@ -23,8 +23,9 @@ public class PlayerDamageArea : MonoBehaviour
         if (collision.tag == "Arrow")
         {
             ArrowAttackInfo attackInfo = collision.gameObject.GetComponent<ArrowAttackInfo>();
+            bool movingRight = attackInfo.rb.velocity.x >= 0f;
             attackInfo.origin.EarlyDestroy();
-            origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, playerData.isFacingRight);
+            origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, movingRight);
         }
 
     }

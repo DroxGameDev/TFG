@@ -13,22 +13,29 @@ public class EnemyDamageArea : MonoBehaviour
         {
             PlayerAttackInfo attackInfo = collision.gameObject.GetComponent<PlayerAttackInfo>();
             origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, attackInfo.isFacingRight);
+            attackInfo.DoneDamage();
         }
 
         else if (collision.tag == "Coin")
         {
             CoinAttackInfo coin = collision.gameObject.GetComponent<CoinAttackInfo>();
-            bool movingRight = coin.rb.velocity.x >= 0f;
-            origin.OnDamage(coin.damage, coin.damageknockback, movingRight);
+
+            if (coin != null)
+            {
+                bool movingRight = coin.rb.velocity.x >= 0f;
+                Destroy(coin.origin.gameObject);
+                origin.OnDamage(coin.damage, coin.damageknockback, movingRight);
+            }
         }
 
         else if (collision.tag == "Arrow")
         {
             ArrowAttackInfo arrow = collision.gameObject.GetComponent<ArrowAttackInfo>();
 
-            if (arrow.origin.returning)
+            if (arrow != null && arrow.origin.returning)
             {
-                origin.OnDamage(arrow.damage, arrow.damageKnockback, origin.GetComponent<EnemyData>().isFacingRight);
+                bool movingRight = arrow.rb.velocity.x >= 0f;
+                origin.OnDamage(arrow.damage, arrow.damageKnockback, movingRight);
             }
         }
     }

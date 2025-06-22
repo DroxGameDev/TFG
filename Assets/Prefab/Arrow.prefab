@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 998303489037024351}
+  rb: {fileID: 5171353441082741349}
   damage: 0
   damageKnockback: 0
 --- !u!1 &7568908675752293277

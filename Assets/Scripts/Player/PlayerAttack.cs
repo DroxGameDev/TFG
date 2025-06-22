@@ -51,14 +51,6 @@ public class PlayerAttack : MonoBehaviour
 
         attackCounter = playerData.attackTime;
 
-        if (playerData.isFacingRight)
-        {
-            rb.AddForce(Vector2.left * playerData.attackImpulse, ForceMode2D.Impulse);
-        }
-        else
-        {
-            rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
-        }
         while (attackCounter > 0f)
         {
             attackCounter -= Time.deltaTime;
@@ -78,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
         {
             if (rb.velocity.y > 0) //force to the grown if the palyer is mid air
             {
-                rb.AddForce(Vector2.down * playerData.velocity.y*(1-playerData.jumpCutMultiplier), ForceMode2D.Impulse);
+                rb.AddForce(Vector2.down * playerData.velocity.y * (1 - playerData.jumpCutMultiplier), ForceMode2D.Impulse);
             }
 
             attackCooldownCounter = attackCooldownTime;
@@ -105,6 +97,18 @@ public class PlayerAttack : MonoBehaviour
                 playerData.attackComboStep = AttackCombo.Attack1;
                 StartCoroutine(Attack());
             }
+        }
+    }
+
+    public void AttackDoneFeedback()
+    {
+        if (playerData.isFacingRight)
+        {
+            rb.AddForce(Vector2.left * playerData.attackImpulse, ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(Vector2.right * playerData.attackImpulse, ForceMode2D.Impulse);
         }
     }
 }

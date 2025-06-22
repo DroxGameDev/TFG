@@ -5,6 +5,7 @@ using UnityEngine;
 public class ArrowAttackInfo : MonoBehaviour
 {
     public Arrow origin;
+    public Rigidbody2D rb;
     [HideInInspector] public int damage;
     [HideInInspector] public float damageKnockback;
 }

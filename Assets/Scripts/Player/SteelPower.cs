@@ -1,25 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SteelPower : Iron_Steel
 {
     private float burningSteelCounter;
     private bool impulsePushedObject = false;
-    public bool active = false;
     private bool pushingObject = false;
+    public bool active = false;
     public IEnumerator SteelInputupdate(bool context)
     {
-        if (context)
-        {
-            input = true;
-        }
-
-        else if (!context)
-        {
-            input = false;
-        }
+        input = context;
 
         yield return null;
     }
@@ -27,86 +17,103 @@ public class SteelPower : Iron_Steel
     {
         OnUpdate();
 
-        if (input && state == PowerState.inactive)
+        switch (state)
         {
-            ChangeState(PowerState.select);
-            OnSelect();
+            case PowerState.inactive:
+                if (input)
+                {
+                    ChangeState(PowerState.select);
+                    OnSelect();
+                }
+                break;
+
+            case PowerState.select:
+                if ((!input || selectMetalCounter <= 0) && playerData.burningSteel)
+                {
+                    HandleSelection();
+                    input = false;
+                }
+                break;
+
+            case PowerState.impulse:
+                if (playerData.burningSteel)
+                    HandleImpulse();
+                break;
+
+            case PowerState.force:
+                if (playerData.burningSteel)
+                    HandleForce();
+                break;
         }
 
-        //Debug.Log ("2:" + state);
-
-        else if (playerData.burningSteel && playerResources.steelEmpty)
+        if (playerData.burningSteel && playerResources.steelEmpty)
         {
             ChangeState(PowerState.inactive);
             OnInactive();
             input = false;
         }
+    }
 
-        else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningSteel)
+    private void HandleSelection()
+    {
+        if (selectedMetal == null)
         {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else if (selectedMetal.metal.tag == "Arrow")
+        {
+            ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, 1);
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else
+        {
+            base.OnImpulse();
+            ChangeState(PowerState.impulse);
+            OnImpulse();
+            StartCoroutine(pushObject(rb, selectedMetal.metal.attachedRigidbody));
+        }
+    }
+    private void HandleImpulse()
+    {
+        if (pushingObject)
+        {
+            ChangeState(PowerState.force);
+            OnForce();
+        }
+        else
+        {
+            burningSteelCounter -= Time.deltaTime;
 
-            if (selectedMetal == null)
+            if (burningSteelCounter <= 0.001f)
             {
+                burningSteelCounter = 0f;
                 ChangeState(PowerState.inactive);
                 OnInactive();
             }
-            else if (selectedMetal.metal.tag == "Arrow")
+        }
+    }
+    private void HandleForce()
+    {
+        if (selectedMetal.metal == null)
+        {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else if (!pushingObject)
+        {
+            if (selectedMetal.metal.tag == "Heavy_Metal")
             {
-                ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, 1);
                 ChangeState(PowerState.inactive);
                 OnInactive();
             }
             else
             {
-                base.OnImpulse();
                 ChangeState(PowerState.impulse);
                 OnImpulse();
-
-                StartCoroutine(pushObject(rb, selectedMetal.metal.attachedRigidbody));
-            }
-            input = false;
-        }
-
-        //Debug.Log ("3:" + state);
-
-        else if (state == PowerState.impulse && playerData.burningSteel)
-        {
-            if (pushingObject)
-            {
-                ChangeState(PowerState.force);
-                OnForce();
-            }
-            else
-            {
-                burningSteelCounter -= Time.deltaTime;
-
-                if (burningSteelCounter <= 0.001f)
-                {
-                    burningSteelCounter = 0f;
-                    ChangeState(PowerState.inactive);
-                    OnInactive();
-                }
             }
         }
-
-        else if (state == PowerState.force && playerData.burningSteel)
-        {
-
-            if (!pushingObject)
-            {
-                if (selectedMetal.metal.tag == "Heavy_Metal")
-                {
-                    ChangeState(PowerState.inactive);
-                    OnInactive();
-                }
-                else
-                {
-                    ChangeState(PowerState.impulse);
-                    OnImpulse();
-                }
-            }
-        }
-        //Debug.Log ("4:" + state);
     }
     public override void OnInactive()
     {
@@ -164,9 +171,8 @@ public class SteelPower : Iron_Steel
         }
         directorVector.Normalize();
         rb.velocity = Vector3.zero;
-        Vector2 forceToApply = directorVector * playerData.steelPushPower * selectedMetal.iValue * -1;
-
-        return forceToApply;
+        
+        return directorVector * playerData.steelPushPower * selectedMetal.iValue * -1; ;
     }
 
     private IEnumerator pushObject(Rigidbody2D origin, Rigidbody2D target)
@@ -174,17 +180,9 @@ public class SteelPower : Iron_Steel
         Vector2 forceAmount;
 
 
-        if (target.tag == "Floor" || target.tag == "Walkable_Area")
+        if (target.tag == "Walkable_Area")
         {
-            Vector2 MetalClosestPoint;
-            if (target.tag == "Walkable_Area")
-            {
-                MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
-            }
-            else
-            {
-                MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
-            }
+            Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
             forceAmount = getImpulse(MetalClosestPoint);
             origin.AddForce(forceAmount, ForceMode2D.Impulse);
         }
@@ -224,20 +222,23 @@ public class SteelPower : Iron_Steel
 
                 yield return StartCoroutine(moveAwayFromPlayer(target.GetComponent<Collider2D>(), origin.GetComponent<Collider2D>()));
 
-                if (target.tag == "Coin")
-                {
-                    target.gameObject.GetComponent<Coin>().attackCollider.enabled = false;
-                }
+                if(target != null){
+                    if (target.tag == "Coin")
+                    {
+                        target.gameObject.GetComponent<Coin>().attackCollider.enabled = false;
+                    }
 
-                if (impulsePushedObject)
-                {
-                    playerData.movingWithPowers = false;
-                    target.AddForce(forceAmount * -1, ForceMode2D.Impulse);
+                    if (impulsePushedObject)
+                    {
+                        playerData.movingWithPowers = false;
+                        target.AddForce(forceAmount * -1, ForceMode2D.Impulse);
+                    }
+                    else
+                    {
+                        origin.AddForce(forceAmount, ForceMode2D.Impulse);
+                    }
                 }
-                else
-                {
-                    origin.AddForce(forceAmount, ForceMode2D.Impulse);
-                }
+                
             }
         }
         yield return new WaitForEndOfFrame();
@@ -276,9 +277,14 @@ public class SteelPower : Iron_Steel
 
         }
 
-
-        while (Vector2.Dot(direction, objectivePosition - currentPosition) > 0.1f && !metalObstacleReached)
+        while (Vector2.Dot(direction, objectivePosition - currentPosition) > 0.1f && !metalObstacleReached )
         {
+            if (metal == null || metal.gameObject == null || metal.attachedRigidbody == null)
+            {
+                pushingObject = false;
+                yield break;
+            }
+
             currentPosition = metal.transform.position;
 
             float step = playerData.steelPushPower / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
