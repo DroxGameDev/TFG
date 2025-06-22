@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Smear Frames
-  m_Shader: {fileID: -6465566751694194690, guid: c597a2c37092e7b44bf45ddbd3e3309b, type: 3}
+  m_Name: Enemy
+  m_Shader: {fileID: -6465566751694194690, guid: 6d65de7fddf9f4a4da3f76cf8d8428d3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -37,12 +37,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _burningPewter: 0
+    - _FlashAmount: 0
     m_Colors:
-    - _Knife: {r: 1, g: 1, b: 1, a: 1}
-    - _Punch: {r: 1, g: 1, b: 1, a: 1}
+    - _FlashColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &3013560710649271388
+--- !u!114 &2932690850772016954
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

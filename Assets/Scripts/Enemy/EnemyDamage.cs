@@ -25,15 +25,20 @@ public class EnemyDamage : MonoBehaviour, IDamageable
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
     {
-        if (enemyShield != null && enemyShield.IsBlocking())
-        {
-            Debug.Log("blocked");
-            return;
-        }
         if (amount == 1) enemyData.damageType = DamageType.light;
         else enemyData.damageType = DamageType.hard;
 
         Vector2 knockbackDirection;
+
+        if (enemyShield != null)
+        {
+            if (((originFacingRight && !enemyData.isFacingRight) || (!originFacingRight && enemyData.isFacingRight)) &&
+                !enemyData.prepareAttack && !enemyData.attacking)
+            {
+                enemyShield.OnBlock();
+                return;
+            }
+        }
 
         if (originFacingRight)
         {
@@ -67,10 +72,12 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     IEnumerator DamageRutine(Vector2 direction, float knockback)
     {
         enemyData.damaged = true;
+        enemyData.sprite.material.SetFloat("_FlashAmount", 1);
         rb.AddForce(direction * knockback, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(enemyData.damageWait);
 
+        enemyData.sprite.material.SetFloat("_FlashAmount", 0);
         enemyData.damaged = false;
     }
     IEnumerator DestroyWait()

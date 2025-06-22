@@ -11,9 +11,6 @@ public class EnemyAnimation : MonoBehaviour
     private static readonly int idle = Animator.StringToHash("Idle");
     private static readonly int run = Animator.StringToHash("Run");
     private static readonly int walk = Animator.StringToHash("Walk");
-    private static readonly int damageLight = Animator.StringToHash("DamageLight");
-    private static readonly int damageMedium = Animator.StringToHash("DamageMedium");
-    private static readonly int damageHard = Animator.StringToHash("DamageHard");
     private static readonly int prepareAttack = Animator.StringToHash("PrepareAttack");
     private static readonly int attack = Animator.StringToHash("Attack");
 
@@ -47,6 +44,7 @@ public class EnemyAnimation : MonoBehaviour
         if (enemyData.prepareAttack) return prepareAttack;
         if (enemyData.attacking) return attack;
 
+        /*
         if (enemyData.damaged)
         {
             switch (enemyData.damageType)
@@ -59,6 +57,7 @@ public class EnemyAnimation : MonoBehaviour
                     return LockState(damageHard, enemyData.damageWait);
             }
         }
+        */
 
         if (enemyData.walking) return walk;
         if (enemyData.running) return run;

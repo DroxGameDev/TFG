@@ -6,18 +6,16 @@ public class EnemyShield : MonoBehaviour
 {
     EnemyData enemyData;
 
+    [Range(0, 10f)] public float blockPushAmount;
+
     void Start()
     {
         enemyData = GetComponent<EnemyData>();
     }
-    
-    public float blockAngle = 120f; // En grados
 
-    public bool IsBlocking()
+
+    public void OnBlock()
     {
-        Vector3 directionToPlayer = (enemyData.player.position - transform.position).normalized;
-        float angle = Vector3.Angle(transform.forward, directionToPlayer);
-
-        return angle < blockAngle / 2f;
+        enemyData.player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * blockPushAmount, ForceMode2D.Impulse);
     }
 }

@@ -64,6 +64,7 @@ public class EnemyData : AffectedByGravity
     public LayerMask playerLayer;
 
     [Header("Damage")]
+    public SpriteRenderer sprite;
     public DamageType damageType;
     public float damageWait;
     [Range(0, 1f)] public float hitTime;
