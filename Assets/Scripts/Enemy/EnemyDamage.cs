@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour, IDamageable
 {
     EnemyData enemyData;
+    EnemyDie enemyDie;
     EnemyShield enemyShield;
     Rigidbody2D rb;
 
@@ -21,6 +22,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
         enemyData = GetComponent<EnemyData>();
         rb = GetComponent<Rigidbody2D>();
         enemyShield = GetComponent<EnemyShield>();
+        enemyDie = GetComponent<EnemyDie>();
     }
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
@@ -66,7 +68,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     public void OnDie()
     {
         HitStop.Instance.Stop(enemyData.hitTime);
-        StartCoroutine(DestroyWait());
+        StartCoroutine(enemyDie.DestroyWait());
     }
 
     IEnumerator DamageRutine(Vector2 direction, float knockback)
@@ -80,10 +82,5 @@ public class EnemyDamage : MonoBehaviour, IDamageable
         enemyData.sprite.material.SetFloat("_FlashAmount", 0);
         enemyData.damaged = false;
     }
-    IEnumerator DestroyWait()
-    {
-        while (Time.timeScale != 1f)
-            yield return null;
-        Destroy(this.gameObject);
-    }
+    
 }

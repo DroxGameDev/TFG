@@ -69,6 +69,11 @@ public class EnemyData : AffectedByGravity
     public float damageWait;
     [Range(0, 1f)] public float hitTime;
 
+    [Header("Die")]
+    public GameObject[] posibleDrops;
+    [Range(0, 3)] public int maxAmountDrops;
+    [Range(0, 10f)] public float dropDispersion;
+
     [Header("Animation")]
     public Animator anim;
     public bool isFacingRight = true;
