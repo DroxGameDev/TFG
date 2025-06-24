@@ -9,17 +9,11 @@ public enum DamageType
     hard
 }
 
-public enum EnemyType
-{
-    Soldier,
-    Crossbow,
-    Hazekiller
-}
-
 public class EnemyData : AffectedByGravity
 {
     public int health;
     public Transform player;
+    public bool visibility = false;
 
     [Header("Movement")]
     [Range(0f, 20f)] public float walkSpeed;
@@ -87,7 +81,8 @@ public class EnemyData : AffectedByGravity
 
     private void Start()
     {
-        player = GameManager.Instance.GetPlayer();   
+        player = GameManager.Instance.GetPlayer();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Flip()

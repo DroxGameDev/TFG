@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 4778866872515288156}
+  enemyDie: {fileID: 0}
 --- !u!1 &1067352025327541251
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +314,7 @@ GameObject:
   - component: {fileID: 2342201113331627131}
   - component: {fileID: 3072828840514007723}
   - component: {fileID: 8042686545501514089}
+  - component: {fileID: 900463451497078060}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -440,6 +442,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &900463451497078060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084654158578755468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4975e48ff92f3548a173e4c5f670a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 6649987681923764794}
 --- !u!1 &4597002515624636025
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +629,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!247 &1151678938817244296
@@ -643,8 +658,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   constForce: {fileID: 0}
   health: 6
-  enemyType: 0
   player: {fileID: 0}
+  visibility: 0
   walkSpeed: 2
   runSpeed: 5
   moveDirection: 1

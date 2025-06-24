@@ -206,7 +206,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!247 &3511852622649081073
@@ -235,8 +235,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   constForce: {fileID: 0}
   health: 6
-  enemyType: 0
   player: {fileID: 0}
+  visibility: 0
   walkSpeed: 2
   runSpeed: 5
   moveDirection: 1
@@ -249,7 +249,7 @@ MonoBehaviour:
   attackTime: 0.5
   attackCooldownTime: 1
   attackDamage: 1
-  attackDamageKnockback: 0
+  attackDamageKnockback: 8
   detectionRangeX: 10
   detectionRangeY: 1.5
   attackRangeX: 3.2
@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 2936989700314588524}
   - component: {fileID: 2239255576294174920}
   - component: {fileID: 1796912923599240380}
+  - component: {fileID: 6931390915301688129}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -426,7 +427,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 593152858, guid: e65744e0f3e292a45beda637eb7f9cea, type: 3}
+  m_Sprite: {fileID: 1113886855, guid: 1aad02f7efd29094b9b79c5e63695aa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -450,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 2ac45ecbc3de3d242b7762c33f690fb4, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ee9e747c434c83a49bf5f5caa8947476, type: 3}
 --- !u!114 &2239255576294174920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,6 +489,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6931390915301688129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384148345306821222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4975e48ff92f3548a173e4c5f670a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 1784785603437390086}
 --- !u!1 &3089995637623108912
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   origin: {fileID: 2215284964425059064}
+  enemyDie: {fileID: 0}
 --- !u!1 &4251081889987086457
 GameObject:
   m_ObjectHideFlags: 0

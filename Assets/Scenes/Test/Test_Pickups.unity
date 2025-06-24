@@ -309,6 +309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vial (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3703096195106929766, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8942155226604348303, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 101.354
@@ -483,10 +487,6 @@ PrefabInstance:
     - target: {fileID: 1582586514702644366, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
       propertyPath: m_Name
       value: Vial
-      objectReference: {fileID: 0}
-    - target: {fileID: 3703096195106929766, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
-      propertyPath: type
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8942155226604348303, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
       propertyPath: m_LocalPosition.x

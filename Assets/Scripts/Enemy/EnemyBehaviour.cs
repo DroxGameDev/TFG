@@ -36,6 +36,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update()
     {
+        if (!enemyData.visibility) return;
+
         UpdatePerception();
         
         attackCooldownTimer -= Time.deltaTime;
