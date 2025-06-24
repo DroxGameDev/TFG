@@ -113,26 +113,38 @@ public class PlayerMovement : AffectedByGravity
         }
         #endregion
 
-        //comprobar si hay que girar el sprite
-        if ((playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight && moveInput > 0f && !playerData.attacking && !playerData.pushing) ||
-                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight && moveInput > 0f && !playerData.attacking && !playerData.pushing))
-        {
-            playerData.Flip();
-        }
-        else if ((playerData.gravityMode != GravityMode.Up && playerData.isFacingRight && moveInput < 0f && !playerData.attacking && !playerData.pushing)
-                || (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight && moveInput < 0f && !playerData.attacking && !playerData.pushing))
-        {
-            playerData.Flip();
-        }
+        if(CheckFlip(moveInput)) playerData.Flip();
         
     }
 
-    public void ChangeXMovement(float input)
+    private bool CheckFlip(float moveInput)
+    {
+        if (playerData.attacking || playerData.pushing || playerData.damaged)
+            return false;
+
+        bool movingRight = moveInput > 0f;
+        bool movingLeft = moveInput < 0f;
+
+        if (movingRight)
+        {
+            return (playerData.gravityMode != GravityMode.Up && !playerData.isFacingRight) ||
+                (playerData.gravityMode == GravityMode.Up && playerData.isFacingRight);
+        }
+        else if (movingLeft)
+        {
+            return (playerData.gravityMode != GravityMode.Up && playerData.isFacingRight) ||
+                (playerData.gravityMode == GravityMode.Up && !playerData.isFacingRight);
+        }
+
+        return false;
+    }
+
+    private void ChangeXMovement(float input)
     {
         if (playerData.preparingAttack || playerData.attacking)
             input = 0f;
-        
-        if (playerData.movingWithPowers || (!playerData.burningPewter && playerData.pushing)) return;
+
+        if (playerData.movingWithPowers || (!playerData.burningPewter && playerData.pushing) || playerData.damaged) return;
 
         #region Run
         //Calculate the direction we want to move in and our desired velocity
@@ -156,7 +168,7 @@ public class PlayerMovement : AffectedByGravity
         rb.AddForce(movement * RunDirectionByGravity(playerData.gravityMode));
 
         #endregion
-            
+
     }
 
     void FixedUpdate()

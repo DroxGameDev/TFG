@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2215284964425059064}
   - component: {fileID: 6626038224233850810}
   - component: {fileID: 8350553854677328626}
+  - component: {fileID: 5323125582098684258}
   m_Layer: 20
   m_Name: Gazekiller
   m_TagString: Enemy
@@ -168,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11787796, y: 0.0150665045}
+  m_Offset: {x: 0.1565628, y: -0.11347127}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.89069366, y: 2.833038}
+  m_Size: {x: 1.2450409, y: 3.0901136}
   m_EdgeRadius: 0
 --- !u!50 &5313031228277777209
 Rigidbody2D:
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   constForce: {fileID: 0}
-  health: 1000
+  health: 6
   enemyType: 0
   player: {fileID: 0}
   walkSpeed: 2
@@ -250,8 +251,8 @@ MonoBehaviour:
   attackDamage: 1
   attackDamageKnockback: 0
   detectionRangeX: 10
-  detectionRangeY: 1
-  attackRangeX: 1.5
+  detectionRangeY: 1.5
+  attackRangeX: 3.2
   attackRangeY: 1.5
   groundCheck: {fileID: 2809743925695635891}
   wallCheck: {fileID: 8959381154599141488}
@@ -263,8 +264,13 @@ MonoBehaviour:
     m_Bits: 128
   sprite: {fileID: 1421742326949429518}
   damageType: 0
-  damageWait: 0.333
+  damageWait: 0.1
   hitTime: 0.169
+  posibleDrops:
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  - {fileID: 1582586514702644366, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
+  maxAmountDrops: 3
+  dropDispersion: 10
   anim: {fileID: 1796912923599240380}
   isFacingRight: 1
   walking: 0
@@ -330,6 +336,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPushAmount: 3
+--- !u!114 &5323125582098684258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2232648198046351526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9fe1401c045db4a9b63ff75fe646c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2384148345306821222
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +378,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.770699, y: 1.7706993, z: 1.770699}
+  m_LocalScale: {x: 1.9745445, y: 1.9745446, z: 1.9745445}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5452560863266268130}
@@ -408,7 +426,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1679049765, guid: f8b2415b16edec041af04f62f858f32b, type: 3}
+  m_Sprite: {fileID: 593152858, guid: e65744e0f3e292a45beda637eb7f9cea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -432,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 515815385a4c1a04387cc157bc282202, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 2ac45ecbc3de3d242b7762c33f690fb4, type: 3}
 --- !u!114 &2239255576294174920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +477,7 @@ Animator:
   m_GameObject: {fileID: 2384148345306821222}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c4399aa09023bbb4bb2c5a4eadfb587d, type: 2}
+  m_Controller: {fileID: 22100000, guid: 538e0a9c36304a342920122c3a968597, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -535,7 +553,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.15137482, y: 0.020803213}
+  m_Offset: {x: 0.08833313, y: 0.020803213}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -546,7 +564,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1136017, y: 2.8288226}
+  m_Size: {x: 1.4123688, y: 2.8288226}
   m_EdgeRadius: 0
 --- !u!114 &5129920769025025166
 MonoBehaviour:
@@ -586,7 +604,7 @@ Transform:
   m_GameObject: {fileID: 4251081889987086457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.246, y: 0.435, z: 0}
+  m_LocalPosition: {x: 0.795, y: 0.435, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,7 +638,7 @@ Transform:
   m_GameObject: {fileID: 6827077063314646982}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.276, y: -0.005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -707,7 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: c288f5c34e4e0cc43a62b0c97cb2f5a5, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 575723129752a2443ab6bfec71d34d13, type: 3}
 --- !u!1 &7439019521775445716
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +751,7 @@ Transform:
   m_GameObject: {fileID: 7439019521775445716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.211, y: -1.393, z: 0}
+  m_LocalPosition: {x: 0.42, y: -1.632, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

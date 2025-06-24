@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5293458016335272117}
   - component: {fileID: 4129432972174672613}
   - component: {fileID: 3346036141092796780}
+  - component: {fileID: 4918496788425855049}
   m_Layer: 20
   m_Name: Shooter
   m_TagString: Enemy
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   constForce: {fileID: 0}
-  health: 1000
+  health: 6
   enemyType: 0
   player: {fileID: 0}
   walkSpeed: 2
@@ -170,8 +171,13 @@ MonoBehaviour:
     m_Bits: 128
   sprite: {fileID: 2926466175540719779}
   damageType: 0
-  damageWait: 0.333
+  damageWait: 0.1
   hitTime: 0.169
+  posibleDrops:
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  - {fileID: 1582586514702644366, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
+  maxAmountDrops: 3
+  dropDispersion: 10
   anim: {fileID: 4602405556185051607}
   isFacingRight: 1
   walking: 0
@@ -241,6 +247,18 @@ MonoBehaviour:
   shootSpeed: 10
   shootTime: 4
   shootKnockback: 0
+--- !u!114 &4918496788425855049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293576202289126390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9fe1401c045db4a9b63ff75fe646c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1458800935734687243
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +418,7 @@ Animator:
   m_GameObject: {fileID: 2881530375336884331}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1f1c174cf0a7b2f459c69f3dd725e355, type: 2}
+  m_Controller: {fileID: 22100000, guid: 0722b6b5140e71e4d9f91a031407c454, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

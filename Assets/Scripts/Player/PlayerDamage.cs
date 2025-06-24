@@ -32,7 +32,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
                 {
                     playerData.Flip();
                 }
-                knockbackDirection = Vector2.right;
+                knockbackDirection = new Vector2(1, 1);
+                //knockbackDirection = Vector2.right;
             }
             else
             {
@@ -40,7 +41,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
                 {
                     playerData.Flip();
                 }
-                knockbackDirection = Vector2.left;
+                //knockbackDirection = Vector2.left;
+                knockbackDirection = new Vector2(-1,1);
             }
 
             playerData.health -= amount;
@@ -48,18 +50,19 @@ public class PlayerDamage : MonoBehaviour, IDamageable
                 OnDie();
 
             HitStop.Instance.Stop(playerData.hitTime);
-            StartCoroutine(DamageRutine(knockbackDirection, knockbackAmount));
+            StartCoroutine(DamageWait());
+            StartCoroutine(DamageFeedback(knockbackDirection, knockbackAmount));
         }
     }
-
-    IEnumerator DamageRutine(Vector2 direction, float knockback)
+    IEnumerator DamageWait()
     {
+        rb.velocity = Vector2.zero;
         playerData.damaged = true;
-
         yield return new WaitForSeconds(playerData.damageWait);
-
         playerData.damaged = false;
-
+    }
+    IEnumerator DamageFeedback(Vector2 direction, float knockback)
+    {
         invincibilityTimer = playerData.invicibilityTime;
 
         Color colorA = Color.white;
@@ -68,6 +71,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
         float lerpSpeed = playerData.invicibilityEffectSpeed; // Puedes ajustar esto para que el parpadeo sea más o menos rápido
         float t = 0f;
         bool fadingToBlack = true;
+        
+        rb.AddForce(direction * knockback, ForceMode2D.Impulse);
 
         while (invincibilityTimer > 0f)
         {
@@ -95,7 +100,6 @@ public class PlayerDamage : MonoBehaviour, IDamageable
             invincibilityTimer -= Time.deltaTime;
             yield return null;
         }
-
         // Restaurar color original al final
         playerData.sprite.color = Color.white;
     }

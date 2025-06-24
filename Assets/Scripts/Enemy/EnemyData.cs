@@ -45,7 +45,7 @@ public class EnemyData : AffectedByGravity
     [Space(10)]
 
     [Range(1, 5)] public int attackDamage;
-    [Range(0, 10f)] public float attackDamageKnockback;
+    [Range(0, 50f)] public float attackDamageKnockback;
 
     [Space(10)]
 

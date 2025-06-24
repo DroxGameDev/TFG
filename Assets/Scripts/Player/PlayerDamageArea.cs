@@ -17,6 +17,7 @@ public class PlayerDamageArea : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             EnemyAttackInfo attackInfo = collision.gameObject.GetComponent<EnemyAttackInfo>();
+
             origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, attackInfo.isFacingRight);
         }
 
