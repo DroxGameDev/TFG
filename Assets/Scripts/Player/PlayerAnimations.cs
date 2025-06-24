@@ -36,6 +36,8 @@ public class PlayerAnimations : MonoBehaviour
     private static readonly int push = Animator.StringToHash("Push");
     private static readonly int pull = Animator.StringToHash("Pull");
     private static readonly int damage = Animator.StringToHash("Damage");
+    private static readonly int death = Animator.StringToHash("Death");
+
 
 
 
@@ -81,9 +83,10 @@ public class PlayerAnimations : MonoBehaviour
 
     private int GetState(){
         if(Time.time < _lockedTill) return currentState;
+
+        if (playerData.dead) return death;
         
-        if(playerData.damaged)
-            return /* LockState(damage, playerData.damageWait)*/ damage;
+        if (playerData.damaged) return damage;
 
         if (playerData.preparingAttack)
         {

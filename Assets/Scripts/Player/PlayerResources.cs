@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerResources : MonoBehaviour
@@ -85,7 +86,7 @@ public class PlayerResources : MonoBehaviour
             UpdateCoins(-1);
             GameObject newCoin = CoinPrefab;
             newCoin.transform.position = transform.position;
-            Instantiate(newCoin);
+            PickupsSpawns.Instance.SpawnPickUp(newCoin, transform.position);
         }
 
         else if (playerData.showingCoin && nearbyItems.Count == 0)
@@ -101,10 +102,11 @@ public class PlayerResources : MonoBehaviour
         if (coins > 0 && !playerData.showingCoin && !playerData.burningIron)
         {
             //rb.velocity = Vector2.zero;
-            GameObject newCoin = Instantiate(CoinPrefab, playerData.shootPoint.position, Quaternion.identity);
+            GameObject newCoin = PickupsSpawns.Instance.SpawnPickUp(CoinPrefab, playerData.shootPoint.position);
+            
             playerData.showedCoin = newCoin;
             Coin coinScript = newCoin.GetComponent<Coin>();
-            CoinInHand(coinScript);
+            CoinInHand(coinScript); 
 
             UpdateCoins(-1);
             showCoinCounter = playerData.showCoinTime;

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerDamage : MonoBehaviour, IDamageable
 {
     PlayerData playerData;
     Rigidbody2D rb;
+    PlayerDie playerDie;
+    PlayerInput playerInput;
     private float invincibilityTimer = 0f;
 
     public int Health
@@ -17,6 +20,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
     {
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
+        playerDie = GetComponent<PlayerDie>();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
@@ -48,18 +53,24 @@ public class PlayerDamage : MonoBehaviour, IDamageable
             playerData.health -= amount;
             if (playerData.health <= 0)
                 OnDie();
-
-            HitStop.Instance.Stop(playerData.hitTime);
-            StartCoroutine(DamageWait());
-            StartCoroutine(DamageFeedback(knockbackDirection, knockbackAmount));
+            else
+            {
+                HitStop.Instance.Stop(playerData.hitTime);
+                StartCoroutine(DamageWait());
+                StartCoroutine(DamageFeedback(knockbackDirection, knockbackAmount));
+            }
         }
     }
     IEnumerator DamageWait()
     {
         rb.velocity = Vector2.zero;
         playerData.damaged = true;
+        playerInput.actions.Disable();
+
         yield return new WaitForSeconds(playerData.damageWait);
+
         playerData.damaged = false;
+        playerInput.actions.Enable();
     }
     IEnumerator DamageFeedback(Vector2 direction, float knockback)
     {
@@ -106,6 +117,6 @@ public class PlayerDamage : MonoBehaviour, IDamageable
     
     public void OnDie()
     {
-        Debug.Log("Die");
+        playerDie.Die();
     }
 }

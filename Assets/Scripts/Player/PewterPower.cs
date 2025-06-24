@@ -91,7 +91,7 @@ public class PewterPower : MonoBehaviour
 
     void Update()
     {
-        if (playerData.burningPewter && playerResources.pewterEmpty)
+        if (playerData.burningPewter && (playerResources.pewterEmpty || playerData.dead))
         {
             StopPewter();
         }

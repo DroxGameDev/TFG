@@ -11,7 +11,11 @@ public class EnemyDie : MonoBehaviour
         enemyData = GetComponent<EnemyData>();
     }
 
-    public IEnumerator DestroyWait()
+    public void Die()
+    {
+        StartCoroutine(DestroyWait());
+    }
+    private IEnumerator DestroyWait()
     {
         while (Time.timeScale != 1f)
             yield return null;
@@ -30,7 +34,8 @@ public class EnemyDie : MonoBehaviour
                 {
                     drop.GetComponent<Vial>().type = (VialType)Random.Range(0, 3);
                 }
-                Instantiate(drop, enemyData.groundCheck.position, Quaternion.identity);
+
+                PickupsSpawns.Instance.SpawnPickUp(drop, enemyData.groundCheck.position);
 
                 float xDirection = Random.Range(-0.5f, 0.5f);
                 Vector2 expulseDropDirection = new Vector2(xDirection, 1);

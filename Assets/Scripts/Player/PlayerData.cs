@@ -75,7 +75,13 @@ public class PlayerData : MonoBehaviour
     [Range(0, 5f)] public float invicibilityTime;
     public SpriteRenderer sprite;
     [Range(0, 10f)] public float invicibilityEffectSpeed;
+    [Space(10)]
 
+    [Header("Die")]
+    [Range(0, 25f)] public float deathKnockBack;
+    public Collider2D damageCollider;
+
+    [Space(10)]
     [Header("Check")]
     public Transform groundCheck;
     [Range(-1f, 1f)] public float groundCheckVertexA_x;
@@ -163,10 +169,16 @@ public class PlayerData : MonoBehaviour
     public bool wallWalking = false;
     public bool pushing = false;
     public bool damaged = false;
+    public bool dead = false;
 
     [Space(10)]
     public bool movingWithPowers = false;
     public bool showingCoin = false;
+
+    void Awake()
+    {
+        GameManager.Instance.RegisterPlayer(transform);   
+    }
 
     void Start()
     {
@@ -204,6 +216,8 @@ public class PlayerData : MonoBehaviour
         movingWithPowers = false;
         showingCoin = false;
         damaged = false;
+        dead = false;
+
     }
 
     public void ChangeGravityMode(GravityMode mode)

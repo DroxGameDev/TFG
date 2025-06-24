@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerDamageArea : MonoBehaviour
 {
     private PlayerData playerData;
+    private PlayerDie playerDie;
     public PlayerDamage origin;
 
     void Start()
     {
         playerData = origin.GetComponent<PlayerData>();
+        playerDie = origin.GetComponent<PlayerDie>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +29,11 @@ public class PlayerDamageArea : MonoBehaviour
             bool movingRight = attackInfo.rb.velocity.x >= 0f;
             attackInfo.origin.EarlyDestroy();
             origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, movingRight);
+        }
+
+        if (collision.tag == "Spikes")
+        {
+            playerDie.Die();
         }
 
     }

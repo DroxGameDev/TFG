@@ -64,9 +64,11 @@ public class EnemyAnimation : MonoBehaviour
 
         return idle;
 
+        /*
         int LockState(int s, float t){
             _lockedTill = Time.deltaTime+t;
             return s;
         }
+        */
     }
 }

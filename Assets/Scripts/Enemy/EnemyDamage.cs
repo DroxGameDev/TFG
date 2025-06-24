@@ -68,7 +68,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     public void OnDie()
     {
         HitStop.Instance.Stop(enemyData.hitTime);
-        StartCoroutine(enemyDie.DestroyWait());
+        enemyDie.Die();
     }
 
     IEnumerator DamageRutine(Vector2 direction, float knockback)

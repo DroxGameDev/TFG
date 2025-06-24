@@ -15,6 +15,7 @@ TagManager:
   - Vial
   - Box
   - Arrow
+  - Spikes
   layers:
   - Default
   - TransparentFX

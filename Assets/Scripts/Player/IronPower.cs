@@ -37,14 +37,14 @@ public class IronPower : Iron_Steel
     void Update()
     {
         OnUpdate();
- 
+
         if (input && state == PowerState.inactive && !playerData.showingCoin)
         {
 
             ChangeState(PowerState.select);
             OnSelect();
         }
-        else if (playerData.burningIron && playerResources.ironEmpty)
+        else if (playerData.burningIron && (playerResources.ironEmpty || playerData.damaged || playerData.dead))
         {
             ChangeState(PowerState.inactive);
             OnInactive();
@@ -277,12 +277,14 @@ public class IronPower : Iron_Steel
             int hitCount = col.Cast(direction, filter, hits, step);
 
 
-            if (hitCount > 0)
+            if (hitCount > 0 && hits[0].collider != target)
             {
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 rb.velocity = Vector2.zero;
                 if (hits[0].distance < 1f)
                 {
+                    Debug.Log(hits[0].collider.gameObject.name + ": " + hits[0]. distance);
+
                     if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
                     {
                         direction = transform.position.x < target.transform.position.x ?

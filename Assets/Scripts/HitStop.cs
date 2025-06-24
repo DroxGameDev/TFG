@@ -9,8 +9,11 @@ public class HitStop : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (Instance == null){
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     public void Stop(float duration)

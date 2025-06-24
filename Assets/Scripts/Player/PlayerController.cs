@@ -35,73 +35,77 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         playerMovement.MoveInputUpdate(context.ReadValue<Vector2>());
-
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
+        if (playerData.attacking) return;
+
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                if (playerData.pushing) pewterPower.StopPushing();
+            if (playerData.pushing) pewterPower.StopPushing();
 
-                playerMovement.JumpInputUpdate(true);
-            }
-
-            if (context.canceled)
-            {
-                playerMovement.JumpInputUpdate(false);
-            }
+            playerMovement.JumpInputUpdate(true);
         }
+
+        if (context.canceled)
+        {
+            playerMovement.JumpInputUpdate(false);
+        }
+        
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!playerData.wallWalking && !playerData.burningIron && !playerData.burningSteel && !playerData.showingCoin)
-        {
-            if (context.performed)
-            {
-                if (playerData.pushing) pewterPower.StopPushing();
+        if (playerData.wallWalking || playerData.burningIron || playerData.burningSteel || playerData.showingCoin)
+        return;
 
-                playerAttack.OnAttack();
-            }
-        }
+        if (!context.performed)
+            return;
+
+        if (playerData.pushing)
+            pewterPower.StopPushing();
+
+        playerAttack.OnAttack();
     }
 
     public void OnPush(InputAction.CallbackContext context)
     {
-        if (context.performed && playerData.objectNearby/* && playerData.burningPewter */&& !playerData.movingWithPowers)
+        if (!playerData.objectNearby || playerData.movingWithPowers) return;
+        
+        if (context.performed)
+        {
             pewterPower.PushImputUpdate();
+        }
     }
 
     public void SteelPush(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking && !playerResources.steelEmpty)
+        if (playerData.attacking || playerResources.steelEmpty) return;
+        
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                StartCoroutine(steelPower.SteelInputupdate(true));
-            }
-
-
-            if (context.canceled)
-                StartCoroutine(steelPower.SteelInputupdate(false));
+            StartCoroutine(steelPower.SteelInputupdate(true));
         }
+
+
+        if (context.canceled)
+            StartCoroutine(steelPower.SteelInputupdate(false));
+        
     }
 
     public void IronPull(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking && !playerResources.ironEmpty)
+        if (playerData.attacking || playerResources.ironEmpty) return;
+        
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                StartCoroutine(ironPower.IronInputupdate(true));
-            }
-
-            if (context.canceled)
-                StartCoroutine(ironPower.IronInputupdate(false));
+            StartCoroutine(ironPower.IronInputupdate(true));
         }
+
+        if (context.canceled)
+            StartCoroutine(ironPower.IronInputupdate(false));
+        
     }
 
     public void SelectMetal(InputAction.CallbackContext context)
@@ -121,30 +125,33 @@ public class PlayerController : MonoBehaviour
 
     public void PickDropCoin(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking)
-        {
-            if (context.performed) playerResources.PickDropCoinInput();
-        }
+        if (playerData.attacking) return;
+
+        if (context.performed) playerResources.PickDropCoinInput();     
     }
 
     public void ShowCoin(InputAction.CallbackContext context)
     {
-        if (!playerData.attacking && !playerData.pushing)
+        if (playerData.attacking || playerData.pushing) return;
+        
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                playerResources.ShowCoinInput();
-            }
+            playerResources.ShowCoinInput();
         }
+        
     }
 
     public void TinSenses(InputAction.CallbackContext context)
     {
-        if (context.performed && !playerResources.tinEmpty) tinPower.TinInput();
+        if (playerResources.tinEmpty) return;
+
+        if (context.performed) tinPower.TinInput();
     }
 
     public void PewterEnhance(InputAction.CallbackContext context)
     {
-        if (context.performed && !playerResources.pewterEmpty) pewterPower.PewterInput();
+        if (playerResources.pewterEmpty) return;
+
+        if (context.performed) pewterPower.PewterInput();
     }
 }

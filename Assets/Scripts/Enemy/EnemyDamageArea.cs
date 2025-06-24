@@ -6,6 +6,12 @@ using UnityEngine;
 public class EnemyDamageArea : MonoBehaviour
 {
     public EnemyDamage origin;
+    public EnemyDie enemyDie;
+
+    void Start()
+    {
+        enemyDie = origin.GetComponent<EnemyDie>();
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,7 +22,7 @@ public class EnemyDamageArea : MonoBehaviour
             attackInfo.DoneDamage();
         }
 
-        else if (collision.tag == "Coin")
+        if (collision.tag == "Coin")
         {
             CoinAttackInfo coin = collision.gameObject.GetComponent<CoinAttackInfo>();
 
@@ -28,7 +34,7 @@ public class EnemyDamageArea : MonoBehaviour
             }
         }
 
-        else if (collision.tag == "Arrow")
+        if (collision.tag == "Arrow")
         {
             ArrowAttackInfo arrow = collision.gameObject.GetComponent<ArrowAttackInfo>();
 
@@ -37,6 +43,11 @@ public class EnemyDamageArea : MonoBehaviour
                 bool movingRight = arrow.rb.velocity.x >= 0f;
                 origin.OnDamage(arrow.damage, arrow.damageKnockback, movingRight);
             }
+        }
+
+        if (collision.tag == "Spikes")
+        {
+            enemyDie.Die();
         }
     }
 }

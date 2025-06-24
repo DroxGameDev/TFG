@@ -39,7 +39,7 @@ public class TinPower : MonoBehaviour
 
     void Update()
     {
-        if (playerData.burningTin && playerResources.tinEmpty){
+        if (playerData.burningTin && (playerResources.tinEmpty || playerData.dead)){
             input = false;
             playerData.burningTin = false;
             StartCoroutine(EndTransition());

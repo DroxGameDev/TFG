@@ -19,7 +19,6 @@ public enum EnemyType
 public class EnemyData : AffectedByGravity
 {
     public int health;
-    public EnemyType enemyType;
     public Transform player;
 
     [Header("Movement")]
@@ -45,7 +44,7 @@ public class EnemyData : AffectedByGravity
     [Space(10)]
 
     [Range(1, 5)] public int attackDamage;
-    [Range(0, 50f)] public float attackDamageKnockback;
+    [Range(0, 25f)] public float attackDamageKnockback;
 
     [Space(10)]
 
@@ -62,17 +61,20 @@ public class EnemyData : AffectedByGravity
     public Transform wallCheck;
     public LayerMask groundLayer;
     public LayerMask playerLayer;
+    [Space(10)]
 
     [Header("Damage")]
     public SpriteRenderer sprite;
     public DamageType damageType;
     public float damageWait;
     [Range(0, 1f)] public float hitTime;
+    [Space(10)]
 
     [Header("Die")]
     public GameObject[] posibleDrops;
     [Range(0, 3)] public int maxAmountDrops;
     [Range(0, 10f)] public float dropDispersion;
+    [Space(10)]
 
     [Header("Animation")]
     public Animator anim;
@@ -83,23 +85,21 @@ public class EnemyData : AffectedByGravity
     public bool prepareAttack;
     public bool attacking;
 
+    private void Start()
+    {
+        player = GameManager.Instance.GetPlayer();   
+    }
+
     public void Flip()
     {
-        if (Time.timeScale == 1f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector2 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-            moveDirection *= -1;
+        isFacingRight = !isFacingRight;
+        Vector2 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
+        moveDirection *= -1;
 
-            attackOrigin.GetComponent<EnemyAttackInfo>().isFacingRight = !attackOrigin.GetComponent<EnemyAttackInfo>().isFacingRight;
-            /*
-            Vector3 currentShootPoint = playerData.shootPoint.localPosition;
-            currentShootPoint.x *= -1f;
-            playerData.shootPoint.localPosition = currentShootPoint;
-            */
-        }
+        attackOrigin.GetComponent<EnemyAttackInfo>().isFacingRight = !attackOrigin.GetComponent<EnemyAttackInfo>().isFacingRight;
+
     }
 
 

@@ -46,7 +46,7 @@ public class SteelPower : Iron_Steel
                 break;
         }
 
-        if (playerData.burningSteel && playerResources.steelEmpty)
+        if (playerData.burningSteel && (playerResources.steelEmpty || playerData.damaged || playerData.dead))
         {
             ChangeState(PowerState.inactive);
             OnInactive();
