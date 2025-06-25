@@ -9,14 +9,14 @@ public class PushObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        playerData.objectNearby = true;
-        playerData.objectToPush = collision.gameObject;
+        playerData.boxNearby = true;
+        playerData.boxToPush = collision.gameObject;
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        playerData.objectNearby = false;
-        playerData.objectToPush = null;
+        playerData.boxNearby = false;
+        playerData.boxToPush = null;
     } 
 
 

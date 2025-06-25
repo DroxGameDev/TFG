@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1491765976857617674}
   - component: {fileID: 88237994412156528}
   - component: {fileID: 149410392954740296}
-  - component: {fileID: 8172531310712977012}
   m_Layer: 11
   m_Name: Vial
   m_TagString: Vial
@@ -105,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   constForce: {fileID: 0}
+  cullingEnabled: 0
   type: 1
   metalVialSpriteRenderer: {fileID: 3938289696937985795}
   metalVialSpriteIron: {fileID: 21300000, guid: fb74f124d96134746be08bfd68f2a972, type: 3}
@@ -199,19 +199,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.39543527, y: 0.55364776}
   m_EdgeRadius: 0
---- !u!114 &8172531310712977012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582586514702644366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0168e79d7b446b40b998b9f26279bec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  origin: {fileID: 3703096195106929766}
 --- !u!1 &4611111644908406453
 GameObject:
   m_ObjectHideFlags: 0

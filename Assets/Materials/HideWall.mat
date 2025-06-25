@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mist
-  m_Shader: {fileID: -6465566751694194690, guid: fc9e11881041d3b4192664bd33851277, type: 3}
+  m_Name: HideWall
+  m_Shader: {fileID: -6465566751694194690, guid: c2a66d0eaf06ec842988e887cebde5d0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,10 +23,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -41,18 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Boolean: 0
-    - _Exterior: 0
-    - _FogSize: 1.2
-    - _FogStrengh: 9.999996
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _WorlSpace: 1
-    m_Colors:
-    - _FogColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FogSpeed: {r: 1.03, g: 0, b: 0, a: 0}
+    - _Alpha: 0.0000004172325
+    m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &2873508686844153457
+--- !u!114 &7667636271398087670
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

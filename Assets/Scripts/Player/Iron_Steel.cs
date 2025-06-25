@@ -90,7 +90,7 @@ public class Iron_Steel : MonoBehaviour
 
         directorVector.Normalize();
 
-        RaycastHit2D raycast = Physics2D.Raycast(playerData.linesOrigin.position, directorVector, lineDistance, playerData.obstacleLayer);
+        RaycastHit2D raycast = Physics2D.Raycast(playerData.linesOrigin.position, directorVector, lineDistance, playerData.obstacleLayerMinusOpenWall);
         return raycast;
     }
 

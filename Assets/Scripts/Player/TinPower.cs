@@ -16,6 +16,8 @@ public class TinPower : MonoBehaviour
         playerResources = GetComponent<PlayerResources>();
         playerData.virtualCamera.m_Lens.FieldOfView = playerData.defaultCameraSize;
         playerData.mist.SetFloat("_FogStrengh", 0f);
+        playerData.hiddenWall.SetFloat("_Alpha", 1f);
+
     }
 
     public void TinInput()
@@ -59,6 +61,9 @@ public class TinPower : MonoBehaviour
             playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
             playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
 
+            float currentWallAlpha = Mathf.Lerp(1f,0f, currentStep);
+            playerData.hiddenWall.SetFloat("_Alpha", currentWallAlpha);
+
             currentStep += playerData.tinTransitionStep;
             yield return new WaitForSeconds(0.01f);
         }
@@ -78,6 +83,9 @@ public class TinPower : MonoBehaviour
 
             playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
             playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
+
+            float currentWallAlpha = Mathf.Lerp(1f, 0f, currentStep);
+            playerData.hiddenWall.SetFloat("_Alpha", currentWallAlpha);
 
             currentStep -= playerData.tinTransitionStep;
             yield return new WaitForSeconds(0.01f);

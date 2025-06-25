@@ -16,6 +16,7 @@ public class PlayerData : MonoBehaviour
     public Camera mainCamera;
     [Range(0f, 100f)] public float defaultCameraSize;
     [Space(10)]
+    
     [Header("Health")]
     [Range(0, 10)] public int health;
     [Range(0, 50)] public int maxHealth;
@@ -35,6 +36,8 @@ public class PlayerData : MonoBehaviour
     public Vector2 velocity = new Vector2(0f, 0f);
     [Space(10)]
     public bool isFacingRight = true;
+    [Space(10)]
+    public Door nearbyDoor;
 
     [Header("Jumping")]
     [Range(0f, 20f)] public float jumpForce;
@@ -92,6 +95,7 @@ public class PlayerData : MonoBehaviour
     public LayerMask groundLayer;
     [Space(10)]
     public LayerMask obstacleLayer;
+    public LayerMask obstacleLayerMinusOpenWall;
 
     [Header("Metal Lines")]
     //Steel = push
@@ -132,6 +136,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     [Range(0f, 10f)] public float seeThroughMistSize;
     public Material mist;
+    public Material hiddenWall;
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;
     public CinemachineVirtualCamera virtualCamera;
@@ -145,8 +150,8 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     public Material smearFramesMaterial;
     [Space(10)]
-    public bool objectNearby;
-    public GameObject objectToPush;
+    public bool boxNearby;
+    public GameObject boxToPush;
     public Collider2D pushCollider;
     [Range(0f, 1f)] public float pewterPushMovementModifier;
 
@@ -177,12 +182,6 @@ public class PlayerData : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.RegisterPlayer(transform);   
-    }
-
-    void Start()
-    {
-        //initial values
         moveMod = 1;
 
         isFacingRight = true;
@@ -202,8 +201,8 @@ public class PlayerData : MonoBehaviour
         showedCoin = null;
         shootPoint.position = new Vector3(shootPoint.position.x, linesOrigin.position.y, 0);
 
-        objectNearby = false;
-        objectToPush = null;
+        boxNearby = false;
+        boxToPush = null;
 
         grounded = false;
         running = false;
@@ -217,7 +216,11 @@ public class PlayerData : MonoBehaviour
         showingCoin = false;
         damaged = false;
         dead = false;
+    }
 
+    void OnEnable()
+    {
+        GameManager.Instance.RegisterPlayer(transform);   
     }
 
     public void ChangeGravityMode(GravityMode mode)

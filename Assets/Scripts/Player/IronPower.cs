@@ -214,7 +214,14 @@ public class IronPower : Iron_Steel
             float step = speed * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
-            filter.SetLayerMask(playerData.obstacleLayer);
+            if (selectedMetal.metal.tag == "Vial" || selectedMetal.metal.tag == "Coin")
+            {
+                filter.SetLayerMask(playerData.obstacleLayerMinusOpenWall);
+            }
+            else
+            {
+                filter.SetLayerMask(playerData.obstacleLayer);
+            }
 
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = rbMetal.Cast(direction, filter, hits, step);
@@ -225,6 +232,8 @@ public class IronPower : Iron_Steel
 
                 if (hits[0].distance < 0.1f)
                 {
+                    Debug.Log("MoveObject: " + hits[0].collider.gameObject.name + ": " + hits[0].distance);
+
                     obstacleReached = true;
                     metalObstacleReached = true;
                 }
@@ -256,8 +265,8 @@ public class IronPower : Iron_Steel
         }
 
         Vector2 currentPosition;
-        Vector2 direction; 
-        
+        Vector2 direction;
+
         while (state == PowerState.force && !ObjectiveReached(target) && !obstacleReached)
         {
             forceTargetPosition = (target.gameObject.tag == "Floor" || target.gameObject.tag == "Walkable_Area") ?
@@ -276,24 +285,26 @@ public class IronPower : Iron_Steel
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = col.Cast(direction, filter, hits, step);
 
-
-            if (hitCount > 0 && hits[0].collider != target)
+            if (hitCount > 0)
             {
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 rb.velocity = Vector2.zero;
                 if (hits[0].distance < 1f)
                 {
-                    Debug.Log(hits[0].collider.gameObject.name + ": " + hits[0]. distance);
-
-                    if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    Debug.Log("MovePlayer: " + hits[0].collider.gameObject.name + ": " + hits[0].distance);
+                    
+                    if (Vector2.Dot(hits[0].normal, Vector2.up) > 0.5f && hits[0].collider.tag == "Floor")
                     {
+                        
                         direction = transform.position.x < target.transform.position.x ?
-                            Vector2.right : Vector2.left;
+                        Vector2.right : Vector2.left;
 
                         rb.velocity = direction * speed;
-                    }
+                        
+                    }   
                     else
                     {
+                        
                         if (target.tag == "Heavy_Metal")
                         {
                             yield return StartCoroutine(moveTowardsPlayer(target, col));
@@ -306,10 +317,9 @@ public class IronPower : Iron_Steel
                 }
             }
             else
-            { 
+            {
                 rb.velocity = direction * speed;
             }
-
             yield return new WaitForFixedUpdate();
         }
     }

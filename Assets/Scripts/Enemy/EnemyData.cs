@@ -79,10 +79,14 @@ public class EnemyData : AffectedByGravity
     public bool prepareAttack;
     public bool attacking;
 
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Start()
     {
         player = GameManager.Instance.GetPlayer();
-        rb = GetComponent<Rigidbody2D>();
     }
 
     public void Flip()

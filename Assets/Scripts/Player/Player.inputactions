@@ -96,7 +96,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PushObject",
+                    "name": "PushObject/Interact",
                     "type": "Button",
                     "id": "b4ab0585-7244-464a-81ca-34227b69d676",
                     "expectedControlType": "",
@@ -377,7 +377,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";GamePad",
-                    "action": "PushObject",
+                    "action": "PushObject/Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -388,7 +388,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
-                    "action": "PushObject",
+                    "action": "PushObject/Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

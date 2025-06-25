@@ -5,7 +5,7 @@ using UnityEngine;
 public class VisibilityChecker : MonoBehaviour
 {
     public AffectedByGravity origin;
-
+    
     void OnBecameInvisible()
     {
         origin.GravitySleep();

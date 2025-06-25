@@ -15,9 +15,7 @@ public class PickupsSpawns : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
+        }   
     }
 
     public GameObject SpawnPickUp(GameObject pickUp, Vector3 position)

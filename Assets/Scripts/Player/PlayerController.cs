@@ -69,13 +69,19 @@ public class PlayerController : MonoBehaviour
         playerAttack.OnAttack();
     }
 
-    public void OnPush(InputAction.CallbackContext context)
+    public void OnPush_Interact(InputAction.CallbackContext context)
     {
-        if (!playerData.objectNearby || playerData.movingWithPowers) return;
-        
+        if (playerData.movingWithPowers) return;
+
         if (context.performed)
         {
-            pewterPower.PushImputUpdate();
+            if (playerData.boxNearby)
+                pewterPower.PushImputUpdate();
+                
+            else if (playerData.nearbyDoor != null)
+            {
+                playerMovement.InteractInput();
+            }
         }
     }
 

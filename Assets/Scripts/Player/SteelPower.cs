@@ -290,7 +290,14 @@ public class SteelPower : Iron_Steel
             float step = playerData.steelPushPower / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
-            filter.SetLayerMask(playerData.obstacleLayer);
+            if (selectedMetal.metal.tag == "Vial" || selectedMetal.metal.tag == "Coin")
+            {
+                filter.SetLayerMask(playerData.obstacleLayerMinusOpenWall);
+            }
+            else
+            {
+                filter.SetLayerMask(playerData.obstacleLayer);
+            }
             
             //filter.useLayerMask = true;
 

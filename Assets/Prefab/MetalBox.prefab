@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   constForce: {fileID: 0}
+  cullingEnabled: 1
 --- !u!247 &2449825934170849798
 ConstantForce2D:
   m_ObjectHideFlags: 0

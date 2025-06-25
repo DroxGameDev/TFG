@@ -53,6 +53,11 @@ public class PlayerMovement : AffectedByGravity
         }
     }
 
+    public void InteractInput()
+    {
+        GameManager.Instance.PlayerToDoor(playerData.nearbyDoor);
+    }
+
     #endregion
 
     void Update()
@@ -119,7 +124,7 @@ public class PlayerMovement : AffectedByGravity
 
     private bool CheckFlip(float moveInput)
     {
-        if (playerData.attacking || playerData.pushing || playerData.damaged)
+        if (playerData.attacking || playerData.pushing || playerData.damaged || playerData.movingWithPowers)
             return false;
 
         bool movingRight = moveInput > 0f;
