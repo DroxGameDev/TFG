@@ -65,8 +65,7 @@ public class EnemyData : AffectedByGravity
     [Space(10)]
 
     [Header("Die")]
-    public GameObject[] posibleDrops;
-    [Range(0, 3)] public int maxAmountDrops;
+    public GameObject[] drops;
     [Range(0, 10f)] public float dropDispersion;
     [Space(10)]
 

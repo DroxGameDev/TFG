@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5778420774221006770}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ShootCoins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6693480633430046192}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4772192077060452464}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266030509415295309}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: LinesOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 4742904148910729617}
   - component: {fileID: 1340479906188733865}
   - component: {fileID: 873315301125391312}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SmearFrames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8079713126698003507}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnPush
+        m_MethodName: OnPush_Interact
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -938,6 +938,7 @@ MonoBehaviour:
   frictionAmount: 0.2
   velocity: {x: 0, y: -0.000000029802322}
   isFacingRight: 1
+  nearbyDoor: {fileID: 0}
   jumpForce: 10.1
   jumpCutMultiplier: 0.1
   coyoteTime: 0.1
@@ -972,10 +973,13 @@ MonoBehaviour:
   groundCheckVertexB_y: -0.15
   groundLayer:
     serializedVersion: 2
-    m_Bits: 525376
+    m_Bits: 17302592
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 525376
+    m_Bits: 25691200
+  obstacleLayerMinusOpenWall:
+    serializedVersion: 2
+    m_Bits: 8913984
   linesOrigin: {fileID: 4266030509415295309}
   metalLayers:
     serializedVersion: 2
@@ -1003,6 +1007,7 @@ MonoBehaviour:
   tinTransitionStep: 0.02
   seeThroughMistSize: 10
   mist: {fileID: 2100000, guid: 356a96565b82881469448b3f0a1e23e2, type: 2}
+  hiddenWall: {fileID: 2100000, guid: 818fb5334fc49ef4ba4c7e401af0aa82, type: 2}
   tinCameraSize: 90
   virtualCamera: {fileID: 0}
   burningPewter: 0
@@ -1011,8 +1016,8 @@ MonoBehaviour:
   pewterMovementModifier: 1.2
   pewterJumpModifier: 1.2
   smearFramesMaterial: {fileID: 2100000, guid: 7be8c5aae74ff7f438a46296b6600f2f, type: 2}
-  objectNearby: 0
-  objectToPush: {fileID: 0}
+  boxNearby: 0
+  boxToPush: {fileID: 0}
   pushCollider: {fileID: 267999686774470613}
   pewterPushMovementModifier: 0.4
   playerSpriteLibrary: {fileID: 7889987809521384497}
@@ -1442,7 +1447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8600419428187070181}
   - component: {fileID: 2742542487556637860}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cloak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
