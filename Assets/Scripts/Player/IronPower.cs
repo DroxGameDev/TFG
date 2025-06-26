@@ -285,13 +285,12 @@ public class IronPower : Iron_Steel
             RaycastHit2D[] hits = new RaycastHit2D[5]; ;
             int hitCount = col.Cast(direction, filter, hits, step);
 
-            if (hitCount > 0)
+            if (hitCount > 0 && hits[0].collider != target)
             {
                 // Si hay colisión, mueve solo hasta el punto de colisión
                 rb.velocity = Vector2.zero;
                 if (hits[0].distance < 1f)
                 {
-                    Debug.Log("MovePlayer: " + hits[0].collider.gameObject.name + ": " + hits[0].distance);
                     
                     if (Vector2.Dot(hits[0].normal, Vector2.up) > 0.5f && hits[0].collider.tag == "Floor")
                     {

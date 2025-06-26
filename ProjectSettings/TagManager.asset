@@ -53,6 +53,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Door
+    uniqueID: 2938763813
+    locked: 0
+  - name: Lamp
+    uniqueID: 1653284605
+    locked: 0
+  - name: Player and Enemies
+    uniqueID: 4292425839
+    locked: 0
+  - name: Box
+    uniqueID: 695137241
+    locked: 0
+  - name: Floor
+    uniqueID: 4243921313
+    locked: 0
+  - name: Walkable Area
+    uniqueID: 4059447479
+    locked: 0
   - name: Mist
     uniqueID: 3481971939
     locked: 0

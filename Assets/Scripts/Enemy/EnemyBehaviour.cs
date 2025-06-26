@@ -42,6 +42,77 @@ public class EnemyBehaviour : MonoBehaviour
         
         attackCooldownTimer -= Time.deltaTime;
 
+        if (enemyData.stationaty)
+        {
+            StationaryBehaviour();
+        }
+        else
+        {
+            MovableBehaviour();
+        }
+    }
+
+    private void StationaryBehaviour()
+    {
+        switch (currentState)
+            {
+                case State.Idle:
+                    if (playerInAttackRange)
+                    {
+                        if (attackCooldownTimer <= 0f)
+                        {
+                            currentState = State.PreparingAttack;
+                            setTimer();
+                            enemyData.prepareAttack = true;
+                            if (!CheckOrientationToPlayer()) enemyData.Flip();
+                        }
+                        else
+                        {
+                            currentState = State.AttackCooldown;
+                            if (!CheckOrientationToPlayer()) enemyData.Flip();
+                        }
+                    }
+                    break;
+                case State.PreparingAttack:
+                    PrepareAttack();
+                    if (prepareAttackTimer <= 0f)
+                    {
+                        currentState = State.Attacking;
+                        setTimer();
+                        enemyData.prepareAttack = false;
+                        enemyData.attacking = true;
+                        ShootArrow();
+                    }
+                    break;
+                case State.Attacking:
+                    Attack();
+                    if (attackTimer <= 0f)
+                    {
+                        currentState = State.AttackCooldown;
+                        setTimer();
+                        enemyData.attacking = false;
+                    }
+                    break;
+                case State.AttackCooldown:
+                    AttackCooldown();
+                    if (attackCooldownTimer <= 0f)
+                    {
+                        currentState = State.PreparingAttack;
+                        setTimer();
+                        enemyData.prepareAttack = true;
+                        if (!CheckOrientationToPlayer()) enemyData.Flip();
+                    }
+
+                    if (!playerInAttackRange)
+                    {
+                        currentState = State.Idle;
+                    }
+                    break;
+            }
+    }
+
+    private void MovableBehaviour()
+    {
         switch (currentState)
         {
             case State.Idle:
@@ -95,7 +166,7 @@ public class EnemyBehaviour : MonoBehaviour
                         enemyData.running = false;
                         if (!CheckOrientationToPlayer()) enemyData.Flip();
                     }
-                    
+
                 }
                 if (!playerInSight)
                 {
@@ -147,7 +218,6 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
         }
     }
-
     private void UpdatePerception()
     {
         Vector2 center = transform.position;

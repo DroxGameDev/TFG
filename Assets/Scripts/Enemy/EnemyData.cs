@@ -43,6 +43,9 @@ public class EnemyData : AffectedByGravity
     [Space(10)]
 
     [Header("Check")]
+
+    public bool stationaty = false;
+    [Space(10)]
     
     [Range(0f, 50f)] public float detectionRangeX;
     [Range(0f, 50f)] public float detectionRangeY;

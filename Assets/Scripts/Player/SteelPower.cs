@@ -374,11 +374,13 @@ public class SteelPower : Iron_Steel
             Gizmos.color = Color.blue;
             //Gizmos.DrawWireSphere(groundPosition,groundRadius);
 
-            Vector2 positon = new Vector2(playerData.linesOrigin.position.x, playerData.linesOrigin.position.y);
-            Vector2 direction = selectMetalVector + positon;
-            Gizmos.DrawLine(positon, direction);
+            Gizmos.DrawWireSphere(playerData.linesOrigin.position, playerData.metalCheckRadius);
+
             
-            Debug.Log("Select Metal Vector: " + selectMetalVector);
+            Gizmos.color = Color.red;
+            //Gizmos.DrawWireSphere(groundPosition,groundRadius);
+
+            Gizmos.DrawWireSphere(playerData.linesOrigin.position, playerData.metalCheckMinRadius);
         }
         
     }

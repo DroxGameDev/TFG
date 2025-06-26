@@ -99,7 +99,7 @@ public class PlayerData : MonoBehaviour
     public Transform linesOrigin;
     public LayerMask metalLayers;
     [Range(0f, 10f)] public float metalCheckRadius;
-    [Range(0f, 5f)] public float metalCheckMinRadius;
+    [Range(0f, 10f)] public float metalCheckMinRadius;
     public GameObject linePrefab;
     [Range(0f, 5f)] public float selectMetalTime;
 
