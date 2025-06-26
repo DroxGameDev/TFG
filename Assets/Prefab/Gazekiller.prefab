@@ -259,7 +259,10 @@ MonoBehaviour:
   wallCheck: {fileID: 8959381154599141488}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 525376
+    m_Bits: 17302592
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 17302592
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -267,10 +270,12 @@ MonoBehaviour:
   damageType: 0
   damageWait: 0.1
   hitTime: 0.169
-  posibleDrops:
+  drops:
   - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
-  - {fileID: 1582586514702644366, guid: 3cbfc56065d0e2a46b92232af0f23acc, type: 3}
-  maxAmountDrops: 3
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  - {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
   dropDispersion: 10
   anim: {fileID: 1796912923599240380}
   isFacingRight: 1

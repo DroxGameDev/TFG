@@ -251,27 +251,38 @@ public class PlayerMovement : AffectedByGravity
 
     public bool IsGrounded()
     {
+        /*
         Vector2 a = new Vector2(playerData.groundCheck.position.x + playerData.groundCheckVertexA_x, playerData.groundCheck.position.y + playerData.groundCheckVertexA_y);
         Vector2 b = new Vector2(playerData.groundCheck.position.x + playerData.groundCheckVertexB_x, playerData.groundCheck.position.y + playerData.groundCheckVertexB_y);
 
         return Physics2D.OverlapArea(a, b, playerData.groundLayer);
+        */
+
+        Bounds bounds = GetComponent<BoxCollider2D>().bounds;
+
+        // Tres puntos: centro, izquierda y derecha
+        Vector2 left = new Vector2(bounds.min.x + 0.05f, bounds.min.y);
+        Vector2 center = new Vector2(bounds.center.x, bounds.min.y);
+        Vector2 right = new Vector2(bounds.max.x - 0.05f, bounds.min.y);
+
+        // Raycasts hacia abajo
+        bool isGrounded =
+            Physics2D.Raycast(left, Vector2.down, playerData.groundCheckDistance, playerData.groundLayer) ||
+            Physics2D.Raycast(center, Vector2.down, playerData.groundCheckDistance, playerData.groundLayer) ||
+            Physics2D.Raycast(right, Vector2.down, playerData.groundCheckDistance, playerData.groundLayer);
+
+        // (Opcional) Dibuja los rayos en la vista de escena
+        /*
+        Debug.DrawRay(left, Vector2.down * playerData.groundCheckDistance, Color.red);
+        Debug.DrawRay(center, Vector2.down * playerData.groundCheckDistance, Color.red);
+        Debug.DrawRay(right, Vector2.down * playerData.groundCheckDistance, Color.red);
+        */
+        return isGrounded;
     }
 
     private void OnDrawGizmos()
     {
         if(active){
-            
-            Gizmos.color = Color.blue;
-
-            Vector3 a = new Vector3(playerData.groundCheckVertexA_x, playerData.groundCheckVertexA_y, 0f);
-            Vector3 b= new Vector3(playerData.groundCheckVertexB_x, playerData.groundCheckVertexB_y, 0f);
-
-            Gizmos.DrawLine(playerData.groundCheck.position + a,playerData.groundCheck.position + b);
-            /*
-            Vector2 positon = new Vector2(transform.position.x, transform.position.y);
-            Vector2 direction = rb.velocity+positon;
-            Gizmos.DrawLine(transform.position, direction);
-            */
 
         }
     }

@@ -42,6 +42,7 @@ public class EnemyDamageArea : MonoBehaviour
             {
                 bool movingRight = arrow.rb.velocity.x >= 0f;
                 origin.OnDamage(arrow.damage, arrow.damageKnockback, movingRight);
+                arrow.origin.EarlyDestroy();
             }
         }
 

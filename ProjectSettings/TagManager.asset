@@ -50,9 +50,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: metals
-    uniqueID: 3481971939
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Mist
+    uniqueID: 3481971939
+    locked: 0
+  - name: LightMask
+    uniqueID: 2994281451
+    locked: 0
+  - name: Ash
+    uniqueID: 956739903
+    locked: 0
+  - name: InteriorMask
+    uniqueID: 3980776761
     locked: 0

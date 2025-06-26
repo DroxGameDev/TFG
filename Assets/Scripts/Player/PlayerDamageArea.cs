@@ -27,8 +27,8 @@ public class PlayerDamageArea : MonoBehaviour
         {
             ArrowAttackInfo attackInfo = collision.gameObject.GetComponent<ArrowAttackInfo>();
             bool movingRight = attackInfo.rb.velocity.x >= 0f;
-            attackInfo.origin.EarlyDestroy();
             origin.OnDamage(attackInfo.damage, attackInfo.damageKnockback, movingRight);
+            attackInfo.origin.EarlyDestroy();
         }
 
         if (collision.tag == "Spikes")

@@ -54,6 +54,7 @@ public class EnemyData : AffectedByGravity
     public Transform groundCheck;
     public Transform wallCheck;
     public LayerMask groundLayer;
+    public LayerMask obstacleLayer;
     public LayerMask playerLayer;
     [Space(10)]
 
