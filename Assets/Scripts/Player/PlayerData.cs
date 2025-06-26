@@ -271,6 +271,8 @@ public class PlayerData : MonoBehaviour
 
             attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight = !attackOrigin.GetComponent<PlayerAttackInfo>().isFacingRight;
 
+            CameraManager.Instance.Flip();
+
             Vector2 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
