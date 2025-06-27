@@ -604,18 +604,18 @@ GameObject:
   - component: {fileID: 8148859980924598914}
   - component: {fileID: 3154533928514378828}
   - component: {fileID: 9067812512592139159}
-  - component: {fileID: 4922590346783359988}
   - component: {fileID: 6268322036153525418}
+  - component: {fileID: 4922590346783359988}
   - component: {fileID: 8079713126698003507}
   - component: {fileID: 1412781887171875200}
   - component: {fileID: 8323532562873423130}
   - component: {fileID: 3393857849408630437}
+  - component: {fileID: 146321990985271031}
   - component: {fileID: 6226762119540886882}
   - component: {fileID: 1930177262403986838}
   - component: {fileID: 1732598546970459279}
   - component: {fileID: 3441531652473433582}
   - component: {fileID: 5728566746080264991}
-  - component: {fileID: 146321990985271031}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -944,6 +944,35 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &6268322036153525418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046ffffa87c08544daa0422a6c9e97f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  health: 0
+  coins: 0
+  ironVials: 0
+  steelVials: 0
+  tinVials: 0
+  pewterVials: 0
+  ironReserve: 0
+  steelReserve: 0
+  tinReserve: 0
+  pewterReserve: 0
+  ironEmpty: 0
+  steelEmpty: 0
+  tinEmpty: 0
+  pewterEmpty: 0
+  CoinPrefab: {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  nearbyItems: []
 --- !u!114 &4922590346783359988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +987,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   defaultCameraSize: 70
-  health: 10
   maxHealth: 10
   moveSpeed: 9
   acceleration: 9
@@ -997,11 +1025,7 @@ MonoBehaviour:
   invicibilityEffectSpeed: 7
   deathKnockBack: 10
   damageCollider: {fileID: 362289634923859327}
-  groundCheck: {fileID: 1727065216350327476}
-  groundCheckVertexA_x: -0.43
-  groundCheckVertexA_y: 0.05
-  groundCheckVertexB_x: 0.43
-  groundCheckVertexB_y: -0.15
+  groundCheckDistance: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 17302592
@@ -1067,34 +1091,6 @@ MonoBehaviour:
   dead: 0
   movingWithPowers: 0
   showingCoin: 0
---- !u!114 &6268322036153525418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5340816306200333860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046ffffa87c08544daa0422a6c9e97f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  coins: 0
-  ironVials: 0
-  steelVials: 0
-  tinVials: 0
-  pewterVials: 0
-  ironReserve: 0
-  steelReserve: 0
-  tinReserve: 0
-  pewterReserve: 0
-  ironEmpty: 0
-  steelEmpty: 0
-  tinEmpty: 0
-  pewterEmpty: 0
-  CoinPrefab: {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
-  nearbyItems: []
 --- !u!114 &8079713126698003507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1145,6 +1141,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2546758f67c7c4643b1591aaebc88034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &146321990985271031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340816306200333860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719545a456f323b47b27d50e8b8d7b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6226762119540886882
@@ -1221,18 +1229,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae1b18f7ca4fa7047ae1de47c4aa4a11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &146321990985271031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5340816306200333860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719545a456f323b47b27d50e8b8d7b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5861705301234880687

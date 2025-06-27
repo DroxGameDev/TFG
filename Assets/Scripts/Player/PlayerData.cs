@@ -18,7 +18,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     
     [Header("Health")]
-    [Range(0, 10)] public int health;
+    //[Range(0, 10)] public int health;
     [Range(0, 50)] public int maxHealth;
 
     [Header("Movement")]

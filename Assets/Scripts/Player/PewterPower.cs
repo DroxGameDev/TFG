@@ -81,9 +81,9 @@ public class PewterPower : MonoBehaviour
     {
         while (playerData.burningPewter)
         {
-            if (playerData.health < playerData.maxHealth)
+            if (playerResources.health < playerData.maxHealth)
             {
-                playerData.health++;
+                playerResources.health++;
             }
             yield return new WaitForSeconds(1f);
         }

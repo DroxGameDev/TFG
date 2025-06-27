@@ -1,19 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+public class PlayerSavedInfo : ScriptableObject
+{
+    public int health = 0;
+    public int coins = 0;
+    public int ironVials = 0;
+    public int steelVials  = 0;
+    public int tinVials= 0;
+    public int pewterVials= 0;
+
+    
+    public float ironReserve= 0;
+    public float steelReserve= 0;
+    public float tinReserve= 0;
+    public float pewterReserve= 0;
+}
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public Transform player;
 
+    private PlayerSavedInfo playerInfo;
+
     public float RespawnWait;
 
     public List<string> scenesToReload;
     public Transform respawnPoint;
-
     public GameObject CanvasBlackFase;
     public float fadeSpeed;
     public float fadeWait;
@@ -24,6 +40,8 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        playerInfo = ScriptableObject.CreateInstance<PlayerSavedInfo>();
     }
 
     public void RegisterPlayer(Transform playerObject)
@@ -43,21 +61,34 @@ public class GameManager : MonoBehaviour
 
     public void PlayerToDoor(Door originDoor)
     {
-        StartCoroutine(MoveToDoor(originDoor.destinyDoor.transform.position));
+        StartCoroutine(MoveToDoor(originDoor.destinyDoor));
     }
 
-    IEnumerator MoveToDoor(Vector3 position)
+    IEnumerator MoveToDoor(Door destinyDoor)
     {
+        player.GetComponent<PlayerInput>().actions.Disable();
+
         yield return StartCoroutine(FadeBlackOutSquare(true));
 
-        player.transform.position = position;
+        ViewManager.Instance.ChangeScene(destinyDoor.doorScene);
+
+        while (ViewManager.Instance.changingScene)
+        {
+            yield return null;
+        }
+        player.transform.position = destinyDoor.transform.position;
+
         yield return new WaitForSeconds(fadeWait);
 
         yield return StartCoroutine(FadeBlackOutSquare(false));
+
+        player.GetComponent<PlayerInput>().actions.Enable();
     }
-    public void UpdateCheckpoint(Transform checkPointTransport)
+    public void UpdateCheckpoint(Transform checkPointTransport, string scene)
     {
         respawnPoint = checkPointTransport;
+        ViewManager.Instance.checkPointScene = scene;
+        SavePlayerInfo();
     }
 
     private IEnumerator Respawn()
@@ -65,38 +96,28 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(RespawnWait);
         yield return StartCoroutine(FadeBlackOutSquare(true));
 
-        foreach (string sceneName in scenesToReload)
-        {
-            if (SceneManager.GetSceneByName(sceneName).isLoaded)
-            {
-                SceneManager.UnloadSceneAsync(sceneName);
-            }
-        }
-
-        // Reload scenes
-        foreach (string sceneName in scenesToReload)
-        {
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        }
-
+        ViewManager.Instance.Respawn();
 
         player.transform.position = respawnPoint.position;
+        LoadPlayerInfo();
 
         yield return new WaitForSeconds(fadeWait);
-        
+
         player.GetComponent<PlayerDie>().RespawnValues();
+
         yield return StartCoroutine(FadeBlackOutSquare(false));
     }
 
-    IEnumerator FadeBlackOutSquare(bool fadeToBlack){
+    IEnumerator FadeBlackOutSquare(bool fadeToBlack)
+    {
         Color objectColor = CanvasBlackFase.GetComponent<Image>().color;
         float fadeAmount;
 
-        if(fadeToBlack)
+        if (fadeToBlack)
         {
-            while(CanvasBlackFase.GetComponent<Image>().color.a < 1)
+            while (CanvasBlackFase.GetComponent<Image>().color.a < 1)
             {
-                fadeAmount = objectColor.a+ (fadeSpeed * Time.deltaTime);
+                fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
 
                 objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
                 CanvasBlackFase.GetComponent<Image>().color = objectColor;
@@ -105,7 +126,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            while(CanvasBlackFase.GetComponent<Image>().color.a > 0)
+            while (CanvasBlackFase.GetComponent<Image>().color.a > 0)
             {
                 fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
 
@@ -115,4 +136,38 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    private void SavePlayerInfo()
+    {
+        PlayerResources playerResources = player.GetComponent<PlayerResources>();
+
+        playerInfo.health = playerResources.health;
+        playerInfo.coins = playerResources.coins;
+        playerInfo.ironVials = playerResources.ironVials;
+        playerInfo.steelVials = playerResources.steelVials;
+        playerInfo.tinVials = playerResources.tinVials;
+        playerInfo.pewterVials = playerResources.pewterVials;
+        playerInfo.ironReserve = playerResources.ironReserve;
+        playerInfo.steelReserve = playerResources.steelReserve;
+        playerInfo.tinReserve = playerResources.tinReserve;
+        playerInfo.pewterReserve = playerResources.pewterReserve;
+    }
+
+    private void LoadPlayerInfo()
+    {
+        PlayerResources playerResources = player.GetComponent<PlayerResources>();
+
+        playerResources.health = playerInfo.health;
+        playerResources.coins = playerInfo.coins;
+        playerResources.ironVials = playerInfo.ironVials;
+        playerResources.steelVials = playerInfo.steelVials;
+        playerResources.tinVials = playerInfo.tinVials;
+        playerResources.pewterVials = playerInfo.pewterVials;
+        playerResources.ironReserve = playerInfo.ironReserve;
+        playerResources.steelReserve = playerInfo.steelReserve;
+        playerResources.tinReserve = playerInfo.tinReserve;
+        playerResources.pewterReserve = playerInfo.pewterReserve;
+    }
+
+
 }

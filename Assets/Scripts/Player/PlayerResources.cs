@@ -9,6 +9,7 @@ public class PlayerResources : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
 
     [Header("Resources")]
+    [Range(0, 10)] public int health;
     public int coins;
     public int ironVials;
     public int steelVials;
@@ -96,7 +97,6 @@ public class PlayerResources : MonoBehaviour
         }
 
     }
-
     public void ShowCoinInput()
     {
         if (coins > 0 && !playerData.showingCoin && !playerData.burningIron)
@@ -134,7 +134,7 @@ public class PlayerResources : MonoBehaviour
             playerData.showedCoin.transform.position = playerData.shootPoint.position;
             showCoinCounter -= Time.deltaTime;
 
-            if (showCoinCounter < 0.01f)
+            if (showCoinCounter < 0.01f || playerData.damaged)
             {
                 UpdateCoins(1);
                 GameObject coinToRemove = playerData.showedCoin;

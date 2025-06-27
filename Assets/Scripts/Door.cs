@@ -6,13 +6,20 @@ public class Door : MonoBehaviour
 {
     public Door destinyDoor;
 
+    public string doorScene;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<PlayerData>().nearbyDoor = this;
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerData>().nearbyDoor = this;
+            GameManager.Instance.UpdateCheckpoint(transform, doorScene);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        collision.GetComponent<PlayerData>().nearbyDoor = null;
+        if(collision.tag == "Player")
+                collision.GetComponent<PlayerData>().nearbyDoor = null;
     }
 }

@@ -22,7 +22,7 @@ public class PickupsSpawns : MonoBehaviour
     {
         GameObject pickUpInstance = Instantiate(pickUp, position, quaternion.identity);
 
-        Scene targetScene = SceneManager.GetSceneByName(pickupsScene);
+        Scene targetScene = SceneManager.GetSceneByName(ViewManager.Instance.currentScene);
 
         if (targetScene.IsValid() && targetScene.isLoaded)
         {

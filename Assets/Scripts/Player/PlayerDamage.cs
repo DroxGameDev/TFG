@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerDamage : MonoBehaviour, IDamageable
 {
     PlayerData playerData;
+    PlayerResources playerResources;
     Rigidbody2D rb;
     PlayerDie playerDie;
     PlayerInput playerInput;
@@ -13,12 +14,13 @@ public class PlayerDamage : MonoBehaviour, IDamageable
 
     public int Health
     {
-        get => playerData.health;
-        set => playerData.health = value;
+        get => playerResources.health;
+        set => playerResources.health = value;
     }
-    void Start()
+    void Awake()
     {
         playerData = GetComponent<PlayerData>();
+        playerResources = GetComponent<PlayerResources>();
         rb = GetComponent<Rigidbody2D>();
         playerDie = GetComponent<PlayerDie>();
         playerInput = GetComponent<PlayerInput>();
@@ -50,8 +52,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
                 knockbackDirection = new Vector2(-1,1);
             }
 
-            playerData.health -= amount;
-            if (playerData.health <= 0)
+            playerResources.health -= amount;
+            if (playerResources.health <= 0)
                 OnDie();
             else
             {

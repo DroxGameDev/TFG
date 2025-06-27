@@ -42,7 +42,7 @@ TagManager:
   - Shield
   - Door
   - OpenWall
-  - 
+  - SceneEvents
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Lamp
     uniqueID: 1653284605
+    locked: 0
+  - name: Spikes
+    uniqueID: 4088434057
     locked: 0
   - name: Player and Enemies
     uniqueID: 4292425839

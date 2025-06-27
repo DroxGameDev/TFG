@@ -39,7 +39,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         _framingTrasposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
-        originalOffsetX = Mathf.Abs(_framingTrasposer.m_TrackedObjectOffset.x);
+        originalOffsetX = 1;
         flipDirection = _framingTrasposer.m_TrackedObjectOffset.x >= 0 ? 1 : -1;
         player = GameManager.Instance.player.GetComponent<PlayerData>();
     }
