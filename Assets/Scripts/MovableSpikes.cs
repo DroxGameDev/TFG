@@ -17,7 +17,7 @@ public class MovableSpikes : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Heavy_Metal")
+        if (collision.tag == "Box")
         {
             anim.SetBool("Open", true);
         }

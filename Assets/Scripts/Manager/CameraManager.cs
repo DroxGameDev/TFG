@@ -33,12 +33,15 @@ public class CameraManager : MonoBehaviour
             Instance = this;
         }
     }
-    public  CinemachineVirtualCamera _currentCamera;
+    public CinemachineVirtualCamera _currentCamera;
     private CinemachineFramingTransposer _framingTrasposer;
+
+    private CinemachineConfiner2D _confiner;
 
     void Start()
     {
         _framingTrasposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+        _confiner = _currentCamera.GetComponent<CinemachineConfiner2D>();
         originalOffsetX = 1;
         flipDirection = _framingTrasposer.m_TrackedObjectOffset.x >= 0 ? 1 : -1;
         player = GameManager.Instance.player.GetComponent<PlayerData>();
@@ -46,7 +49,7 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        
+
         if (player.velocity.y < fallSpeedYDampingChangeTreshold && !IsLerspingYDamping && !LerpedFromPlayerFalling)
         {
             LerpYDamping(true);
@@ -58,8 +61,8 @@ public class CameraManager : MonoBehaviour
 
             LerpYDamping(false);
         }
-        
-    } 
+
+    }
 
     #region offeset Flip
     public void Flip()
@@ -133,4 +136,10 @@ public class CameraManager : MonoBehaviour
         IsLerspingYDamping = false;
     }
     #endregion
+
+    public void ChangeCameraBoundaries(CompositeCollider2D cameraBounds)
+    {
+        _confiner.m_BoundingShape2D = cameraBounds;
+        _confiner.InvalidateCache();
+    }
 }

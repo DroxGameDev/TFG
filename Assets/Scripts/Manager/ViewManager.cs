@@ -8,8 +8,8 @@ public class ViewManager : MonoBehaviour
 {
     public static ViewManager Instance { get; private set; }
 
-    public string currentScene;
-    public string checkPointScene;
+    public SceneInfo currentScene;
+    public SceneInfo checkPointScene;
     public bool changingScene = false;
 
     void Awake()
@@ -20,20 +20,20 @@ public class ViewManager : MonoBehaviour
         }
     }
 
-    public void ChangeScene(String scene)
+    public void ChangeScene(SceneInfo scene)
     {
         StartCoroutine(ChangeSceneRutine(scene));
     }
 
-    IEnumerator ChangeSceneRutine(String scene)
+    IEnumerator ChangeSceneRutine(SceneInfo scene)
     {
         changingScene = true;
 
-        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.UnloadSceneAsync(currentScene.sceneName);
 
-        if (!SceneManager.GetSceneByName(scene).isLoaded)
+        if (!SceneManager.GetSceneByName(scene.sceneName).isLoaded)
         {
-            SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
         }
         yield return null;
 
@@ -44,9 +44,10 @@ public class ViewManager : MonoBehaviour
 
     public void Respawn()
     {
-        SceneManager.UnloadSceneAsync(currentScene);
+        SceneManager.UnloadSceneAsync(currentScene.sceneName);
 
-        SceneManager.LoadSceneAsync(checkPointScene, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(checkPointScene.sceneName, LoadSceneMode.Additive);
 
     }
+
 }

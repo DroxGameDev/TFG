@@ -158,6 +158,7 @@ MonoBehaviour:
   attackCooldownTime: 2
   attackDamage: 1
   attackDamageKnockback: 0
+  stationaty: 0
   detectionRangeX: 25
   detectionRangeY: 1
   attackRangeX: 15
@@ -368,10 +369,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2541457
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -650416864, guid: 6c67b708fae3ab948a9e4ce52af8a101, type: 3}
+  m_Sprite: {fileID: -290306253, guid: 4805bd2b5e0d09e46aac6664d09441e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -472,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 6118289577071707010}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.033, y: 0.38, z: 0}
+  m_LocalPosition: {x: 0.336, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     public float RespawnWait;
 
-    public List<string> scenesToReload;
+    //public List<string> scenesToReload;
     public Transform respawnPoint;
     public GameObject CanvasBlackFase;
     public float fadeSpeed;
@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+        //CameraManager.Instance.ChangeCameraBoundaries(destinyDoor.doorScene.cameraBounds);
+
         player.transform.position = destinyDoor.transform.position;
 
         yield return new WaitForSeconds(fadeWait);
@@ -84,10 +86,11 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<PlayerInput>().actions.Enable();
     }
-    public void UpdateCheckpoint(Transform checkPointTransport, string scene)
+    public void UpdateCheckpoint(Transform checkPointTransport, SceneInfo scene)
     {
         respawnPoint = checkPointTransport;
         ViewManager.Instance.checkPointScene = scene;
+        ViewManager.Instance.currentScene = scene;
         SavePlayerInfo();
     }
 
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         player.transform.position = respawnPoint.position;
         LoadPlayerInfo();
+        player.GetComponent<PlayerResources>().UpdateCanvas();
 
         yield return new WaitForSeconds(fadeWait);
 

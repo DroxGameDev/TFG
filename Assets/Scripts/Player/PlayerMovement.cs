@@ -161,6 +161,18 @@ public class PlayerMovement : AffectedByGravity
         else
         {
             targetSpeed = input * playerData.moveSpeed * playerData.moveMod;
+
+            if (Mathf.Abs(targetSpeed) > 0f && !playerData.grounded)
+            {
+                if (targetSpeed > 0f && targetSpeed < playerData.velocity.x)
+                {
+                    targetSpeed = playerData.velocity.x;
+                }
+                else if (targetSpeed < 0f && targetSpeed > playerData.velocity.x)
+                {
+                    targetSpeed = playerData.velocity.x;
+                }
+            }
         }
         //calculate the difference between our current speed and the target speed
         float speedDif = targetSpeed - playerData.velocity.x;

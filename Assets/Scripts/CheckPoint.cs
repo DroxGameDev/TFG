@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public Transform RespawnPoint;
-    public string Scene;
+    public SceneInfo Scene;
     private void OnTriggerEnter2D(Collider2D other)
     {
         GameManager.Instance.UpdateCheckpoint(RespawnPoint, Scene);

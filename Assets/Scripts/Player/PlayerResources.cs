@@ -41,7 +41,7 @@ public class PlayerResources : MonoBehaviour
         playerData = GetComponent<PlayerData>();
         rb = GetComponent<Rigidbody2D>();
         nearbyItems = new List<GameObject>();
-        StartCanvas();
+        UpdateCanvas();
         StartMetalReserves();
         checkIfEmpty();
     }
@@ -309,7 +309,7 @@ public class PlayerResources : MonoBehaviour
 
     #region Canvas Updates
 
-    void StartCanvas()
+    public void UpdateCanvas()
     {
         UIResources.instance.UpdateCoins(coins);
         UIResources.instance.UpdateVials(VialType.iron, ironVials);

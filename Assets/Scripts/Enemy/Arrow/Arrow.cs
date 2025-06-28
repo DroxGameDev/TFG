@@ -11,7 +11,7 @@ public class Arrow : AffectedByGravity
     public Collider2D attackCollider;
     public Collider2D obstaclesCollider;
     public ArrowAttackInfo attackInfo;
-    public GameObject speed;
+    public GameObject speedSprite;
     private float arrowSpeed;
     private float shootTimer;
     private float receivedShooTime;
@@ -39,7 +39,7 @@ public class Arrow : AffectedByGravity
     {
         shootTimer = receivedShooTime;
         returning = true;
-        speed.transform.localScale = new Vector3(speed.transform.localScale.x * speedMult,speed.transform.localScale.y,speed.transform.localScale.z);
+        speedSprite.transform.localScale = new Vector3(speedSprite.transform.localScale.x * speedMult,speedSprite.transform.localScale.y,speedSprite.transform.localScale.z);
         SetArrow(direction, arrowSpeed * speedMult);
     }
 

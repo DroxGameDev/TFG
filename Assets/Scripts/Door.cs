@@ -6,7 +6,7 @@ public class Door : MonoBehaviour
 {
     public Door destinyDoor;
 
-    public string doorScene;
+    public SceneInfo doorScene;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
