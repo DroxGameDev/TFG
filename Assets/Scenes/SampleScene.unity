@@ -454,7 +454,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -812995357
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -498,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 631955358}
   serializedVersion: 2
   m_LocalRotation: {x: -0.516372, y: 0.48230052, z: 0.47395545, w: 0.525464}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -739,7 +739,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 80.00001
+  field of view: 80
   orthographic: 0
   orthographic size: 8
   m_Depth: -1
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: e3ac8acf000000003fb10639eb1b79b239d545eda119f5fc6f38d9fffd1e8b6225fa29afb740f6f1d9f36e29898db0f3
+  m_ApplyToSortingLayers: e3ac8acf000000003fb10639eb1b79b239d545eda119f5fc6f38d9fffd1e8b6225fa29afb740f6f1d9f36e29898db0f381a74c29
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1089,7 +1089,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 956739903
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 10
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -6008,7 +6008,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 573194966}
   m_Lens:
-    FieldOfView: 80.00001
+    FieldOfView: 80
     OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -6443,7 +6443,7 @@ Transform:
   m_GameObject: {fileID: 1706283493}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14569896, y: 0.69193345, z: -0.14569898, w: 0.6919334}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7390,7 +7390,7 @@ Transform:
   m_GameObject: {fileID: 2135690359}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010802944, y: -0.65201116, z: 0.00929148, w: 0.75807554}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8605,7 +8605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: coins
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: health
@@ -8622,6 +8622,10 @@ PrefabInstance:
     - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: ironReserve
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268322036153525418, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: coinImpulseOnDrop
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6274052568658181681, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: m_SortingLayer

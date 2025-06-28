@@ -68,6 +68,9 @@ TagManager:
   - name: Box
     uniqueID: 695137241
     locked: 0
+  - name: Pickups
+    uniqueID: 692889473
+    locked: 0
   - name: Floor
     uniqueID: 4243921313
     locked: 0

@@ -31,6 +31,7 @@ public class PlayerResources : MonoBehaviour
     [Header("Coin")]
     public GameObject CoinPrefab;
     private float showCoinCounter;
+    [Range(0f, 10f)] public float coinImpulseOnDrop;
 
     [Space(10)]
     public List<GameObject> nearbyItems;
@@ -85,15 +86,16 @@ public class PlayerResources : MonoBehaviour
         else if (nearbyItems.Count == 0 && coins > 0 && !playerData.showingCoin)
         {
             UpdateCoins(-1);
-            GameObject newCoin = CoinPrefab;
+            GameObject newCoin = PickupsSpawns.Instance.SpawnPickUp(CoinPrefab, transform.position);
             newCoin.transform.position = transform.position;
-            PickupsSpawns.Instance.SpawnPickUp(newCoin, transform.position);
+            newCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * coinImpulseOnDrop, ForceMode2D.Impulse);
         }
 
         else if (playerData.showingCoin && nearbyItems.Count == 0)
         {
             nearbyItems.Add(playerData.showedCoin);
             CoinGone(playerData.showedCoin.GetComponent<Coin>());
+            //playerData.showedCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * coinImpulseOnDrop, ForceMode2D.Impulse);
         }
 
     }
