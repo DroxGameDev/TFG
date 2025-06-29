@@ -670,10 +670,10 @@ MonoBehaviour:
   maxPatrolTime: 5
   attackOrigin: {fileID: 1067352025327541251}
   prepareAttackTime: 0.7
-  attackTime: 0.5
-  attackCooldownTime: 1
+  attackTime: 0.4
+  attackCooldownTime: 0.5
   attackDamage: 1
-  attackDamageKnockback: 0
+  attackDamageKnockback: 5
   stationaty: 0
   detectionRangeX: 10
   detectionRangeY: 1

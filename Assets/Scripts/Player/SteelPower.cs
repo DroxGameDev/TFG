@@ -279,7 +279,7 @@ public class SteelPower : Iron_Steel
 
         while (Vector2.Dot(direction, objectivePosition - currentPosition) > 0.1f && !metalObstacleReached )
         {
-            if (metal == null || metal.gameObject == null || metal.attachedRigidbody == null)
+            if (metal == null || metal.gameObject == null || metal.attachedRigidbody == null || playerData.dead)
             {
                 pushingObject = false;
                 yield break;

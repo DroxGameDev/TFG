@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     //public List<string> scenesToReload;
     public Transform respawnPoint;
     public GameObject CanvasBlackFase;
+
+    public CinemachineBrain cinemachineBrain;
     public float fadeSpeed;
     public float fadeWait;
 
@@ -70,10 +73,13 @@ public class GameManager : MonoBehaviour
 
         yield return StartCoroutine(FadeBlackOutSquare(true));
 
+        CameraManager.Instance.ChangeCamera(destinyDoor.doorCamera);
+
         ViewManager.Instance.ChangeScene(destinyDoor.doorScene);
 
-        while (ViewManager.Instance.changingScene)
+        while (ViewManager.Instance.changingScene && cinemachineBrain.IsBlending)
         {
+            // Wait until the scene is changed and the camera is done blending
             yield return null;
         }
         //CameraManager.Instance.ChangeCameraBoundaries(destinyDoor.doorScene.cameraBounds);
@@ -86,12 +92,18 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<PlayerInput>().actions.Enable();
     }
-    public void UpdateCheckpoint(Transform checkPointTransport, SceneInfo scene)
+    public void UpdateCheckpoint(Transform checkPointTransport, SceneInfo scene, CinemachineVirtualCamera camera)
     {
-        respawnPoint = checkPointTransport;
-        ViewManager.Instance.checkPointScene = scene;
-        ViewManager.Instance.currentScene = scene;
-        SavePlayerInfo();
+        if (respawnPoint != checkPointTransport)
+        {
+            respawnPoint = checkPointTransport;
+            ViewManager.Instance.checkPointScene = scene;
+            ViewManager.Instance.currentScene = scene;
+
+            CameraManager.Instance.respawnCamera = camera;
+
+            SavePlayerInfo();
+        }
     }
 
     private IEnumerator Respawn()
@@ -100,6 +112,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(FadeBlackOutSquare(true));
 
         ViewManager.Instance.Respawn();
+        CameraManager.Instance.Respawn();
 
         player.transform.position = respawnPoint.position;
         LoadPlayerInfo();

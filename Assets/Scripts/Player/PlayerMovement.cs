@@ -62,17 +62,21 @@ public class PlayerMovement : AffectedByGravity
 
     void Update()
     {
-        
-        if (playerData.gravityMode == GravityMode.Up){
+
+        if (playerData.gravityMode == GravityMode.Up)
+        {
             transform.rotation = Quaternion.Euler(0, 0, 180);
         }
-        else if (playerData.gravityMode == GravityMode.Left){
+        else if (playerData.gravityMode == GravityMode.Left)
+        {
             transform.rotation = Quaternion.Euler(0, 0, -90);
         }
-        else if (playerData.gravityMode == GravityMode.Right){
+        else if (playerData.gravityMode == GravityMode.Right)
+        {
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
-        else{
+        else
+        {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         

@@ -15,8 +15,10 @@ public class PlayerData : MonoBehaviour
 {
     public Camera mainCamera;
     [Range(0f, 100f)] public float defaultCameraSize;
+
+    public GameObject cameraTarget;
     [Space(10)]
-    
+
     [Header("Health")]
     //[Range(0, 10)] public int health;
     [Range(0, 50)] public int maxHealth;
@@ -73,7 +75,7 @@ public class PlayerData : MonoBehaviour
     public GameObject attackOrigin;
 
     [Header("Damage")]
-    [Range(0f, 1f)]public float damageWait;
+    [Range(0f, 1f)] public float damageWait;
     [Range(0, 1f)] public float hitTime;
     [Range(0, 5f)] public float invicibilityTime;
     public SpriteRenderer sprite;
@@ -87,7 +89,7 @@ public class PlayerData : MonoBehaviour
     [Space(10)]
     [Header("Check")]
 
-    [Range(0f,1f)] public float groundCheckDistance;
+    [Range(0f, 1f)] public float groundCheckDistance;
 
     public LayerMask groundLayer;
     [Space(10)]
@@ -136,7 +138,7 @@ public class PlayerData : MonoBehaviour
     public Material hiddenWall;
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;
-    public CinemachineVirtualCamera virtualCamera;
+    //public CinemachineVirtualCamera virtualCamera;
 
     [Header("Pewter")]
     public bool burningPewter;
@@ -217,7 +219,7 @@ public class PlayerData : MonoBehaviour
 
     void OnEnable()
     {
-        GameManager.Instance.RegisterPlayer(transform);   
+        GameManager.Instance.RegisterPlayer(transform);
     }
 
     public void ChangeGravityMode(GravityMode mode)
@@ -283,5 +285,10 @@ public class PlayerData : MonoBehaviour
             playerData.shootPoint.localPosition = currentShootPoint;
             */
         }
+    }
+
+    void LateUpdate()
+    {
+        cameraTarget.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 }

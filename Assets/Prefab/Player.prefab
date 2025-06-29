@@ -475,6 +475,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 4922590346783359988}
+--- !u!1 &5085071576371507910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8128118065283513392}
+  m_Layer: 7
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8128118065283513392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085071576371507910}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5880231342102319593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5188134053418659613
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,6 +672,7 @@ Transform:
   - {fileID: 6843963831253464766}
   - {fileID: 7124169810604074957}
   - {fileID: 7195813741540731297}
+  - {fileID: 8128118065283513392}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5580015432373610310
@@ -972,6 +1004,7 @@ MonoBehaviour:
   tinEmpty: 0
   pewterEmpty: 0
   CoinPrefab: {fileID: 7849149069807129041, guid: 75742f59404f4a84690c4e74cec5f089, type: 3}
+  coinImpulseOnDrop: 0
   nearbyItems: []
 --- !u!114 &4922590346783359988
 MonoBehaviour:
@@ -987,6 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   defaultCameraSize: 70
+  cameraTarget: {fileID: 0}
   maxHealth: 10
   moveSpeed: 9
   acceleration: 9
@@ -1064,7 +1098,6 @@ MonoBehaviour:
   mist: {fileID: 2100000, guid: 356a96565b82881469448b3f0a1e23e2, type: 2}
   hiddenWall: {fileID: 2100000, guid: 818fb5334fc49ef4ba4c7e401af0aa82, type: 2}
   tinCameraSize: 90
-  virtualCamera: {fileID: 0}
   burningPewter: 0
   pewterDamage: 3
   pewterDamageKnokback: 6.04
