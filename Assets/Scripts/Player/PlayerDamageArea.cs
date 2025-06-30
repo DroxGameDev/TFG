@@ -33,7 +33,11 @@ public class PlayerDamageArea : MonoBehaviour
 
         if (collision.tag == "Spikes")
         {
-            playerDie.Die();
+            if(!playerData.dead)
+            {
+                playerDie.Die();
+            }
+            
         }
 
     }

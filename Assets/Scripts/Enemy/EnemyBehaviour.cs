@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!enemyData.visibility) return;
+        if (!enemyData.visibility && enemyData.cullingEnabled) return;
 
         UpdatePerception();
         

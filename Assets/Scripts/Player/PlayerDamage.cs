@@ -119,6 +119,7 @@ public class PlayerDamage : MonoBehaviour, IDamageable
     
     public void OnDie()
     {
-        playerDie.Die();
+        if(!playerData.dead)
+            playerDie.Die();
     }
 }

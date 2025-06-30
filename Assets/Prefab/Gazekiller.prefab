@@ -239,7 +239,7 @@ MonoBehaviour:
   player: {fileID: 0}
   visibility: 0
   walkSpeed: 2
-  runSpeed: 5
+  runSpeed: 4
   moveDirection: 1
   minIdleTime: 0.5
   maxIdleTime: 5

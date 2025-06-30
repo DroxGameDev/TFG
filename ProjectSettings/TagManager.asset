@@ -77,6 +77,9 @@ TagManager:
   - name: Walkable Area
     uniqueID: 4059447479
     locked: 0
+  - name: SecretWall
+    uniqueID: 4006148307
+    locked: 0
   - name: Mist
     uniqueID: 3481971939
     locked: 0
