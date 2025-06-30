@@ -14,7 +14,7 @@ public class TinPower : MonoBehaviour
     {
         playerData = GetComponent<PlayerData>();
         playerResources = GetComponent<PlayerResources>();
-        //playerData.virtualCamera.m_Lens.FieldOfView = playerData.defaultCameraSize;
+        CameraManager.Instance._currentCamera.m_Lens.FieldOfView = playerData.defaultCameraSize;
         playerData.mist.SetFloat("_FogStrengh", 0f);
         playerData.hiddenWall.SetFloat("_Alpha", 1f);
 
@@ -59,7 +59,7 @@ public class TinPower : MonoBehaviour
             float currenCameraSize = Mathf.Lerp(playerData.defaultCameraSize, playerData.tinCameraSize, currentStep);
 
             playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
-            //playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
+            CameraManager.Instance._currentCamera.m_Lens.FieldOfView = currenCameraSize;
 
             float currentWallAlpha = Mathf.Lerp(1f,0f, currentStep);
             playerData.hiddenWall.SetFloat("_Alpha", currentWallAlpha);
@@ -82,7 +82,7 @@ public class TinPower : MonoBehaviour
             float currenCameraSize = Mathf.Lerp(playerData.defaultCameraSize, playerData.tinCameraSize, currentStep); 
 
             playerData.mist.SetFloat("_FogStrengh", currentFogStrengh);
-            //playerData.virtualCamera.m_Lens.FieldOfView = currenCameraSize;
+            CameraManager.Instance._currentCamera.m_Lens.FieldOfView = currenCameraSize;
 
             float currentWallAlpha = Mathf.Lerp(1f, 0f, currentStep);
             playerData.hiddenWall.SetFloat("_Alpha", currentWallAlpha);

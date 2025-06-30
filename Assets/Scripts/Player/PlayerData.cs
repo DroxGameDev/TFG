@@ -138,7 +138,6 @@ public class PlayerData : MonoBehaviour
     public Material hiddenWall;
     [Space(10)]
     [Range(0f, 100f)] public float tinCameraSize;
-    //public CinemachineVirtualCamera virtualCamera;
 
     [Header("Pewter")]
     public bool burningPewter;
