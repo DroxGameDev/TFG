@@ -232,7 +232,6 @@ public class IronPower : Iron_Steel
 
                 if (hits[0].distance < 0.1f)
                 {
-                    Debug.Log("MoveObject: " + hits[0].collider.gameObject.name + ": " + hits[0].distance);
 
                     obstacleReached = true;
                     metalObstacleReached = true;

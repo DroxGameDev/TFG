@@ -62,7 +62,6 @@ public class PewterPower : MonoBehaviour
             playerData.pushing = true;
             playerData.moveMod = playerData.pewterPushMovementModifier;
             objectPushing = playerData.boxToPush;
-            objectPushing.transform.SetParent(transform, true);
             objectPushing.GetComponent<Metal_Heavy_Object>().ForceMove();
             StartCoroutine(Pushing());
         }
@@ -100,7 +99,6 @@ public class PewterPower : MonoBehaviour
         {
             playerData.pushing = false;
             playerData.moveMod = playerData.pewterMovementModifier;
-            objectPushing.transform.SetParent(null);
             objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
             objectPushing = null;
         }
@@ -128,7 +126,6 @@ public class PewterPower : MonoBehaviour
     {
         playerData.pushing = false;
         playerData.moveMod = playerData.pewterMovementModifier;
-        objectPushing.transform.SetParent(null);
         objectPushing.GetComponent<Metal_Heavy_Object>().Stop();
         objectPushing = null;
     }

@@ -37,7 +37,6 @@ public class PlayerDamageArea : MonoBehaviour
             {
                 playerDie.Die();
             }
-            
         }
 
     }

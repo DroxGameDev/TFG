@@ -570,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9058653790745621626, guid: a32864efe7c8e2a419f04f3bc792371f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3622,7 +3622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1293576202289126390, guid: 670594d7c3ed65d49b33d8f5971c8446, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2141028312589871238, guid: 670594d7c3ed65d49b33d8f5971c8446, type: 3}
       propertyPath: drops.Array.size
@@ -7253,7 +7253,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -314190535
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 12
+  m_FrontSortingLayer: 13
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0

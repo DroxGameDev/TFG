@@ -88,7 +88,7 @@ public class PlayerResources : MonoBehaviour
             UpdateCoins(-1);
             GameObject newCoin = PickupsSpawns.Instance.SpawnPickUp(CoinPrefab, transform.position);
             newCoin.transform.position = transform.position;
-            newCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * coinImpulseOnDrop, ForceMode2D.Impulse);
+            newCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (coinImpulseOnDrop-rb.velocity.y), ForceMode2D.Impulse);
         }
 
         else if (playerData.showingCoin && nearbyItems.Count == 0)
