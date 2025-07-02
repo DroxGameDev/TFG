@@ -146,3 +146,5 @@ MonoBehaviour:
   destinyDoor: {fileID: 0}
   doorScene: {fileID: 0}
   doorCamera: {fileID: 0}
+  respawnInfo: {fileID: 11400000, guid: 6caeb0752b757094fb0fa3741a4b0d57, type: 2}
+  isCheckipoint: 1

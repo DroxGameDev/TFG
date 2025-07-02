@@ -8,6 +8,7 @@ public class ViewManager : MonoBehaviour
 {
     public static ViewManager Instance { get; private set; }
 
+    public SceneInfo beginScene;
     public SceneInfo currentScene;
     public SceneInfo checkPointScene;
     public bool changingScene = false;
@@ -18,6 +19,11 @@ public class ViewManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    void Start()
+    {
+        SceneManager.LoadSceneAsync(beginScene.sceneName, LoadSceneMode.Additive);
     }
 
     public void ChangeScene(SceneInfo scene)
@@ -48,6 +54,13 @@ public class ViewManager : MonoBehaviour
 
         SceneManager.LoadSceneAsync(checkPointScene.sceneName, LoadSceneMode.Additive);
 
+    }
+
+    public void Restart()
+    {
+        SceneManager.UnloadSceneAsync(currentScene.sceneName);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneManager.LoadSceneAsync("SampleScene");
     }
 
 }

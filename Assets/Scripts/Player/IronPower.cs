@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using Unity.VisualScripting.ReorderableList;
 using UnityEditor;
 using UnityEngine;
 
@@ -21,15 +20,7 @@ public class IronPower : Iron_Steel
     
     public IEnumerator IronInputupdate(bool context)
     {
-        if (context)
-        {
-            input = true;
-        }
-
-        else if (!context)
-        {
-            input = false;
-        }
+        input = context;
 
         yield return null;
     }

@@ -9,6 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Test_Envioriment.unity
-    guid: 191cf8ebcf0eb2a4990b1c6974ddc801
+    path: Assets/Scenes/Prototype/IronTutorial/IronTutorial_Reset.unity
+    guid: dcff2ae53d2c0a246a3b614840920675
+  - enabled: 1
+    path: Assets/Scenes/Prototype/IronChallenge/IronChallenge_Reset.unity
+    guid: 61c492671c073984c82df0a3c5964adc
+  - enabled: 1
+    path: Assets/Scenes/Prototype/SteelTutorial/SteelTutorial_Reset.unity
+    guid: 3ad8db9a83fbd5040aab688c9d0c8514
+  - enabled: 1
+    path: Assets/Scenes/Prototype/SteelChallenge/SteelChallenge_Reset.unity
+    guid: 4fa89d4301cb2764f9293613d47bad1c
+  - enabled: 1
+    path: Assets/Scenes/Prototype/TIn_PewterTutorial/TinPewterTutorial_Reset.unity
+    guid: 2a52364f3c438a2498e6370b6e5fa782
+  - enabled: 1
+    path: Assets/Scenes/Prototype/FinalChallenge/FinalChallenge1_Reset.unity
+    guid: 4037808a2707a594fb00b10c8a5026e6
+  - enabled: 1
+    path: Assets/Scenes/Prototype/FinalChallenge/FinalChallenge2_Reset.unity
+    guid: fa3d7c19ea997b2479657956e3227ec8
   m_configObjects: {}

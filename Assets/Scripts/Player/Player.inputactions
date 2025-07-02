@@ -42,6 +42,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "BurnTin",
+                    "type": "Button",
+                    "id": "7886d985-b9d1-4620-95f1-8c806e9583ab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BurnPewter",
+                    "type": "Button",
+                    "id": "381dc10a-5a68-4dde-8ef3-28d914db5719",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SelectMetal",
                     "type": "Value",
                     "id": "3c8dc0d5-7e48-4c72-b6f3-ca545c35001e",
@@ -69,15 +87,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BurnTin",
-                    "type": "Button",
-                    "id": "7886d985-b9d1-4620-95f1-8c806e9583ab",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "e84ff9e0-7baf-4022-94d0-988b7638e1be",
@@ -87,18 +96,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BurnPewter",
+                    "name": "PushObject/Interact",
                     "type": "Button",
-                    "id": "381dc10a-5a68-4dde-8ef3-28d914db5719",
+                    "id": "b4ab0585-7244-464a-81ca-34227b69d676",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PushObject/Interact",
+                    "name": "MenuOpenClose",
                     "type": "Button",
-                    "id": "b4ab0585-7244-464a-81ca-34227b69d676",
+                    "id": "78ca5187-f735-4697-a33d-b00d6de12e3a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -219,7 +228,7 @@
                 {
                     "name": "",
                     "id": "10a034e9-55d3-4293-8f55-c47fcd80719c",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": ";GamePad",
@@ -296,7 +305,7 @@
                 {
                     "name": "",
                     "id": "e6200277-9dfb-49ae-b641-be1a362ec9ee",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
@@ -340,7 +349,7 @@
                 {
                     "name": "",
                     "id": "5979339a-27da-4b90-90c3-7e545e0110b4",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
@@ -365,7 +374,7 @@
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PC",
                     "action": "BurnPewter",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -389,6 +398,28 @@
                     "processors": "",
                     "groups": ";PC",
                     "action": "PushObject/Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a54ae876-087c-46e4-9aef-612303fe34c7",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PC",
+                    "action": "MenuOpenClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc740017-fc77-4c47-9d86-7fa21dcb69df",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";GamePad",
+                    "action": "MenuOpenClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

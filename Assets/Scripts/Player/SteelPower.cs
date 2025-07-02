@@ -164,7 +164,6 @@ public class SteelPower : Iron_Steel
         if (selectedMetal.metal.tag == "Walkable_Area")
         {
             directorVector = metalPosition - position + (selectedMetal.metal.GetComponent<WalkableArea>().worldOffest * -1);
-            Debug.Log(directorVector);
         }
         else
         {

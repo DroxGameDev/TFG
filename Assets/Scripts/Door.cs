@@ -9,12 +9,17 @@ public class Door : MonoBehaviour
     public SceneInfo doorScene;
     public CinemachineVirtualCamera doorCamera;
 
+    public RespawnPlayerInfo respawnInfo;
+
+    public bool isCheckipoint = true;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerData>().nearbyDoor = this;
-            GameManager.Instance.UpdateCheckpoint(transform, doorScene, doorCamera);
+            if(isCheckipoint)
+                GameManager.Instance.UpdateCheckpoint(transform, doorScene, doorCamera, respawnInfo);
         }
     }
 

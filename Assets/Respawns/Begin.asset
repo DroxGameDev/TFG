@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2293ea3b706eb194f9c3e91df6df07ff, type: 3}
+  m_Name: Begin
+  m_EditorClassIdentifier: 
+  coins: 0
+  ironVials: 0
+  steelVials: 0
+  tinVials: 0
+  pewterVials: 0
+  ironReserve: 0
+  steelReserve: 0
+  tinReserve: 0
+  pewterReserve: 0

@@ -4,33 +4,17 @@ using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-public class PlayerSavedInfo : ScriptableObject
-{
-    public int health = 0;
-    public int coins = 0;
-    public int ironVials = 0;
-    public int steelVials  = 0;
-    public int tinVials= 0;
-    public int pewterVials= 0;
-
-    
-    public float ironReserve= 0;
-    public float steelReserve= 0;
-    public float tinReserve= 0;
-    public float pewterReserve= 0;
-}
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public Transform player;
 
-    private PlayerSavedInfo playerInfo;
-
     public float RespawnWait;
 
     //public List<string> scenesToReload;
     public Transform respawnPoint;
+    public RespawnPlayerInfo respawnPlayerInfo;
     public GameObject CanvasBlackFase;
 
     public CinemachineBrain cinemachineBrain;
@@ -43,10 +27,16 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        playerInfo = ScriptableObject.CreateInstance<PlayerSavedInfo>();
     }
 
+    void Start()
+    {
+        player.GetComponent<PlayerInput>().actions.Disable();
+    }
+    public void StartGame()
+    {
+        player.GetComponent<PlayerInput>().actions.Enable();
+    }
     public void RegisterPlayer(Transform playerObject)
     {
         player = playerObject;
@@ -64,7 +54,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayerToDoor(Door originDoor)
     {
-        StartCoroutine(MoveToDoor(originDoor.destinyDoor));
+        if (originDoor.destinyDoor != null)
+            StartCoroutine(MoveToDoor(originDoor.destinyDoor));
     }
 
     IEnumerator MoveToDoor(Door destinyDoor)
@@ -83,6 +74,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         //CameraManager.Instance.ChangeCameraBoundaries(destinyDoor.doorScene.cameraBounds);
+        LoadPlayerInfo(destinyDoor.respawnInfo);
+        player.GetComponent<PlayerResources>().UpdateCanvas();
 
         player.transform.position = destinyDoor.transform.position;
 
@@ -92,17 +85,16 @@ public class GameManager : MonoBehaviour
 
         player.GetComponent<PlayerInput>().actions.Enable();
     }
-    public void UpdateCheckpoint(Transform checkPointTransport, SceneInfo scene, CinemachineVirtualCamera camera)
+    public void UpdateCheckpoint(Transform checkPointTransport, SceneInfo scene, CinemachineVirtualCamera camera, RespawnPlayerInfo respawnInfo)
     {
         if (respawnPoint != checkPointTransport)
         {
             respawnPoint = checkPointTransport;
+            respawnPlayerInfo = respawnInfo;
             ViewManager.Instance.checkPointScene = scene;
             ViewManager.Instance.currentScene = scene;
 
             CameraManager.Instance.respawnCamera = camera;
-
-            SavePlayerInfo();
         }
     }
 
@@ -115,7 +107,7 @@ public class GameManager : MonoBehaviour
         CameraManager.Instance.Respawn();
 
         player.transform.position = respawnPoint.position;
-        LoadPlayerInfo();
+        LoadPlayerInfo(respawnPlayerInfo);
         player.GetComponent<PlayerResources>().UpdateCanvas();
 
         yield return new WaitForSeconds(fadeWait);
@@ -154,32 +146,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SavePlayerInfo()
-    {
-        PlayerResources playerResources = player.GetComponent<PlayerResources>();
-
-        playerInfo.health = playerResources.health;
-        playerInfo.coins = playerResources.coins;
-        playerInfo.ironVials = playerResources.ironVials;
-        playerInfo.steelVials = playerResources.steelVials;
-        playerInfo.tinVials = playerResources.tinVials;
-        playerInfo.pewterVials = playerResources.pewterVials;
-        playerInfo.ironReserve = playerResources.ironReserve;
-        playerInfo.steelReserve = playerResources.steelReserve;
-        playerInfo.tinReserve = playerResources.tinReserve;
-        playerInfo.pewterReserve = playerResources.pewterReserve;
-    }
-
-    private void LoadPlayerInfo()
+    private void LoadPlayerInfo(RespawnPlayerInfo playerInfo)
     {
         PlayerResources playerResources = player.GetComponent<PlayerResources>();
 
         playerResources.health = playerInfo.health;
+
         playerResources.coins = playerInfo.coins;
         playerResources.ironVials = playerInfo.ironVials;
         playerResources.steelVials = playerInfo.steelVials;
         playerResources.tinVials = playerInfo.tinVials;
         playerResources.pewterVials = playerInfo.pewterVials;
+
         playerResources.ironReserve = playerInfo.ironReserve;
         playerResources.steelReserve = playerInfo.steelReserve;
         playerResources.tinReserve = playerInfo.tinReserve;

@@ -42,7 +42,7 @@ public class PlayerResources : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         nearbyItems = new List<GameObject>();
         UpdateCanvas();
-        StartMetalReserves();
+        UpdateMetalReserves();
         checkIfEmpty();
     }
 
@@ -148,34 +148,10 @@ public class PlayerResources : MonoBehaviour
 
         checkIfEmpty();
         BurningUpdateMetalReserves();
+        UpdateMetalReserves();
     }
     #region reserves update
-    void StartMetalReserves()
-    {
-        if (ironReserve < 0.01f && ironVials > 0)
-        {
-            UpdateIronReserves(60f);
-            UpdateItonVials(-1);
-        }
 
-        if (steelReserve < 0.01f && steelVials > 0)
-        {
-            UpdateSteelReserves(60f);
-            UpdateSteelVials(-1);
-        }
-
-        if (tinReserve < 0.01f && tinVials > 0)
-        {
-            UpdateTinReserves(60f);
-            UpdateTinVials(-1);
-        }
-
-        if (pewterReserve < 0.01f && pewterVials > 0)
-        {
-            UpdatePewterReserves(60f);
-            UpdatePewterVials(-1);
-        }
-    }
     void checkIfEmpty()
     {
         if (ironReserve <= 0.01f && !ironEmpty)
@@ -204,45 +180,51 @@ public class PlayerResources : MonoBehaviour
         if (!ironEmpty && playerData.burningIron)
         {
             UpdateIronReserves(-Time.unscaledDeltaTime);
-
-            if (ironReserve <= 0.01 && ironVials > 0)
-            {
-                UpdateIronReserves(60f);
-                UpdateItonVials(-1);
-            }
         }
 
         if (!steelEmpty && playerData.burningSteel)
         {
             UpdateSteelReserves(-Time.unscaledDeltaTime);
-
-            if (steelReserve <= 0.01 && steelVials > 0)
-            {
-                UpdateSteelReserves(60f);
-                UpdateSteelVials(-1);
-            }
         }
 
         if (!tinEmpty && playerData.burningTin)
         {
             UpdateTinReserves(-Time.unscaledDeltaTime);
-
-            if (tinReserve <= 0.01 && tinVials > 0)
-            {
-                UpdateTinReserves(60f);
-                UpdateTinVials(-1);
-            }
         }
 
         if (!pewterEmpty && playerData.burningPewter)
         {
             UpdatePewterReserves(-Time.unscaledDeltaTime);
+        }
+    }
+    void UpdateMetalReserves()
+    {
+        if (ironReserve < 0.01f && ironVials > 0)
+        {
+            UpdateIronReserves(60f);
+            UpdateItonVials(-1);
+            if (ironEmpty) ironEmpty = false;
+        }
 
-            if (pewterReserve <= 0.01 && pewterVials > 0)
-            {
-                UpdatePewterReserves(60f);
-                UpdatePewterVials(-1);
-            }
+        if (steelReserve < 0.01f && steelVials > 0)
+        {
+            UpdateSteelReserves(60f);
+            UpdateSteelVials(-1);
+            if (steelEmpty) steelEmpty = false;
+        }
+
+        if (tinReserve < 0.01f && tinVials > 0)
+        {
+            UpdateTinReserves(60f);
+            UpdateTinVials(-1);
+            if (tinEmpty) tinEmpty = false;
+        }
+
+        if (pewterReserve < 0.01f && pewterVials > 0)
+        {
+            UpdatePewterReserves(60f);
+            UpdatePewterVials(-1);
+            if (pewterEmpty) pewterEmpty = false;
         }
     }
     void PickVialUpdateMetalReserves(Vial vial)

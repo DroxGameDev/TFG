@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
+#if UNITY_EDITOR
 [CustomEditor(typeof(LampPieces))]
 public class LampSettings : Editor
 {
@@ -48,7 +50,7 @@ public class LampSettings : Editor
                 lampPieces.lampHook.SetActive(false);
             }
         }
-        
+
         if (GUILayout.Button("None"))
         {
             lampPieces.lampStick.SetActive(false);
@@ -57,3 +59,5 @@ public class LampSettings : Editor
         }
     }
 }
+#endif
+

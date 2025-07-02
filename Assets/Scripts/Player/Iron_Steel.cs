@@ -145,6 +145,7 @@ public class Iron_Steel : MonoBehaviour
 
     public void OnUpdate()
     {
+        if(Time.timeScale == 0f) return;
         selectMetalCounter -= Time.unscaledDeltaTime;
 
         if (state == PowerState.select || state == PowerState.force || state == PowerState.wallWalking || state == PowerState.impulse)

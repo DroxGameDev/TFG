@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,11 +35,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+        
         playerMovement.MoveInputUpdate(context.ReadValue<Vector2>());
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.attacking) return;
 
         if (context.performed)
@@ -52,13 +57,15 @@ public class PlayerController : MonoBehaviour
         {
             playerMovement.JumpInputUpdate(false);
         }
-        
+
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.wallWalking || playerData.burningIron || playerData.burningSteel || playerData.showingCoin)
-        return;
+            return;
 
         if (!context.performed)
             return;
@@ -71,13 +78,15 @@ public class PlayerController : MonoBehaviour
 
     public void OnPush_Interact(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.movingWithPowers) return;
 
         if (context.performed)
         {
             if (playerData.boxNearby)
                 pewterPower.PushImputUpdate();
-                
+
             else if (playerData.nearbyDoor != null)
             {
                 playerMovement.InteractInput();
@@ -87,8 +96,10 @@ public class PlayerController : MonoBehaviour
 
     public void SteelPush(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.attacking || playerResources.steelEmpty) return;
-        
+
         if (context.performed)
         {
             StartCoroutine(steelPower.SteelInputupdate(true));
@@ -97,13 +108,15 @@ public class PlayerController : MonoBehaviour
 
         if (context.canceled)
             StartCoroutine(steelPower.SteelInputupdate(false));
-        
+
     }
 
     public void IronPull(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.attacking || playerResources.ironEmpty) return;
-        
+
         if (context.performed)
         {
             StartCoroutine(ironPower.IronInputupdate(true));
@@ -111,11 +124,13 @@ public class PlayerController : MonoBehaviour
 
         if (context.canceled)
             StartCoroutine(ironPower.IronInputupdate(false));
-        
+
     }
 
     public void SelectMetal(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerControls.currentControlScheme == "GamePad")
         {
             Iron_Steel.GetSelectMetalAngle(context.ReadValue<Vector2>());
@@ -131,24 +146,30 @@ public class PlayerController : MonoBehaviour
 
     public void PickDropCoin(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.attacking) return;
 
-        if (context.performed) playerResources.PickDropCoinInput();     
+        if (context.performed) playerResources.PickDropCoinInput();
     }
 
     public void ShowCoin(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerData.attacking || playerData.pushing) return;
-        
+
         if (context.performed)
         {
             playerResources.ShowCoinInput();
         }
-        
+
     }
 
     public void TinSenses(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerResources.tinEmpty) return;
 
         if (context.performed) tinPower.TinInput();
@@ -156,8 +177,18 @@ public class PlayerController : MonoBehaviour
 
     public void PewterEnhance(InputAction.CallbackContext context)
     {
+        if(MenuManager.Instance.isPaused) return;
+
         if (playerResources.pewterEmpty) return;
 
         if (context.performed) pewterPower.PewterInput();
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            MenuManager.Instance.PauseMenuInput();
+        }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 public class PlayerMovement : AffectedByGravity
 {
@@ -28,7 +29,7 @@ public class PlayerMovement : AffectedByGravity
     #region Input
     public void MoveInputUpdate(Vector2 context)
     {
-       moveInput = context.x;
+        moveInput = context.x;
     }
 
     public void JumpInputUpdate(bool context)
@@ -39,7 +40,7 @@ public class PlayerMovement : AffectedByGravity
             
             if (playerData.gravityMode != GravityMode.Down){
 
-                playerData.velocity = Vector2.zero;
+                //playerData.velocity = Vector2.zero;
 
                 playerData.ChangeGravityMode(GravityMode.Down);
             }
@@ -263,7 +264,6 @@ public class PlayerMovement : AffectedByGravity
             }
         }
     }
-
 
     public bool IsGrounded()
     {
