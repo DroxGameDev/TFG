@@ -57,7 +57,6 @@ public class IronPower : Iron_Steel
             }
             else
             {
-                base.OnForce();
                 ChangeState(PowerState.force);
                 OnForce();
             }
@@ -132,6 +131,7 @@ public class IronPower : Iron_Steel
         //Debug.Log ("5:" + state);
     }
     public override void OnInactive(){
+        base.OnInactive();
         playerData.burningIron = false;
         Time.timeScale = 1f;
         obstacleReached = false;
@@ -158,6 +158,7 @@ public class IronPower : Iron_Steel
     }
 
     public override void OnForce(){
+        base.OnForce();
         playerData.movingWithPowers = true;
         Time.timeScale = 1f;
         //playerData.cancelGravity = true;
@@ -320,7 +321,8 @@ public class IronPower : Iron_Steel
         return col.IsTouchingLayers(playerData.walkableAreaLayer);
     }
 
-    private void OnWallWalk(){
+    public override void OnWallWalk(){
+        base.OnWallWalk();
         playerData.movingWithPowers = false;
         rb.velocity = Vector2.zero;
         playerData.ChangeGravityMode(walkableArea.gravity);

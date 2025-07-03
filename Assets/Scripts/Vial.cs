@@ -14,14 +14,6 @@ public class Vial : AffectedByGravity
 
     [Space(10)]
 
-    [Header("Metal Vial")]
-    public SpriteRenderer metalVialSpriteRenderer;
-    public Sprite metalVialSpriteIron;
-    public Sprite metalVialSpriteSteel;
-    public Sprite metalVialSpriteTin;
-    public Sprite metalVialSpritePewter;
-    
-    [Space(10)]
 
     [Header("Metal Indicator")]
     public SpriteRenderer metalSymbolSpriteRenderer;
@@ -35,19 +27,15 @@ public class Vial : AffectedByGravity
     
         switch (type) {
             case VialType.iron:
-                metalVialSpriteRenderer.sprite = metalVialSpriteIron;
                 metalSymbolSpriteRenderer.sprite = metalSymbolSpriteIron;
                 break;
             case VialType.steel:
-                metalVialSpriteRenderer.sprite = metalVialSpriteSteel;
                 metalSymbolSpriteRenderer.sprite = metalSymbolSpriteSteel;
                 break;
             case VialType.tin:
-                metalVialSpriteRenderer.sprite = metalVialSpriteTin;
                 metalSymbolSpriteRenderer.sprite = metalSymbolSpriteTin;
                 break;
             case VialType.pewter:
-                metalVialSpriteRenderer.sprite = metalVialSpritePewter;
                 metalSymbolSpriteRenderer.sprite = metalSymbolSpritePewter;
                 break;
         }

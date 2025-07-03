@@ -10,6 +10,12 @@ public class UIResources : MonoBehaviour
     [Header("Coins")]
     public TMP_Text coinText;
 
+    [Header("UI Continers")]
+    public GameObject iron;
+    public GameObject steel;
+    public GameObject tin;
+    public GameObject pewter;
+
     [Header("Vials")]
     public TMP_Text ironText;
     public TMP_Text steelText;
@@ -29,6 +35,14 @@ public class UIResources : MonoBehaviour
 
     public void UpdateCoins(int coinsAmount)
     {
+        if (coinsAmount == 0)
+        {
+            coinText.enabled = false;
+        }
+        else
+        {
+            coinText.enabled = true;
+        }
         coinText.text = coinsAmount.ToString();
     }
 
@@ -38,15 +52,33 @@ public class UIResources : MonoBehaviour
         {
             case VialType.iron:
                 ironText.text = vialAmount.ToString();
+                if (vialAmount == 0)
+                    ironText.enabled = false;
+                else
+                    ironText.enabled = true;
                 return;
+
             case VialType.steel:
                 steelText.text = vialAmount.ToString();
+                if (vialAmount == 0)
+                    steelText.enabled = false;
+                else
+                    steelText.enabled = true;
                 return;
+
             case VialType.tin:
                 tinText.text = vialAmount.ToString();
+                if (vialAmount == 0)
+                    tinText.enabled = false;
+                else
+                    tinText.enabled = true;
                 return;
             case VialType.pewter:
                 pewterText.text = vialAmount.ToString();
+                if (vialAmount == 0)
+                    pewterText.enabled = false;
+                else
+                    pewterText.enabled = true;
                 return;
         }
     }
@@ -58,15 +90,34 @@ public class UIResources : MonoBehaviour
         {
             case VialType.iron:
                 ironSlider.value = sliderValue;
+                if(value < 0.1f)
+                    iron.SetActive(false);
+                else
+                    iron.SetActive(true);
                 return;
+
             case VialType.steel:
                 steelSlider.value = sliderValue;
+                if(value < 0.1f)
+                    steel.SetActive(false);
+                else
+                    steel.SetActive(true);
                 return;
+
             case VialType.tin:
                 tinSlider.value = sliderValue;
+                if(value < 0.1f)
+                    tin.SetActive(false);
+                else
+                    tin.SetActive(true);
                 return;
+
             case VialType.pewter:
                 pewterSlider.value = sliderValue;
+                if(value < 0.1f)
+                    pewter.SetActive(false);
+                else
+                    pewter.SetActive(true);
                 return;
         }
     }

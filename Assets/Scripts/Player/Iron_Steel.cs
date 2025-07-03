@@ -28,6 +28,8 @@ public class Iron_Steel : MonoBehaviour
     [HideInInspector] public static float selectMetalCounter;
     public static bool transitioning = false;
 
+    private static float transitionStep = 0;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,47 +102,54 @@ public class Iron_Steel : MonoBehaviour
     }
     public virtual void OnSelect()
     {
-        StartCoroutine(StartTransition());
+       StartCoroutine(StartTransition());
     }
     public virtual void OnForce()
     {
-        StartCoroutine(EndTransition());
+        //StartCoroutine(EndTransition());
     }
     public virtual void OnImpulse()
     {
-        StartCoroutine(EndTransition());
+        //StartCoroutine(EndTransition());
+    }
+
+    public virtual void OnWallWalk()
+    {
+        //StartCoroutine(EndTransition());
     }
 
     private IEnumerator StartTransition()
     {
-        float currentStep = 0;
+        transitionStep = 0f;
         transitioning = true;
 
-        while (currentStep < 1f)
+        while (transitionStep < 1f)
         {
-            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", currentStep);
+            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", transitionStep);
 
-            currentStep += playerData.selectMetalTransitionStep;
+            transitionStep += playerData.selectMetalTransitionStep;
             yield return new WaitForSecondsRealtime(0.01f);
         }
 
         transitioning = false;
+        transitionStep = 1f;
     }
 
     private IEnumerator EndTransition()
     {
-        float currentStep = 1;
+        transitionStep = 1f;
         transitioning = true;
 
-        while (currentStep > 0f)
+        while (transitionStep > 0f)
         {
-            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", currentStep);
+            playerData.selectMetalMaterial.SetFloat("_SelectMetalAreaStep", transitionStep);
 
-            currentStep -= playerData.selectMetalTransitionStep;
+            transitionStep -= playerData.selectMetalTransitionStep;
             yield return new WaitForSecondsRealtime(0.01f);
         }
 
         transitioning = false;
+        transitionStep = 0f;
     }
 
     public void OnUpdate()

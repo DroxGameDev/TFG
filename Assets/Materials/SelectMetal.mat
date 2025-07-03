@@ -38,7 +38,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _SelectMetalAreaStep: 0.040000156
-    - _SelectMetalIntensity: 1.4
-    - _SelectMetalPower: 3
-    m_Colors: []
+    - _SelectMetalIntensity: 1
+    - _SelectMetalPower: 10
+    m_Colors:
+    - _Color: {r: 0.050980363, g: 0.79450905, b: 0.9529412, a: 0}
   m_BuildTextureStacks: []

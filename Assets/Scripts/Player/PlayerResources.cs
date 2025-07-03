@@ -62,7 +62,7 @@ public class PlayerResources : MonoBehaviour
         }
     }
 
-     #region  input
+    #region  input
     public void PickDropCoinInput()
     {
         //pick object
@@ -88,7 +88,7 @@ public class PlayerResources : MonoBehaviour
             UpdateCoins(-1);
             GameObject newCoin = PickupsSpawns.Instance.SpawnPickUp(CoinPrefab, transform.position);
             newCoin.transform.position = transform.position;
-            newCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (coinImpulseOnDrop-rb.velocity.y), ForceMode2D.Impulse);
+            newCoin.GetComponent<Rigidbody2D>().AddForce(Vector2.down * (coinImpulseOnDrop - rb.velocity.y), ForceMode2D.Impulse);
         }
 
         else if (playerData.showingCoin && nearbyItems.Count == 0)
@@ -105,10 +105,10 @@ public class PlayerResources : MonoBehaviour
         {
             //rb.velocity = Vector2.zero;
             GameObject newCoin = PickupsSpawns.Instance.SpawnPickUp(CoinPrefab, playerData.shootPoint.position);
-            
+
             playerData.showedCoin = newCoin;
             Coin coinScript = newCoin.GetComponent<Coin>();
-            CoinInHand(coinScript); 
+            CoinInHand(coinScript);
 
             UpdateCoins(-1);
             showCoinCounter = playerData.showCoinTime;
@@ -149,6 +149,7 @@ public class PlayerResources : MonoBehaviour
         checkIfEmpty();
         BurningUpdateMetalReserves();
         UpdateMetalReserves();
+        UpdateCanvas();
     }
     #region reserves update
 
@@ -179,22 +180,22 @@ public class PlayerResources : MonoBehaviour
     {
         if (!ironEmpty && playerData.burningIron)
         {
-            UpdateIronReserves(-Time.unscaledDeltaTime);
+            UpdateIronReserves(Time.timeScale > 0f ? -Time.unscaledDeltaTime : -0);
         }
 
         if (!steelEmpty && playerData.burningSteel)
         {
-            UpdateSteelReserves(-Time.unscaledDeltaTime);
+            UpdateSteelReserves(Time.timeScale > 0f ? -Time.unscaledDeltaTime : -0);
         }
 
         if (!tinEmpty && playerData.burningTin)
         {
-            UpdateTinReserves(-Time.unscaledDeltaTime);
+            UpdateTinReserves(Time.timeScale > 0f ? -Time.unscaledDeltaTime : -0);
         }
 
         if (!pewterEmpty && playerData.burningPewter)
         {
-            UpdatePewterReserves(-Time.unscaledDeltaTime);
+            UpdatePewterReserves(Time.timeScale > 0f ? -Time.unscaledDeltaTime : -0);
         }
     }
     void UpdateMetalReserves()
@@ -202,7 +203,7 @@ public class PlayerResources : MonoBehaviour
         if (ironReserve < 0.01f && ironVials > 0)
         {
             UpdateIronReserves(60f);
-            UpdateItonVials(-1);
+            UpdateIronVials(-1);
             if (ironEmpty) ironEmpty = false;
         }
 
@@ -237,7 +238,7 @@ public class PlayerResources : MonoBehaviour
                     UpdateIronReserves(60f);
                     ironEmpty = false;
                 }
-                else UpdateItonVials(1);
+                else UpdateIronVials(1);
                 break;
             case VialType.steel:
                 if (steelEmpty)
@@ -291,24 +292,11 @@ public class PlayerResources : MonoBehaviour
 
     #region Canvas Updates
 
-    public void UpdateCanvas()
-    {
-        UIResources.instance.UpdateCoins(coins);
-        UIResources.instance.UpdateVials(VialType.iron, ironVials);
-        UIResources.instance.UpdateVials(VialType.steel, steelVials);
-        UIResources.instance.UpdateVials(VialType.tin, tinVials);
-        UIResources.instance.UpdateVials(VialType.pewter, pewterVials);
 
-        UIResources.instance.UpdateSlider(VialType.iron, ironReserve);
-        UIResources.instance.UpdateSlider(VialType.steel, steelReserve);
-        UIResources.instance.UpdateSlider(VialType.tin, tinReserve);
-        UIResources.instance.UpdateSlider(VialType.pewter, pewterReserve);
-    }
 
     void UpdateCoins(int amount)
     {
         coins += amount;
-        UIResources.instance.UpdateCoins(coins);
     }
 
     void UpdateIronReserves(float amount)
@@ -318,7 +306,6 @@ public class PlayerResources : MonoBehaviour
         {
             ironReserve = 0f;
         }
-        UIResources.instance.UpdateSlider(VialType.iron, ironReserve);
     }
 
     void UpdateSteelReserves(float amount)
@@ -328,7 +315,6 @@ public class PlayerResources : MonoBehaviour
         {
             steelReserve = 0f;
         }
-        UIResources.instance.UpdateSlider(VialType.steel, steelReserve);
     }
     void UpdateTinReserves(float amount)
     {
@@ -337,7 +323,6 @@ public class PlayerResources : MonoBehaviour
         {
             tinReserve = 0f;
         }
-        UIResources.instance.UpdateSlider(VialType.tin, tinReserve);
     }
     void UpdatePewterReserves(float amount)
     {
@@ -346,28 +331,38 @@ public class PlayerResources : MonoBehaviour
         {
             pewterReserve = 0f;
         }
-        UIResources.instance.UpdateSlider(VialType.pewter, pewterReserve);
     }
 
-    void UpdateItonVials(int amount)
+    void UpdateIronVials(int amount)
     {
         ironVials += amount;
-        UIResources.instance.UpdateVials(VialType.iron, ironVials);
     }
     void UpdateSteelVials(int amount)
     {
         steelVials += amount;
-        UIResources.instance.UpdateVials(VialType.steel, steelVials);
     }
     void UpdateTinVials(int amount)
     {
         tinVials += amount;
-        UIResources.instance.UpdateVials(VialType.tin, tinVials);
     }
     void UpdatePewterVials(int amount)
     {
         pewterVials += amount;
+    }
+    
+    public void UpdateCanvas()
+    {
+        UIResources.instance.UpdateCoins(coins);
+
+        UIResources.instance.UpdateVials(VialType.iron, ironVials);
+        UIResources.instance.UpdateVials(VialType.steel, steelVials);
+        UIResources.instance.UpdateVials(VialType.tin, tinVials);
         UIResources.instance.UpdateVials(VialType.pewter, pewterVials);
+
+        UIResources.instance.UpdateSlider(VialType.iron, ironReserve);
+        UIResources.instance.UpdateSlider(VialType.steel, steelReserve);
+        UIResources.instance.UpdateSlider(VialType.tin, tinReserve);
+        UIResources.instance.UpdateSlider(VialType.pewter, pewterReserve);
     }
     #endregion
 }

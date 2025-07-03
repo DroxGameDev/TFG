@@ -117,6 +117,7 @@ public class SteelPower : Iron_Steel
     }
     public override void OnInactive()
     {
+        base.OnInactive();
         playerData.burningSteel = false;
         Time.timeScale = 1f;
         ResetLines();

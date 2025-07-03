@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2377237079278475298}
   - component: {fileID: 7025650226387794257}
   m_Layer: 16
-  m_Name: Square
+  m_Name: SpikeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

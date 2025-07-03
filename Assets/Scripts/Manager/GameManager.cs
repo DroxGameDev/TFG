@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(fadeWait);
 
         player.GetComponent<PlayerDie>().RespawnValues();
+        Time.timeScale = 1f;
 
         yield return StartCoroutine(FadeBlackOutSquare(false));
     }

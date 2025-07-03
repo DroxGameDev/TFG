@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 692889473
   m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0ffc209a392725a4e8274793a5c876e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46b6ee18f0054314dbd682bad4729227, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,11 +106,6 @@ MonoBehaviour:
   constForce: {fileID: 0}
   cullingEnabled: 0
   type: 2
-  metalVialSpriteRenderer: {fileID: 3938289696937985795}
-  metalVialSpriteIron: {fileID: 21300000, guid: fb74f124d96134746be08bfd68f2a972, type: 3}
-  metalVialSpriteSteel: {fileID: 21300000, guid: 4e25597751892b74d83c12466614a893, type: 3}
-  metalVialSpriteTin: {fileID: 21300000, guid: aba2fcb9d00d69945b9995157d5a1e3b, type: 3}
-  metalVialSpritePewter: {fileID: 21300000, guid: c26042dabf29a61478982cdc5d3f6c0b, type: 3}
   metalSymbolSpriteRenderer: {fileID: 5434037494703685164}
   metalSymbolSpriteIron: {fileID: 21300000, guid: 69fb439fdd8f793409cffe31935aa613, type: 3}
   metalSymbolSpriteSteel: {fileID: 21300000, guid: d02212626984817468a001252f67267e, type: 3}

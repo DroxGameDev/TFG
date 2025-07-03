@@ -10,8 +10,6 @@ public class PlayerDie : MonoBehaviour
     private PlayerData playerData;
     private Rigidbody2D rb;
 
-    private Vector2 deadKnockback;
-
     void Start()
     {
         playerControls = GetComponent<PlayerInput>();
@@ -38,7 +36,6 @@ public class PlayerDie : MonoBehaviour
     {
         playerData.dead = false;
         playerControls.actions.Enable();
-        Time.timeScale = 1f;
         playerData.damageCollider.enabled = true;
     }
 
