@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     public bool gizmosActive;
-    private enum State { Idle, Patrolling, Chasing, PreparingAttack,Attacking, AttackCooldown, Stunned, Dead }
+    private enum State { Idle, Patrolling, Chasing, PreparingAttack,Attacking, AttackCooldown  }
     private State currentState = State.Idle;
     private Rigidbody2D rb;
     private EnemyData enemyData;

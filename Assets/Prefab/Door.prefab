@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.52, y: -1.19, z: 0}
-  m_LocalScale: {x: 3.062293, y: 4.373748, z: 7.104753}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: -1356203483
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.009242773, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 9524279173ff5e44f938703405ca043e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,18 +118,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0030726194, y: -0.35322684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.54, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5445876, y: 1.3056132}
   m_EdgeRadius: 0
 --- !u!114 &2234626399703993002
 MonoBehaviour:
@@ -147,4 +147,4 @@ MonoBehaviour:
   doorScene: {fileID: 0}
   doorCamera: {fileID: 0}
   respawnInfo: {fileID: 11400000, guid: 6caeb0752b757094fb0fa3741a4b0d57, type: 2}
-  isCheckipoint: 1
+  isCheckipoint: 0
