@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.7987695, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.8000001, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2194,7 +2194,7 @@ Transform:
   m_GameObject: {fileID: 210926561}
   serializedVersion: 2
   m_LocalRotation: {x: -0.516372, y: 0.48230052, z: 0.47395545, w: 0.525464}
-  m_LocalPosition: {x: -1.0799866, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2328,7 +2328,7 @@ Transform:
   m_GameObject: {fileID: 243977567}
   serializedVersion: 2
   m_LocalRotation: {x: -0.516372, y: 0.48230052, z: 0.47395545, w: 0.525464}
-  m_LocalPosition: {x: 13.003143, y: -9.619995, z: 0}
+  m_LocalPosition: {x: 12.443146, y: -9.939987, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2542,7 +2542,7 @@ Transform:
   m_GameObject: {fileID: 263139015}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010802944, y: -0.65201116, z: 0.00929148, w: 0.75807554}
-  m_LocalPosition: {x: -526.34906, y: 47.179993, z: 0}
+  m_LocalPosition: {x: -527.0791, y: 46.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5167,7 +5167,7 @@ Transform:
   m_GameObject: {fileID: 624306572}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010802944, y: -0.65201116, z: 0.00929148, w: 0.75807554}
-  m_LocalPosition: {x: -1.2399902, y: 0, z: 0}
+  m_LocalPosition: {x: -1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5954,6 +5954,14 @@ PrefabInstance:
       propertyPath: respawnInfo
       value: 
       objectReference: {fileID: 11400000, guid: e910cb4e76c3e004da8a0513056fb95d, type: 2}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -7333,7 +7341,7 @@ Transform:
   m_GameObject: {fileID: 811761124}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14569896, y: 0.69193345, z: -0.14569898, w: 0.6919334}
-  m_LocalPosition: {x: -525.5491, y: 47.179993, z: 0}
+  m_LocalPosition: {x: -527.0791, y: 46.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7585,7 +7593,7 @@ Transform:
   m_GameObject: {fileID: 899229308}
   serializedVersion: 2
   m_LocalRotation: {x: -0.516372, y: 0.48230052, z: 0.47395545, w: 0.525464}
-  m_LocalPosition: {x: -525.46906, y: 47.179993, z: 0}
+  m_LocalPosition: {x: -527.0791, y: 46.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8148,7 +8156,7 @@ Transform:
   m_GameObject: {fileID: 927859774}
   serializedVersion: 2
   m_LocalRotation: {x: 0.010802944, y: -0.65201116, z: 0.00929148, w: 0.75807554}
-  m_LocalPosition: {x: -541.30005, y: 39.984497, z: 0}
+  m_LocalPosition: {x: -542.99, y: 39.664505, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8327,6 +8335,14 @@ PrefabInstance:
       propertyPath: respawnInfo
       value: 
       objectReference: {fileID: 11400000, guid: b958df8f034e47140bfff2a00fb6a834, type: 2}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_FinalChallenge2_Enter
@@ -8601,7 +8617,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 339.66977, y: 212.36267, z: 0}
+  m_LocalPosition: {x: 339.6674, y: 212.36267, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8877,6 +8893,14 @@ PrefabInstance:
       propertyPath: respawnInfo
       value: 
       objectReference: {fileID: 11400000, guid: e1b858d589954204ea72bf27b3ac864e, type: 2}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -9091,7 +9115,7 @@ Transform:
   m_GameObject: {fileID: 1011911356}
   serializedVersion: 2
   m_LocalRotation: {x: -0.516372, y: 0.48230052, z: 0.47395545, w: 0.525464}
-  m_LocalPosition: {x: -227.25, y: -83.41, z: 0}
+  m_LocalPosition: {x: -229.1, y: -83.729996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9431,6 +9455,14 @@ PrefabInstance:
       propertyPath: respawnInfo
       value: 
       objectReference: {fileID: 11400000, guid: 660d75af59f99524aba5c75d4e0f6d03, type: 2}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_FinalChallenge1_Enter
@@ -16981,6 +17013,14 @@ PrefabInstance:
       propertyPath: doorCamera
       value: 
       objectReference: {fileID: 1843108602}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_IronChallenge_Enter
@@ -20710,6 +20750,14 @@ PrefabInstance:
       propertyPath: respawnInfo
       value: 
       objectReference: {fileID: 11400000, guid: 81933473c4c5a2543ac055c730cb4d6f, type: 2}
+    - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: isCheckipoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5879985615406938373, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c15be5f61cf3449488a8a92488b4d846, type: 3}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_TinPewterTutorial_Enter
@@ -23438,6 +23486,18 @@ PrefabInstance:
     - target: {fileID: 4949074704001756296, guid: 57a0f0303f72e6d4ca4390fca8477573, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001000258698980879, guid: 57a0f0303f72e6d4ca4390fca8477573, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 5001000258698980879, guid: 57a0f0303f72e6d4ca4390fca8477573, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001000258698980879, guid: 57a0f0303f72e6d4ca4390fca8477573, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5331958821003007544, guid: 57a0f0303f72e6d4ca4390fca8477573, type: 3}
       propertyPath: tin
