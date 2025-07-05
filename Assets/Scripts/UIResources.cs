@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class UIResources : MonoBehaviour
 {
     public static UIResources instance { get; set; }
+
+    [Header("Health")]
+
+    public Slider healthSlider;
     [Header("Coins")]
     public TMP_Text coinText;
 
@@ -87,6 +91,10 @@ public class UIResources : MonoBehaviour
         }
     }
 
+    public void UpdateHealth(int healthAmount)
+    {
+        healthSlider.value = healthAmount;
+    }
 
     public void UpdateCoins(int coinsAmount)
     {

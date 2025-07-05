@@ -52,7 +52,8 @@ public class PlayerDamage : MonoBehaviour, IDamageable
                 knockbackDirection = new Vector2(-1,1);
             }
 
-            playerResources.health -= amount;
+            playerResources.SetHealth(playerResources.health-amount);
+
             if (playerResources.health <= 0)
                 OnDie();
             else

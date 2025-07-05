@@ -46,6 +46,12 @@ public class PlayerResources : MonoBehaviour
         checkIfEmpty();
     }
 
+    public void SetHealth(int amount)
+    {
+        health = amount;
+        UIResources.instance.UpdateHealth(health);
+    }
+
     public void GetObject(Collider2D collision)
     {
         if ((collision.tag == "Coin" || collision.tag == "Vial") && !playerData.showingCoin)
@@ -352,6 +358,7 @@ public class PlayerResources : MonoBehaviour
     
     public void UpdateCanvas()
     {
+        UIResources.instance.UpdateHealth(health);
         UIResources.instance.UpdateCoins(coins);
 
         UIResources.instance.UpdateVials(VialType.iron, ironVials);
