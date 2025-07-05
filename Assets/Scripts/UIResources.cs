@@ -16,22 +16,77 @@ public class UIResources : MonoBehaviour
     public GameObject tin;
     public GameObject pewter;
 
-    [Header("Vials")]
+    [Header("Reserves Backgrounds")]
+    public GameObject ironDefault;
+    public GameObject ironFire;
+
+    public GameObject steelDefault;
+    public GameObject steelFire;
+
+    public GameObject tinDefault;
+    public GameObject tinFire;
+    
+    public GameObject pewterDefault;
+    public GameObject pewterFire;
+    
+
+    [Header("Number Vials")]
     public TMP_Text ironText;
     public TMP_Text steelText;
     public TMP_Text tinText;
     public TMP_Text pewterText;
 
-    [Header("Reserves")]
+    [Header("Reserves amounts")]
     public Slider ironSlider;
     public Slider steelSlider;
     public Slider tinSlider;
     public Slider pewterSlider;
 
+    private PlayerData playerData;
+
     void Awake()
     {
         instance = this;
+
+        ironDefault.SetActive(true);
+        steelDefault.SetActive(true);
+        tinDefault.SetActive(true);
+        pewterDefault.SetActive(true);
+
+        ironFire.SetActive(false);
+        steelFire.SetActive(false);
+        tinFire.SetActive(false);
+        pewterFire.SetActive(false);
+
     }
+
+    void Start()
+    {
+        playerData = GameManager.Instance.player.GetComponent<PlayerData>();
+    }
+
+    void Update()
+    {
+        FireHandler(ironDefault, ironFire, playerData.burningIron);
+        FireHandler(steelDefault, steelFire, playerData.burningSteel);
+        FireHandler(tinDefault, tinFire, playerData.burningTin);
+        FireHandler(pewterDefault, pewterFire, playerData.burningPewter);
+    }
+
+    private void FireHandler(GameObject defalut, GameObject fire, bool burningMetal)
+    {
+        if (burningMetal)
+        {
+            defalut.SetActive(false);
+            fire.SetActive(true);
+        }
+        else
+        {
+            defalut.SetActive(true);
+            fire.SetActive(false);
+        }
+    }
+
 
     public void UpdateCoins(int coinsAmount)
     {

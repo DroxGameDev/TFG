@@ -56,7 +56,7 @@ public class SteelPower : Iron_Steel
 
     private void HandleSelection()
     {
-        if (selectedMetal == null)
+        if (selectedMetal.metal == null)
         {
             ChangeState(PowerState.inactive);
             OnInactive();
@@ -291,7 +291,7 @@ public class SteelPower : Iron_Steel
             float step = playerData.steelPushPower / metal.attachedRigidbody.mass * Time.fixedDeltaTime;
 
             ContactFilter2D filter = new ContactFilter2D();
-            if (selectedMetal.metal.tag == "Vial" || selectedMetal.metal.tag == "Coin")
+            if (metal.tag == "Vial" || metal.tag == "Coin")
             {
                 filter.SetLayerMask(playerData.obstacleLayerMinusOpenWall);
             }

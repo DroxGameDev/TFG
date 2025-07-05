@@ -31,7 +31,6 @@ public class IronPower : Iron_Steel
 
         if (input && state == PowerState.inactive && !playerData.showingCoin)
         {
-
             ChangeState(PowerState.select);
             OnSelect();
         }
@@ -44,7 +43,7 @@ public class IronPower : Iron_Steel
 
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
         {
-            if (selectedMetal == null)
+            if (selectedMetal.metal == null)
             {
                 ChangeState(PowerState.inactive);
                 OnInactive();

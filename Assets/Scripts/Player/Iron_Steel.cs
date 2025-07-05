@@ -59,7 +59,6 @@ public class Iron_Steel : MonoBehaviour
 
             if (IsWallBetween(newLineObject)) linesBehindWalls++;
         }
-
         return nearMetalLines.Count > 0 && linesBehindWalls < nearMetalLines.Count;
     }
 
@@ -101,7 +100,7 @@ public class Iron_Steel : MonoBehaviour
         StartCoroutine(EndTransition());
     }
     public virtual void OnSelect()
-    {
+    {  
        StartCoroutine(StartTransition());
     }
     public virtual void OnForce()
