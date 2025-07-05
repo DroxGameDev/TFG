@@ -71,17 +71,23 @@ TagManager:
   - name: Pickups
     uniqueID: 692889473
     locked: 0
+  - name: Mist
+    uniqueID: 3481971939
+    locked: 0
   - name: Floor
     uniqueID: 4243921313
+    locked: 0
+  - name: FloorArt
+    uniqueID: 3390161387
+    locked: 0
+  - name: SeeWall
+    uniqueID: 1661998495
     locked: 0
   - name: Walkable Area
     uniqueID: 4059447479
     locked: 0
   - name: SecretWall
     uniqueID: 4006148307
-    locked: 0
-  - name: Mist
-    uniqueID: 3481971939
     locked: 0
   - name: LightMask
     uniqueID: 2994281451
@@ -94,4 +100,7 @@ TagManager:
     locked: 0
   - name: Tutorials
     uniqueID: 3095537823
+    locked: 0
+  - name: UI
+    uniqueID: 2559044031
     locked: 0
