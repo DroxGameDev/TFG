@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class FinalChallenge1MovableSpikes : MonoBehaviour
 {
-    Animator anim;
+    SpikesChase spikesChase;
 
     void Awake()
     {
-        anim = GetComponent<Animator>();
+        spikesChase = GetComponent<SpikesChase>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            anim.SetBool("Close", true);
+            spikesChase.BeginChase();
         }
     }
 }
