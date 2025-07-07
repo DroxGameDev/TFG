@@ -2631,12 +2631,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  spikeCenter: {fileID: 666575453}
   destinyPosition: {fileID: 750329709}
   originPosition: {fileID: 289317247}
   spikes: {fileID: 169994407}
-  minSpeed: 4
-  maxSpeed: 8
-  slowDownDistance: 4
+  minSpeed: 1
+  maxSpeed: 16
+  slowDownDistance: 15
+  accelerateDistance: 25
   chaseDirection: {x: 1, y: 0, z: 0}
   chasing: 0
   moving: 0
@@ -3862,7 +3864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1828800748071152340, guid: 89099139df1957c4d8dcc4b1a8753ff8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: 4939523974360359703, guid: 89099139df1957c4d8dcc4b1a8753ff8, type: 3}
       propertyPath: m_Offset.x
@@ -10390,7 +10392,7 @@ Transform:
   m_GameObject: {fileID: 1226657427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 239.4893, y: -155.893, z: 0}
+  m_LocalPosition: {x: 239.506, y: -155.807, z: 0}
   m_LocalScale: {x: 2, y: -2, z: 0.94523996}
   m_ConstrainProportionsScale: 0
   m_Children: []

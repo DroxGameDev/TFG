@@ -7,10 +7,13 @@ public class FinalChallenge2MovableSpikes : MonoBehaviour
     Animator anim;
     Collider2D col;
     public LayerMask enemyLayer;
+
+    SpikesChase spikesChase;
     void Awake()
     {
         anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
+        spikesChase = GetComponent<SpikesChase>();
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -20,6 +23,7 @@ public class FinalChallenge2MovableSpikes : MonoBehaviour
             if (!col.IsTouchingLayers(enemyLayer))
             {
                 anim.SetTrigger("Open");
+                spikesChase.BeginChase();
             }
         }
     }

@@ -85,7 +85,7 @@ public enum PanDirection
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(CameraControlTrigger))]
-public class MyScriptEditor : Editor
+public class CameraControlTriggerEditor : Editor
 {
     CameraControlTrigger cameraControlTrigger;
 
