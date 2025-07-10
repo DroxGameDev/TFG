@@ -15,6 +15,7 @@ public class Iron_Steel : MonoBehaviour
 {
     public static PowerState state;
     [HideInInspector] public bool input;
+    [HideInInspector] public bool inputProcessed = false;
 
     [HideInInspector] public static Rigidbody2D rb;
     [HideInInspector] public static PlayerData playerData;
@@ -49,7 +50,24 @@ public class Iron_Steel : MonoBehaviour
         Collider2D[] nearMetals = Physics2D.OverlapCircleAll(playerData.linesOrigin.position, playerData.metalCheckRadius, playerData.metalLayers);
 
         int linesBehindWalls = 0;
+        bool atLeastOneVisible = false;
 
+        foreach (var metal in nearMetals)
+        {
+            GameObject newLinePrefab = Instantiate(playerData.linePrefab);
+            LineObject newLineObject = new LineObject(newLinePrefab, metal);
+
+            nearMetalLines.Add(newLineObject);
+
+            if (!IsWallBetween(newLineObject))
+            {
+                atLeastOneVisible = true;
+            }
+        }
+
+        return nearMetalLines.Count > 0 && atLeastOneVisible;
+
+        /*
         for (int i = 0; i < nearMetals.Length; i++)
         {
 
@@ -60,6 +78,7 @@ public class Iron_Steel : MonoBehaviour
             if (IsWallBetween(newLineObject)) linesBehindWalls++;
         }
         return nearMetalLines.Count > 0 && linesBehindWalls < nearMetalLines.Count;
+        */
     }
 
     public void setLinesDirection()
@@ -109,7 +128,7 @@ public class Iron_Steel : MonoBehaviour
     }
     public virtual void OnImpulse()
     {
-        //StartCoroutine(EndTransition());
+        SoundEffectManager.instance.PlayRandomSoundFXClip(playerData.impulseClips, playerData.linesOrigin, playerData.impulseVFXvolume);
     }
 
     public virtual void OnWallWalk()

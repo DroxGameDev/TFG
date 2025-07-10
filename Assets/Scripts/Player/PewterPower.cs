@@ -82,7 +82,8 @@ public class PewterPower : MonoBehaviour
         {
             if (playerResources.health < playerData.maxHealth)
             {
-                playerResources.SetHealth(playerResources.health+1);
+                playerResources.SetHealth(playerResources.health + 1);
+                playerResources.PewterHealth(10f);
             }
             yield return new WaitForSeconds(1f);
         }

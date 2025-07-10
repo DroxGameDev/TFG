@@ -102,6 +102,15 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackDoneFeedback()
     {
+        if (playerData.burningPewter)
+        {
+            SoundEffectManager.instance.PlayRandomSoundFXClip(playerData.punchAttackClips, playerData.attackOrigin.transform, playerData.attackVFXvolume);
+        }
+        else
+        {
+            SoundEffectManager.instance.PlayRandomSoundFXClip(playerData.knifeAttackClips, playerData.attackOrigin.transform, playerData.attackVFXvolume);
+        }
+
         if (playerData.isFacingRight)
         {
             rb.AddForce(Vector2.left * playerData.attackImpulse, ForceMode2D.Impulse);

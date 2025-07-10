@@ -20,10 +20,21 @@ public class SteelPower : Iron_Steel
         switch (state)
         {
             case PowerState.inactive:
-                if (input)
+                if (input && !inputProcessed)
                 {
-                    ChangeState(PowerState.select);
-                    OnSelect();
+                    inputProcessed = true;
+
+                    if (GetNearbyMetals())
+                    {
+                        ChangeState(PowerState.select);
+                        OnSelect();
+                    }
+                    else
+                    {
+                        input = false;
+                        inputProcessed = false;
+                        ResetLines();
+                    }
                 }
                 break;
 
@@ -32,6 +43,7 @@ public class SteelPower : Iron_Steel
                 {
                     HandleSelection();
                     input = false;
+                    inputProcessed = false;
                 }
                 break;
 
@@ -51,12 +63,13 @@ public class SteelPower : Iron_Steel
             ChangeState(PowerState.inactive);
             OnInactive();
             input = false;
+            inputProcessed = false;
         }
     }
 
     private void HandleSelection()
     {
-        if (selectedMetal.metal == null)
+        if (selectedMetal == null || selectedMetal.metal == null)
         {
             ChangeState(PowerState.inactive);
             OnInactive();
@@ -69,7 +82,6 @@ public class SteelPower : Iron_Steel
         }
         else
         {
-            base.OnImpulse();
             ChangeState(PowerState.impulse);
             OnImpulse();
             StartCoroutine(pushObject(rb, selectedMetal.metal.attachedRigidbody));
@@ -125,20 +137,12 @@ public class SteelPower : Iron_Steel
 
     public override void OnSelect()
     {
-        if (GetNearbyMetals())
-        {
-            base.OnSelect();
-            playerData.burningSteel = true;
-            Time.timeScale = 0.1f;
-            selectMetalCounter = playerData.selectMetalTime;
-            setLinesDirection();
-            DetectPushing();
-        }
-        else
-        {
-            ChangeState(PowerState.inactive);
-            OnInactive();
-        }
+        base.OnSelect();
+        playerData.burningSteel = true;
+        Time.timeScale = 0.1f;
+        selectMetalCounter = playerData.selectMetalTime;
+        setLinesDirection();
+        DetectPushing();
     }
 
     public override void OnForce()
@@ -185,18 +189,20 @@ public class SteelPower : Iron_Steel
         {
             Vector2 MetalClosestPoint = target.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
             forceAmount = getImpulse(MetalClosestPoint);
+            base.OnImpulse();
             origin.AddForce(forceAmount, ForceMode2D.Impulse);
         }
         else
         {
             forceAmount = getImpulse(target.gameObject.transform.position);
             if (target.tag == "Environment_metal")
-            {
+            {   
+                base.OnImpulse();
                 origin.AddForce(forceAmount, ForceMode2D.Impulse);
             }
             else if (target.tag == "Heavy_Metal")
             {
-
+                base.OnImpulse();
                 origin.AddForce(forceAmount, ForceMode2D.Impulse);
 
                 yield return new WaitForFixedUpdate();
@@ -236,6 +242,8 @@ public class SteelPower : Iron_Steel
                     }
                     else
                     {
+                        base.OnImpulse();
+
                         origin.AddForce(forceAmount, ForceMode2D.Impulse);
                     }
                 }

@@ -15,6 +15,7 @@ public class PlayerMovement : AffectedByGravity
     [Header("Jumping")]
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
+     // Velocidad máxima de caída
 
     [Header("Debug")]
     public bool active;
@@ -123,7 +124,8 @@ public class PlayerMovement : AffectedByGravity
         }
         #endregion
 
-        if(CheckFlip(moveInput)) playerData.Flip();
+        if (CheckFlip(moveInput)) playerData.Flip();
+        
         
     }
 
@@ -206,6 +208,21 @@ public class PlayerMovement : AffectedByGravity
             amount *= Mathf.Sign(playerData.velocity.x);
 
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+
+        #endregion
+
+        #region fall speed limiter
+
+        if (!playerData.movingWithPowers && playerData.gravityMode == GravityMode.Down)
+        {
+            Vector2 currentVel = rb.velocity;
+
+            if (currentVel.y < playerData.maxFallSpeed)
+            {
+                currentVel.y = playerData.maxFallSpeed;
+            }
+            rb.velocity = currentVel;
         }
 
         #endregion

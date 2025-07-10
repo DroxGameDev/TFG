@@ -65,7 +65,10 @@ TagManager:
   - name: Spikes
     uniqueID: 4088434057
     locked: 0
-  - name: Player and Enemies
+  - name: Enemies
+    uniqueID: 3334667267
+    locked: 0
+  - name: Player
     uniqueID: 4292425839
     locked: 0
   - name: Box

@@ -39,9 +39,9 @@ public class ViewManager : MonoBehaviour
 
         if (!SceneManager.GetSceneByName(scene.sceneName).isLoaded)
         {
-            SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(scene.sceneName, LoadSceneMode.Additive);
+            yield return loadOperation;
         }
-        yield return null;
 
         currentScene = scene;
 

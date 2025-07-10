@@ -6,6 +6,7 @@ using TMPro;
 public class Tutorial_Move : MonoBehaviour
 {
     TextMeshPro textMeshPro;
+    public GameObject initialCanvas;
 
     void Awake()
     {
@@ -15,7 +16,7 @@ public class Tutorial_Move : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale >= 1f)
+        if (!initialCanvas.activeSelf)
         {
             textMeshPro.enabled = true;
         }

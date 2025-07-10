@@ -296,6 +296,11 @@ public class PlayerResources : MonoBehaviour
     }
     #endregion
 
+    public void PewterHealth(float amount)
+    {
+        UpdatePewterReserves(-amount);
+    }
+
     #region Canvas Updates
 
 

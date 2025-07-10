@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         ViewManager.Instance.ChangeScene(destinyDoor.doorScene);
 
-        while (ViewManager.Instance.changingScene && cinemachineBrain.IsBlending)
+        while (ViewManager.Instance.changingScene || cinemachineBrain.IsBlending)
         {
             // Wait until the scene is changed and the camera is done blending
             yield return null;

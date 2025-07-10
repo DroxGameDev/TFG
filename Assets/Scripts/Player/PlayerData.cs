@@ -50,6 +50,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public float jumpMod = 1;
 
     [Space(10)]
+    [Range(-100f, 0f)]public float maxFallSpeed = -20f;
     [Header("Gravity")]
     [Range(0f, 5f)] public float gravityScale;
     [Range(0f, 5f)] public float fallGravityMultiplier;
@@ -178,6 +179,14 @@ public class PlayerData : MonoBehaviour
     public bool movingWithPowers = false;
     public bool showingCoin = false;
 
+    [Header("AudioClips")]
+    public float attackVFXvolume = 0.1f;
+    public AudioClip[] knifeAttackClips;
+    public AudioClip[] punchAttackClips;
+    public float impulseVFXvolume = 0.5f;
+    public AudioClip[] impulseClips;
+
+
     void Awake()
     {
         moveMod = 1;
@@ -195,6 +204,8 @@ public class PlayerData : MonoBehaviour
         burningSteel = false;
         burningTin = false;
         burningPewter = false;
+
+        selectMetalMaterial.SetFloat("_SelectMetalAreaStep", 0f);
 
         showedCoin = null;
         shootPoint.position = new Vector3(shootPoint.position.x, linesOrigin.position.y, 0);

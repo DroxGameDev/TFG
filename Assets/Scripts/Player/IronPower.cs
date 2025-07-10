@@ -9,13 +9,10 @@ public class IronPower : Iron_Steel
 {
     private float burningIronCounter;
     private Vector2 directorVectorImpulse;
-    
     private Vector2 forceTargetPosition;
-     public WalkableArea walkableArea;
 
+    public WalkableArea walkableArea;
     public List<WalkableArea> nearWalkableAreas;
-    
-
     private bool obstacleReached = false;
     
     public IEnumerator IronInputupdate(bool context)
@@ -29,16 +26,28 @@ public class IronPower : Iron_Steel
     {
         OnUpdate();
 
-        if (input && state == PowerState.inactive && !playerData.showingCoin)
+        if (input && !inputProcessed && state == PowerState.inactive)
         {
-            ChangeState(PowerState.select);
-            OnSelect();
+            inputProcessed = true;
+
+            if (!playerData.showingCoin && GetNearbyMetals())
+            {
+                ChangeState(PowerState.select);
+                OnSelect();
+            }
+            else
+            {
+                input = false;
+                inputProcessed = false;
+                ResetLines();
+            }
         }
         else if (playerData.burningIron && (playerResources.ironEmpty || playerData.damaged || playerData.dead))
         {
             ChangeState(PowerState.inactive);
             OnInactive();
             input = false;
+            inputProcessed = false;
         }
 
         else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
@@ -60,6 +69,7 @@ public class IronPower : Iron_Steel
                 OnForce();
             }
             input = false;
+            inputProcessed = false;
         }
         //Debug.Log ("3:" + state);
 
@@ -68,36 +78,7 @@ public class IronPower : Iron_Steel
 
             if (ObjectiveReached(selectedMetal.metal))
             {
-                if (selectedMetal.metal.tag == "Environment_metal")
-                {
-                    if (playerData.grounded)
-                    {
-                        ChangeState(PowerState.inactive);
-                        OnInactive();
-                    }
-                    else
-                    {
-                        ChangeState(PowerState.impulse);
-                        OnImpulse();
-                    }
-                }
-                else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
-                {
-                    playerResources.IronItem(selectedMetal.metal.gameObject);
-
-                    ChangeState(PowerState.inactive);
-                    OnInactive();
-                }
-                else if (CheckIfWalkable())
-                {
-                    ChangeState(PowerState.wallWalking);
-                    OnWallWalk();
-                }
-                else
-                {
-                    ChangeState(PowerState.inactive);
-                    OnInactive();
-                }
+                HandleObjectiveReached();
             }
 
             else if (obstacleReached)
@@ -140,20 +121,13 @@ public class IronPower : Iron_Steel
 
     public override void OnSelect()
     {
-        if (GetNearbyMetals())
-        {
-            base.OnSelect();
-            playerData.burningIron = true;
-            Time.timeScale = 0.1f;
-            selectMetalCounter = playerData.selectMetalTime;
-            setLinesDirection();
-            DetectPushing();
-        }
-        else
-        {
-            ChangeState(PowerState.inactive);
-            OnInactive();
-        }
+        base.OnSelect();
+        playerData.burningIron = true;
+        Time.timeScale = 0.1f;
+        selectMetalCounter = playerData.selectMetalTime;
+        setLinesDirection();
+        DetectPushing();
+
     }
 
     public override void OnForce(){
@@ -179,6 +153,40 @@ public class IronPower : Iron_Steel
         }
     }
 
+    private void HandleObjectiveReached()
+    {
+        if (selectedMetal.metal.tag == "Environment_metal")
+        {
+            if (playerData.grounded)
+            {
+                ChangeState(PowerState.inactive);
+                OnInactive();
+            }
+            else
+            {
+                ChangeState(PowerState.impulse);
+                OnImpulse();
+            }
+        }
+        else if (selectedMetal.metal.tag == "Coin" || selectedMetal.metal.tag == "Vial")
+        {
+            playerResources.IronItem(selectedMetal.metal.gameObject);
+
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else if (CheckIfWalkable())
+        {
+            ChangeState(PowerState.wallWalking);
+            OnWallWalk();
+        }
+        else
+        {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+    }
+
     private IEnumerator moveTowardsPlayer(Collider2D metal, Collider2D player)
     {
         Vector2 forcePlayerPosition;
@@ -186,15 +194,14 @@ public class IronPower : Iron_Steel
 
         if (metal.gameObject.tag == "Heavy_Metal")
         {
-            var heavyMetal = metal.GetComponent<Metal_Heavy_Object>();
-            heavyMetal.ForceMove();
+            metal.GetComponent<Metal_Heavy_Object>().ForceMove();
         }
 
         Vector2 currentPosition;
         Vector2 direction;
 
         Rigidbody2D rbMetal = metal.attachedRigidbody;
-        
+
         while (state == PowerState.force && !ObjectiveReached(metal) && !metalObstacleReached)
         {
             forcePlayerPosition = playerData.linesOrigin.position;
@@ -328,6 +335,7 @@ public class IronPower : Iron_Steel
     }
 
     public override void OnImpulse(){
+        base.OnImpulse();
         burningIronCounter = playerData.ironPullTime;
         //playerData.cancelGravity = false;
 
