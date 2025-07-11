@@ -33,6 +33,9 @@ public class CameraManager : MonoBehaviour
 
     public CinemachineVirtualCamera respawnCamera;
 
+    [Header("Camera Shake")]
+    [SerializeField] private float globalShakeForce = 1f;
+
 
     void Awake()
     {
@@ -55,14 +58,14 @@ public class CameraManager : MonoBehaviour
         _normYPanAmount = _framingTrasposer.m_YDamping;
         _startingTrackedObjectOffset = _framingTrasposer.m_TrackedObjectOffset;
     }
-    
+
     public CinemachineVirtualCamera _currentCamera;
     private CinemachineFramingTransposer _framingTrasposer;
     //private CinemachineConfiner2D _confiner;
 
     void Start()
     {
-       //_confiner = _currentCamera.GetComponent<CinemachineConfiner2D>();
+        //_confiner = _currentCamera.GetComponent<CinemachineConfiner2D>();
         originalOffsetX = _framingTrasposer.m_TrackedObjectOffset.x;
         flipDirection = _framingTrasposer.m_TrackedObjectOffset.x >= 0 ? 1 : -1;
         player = GameManager.Instance.player.GetComponent<PlayerData>();
@@ -316,9 +319,12 @@ public class CameraManager : MonoBehaviour
     }
     #endregion
 
-    public void ChangeCameraBoundaries(CompositeCollider2D cameraBounds)
+    #region Camera Shake
+
+    public void CameraShake(CinemachineImpulseSource impulseSource)
     {
-        //_confiner.m_BoundingShape2D = cameraBounds;
-        //_confiner.InvalidateCache();
-    }
+        impulseSource.GenerateImpulseWithForce(globalShakeForce);
+    } 
+
+    #endregion
 }

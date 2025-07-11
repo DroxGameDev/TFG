@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     EnemyDie enemyDie;
     EnemyShield enemyShield;
     Rigidbody2D rb;
+
+    CinemachineImpulseSource impulseSource;
 
     [HideInInspector]
     public int Health
@@ -23,6 +26,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         enemyShield = GetComponent<EnemyShield>();
         enemyDie = GetComponent<EnemyDie>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
@@ -63,6 +67,12 @@ public class EnemyDamage : MonoBehaviour, IDamageable
         if (enemyData.health <= 0)
             OnDie();
 
+
+        if (amount != 2)
+        {
+            GameManager.Instance.player.GetComponent<PlayerData>().PlayerAttackSFX();
+        }
+        CameraManager.Instance.CameraShake(impulseSource);
         StartCoroutine(DamageRutine(knockbackDirection, knockbackAmount));
     }
     public void OnDie()
@@ -74,6 +84,7 @@ public class EnemyDamage : MonoBehaviour, IDamageable
     IEnumerator DamageRutine(Vector2 direction, float knockback)
     {
         enemyData.damaged = true;
+
         enemyData.sprite.material.SetFloat("_FlashAmount", 1);
         rb.AddForce(direction * knockback, ForceMode2D.Impulse);
 

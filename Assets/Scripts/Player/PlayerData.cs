@@ -297,6 +297,21 @@ public class PlayerData : MonoBehaviour
         }
     }
 
+    #region Sound effects
+
+    public void PlayerAttackSFX()
+    {
+        if (burningPewter)
+        {
+            SoundEffectManager.instance.PlayRandomSoundFXClip(punchAttackClips, attackOrigin.transform, attackVFXvolume);
+        }
+        else
+        {
+            SoundEffectManager.instance.PlayRandomSoundFXClip(knifeAttackClips, attackOrigin.transform, attackVFXvolume);
+        }
+    }
+    #endregion
+
     void LateUpdate()
     {
         cameraTarget.transform.rotation = Quaternion.Euler(0f, 0f, 0f);

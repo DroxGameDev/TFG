@@ -23,7 +23,10 @@ public class ViewManager : MonoBehaviour
 
     void Start()
     {
-        SceneManager.LoadSceneAsync(beginScene.sceneName, LoadSceneMode.Additive);
+        if (!SceneManager.GetSceneByName(beginScene.sceneName).isLoaded)
+        {
+            SceneManager.LoadSceneAsync(beginScene.sceneName, LoadSceneMode.Additive);
+        }
     }
 
     public void ChangeScene(SceneInfo scene)

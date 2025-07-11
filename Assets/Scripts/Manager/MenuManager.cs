@@ -144,6 +144,12 @@ public class MenuManager : MonoBehaviour
         Unpause();
     }
 
+    public void OnExitPressed()
+    {
+        Application.Quit();
+        Debug.Log("Exit game");
+    }
+
     #endregion
 
     #region Settings menu buttons actions

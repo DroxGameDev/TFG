@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3563013764980688423
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -7,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SelectMetal
-  m_Shader: {fileID: -6465566751694194690, guid: 23cfd1d81fde5054f9f747ac8668acc1, type: 3}
+  m_Name: MistBackgroundMountain
+  m_Shader: {fileID: -6465566751694194690, guid: fbd4da5cb41a9d04abda23b01d93369c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,6 +36,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,9 +54,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _SelectMetalAreaStep: 0.95999986
-    - _SelectMetalIntensity: 1
-    - _SelectMetalPower: 10
+    - _FogOpacity: 50
+    - _FogSize: 0.114
+    - _FogStrengh: 2.16
     m_Colors:
-    - _Color: {r: 0.050980363, g: 0.79450905, b: 0.9529412, a: 0}
+    - _FogColor: {r: 1, g: 1, b: 1, a: 0.1176471}
+    - _FogSpeed: {r: 10, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

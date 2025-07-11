@@ -39,7 +39,8 @@ public class PlayerMovement : AffectedByGravity
         {
             jumpBufferCounter = playerData.jumpBufferTime;
             
-            if (playerData.gravityMode != GravityMode.Down){
+            if (playerData.gravityMode != GravityMode.Down)
+            {
 
                 //playerData.velocity = Vector2.zero;
 
@@ -94,7 +95,6 @@ public class PlayerMovement : AffectedByGravity
             coyoteTimeCounter -= Time.deltaTime;
         }
         jumpBufferCounter -= Time.deltaTime;
-
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
             rb.AddForce(Vector2.up * playerData.jumpForce * playerData.jumpMod, ForceMode2D.Impulse);
