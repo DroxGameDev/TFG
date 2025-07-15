@@ -283,7 +283,7 @@
                 {
                     "name": "",
                     "id": "3cf2c452-03bc-4b1b-acde-07cd97636aa3",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
@@ -305,7 +305,7 @@
                 {
                     "name": "",
                     "id": "e6200277-9dfb-49ae-b641-be1a362ec9ee",
-                    "path": "<Keyboard>/v",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
@@ -349,7 +349,7 @@
                 {
                     "name": "",
                     "id": "5979339a-27da-4b90-90c3-7e545e0110b4",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";PC",
