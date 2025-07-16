@@ -4,18 +4,17 @@ using UnityEngine;
 using TMPro;
 public class Tutorial_Steel : MonoBehaviour
 {
-    TextMeshPro textMeshPro;
+    TutorialInfo tutorialInfo;
 
     void Awake()
     {
-        textMeshPro = GetComponent<TextMeshPro>();
-        textMeshPro.enabled = false;
+        tutorialInfo = GetComponent<TutorialInfo>();
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Vial")
         {
-            textMeshPro.enabled = true;
+            tutorialInfo.ShowTutorial();
         }
         if(collision.tag == "Enemy")
         {

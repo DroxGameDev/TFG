@@ -5,18 +5,17 @@ using TMPro;
 
 public class Tutorial_Jump : MonoBehaviour
 {
-    TextMeshPro textMeshPro;
+   TutorialInfo tutorialInfo;
 
     void Awake()
     {
-        textMeshPro = GetComponent<TextMeshPro>();
-        textMeshPro.enabled = false;
+        tutorialInfo = GetComponent<TutorialInfo>();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            textMeshPro.enabled = true;
+            tutorialInfo.ShowTutorial();
         }
     }
     void OnTriggerExit2D(Collider2D collision)

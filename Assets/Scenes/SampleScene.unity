@@ -6255,7 +6255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
-      value: V + Left Click to shoot a coin
+      value: CTRL + LEFT CLICK to shoot a coin
       objectReference: {fileID: 0}
     - target: {fileID: 2954931479100213038, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: m_Pivot.x
@@ -9112,7 +9112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
-      value: C to drop a Coin
+      value: SHIFT to drop a Coin
       objectReference: {fileID: 0}
     - target: {fileID: 2954931479100213038, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: m_Pivot.x
@@ -17798,7 +17798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
-      value: F ti enter
+      value: F to enter
       objectReference: {fileID: 0}
     - target: {fileID: 2954931479100213038, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: m_Pivot.x
@@ -18362,7 +18362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
-      value: C to pick
+      value: Shift to pick
       objectReference: {fileID: 0}
     - target: {fileID: 2954931479100213038, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: m_Pivot.x
@@ -22062,7 +22062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
-      value: SHIFT to Attack
+      value: SCROLL WHEEL  button to attack
       objectReference: {fileID: 0}
     - target: {fileID: 2954931479100213038, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: m_Pivot.x
@@ -22865,7 +22865,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: GamePadTutorial
-      value: Press Left Joystick to Grab
+      value: Press LEFT JOYSTICK to Grab
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial
@@ -24017,8 +24017,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1726031061}
     m_Modifications:
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
+      propertyPath: keyboardImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: GamePadTutorial
-      value: Left Joystick to move
+      value: lto move
       objectReference: {fileID: 0}
     - target: {fileID: 2383975557473692696, guid: 0daffb3b582042a478934ad50017869b, type: 3}
       propertyPath: KeyboardTutorial

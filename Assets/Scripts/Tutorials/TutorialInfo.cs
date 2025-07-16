@@ -1,41 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
 
 public class TutorialInfo : MonoBehaviour
 {
-    public string GamePadTutorial;
-    public string KeyboardTutorial;
-    string currentTutorial; 
-    TextMeshPro textMeshPro;
+    public GameObject tutorialPanel;
+    public GameObject gamePadInput;
+    public GameObject keyboardInput;
 
-    void Awake()
+    public void Awake()
     {
-        currentTutorial = GamePadTutorial;
-        textMeshPro = GetComponent<TextMeshPro>();
-        textMeshPro.text = currentTutorial;
+        tutorialPanel.SetActive(false);
+        gamePadInput.SetActive(true);
+        keyboardInput.SetActive(false);
     }
-
 
     void Update()
     {
-        if(Tutorials.Instance.controllerState == ControllerState.GamePad)
+        if (Tutorials.Instance.controllerState == ControllerState.GamePad)
         {
-            if (currentTutorial != GamePadTutorial)
+
+            if (gamePadInput.activeSelf == false)
             {
-                currentTutorial = GamePadTutorial;
-                textMeshPro.text = currentTutorial;
+                gamePadInput.SetActive(true);
+                keyboardInput.SetActive(false);
             }
+
         }
         else if (Tutorials.Instance.controllerState == ControllerState.Keyboard)
         {
-            if (currentTutorial != KeyboardTutorial)
+            if (keyboardInput.activeSelf == false)
             {
-                currentTutorial = KeyboardTutorial;
-                textMeshPro.text = currentTutorial;
+                keyboardInput.SetActive(true);
+                gamePadInput.SetActive(false);
             }
         }
+    }
+
+    public void ShowTutorial()
+    {
+        tutorialPanel.SetActive(true);
     }
 
 }

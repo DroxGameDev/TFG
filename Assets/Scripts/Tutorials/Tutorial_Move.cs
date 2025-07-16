@@ -5,20 +5,19 @@ using TMPro;
 
 public class Tutorial_Move : MonoBehaviour
 {
-    TextMeshPro textMeshPro;
+    TutorialInfo tutorialInfo;
     public GameObject initialCanvas;
 
     void Awake()
     {
-        textMeshPro = GetComponent<TextMeshPro>();
-        textMeshPro.enabled = false;
+        tutorialInfo = GetComponent<TutorialInfo>();
     }
 
     void Update()
     {
         if (!initialCanvas.activeSelf)
         {
-            textMeshPro.enabled = true;
+            tutorialInfo.ShowTutorial();
         }
     }
     void OnTriggerExit2D(Collider2D collision)

@@ -5,18 +5,17 @@ using TMPro;
 
 public class Tutorial_ShootCoin : MonoBehaviour
 {
-    TextMeshPro textMeshPro;
+    TutorialInfo tutorialInfo;
 
     void Awake()
     {
-        textMeshPro = GetComponent<TextMeshPro>();
-        textMeshPro.enabled = false;
+        tutorialInfo = GetComponent<TutorialInfo>();
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
         {
-            textMeshPro.enabled = true;
+            tutorialInfo.ShowTutorial();
         }
         if (collision.tag == "Player")
         {
