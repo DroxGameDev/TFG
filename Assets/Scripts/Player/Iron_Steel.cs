@@ -49,7 +49,6 @@ public class Iron_Steel : MonoBehaviour
     {
         Collider2D[] nearMetals = Physics2D.OverlapCircleAll(playerData.linesOrigin.position, playerData.metalCheckRadius, playerData.metalLayers);
 
-        int linesBehindWalls = 0;
         bool atLeastOneVisible = false;
 
         foreach (var metal in nearMetals)
@@ -66,19 +65,18 @@ public class Iron_Steel : MonoBehaviour
         }
 
         return nearMetalLines.Count > 0 && atLeastOneVisible;
+    }
 
-        /*
-        for (int i = 0; i < nearMetals.Length; i++)
+    public bool MetalsSteelNearby()
+    {
+        foreach (var metalLine in nearMetalLines)
         {
-
-            GameObject newLinePrefab = Instantiate(playerData.linePrefab);
-            LineObject newLineObject = new LineObject(newLinePrefab, nearMetals[i]);
-            nearMetalLines.Add(newLineObject);
-
-            if (IsWallBetween(newLineObject)) linesBehindWalls++;
+            if (metalLine.iValue > 0f)
+            {
+                return true;
+            }
         }
-        return nearMetalLines.Count > 0 && linesBehindWalls < nearMetalLines.Count;
-        */
+        return false;
     }
 
     public void setLinesDirection()

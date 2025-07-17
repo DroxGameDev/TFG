@@ -26,91 +26,109 @@ public class IronPower : Iron_Steel
     {
         OnUpdate();
 
-        if (input && !inputProcessed && state == PowerState.inactive)
+        switch (state)
         {
-            inputProcessed = true;
+            case PowerState.inactive:
+                if (input && !inputProcessed)
+                {
+                    inputProcessed = true;
 
-            if (!playerData.showingCoin && GetNearbyMetals())
-            {
-                ChangeState(PowerState.select);
-                OnSelect();
-            }
-            else
-            {
-                input = false;
-                inputProcessed = false;
-                ResetLines();
-            }
+                    if (!playerData.showingCoin && GetNearbyMetals())
+                    {
+                        ChangeState(PowerState.select);
+                        OnSelect();
+                    }
+                    else
+                    {
+                        input = false;
+                        inputProcessed = false;
+                        ResetLines();
+                    }
+                }
+                break;
+            case PowerState.select:
+                if (playerData.burningIron)
+                {
+                    if (!input || selectMetalCounter <= 0)
+                    {
+                        HandleSelection();
+                        input = false;
+                        inputProcessed = false;
+                    }
+                    else if (!MetalsSteelNearby())
+                    {
+                        ChangeState(PowerState.inactive);
+                        OnInactive();
+                        input = false;
+                        inputProcessed = false;
+                    }
+                }
+                break;
+            case PowerState.force:
+                if (playerData.burningIron)
+                {
+                    if (ObjectiveReached(selectedMetal.metal))
+                    {
+                        HandleObjectiveReached();
+                    }
+
+                    else if (obstacleReached)
+                    {
+                        ChangeState(PowerState.inactive);
+                        OnInactive();
+                    }
+                }
+                break;
+            case PowerState.impulse:
+                if (playerData.burningIron)
+                {
+                    burningIronCounter -= Time.deltaTime;
+
+                    if (burningIronCounter <= 0.001f)
+                    {
+                        ChangeState(PowerState.inactive);
+                        OnInactive();
+                    }
+                }
+                break;
+            case PowerState.wallWalking:
+                if (playerData.burningIron && (!CheckIfWalkable() || playerData.gravityMode == GravityMode.Down))
+                {
+                    ChangeState(PowerState.inactive);
+                    OnInactive();
+                }
+                break;
         }
-        else if (playerData.burningIron && (playerResources.ironEmpty || playerData.damaged || playerData.dead))
+
+        if (playerData.burningIron && (playerResources.ironEmpty || playerData.damaged || playerData.dead))
         {
             ChangeState(PowerState.inactive);
             OnInactive();
             input = false;
             inputProcessed = false;
         }
-
-        else if ((!input || selectMetalCounter <= 0) && state == PowerState.select && playerData.burningIron)
-        {
-            if (selectedMetal.metal == null)
-            {
-                ChangeState(PowerState.inactive);
-                OnInactive();
-            }
-            else if (selectedMetal.metal.tag == "Arrow")
-            {
-                ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, -1);
-                ChangeState(PowerState.inactive);
-                OnInactive();
-            }
-            else
-            {
-                ChangeState(PowerState.force);
-                OnForce();
-            }
-            input = false;
-            inputProcessed = false;
-        }
-        //Debug.Log ("3:" + state);
-
-        else if (state == PowerState.force && playerData.burningIron)
-        {
-
-            if (ObjectiveReached(selectedMetal.metal))
-            {
-                HandleObjectiveReached();
-            }
-
-            else if (obstacleReached)
-            {
-                ChangeState(PowerState.inactive);
-                OnInactive();
-            }
-
-        }
-
-        else if (state == PowerState.wallWalking && playerData.burningIron && (!CheckIfWalkable() || playerData.gravityMode == GravityMode.Down))
-        {
-            ChangeState(PowerState.inactive);
-            OnInactive();
-        }
-
-        //Debug.Log ("4:" + state);
-
-        else if (state == PowerState.impulse && playerData.burningIron)
-        {
-            burningIronCounter -= Time.deltaTime;
-
-            if (burningIronCounter <= 0.001f)
-            {
-                ChangeState(PowerState.inactive);
-                OnInactive();
-            }
-        }
-
-        //Debug.Log ("5:" + state);
     }
-    public override void OnInactive(){
+    private void HandleSelection()
+    {
+        if (selectedMetal.metal == null)
+        {
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else if (selectedMetal.metal.tag == "Arrow")
+        {
+            ChangeArrowDirection(selectedMetal.metal.GetComponent<ArrowCollisions>().origin, -1);
+            ChangeState(PowerState.inactive);
+            OnInactive();
+        }
+        else
+        {
+            ChangeState(PowerState.force);
+            OnForce();
+        }
+    }
+    public override void OnInactive()
+    {
         base.OnInactive();
         playerData.burningIron = false;
         Time.timeScale = 1f;
@@ -134,7 +152,6 @@ public class IronPower : Iron_Steel
         base.OnForce();
         playerData.movingWithPowers = true;
         Time.timeScale = 1f;
-        //playerData.cancelGravity = true;
 
         rb.velocity = Vector3.zero;
 

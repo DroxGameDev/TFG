@@ -39,11 +39,21 @@ public class SteelPower : Iron_Steel
                 break;
 
             case PowerState.select:
-                if ((!input || selectMetalCounter <= 0) && playerData.burningSteel)
+                if (playerData.burningSteel)
                 {
-                    HandleSelection();
-                    input = false;
-                    inputProcessed = false;
+                    if (!input || selectMetalCounter <= 0)
+                    {
+                        HandleSelection();
+                        input = false;
+                        inputProcessed = false;
+                    }
+                    else if(!MetalsSteelNearby())
+                    {
+                        ChangeState(PowerState.inactive);
+                        OnInactive();
+                        input = false;
+                        inputProcessed = false;
+                    }
                 }
                 break;
 

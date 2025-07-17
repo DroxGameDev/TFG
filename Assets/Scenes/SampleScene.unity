@@ -16730,7 +16730,7 @@ PrefabInstance:
     - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: destinyDoor
       value: 
-      objectReference: {fileID: 2001657817}
+      objectReference: {fileID: 1930730774}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_IronTutorialExit
@@ -23356,17 +23356,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2001657817 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
-  m_PrefabInstance: {fileID: 1478018490}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341e0d1b1f601d048b09a15f50173500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2004963666
