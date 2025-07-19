@@ -47,7 +47,7 @@ public class Iron_Steel : MonoBehaviour
 
     public bool GetNearbyMetals()
     {
-        Collider2D[] nearMetals = Physics2D.OverlapCircleAll(playerData.linesOrigin.position, playerData.metalCheckRadius, playerData.metalLayers);
+        Collider2D[] nearMetals = Physics2D.OverlapCircleAll(playerData.linesOrigin.position, playerData.metalCheckRadius*5, playerData.metalLayers);
 
         bool atLeastOneVisible = false;
 
@@ -58,7 +58,10 @@ public class Iron_Steel : MonoBehaviour
 
             nearMetalLines.Add(newLineObject);
 
-            if (!IsWallBetween(newLineObject))
+            Vector2 MetalClosestPoint = newLineObject.metal.GetComponent<BoxCollider2D>().ClosestPoint(playerData.linesOrigin.position);
+            float lineDistance = Vector2.Distance(playerData.linesOrigin.position, MetalClosestPoint);
+
+            if (!IsWallBetween(newLineObject) && (lineDistance <= playerData.metalCheckRadius))
             {
                 atLeastOneVisible = true;
             }
