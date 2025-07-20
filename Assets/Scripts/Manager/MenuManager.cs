@@ -17,14 +17,14 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject beginMenu;
     [SerializeField] private GameObject endMenu;
     [SerializeField] private GameObject resuourcesInfo;
-    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
 
     [Header ("Player Components")]
     [SerializeField] private PlayerMovement playerMovement;
 
     [Header("First Selected Opstions")]
-    [SerializeField] private GameObject mainMenuFirst;
+    [SerializeField] private GameObject pauseMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
     [SerializeField] private GameObject beginMenuFirst;
 
@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         beginMenu.SetActive(true);
-        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         endMenu.SetActive(false);
         resuourcesInfo.SetActive(false);
@@ -103,15 +103,15 @@ public class MenuManager : MonoBehaviour
 
     void OpenMainMenu()
     {
-        mainMenu.SetActive(true);
+        pauseMenu.SetActive(true);
         settingsMenu.SetActive(false);
 
-        EventSystem.current.SetSelectedGameObject(mainMenuFirst);
+        EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
     }
 
     void OpenSettingsMenu()
     {
-        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
@@ -119,7 +119,7 @@ public class MenuManager : MonoBehaviour
 
     void CloseAllMenus()
     {
-        mainMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
