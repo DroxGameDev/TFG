@@ -14,6 +14,8 @@ public class EnemyDamageArea : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (origin.GetComponent<EnemyData>().damaged)
+            return;
         if (collision.tag == "Player")
         {
             PlayerAttackInfo attackInfo = collision.gameObject.GetComponent<PlayerAttackInfo>();

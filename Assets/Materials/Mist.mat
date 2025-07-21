@@ -45,7 +45,7 @@ Material:
     - _Exterior: 0
     - _FogOpacity: 0.5
     - _FogSize: 1.2
-    - _FogStrengh: 0
+    - _FogStrengh: 0.000003874302
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WorlSpace: 1

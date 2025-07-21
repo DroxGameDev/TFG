@@ -15,7 +15,7 @@ public class Tutorial_Move : MonoBehaviour
 
     void Update()
     {
-        if (!initialCanvas.activeSelf)
+        if (MenuManager.Instance.gameStarted)
         {
             tutorialInfo.ShowTutorial();
         }

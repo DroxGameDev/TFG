@@ -13,22 +13,22 @@ public class MenuManager : MonoBehaviour
             Instance = this;
         }
     }
+    public bool gameStarted = false;
     [Header("Menus")]
     [SerializeField] private GameObject beginMenu;
     [SerializeField] private GameObject endMenu;
     [SerializeField] private GameObject resuourcesInfo;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    private GameObject returnFromSettings;
 
-    [Header ("Player Components")]
+    [Header("Player Components")]
     [SerializeField] private PlayerMovement playerMovement;
 
     [Header("First Selected Opstions")]
     [SerializeField] private GameObject pauseMenuFirst;
     [SerializeField] private GameObject settingsMenuFirst;
     [SerializeField] private GameObject beginMenuFirst;
-
-
 
     public bool isPaused = false;
     private void Start()
@@ -58,9 +58,16 @@ public class MenuManager : MonoBehaviour
 
     public void BeginButtonPressed()
     {
+        gameStarted = true;
         beginMenu.SetActive(false);
         resuourcesInfo.SetActive(true);
         GameManager.Instance.StartGame();
+    }
+
+    public void OnSettingsFromBeginPressed()
+    {
+        returnFromSettings = beginMenu;
+        OpenSettingsMenuFromBegin();
     }
 
     public void EndMenuTriggered()
@@ -100,7 +107,13 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     #region Canvas activaton
+    void OpenBeginMenu()
+    {
+        beginMenu.SetActive(true);
+        settingsMenu.SetActive(false);
 
+        EventSystem.current.SetSelectedGameObject(beginMenuFirst);
+    }
     void OpenMainMenu()
     {
         pauseMenu.SetActive(true);
@@ -109,9 +122,17 @@ public class MenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(pauseMenuFirst);
     }
 
-    void OpenSettingsMenu()
+    void OpenSettingsMenuFromPause()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
+    }
+
+    void OpenSettingsMenuFromBegin()
+    {
+        beginMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(settingsMenuFirst);
@@ -133,10 +154,11 @@ public class MenuManager : MonoBehaviour
         playerMovement.GetComponent<PlayerDie>().Die();
         Unpause();
     }
-
-    public void OnSettingsPressed()
+    
+    public void OnSettingsFromPausePressed()
     {
-        OpenSettingsMenu();
+        returnFromSettings = pauseMenu;
+        OpenSettingsMenuFromPause();
     }
 
     public void OnResumePressed()
@@ -155,10 +177,17 @@ public class MenuManager : MonoBehaviour
     #region Settings menu buttons actions
     public void OnSettingsBackPressed()
     {
-        OpenMainMenu();
+        if (returnFromSettings == beginMenu)
+        {
+            OpenBeginMenu();
+        }
+        else if (returnFromSettings == pauseMenu)
+        {
+            OpenMainMenu();
+        }
+        
+        returnFromSettings = null;
     }
-
-
 
     #endregion
 }
