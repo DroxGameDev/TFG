@@ -36,6 +36,8 @@ public class Arrow : AffectedByGravity
     }
     public void ReturnArrow(Vector2 direction, float speedMult)
     {
+        if (returning) return;
+        
         shootTimer = receivedShooTime;
         returning = true;
         speedSprite.transform.localScale = new Vector3(speedSprite.transform.localScale.x * speedMult,speedSprite.transform.localScale.y,speedSprite.transform.localScale.z);

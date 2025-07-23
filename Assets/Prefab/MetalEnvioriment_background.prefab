@@ -182,7 +182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7780913546408339624
 Transform:
   m_ObjectHideFlags: 0
@@ -327,7 +327,7 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1300685845
   m_BackSortingLayerID: 0
-  m_FrontSortingLayer: 14
+  m_FrontSortingLayer: 15
   m_BackSortingLayer: 0
   m_FrontSortingOrder: 0
   m_BackSortingOrder: 0
@@ -382,7 +382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5342034133561530924
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Intensity: 8
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: e3ac8acf3fb10639eb1b79b239d545eda119f5fc6f38d9fffd1e8b62c5dd3074
+  m_ApplyToSortingLayers: e3ac8acf3fb10639eb1b79b239d545eda119f5fc6f38d9fffd1e8b62c5dd307403fcc2c6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

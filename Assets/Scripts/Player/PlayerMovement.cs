@@ -38,13 +38,13 @@ public class PlayerMovement : AffectedByGravity
         if (context)
         {
             jumpBufferCounter = playerData.jumpBufferTime;
-            
+
             if (playerData.gravityMode != GravityMode.Down)
             {
-
-                //playerData.velocity = Vector2.zero;
-
                 playerData.ChangeGravityMode(GravityMode.Down);
+                rb.velocity = Vector2.zero;
+                rb.AddForce(Vector2.up * playerData.jumpForce * playerData.jumpMod, ForceMode2D.Impulse);
+                jumpBufferCounter = 0f;
             }
         }
 

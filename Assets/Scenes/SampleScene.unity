@@ -6811,6 +6811,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6071868013525719811, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
   m_PrefabInstance: {fileID: 1478018490}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &626579070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
+  m_PrefabInstance: {fileID: 1478018490}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341e0d1b1f601d048b09a15f50173500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &628356248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7906,6 +7917,7 @@ Transform:
   - {fileID: 1716948229}
   - {fileID: 1697100504}
   - {fileID: 676545612}
+  - {fileID: 1379776603}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730719781 stripped
@@ -10760,7 +10772,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 339.68015, y: 212.36267, z: 0}
+  m_LocalPosition: {x: 339.6697, y: 212.36267, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11862,7 +11874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6071868013525719811, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 404.19
+      value: 408.61
       objectReference: {fileID: 0}
     - target: {fileID: 6071868013525719811, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18383,7 +18395,7 @@ PrefabInstance:
     - target: {fileID: 2234626399703993002, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: destinyDoor
       value: 
-      objectReference: {fileID: 1930730774}
+      objectReference: {fileID: 626579070}
     - target: {fileID: 6019316539828734663, guid: 4fe6a5ffb95b1a440a7c916c4f30bd8d, type: 3}
       propertyPath: m_Name
       value: Door_IronTutorialExit
@@ -18932,15 +18944,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 709898065}
     m_Modifications:
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 536.87946
+      value: 565.7195
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -43.560287
+      value: -44.600327
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18952,15 +18964,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19664,6 +19676,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1379776603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2293747539716383807, guid: b8259616cfbd9ad4bab96c4e4612527a, type: 3}
+  m_PrefabInstance: {fileID: 1323165401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1402999785 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8470279499098427086, guid: bad1cf8871242634aa05476d584fad02, type: 3}
@@ -29233,6 +29250,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: damageWait
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 963194227}
@@ -29271,6 +29292,10 @@ PrefabInstance:
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: attackComboStep
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
+      propertyPath: invicibilityTime
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4922590346783359988, guid: fc9d3049f05b6cd439684178ad5d0dc7, type: 3}
       propertyPath: metalCheckRadius
@@ -30256,4 +30281,3 @@ SceneRoots:
   - {fileID: 1841656173}
   - {fileID: 339586356}
   - {fileID: 7593533032298729498}
-  - {fileID: 1323165401}

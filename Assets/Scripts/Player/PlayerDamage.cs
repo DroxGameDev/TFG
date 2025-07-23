@@ -28,41 +28,41 @@ public class PlayerDamage : MonoBehaviour, IDamageable
 
     public void OnDamage(int amount, float knockbackAmount, bool originFacingRight)
     {
-        if (invincibilityTimer <= 0f)
+        if (invincibilityTimer > 0f) return;
+        
+        Vector2 knockbackDirection;
+        playerData.velocity = Vector2.zero;
+
+        if (originFacingRight)
         {
-            Vector2 knockbackDirection;
-            playerData.velocity = Vector2.zero;
-
-            if (originFacingRight)
+            if (playerData.isFacingRight)
             {
-                if (playerData.isFacingRight)
-                {
-                    playerData.Flip();
-                }
-                knockbackDirection = new Vector2(1, 1);
-                //knockbackDirection = Vector2.right;
+                playerData.Flip();
             }
-            else
-            {
-                if (!playerData.isFacingRight)
-                {
-                    playerData.Flip();
-                }
-                //knockbackDirection = Vector2.left;
-                knockbackDirection = new Vector2(-1,1);
-            }
-
-            playerResources.SetHealth(playerResources.health-amount);
-
-            if (playerResources.health <= 0)
-                OnDie();
-            else
-            {
-                HitStop.Instance.Stop(playerData.hitTime);
-                StartCoroutine(DamageWait());
-                StartCoroutine(DamageFeedback(knockbackDirection, knockbackAmount));
-            }
+            knockbackDirection = new Vector2(1, 1);
+            //knockbackDirection = Vector2.right;
         }
+        else
+        {
+            if (!playerData.isFacingRight)
+            {
+                playerData.Flip();
+            }
+            //knockbackDirection = Vector2.left;
+            knockbackDirection = new Vector2(-1,1);
+        }
+
+        playerResources.SetHealth(playerResources.health-amount);
+
+        if (playerResources.health <= 0)
+            OnDie();
+        else
+        {
+            HitStop.Instance.Stop(playerData.hitTime);
+            StartCoroutine(DamageWait());
+            StartCoroutine(DamageFeedback(knockbackDirection, knockbackAmount));
+        }
+        
     }
     IEnumerator DamageWait()
     {

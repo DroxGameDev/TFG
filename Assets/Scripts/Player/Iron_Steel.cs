@@ -27,8 +27,8 @@ public class Iron_Steel : MonoBehaviour
     [HideInInspector] public static Vector2 selectMetalVector;
     [HideInInspector] public static LineObject selectedMetal = null;
     [HideInInspector] public static float selectMetalCounter;
+    private Coroutine transitionCoroutine;
     public static bool transitioning = false;
-
     private static float transitionStep = 0;
 
     void Start()
@@ -117,11 +117,21 @@ public class Iron_Steel : MonoBehaviour
 
     public virtual void OnInactive()
     {
-        StartCoroutine(EndTransition());
+       if (transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+        }
+
+        transitionCoroutine = StartCoroutine(EndTransition());
     }
     public virtual void OnSelect()
     {  
-       StartCoroutine(StartTransition());
+       if (transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+        }
+
+        transitionCoroutine = StartCoroutine(StartTransition());
     }
     public virtual void OnForce()
     {
